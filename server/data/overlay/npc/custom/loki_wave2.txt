@@ -1,0 +1,121 @@
+//===== Loki VR client wave 2 test NPCs (private test server "client" only) =====
+// What the client must show / answer: NPC point and item shops (callshop), viewpoint marks, the stylist, laphine synthesis,
+// item merge, rental / bound / damaged items, reputation, an NPC chat room (waitingroom), a memorial dungeon and a battleground.
+//==============================================================================
+prontera,161,151,2	script	Wave2 Test#w2	4_M_MANAGER,{
+	mes "[Wave2 Test]";
+	mes "Choose a test.";
+	switch (select("Point shop:Item shop:Viewpoints:Viewpoint off:Stylist:Laphine synthesis:Merge items:Rental item:Bound item:Break my armor:Reputation:Close")) {
+	case 1:
+		set #W2PTS, 100;
+		close2;
+		callshop "W2 Points#w2", 0;
+		end;
+	case 2:
+		getitem 909, 10;
+		close2;
+		callshop "W2 Items#w2", 0;
+		end;
+	case 3:
+		viewpoint 1, 160, 160, 1, 0xFF0000;
+		viewpoint 0, 165, 165, 2, 0x00FF00;
+		mes "Two marks.";
+		close;
+	case 4:
+		viewpoint 2, 160, 160, 1, 0xFF0000;
+		mes "Mark 1 removed.";
+		close;
+	case 5:
+		close2;
+		openstylist;
+		end;
+	case 6:
+		getitem 28942, 1;
+		close2;
+		laphine_synthesis 23545;
+		end;
+	case 7:
+		getitem 13826, 1;
+		getitem 13826, 1;
+		close2;
+		mergeitem;
+		end;
+	case 8:
+		rentitem 1201, 120;
+		mes "A knife for two minutes.";
+		close;
+	case 9:
+		getitembound 2301, 1, BOUND_CHAR;
+		mes "A bound shirt.";
+		close;
+	case 10:
+		breakequip EQI_ARMOR;
+		mes "Broken.";
+		close;
+	case 11:
+		add_reputation_points(3, 100);
+		close2;
+		reputationui(2, 3);
+		end;
+	default:
+		close;
+	}
+}
+
+-	pointshop	W2 Points#w2	-1,#W2PTS,501:5,502:10
+-	itemshop	W2 Items#w2	-1,909,501:2,503:4
+
+prontera,163,151,2	script	W2 Room#w2	4_F_KAFRA1,{
+	end;
+OnInit:
+	waitingroom "Wave2 NPC room", 5;
+	end;
+}
+
+prontera,165,151,2	script	W2 MD Test#w2	4_M_MANAGER,{
+	.@md$ = "Octopus Cave";
+	if (!getcharid(1)) { mes "Make a party first."; close; }
+	switch (select("Create:Enter:Destroy:Close")) {
+	case 1:
+		if (!is_party_leader()) { mes "Leader only."; close; }
+		mes "instance_create -> " + instance_create(.@md$);
+		close;
+	case 2:
+		.@r = instance_enter(.@md$);
+		if (.@r != IE_OK) { mes "instance_enter -> " + .@r; close; }
+		end;
+	case 3:
+		instance_destroy instance_id(IM_PARTY);
+		mes "Destroyed.";
+		close;
+	default:
+		close;
+	}
+}
+
+prontera,167,151,2	script	W2 BG Test#w2	4_M_MANAGER,{
+	switch (select("Join team 1:Join team 2:Leave:Clear my queue timers:Close")) {
+	case 1:
+		close2;
+		if (!$@lokibg1) $@lokibg1 = bg_create("bat_c01",61,120);
+		bg_join $@lokibg1,"bat_c01",61,120;
+		end;
+	case 2:
+		close2;
+		if (!$@lokibg2) $@lokibg2 = bg_create("bat_c01",138,63);
+		bg_join $@lokibg2,"bat_c01",138,63;
+		end;
+	case 3:
+		close2;
+		bg_leave;
+		end;
+	case 4:
+		// test fixture: a previous smoke's warp off a battlefield leaves a 10-minute deserter status (battleground.cpp:612-617)
+		sc_end SC_ENTRY_QUEUE_APPLY_DELAY;
+		sc_end SC_ENTRY_QUEUE_NOTIFY_ADMISSION_TIME_OUT;
+		mes "Queue timers cleared.";
+		close;
+	default:
+		close;
+	}
+}

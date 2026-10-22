@@ -1,0 +1,81 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Cash Database
+###########################################################################
+#
+# Item Cash Settings
+#
+###########################################################################
+# - Tab                     Cash shop tab. Available tabs are New, Hot, Limited, Rental, Permanent, Scrolls, Consumables, Other, Sale.
+#   Items:                  List of possible items.
+#     - Item                Item name.
+#       Price               Item cost in cash points (#CASHPOINTS).
+###########################################################################
+
+Header:
+  Type: ITEM_CASH_DB
+  Version: 1
+
+# Project Loki: a small cash shop so the cash shop window has something to sell (prices in cash points, #CASHPOINTS;
+# GMs give points with @cash / @points while the shop is closed). Item names are AegisNames from db/re/item_db_*.yml.
+Body:
+  - Tab: New
+    Items:
+      - Item: Battle_Manual
+        Price: 300
+      - Item: Bubble_Gum
+        Price: 400
+  - Tab: Hot
+    Items:
+      - Item: Kafra_Card
+        Price: 100
+      - Item: Token_Of_Siegfried
+        Price: 200
+  - Tab: Limited
+    Items:
+      - Item: Boarding_Halter
+        Price: 1000
+  - Tab: Permanent
+    Items:
+      - Item: Max_Weight_Up_Scroll
+        Price: 400
+  - Tab: Scrolls
+    Items:
+      - Item: Blessing_10_Scroll
+        Price: 50
+      - Item: Inc_Agi_10_Scroll
+        Price: 50
+      - Item: Aspersio_5_Scroll
+        Price: 60
+      - Item: Wind_Walk_10_Scroll
+        Price: 60
+  - Tab: Consumables
+    Items:
+      - Item: Giant_Fly_Wing
+        Price: 40
+      - Item: Megaphone_
+        Price: 30
+      - Item: Insurance
+        Price: 150
+      - Item: Neuralizer
+        Price: 1000
+  - Tab: Other
+    Items:
+      - Item: Convex_Mirror
+        Price: 150

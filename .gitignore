@@ -1,0 +1,21 @@
+# Build & tool outputs
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serSettings/
+target/
+bin/
+obj/
+__pycache__/
+backups/
+*.pyc
+*.pdb
+*.user
+*.suo
+*.tmp
+*.bak
+.vs/
+.idea/

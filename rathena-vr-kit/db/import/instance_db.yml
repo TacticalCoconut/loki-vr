@@ -1,0 +1,13 @@
+Header:
+  Type: INSTANCE_DB
+  Version: 2
+Body:
+  - Id: 9901
+    Name: LokiTutorial
+    TimeLimit: 3600
+    IdleTimeOut: 300
+    Destroyable: true
+    Enter:
+      Map: himinn
+      X: 49
+      Y: 86

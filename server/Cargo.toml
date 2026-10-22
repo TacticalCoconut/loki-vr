@@ -1,0 +1,47 @@
+[package]
+name = "loki-server"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+description = "Loki Online: the Ragnarok Online server as a SpacetimeDB module (rules ported from rAthena e985006)"
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = ["install_maps"]
+# The maps of a Ragnarok Online install instead of rAthena's stock map cache (data/install/, made by
+# `tools/datagen.py <rathena> data --install <Ragnarok Online folder>`), with that install's map-data stamp: THE BUILD A
+# HOST PUBLISHES (players draw and plan walks on their install's maps). Pass `--no-default-features` for the stock maps
+# (data/maps.bin), which the parity suites need (they compare with rAthena copies that run on the stock cache). src/data.rs.
+install_maps = []
+# Load-test profiling (src/prof.rs): never in a published build.
+loadprof = []
+
+[dependencies]
+spacetimedb = { version = "=2.10.1", features = ["unstable"] }
+# cutover.rs (the export / import of player data) reads rows from JSON through the SATS serde bridge: the same crate
+# spacetimedb already depends on, with its `serde` feature switched on (nothing new is downloaded).
+spacetimedb-sats = { version = "=2.10.1", features = ["serde"] }
+log = "0.4"
+miniz_oxide = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+argon2 = { version = "=0.5.3", default-features = false, features = ["alloc", "password-hash"] }
+
+# Native unit tests / cargo check: line tables only (backtraces keep file:line) to keep target/ small on the shared box.
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.release]
+opt-level = 3
+lto = true
+
+# Fast iteration builds for the cloud test databases (not for release): incremental, no LTO.
+# cargo build --profile dev-wasm --target wasm32-unknown-unknown → target/wasm32-unknown-unknown/dev-wasm/loki_server.wasm
+[profile.dev-wasm]
+inherits = "release"
+opt-level = 1
+lto = false
+incremental = true
+codegen-units = 16

@@ -1,0 +1,24 @@
+LOKI VR — Ragnarok Online in Virtual Reality: Player Guide
+Package {{PACKAGE}} (Loki {{COMMIT}})
+
+Loki VR lets you play Ragnarok Online in PC VR headsets (or desktop mode). It renders the world using the data.grf files
+from YOUR own installed Ragnarok Online client (it never modifies your Ragnarok installation) and connects to any compatible
+Loki Host (modified rAthena) or SpacetimeDB server.
+
+1. WHAT YOU NEED
+   - Windows 10 or 11 (64-bit).
+   - A PC VR headset: Meta Quest (via Link cable, Air Link, Virtual Desktop, or SteamVR) or Valve Index / SteamVR headset.
+   - A local Ragnarok Online client installation containing `data.grf`.
+
+2. INSTALL & LAUNCH
+   - Unzip this package into any folder (for example `C:\Games\LokiVR`).
+   - Start your headset's PC VR link (or SteamVR) and open `LokiLauncher.exe` (or `Loki\Loki.exe`).
+   - On first launch, select your Ragnarok Online folder (containing `data.grf`) and click Play.
+   - In the bottom bar of `LokiLauncher.exe`, you can optionally toggle `Auto-Update: ON / OFF` if your server host distributes updates via GitHub Releases, or click `Rollback (vX)` after an update to revert to your previous version.
+
+3. CHOOSING A SERVER & LOGGING IN
+   - On the VR login screen, click `Servers…` to select a configured server or click `Add a server` to enter your server's IP/host and port.
+   - Enter your account username and password (or create a new account if self-registration is enabled on the server) and press Log in.
+
+4. LICENSE
+   - Loki VR is free software under the GNU General Public License v3.0 (`LICENSE.txt`). Third-party licenses are listed in `THIRD_PARTY.md`.

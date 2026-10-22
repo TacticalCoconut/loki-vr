@@ -1,0 +1,19 @@
+// Wave G (glog agent): NOT in scripts_custom.conf. The skill_damage scenario loads this file while the server runs
+// (@reloadnpcfile npc/custom/glog_sdmg.txt: npc_parsesrcfile -> npc_parse_mapflag MF_SKILL_DAMAGE) and
+// glog_sdmg_off.txt after it; g_room1-2 has no other use. The invisible NPC makes the file one @reloadnpcfile can
+// unload and load again (npc_unloadfile finds an NPC of the file and takes it off npc_src_files).
+g_room1-2,10,10,0	script	GLSdmgOn	-1,{
+	end;
+}
+g_room1-2	mapflag	skill_damage	all,BL_PC,10,20,30,40
+g_room1-2	mapflag	skill_damage	SM_BASH,BL_PC,0,100,0,0
+g_room1-2	mapflag	skill_damage	all,BL_MOB,-10,-20,-30,-40
+g_room1-2	mapflag	skill_damage	MG_FIREBOLT,BL_PC,1,2,3,4
+g_room1-2	mapflag	skill_damage	AL_HEAL,BL_PC,5,6,7,8
+g_room1-2	mapflag	skill_damage	TF_THROWSTONE,BL_PC,9,10,11,12
+g_room1-2	mapflag	skill_damage	MG_COLDBOLT,BL_PC,13,14,15,16
+g_room1-2	mapflag	skill_damage	KN_PIERCE,BL_PC,17,18,19,20
+g_room1-2	mapflag	skill_damage	WZ_METEOR,BL_PC,21,22,23,24
+g_room1-2	mapflag	skill_damage	RK_DRAGONBREATH,BL_PC,25,26,27,28
+g_room1-2	mapflag	skill_damage	NPC_EARTHQUAKE,BL_MOB,29,30,31,32
+g_room1-2	mapflag	skill_damage	SM_BASH,BL_MOB,-5,90,0,0

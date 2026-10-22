@@ -1,0 +1,249 @@
+//! skills/acolyte/skill_factory_acolyte.cpp: SkillFactoryAcolyte::create and the acolyte family's classes (rAthena
+//! e985006): Acolyte, Priest, High Priest, Arch Bishop, Cardinal, Monk, Champion, Sura, Inquisitor. One file per class
+//! as rAthena has them (arbitrium.rs and duplelight.rs hold two classes each, as their .cpp files do). The arms are in
+//! rAthena's order; RENEWAL is defined, so PR_IMPOSITIO / PR_SUFFRAGIUM are their RENEWAL classes (party casts).
+
+use super::{SkillImpl, StatusSkillImpl, WeaponSkillImpl};
+use crate::db::skills::*;
+
+pub mod absorbspiritsphere;
+pub mod adoramus;
+pub mod ancilla;
+pub mod angelus;
+pub mod arbitrium;
+pub mod aspersio;
+pub mod assimilatepower;
+pub mod assumptio;
+pub mod asurastrike;
+pub mod basilica;
+pub mod blazingflameblast;
+pub mod blessing;
+pub mod bssacramenti;
+pub mod cantocandidus;
+pub mod chaincrushcombo;
+pub mod clearance;
+pub mod coluceoheal;
+/// The battle_config values the classes read.
+pub mod conf;
+pub mod competentia;
+pub mod convenio;
+pub mod crementia;
+pub mod crucis;
+pub mod cure;
+pub mod cursedcircle;
+pub mod decagi;
+pub mod dilectioheal;
+pub mod divinusflos;
+pub mod dragoncombo;
+pub mod duplelight;
+pub mod earthshaker;
+pub mod effligo;
+pub mod epiclesis;
+pub mod explosionblaster;
+pub mod fallenempire;
+pub mod firstbrand;
+pub mod flashcombo;
+pub mod framen;
+pub mod gateofhell;
+pub mod gentletouchcure;
+pub mod gentletouchquiet;
+pub mod glacierfist;
+pub mod gloria;
+pub mod heal;
+pub mod highnessheal;
+pub mod holylight;
+pub mod holywater;
+pub mod howlingoflion;
+pub mod impositiomanus;
+pub mod incagi;
+pub mod judex;
+pub mod kiexplosion;
+pub mod kitranslation;
+pub mod knucklearrow;
+pub mod kyrieeleison;
+pub mod laudaagnus;
+pub mod laudaramus;
+pub mod lexdivina;
+pub mod magnificat;
+pub mod magnusexorcismus;
+pub mod massiveflameblaster;
+pub mod medialevotum;
+pub mod occultimpaction;
+pub mod oleumsanctum;
+pub mod oratio;
+pub mod petitio;
+pub mod pneuma;
+pub mod pneumaticusprocella;
+pub mod powervelocity;
+pub mod praefatio;
+pub mod ragingpalmstrike;
+pub mod ragingquadrupleblow;
+pub mod ragingthrust;
+pub mod ragingtrifectablow;
+pub mod raisingdragon;
+pub mod rampageblaster;
+pub mod redemptio;
+pub mod renovatio;
+pub mod reparatio;
+pub mod resurrection;
+pub mod rideinlightening;
+pub mod ruwach;
+pub mod sanctuary;
+pub mod secondfaith;
+pub mod secondflame;
+pub mod secondjudgement;
+pub mod silentium;
+pub mod skynetblow;
+pub mod snap;
+pub mod statusrecovery;
+pub mod suffragium;
+pub mod summonspiritsphere;
+pub mod teleport;
+pub mod thirdconsecration;
+pub mod thirdflamebomb;
+pub mod thirdpunish;
+pub mod throwspiritsphere;
+pub mod tigercannon;
+pub mod turnundead;
+pub mod vituperatum;
+pub mod warpportal;
+pub mod windmill;
+pub mod zen;
+
+/// SkillFactoryAcolyte::create.
+pub fn create(skill_id: u16) -> Option<Box<dyn SkillImpl>> {
+    // std::make_unique<StatusSkillImpl>(skill_id)
+    let status = || -> Option<Box<dyn SkillImpl>> { Some(Box::new(StatusSkillImpl::new(skill_id))) };
+    match skill_id {
+        AB_ADORAMUS => Some(Box::new(adoramus::SkillAdoramus)),
+        AB_ANCILLA => Some(Box::new(ancilla::SkillAncilla)),
+        AB_CANTO => Some(Box::new(cantocandidus::SkillCantoCandidus)),
+        AB_CHEAL => Some(Box::new(coluceoheal::SkillColuceoHeal)),
+        AB_CLEARANCE => Some(Box::new(clearance::SkillClearance)),
+        AB_CLEMENTIA => Some(Box::new(crementia::SkillCrementia)),
+        AB_CONVENIO => Some(Box::new(convenio::SkillConvenio)),
+        AB_DUPLELIGHT => status(),
+        AB_DUPLELIGHT_MAGIC => Some(Box::new(duplelight::SkillDupleLightMagic)),
+        AB_DUPLELIGHT_MELEE => Some(Box::new(duplelight::SkillDupleLightMelee)),
+        AB_EPICLESIS => Some(Box::new(epiclesis::SkillEpiclesis)),
+        AB_EXPIATIO => status(),
+        AB_HIGHNESSHEAL => Some(Box::new(highnessheal::SkillHighnessHeal)),
+        AB_JUDEX => Some(Box::new(judex::SkillJudex)),
+        AB_LAUDAAGNUS => Some(Box::new(laudaagnus::SkillLaudaAgnus)),
+        AB_LAUDARAMUS => Some(Box::new(laudaramus::SkillLaudaRamus)),
+        AB_OFFERTORIUM => status(),
+        AB_ORATIO => Some(Box::new(oratio::SkillOratio)),
+        AB_PRAEFATIO => Some(Box::new(praefatio::SkillPraefatio)),
+        AB_RENOVATIO => Some(Box::new(renovatio::SkillRenovatio)),
+        AB_SECRAMENT => status(),
+        AB_SILENTIUM => Some(Box::new(silentium::SkillSilentium)),
+        AB_VITUPERATUM => Some(Box::new(vituperatum::SkillVituperatum)),
+        ALL_RESURRECTION => Some(Box::new(resurrection::SkillResurrection)),
+        AL_ANGELUS => Some(Box::new(angelus::SkillAngelus)),
+        AL_BLESSING => Some(Box::new(blessing::SkillBlessing)),
+        AL_CRUCIS => Some(Box::new(crucis::SkillCrucis)),
+        AL_CURE => Some(Box::new(cure::SkillCure)),
+        AL_DECAGI => Some(Box::new(decagi::SkillDecreaseAgi)),
+        AL_HEAL => Some(Box::new(heal::SkillHeal)),
+        AL_HOLYLIGHT => Some(Box::new(holylight::SkillHolyLight)),
+        AL_HOLYWATER => Some(Box::new(holywater::SkillHolyWater)),
+        AL_INCAGI => Some(Box::new(incagi::SkillIncreaseAgi)),
+        AL_PNEUMA => Some(Box::new(pneuma::SkillPneuma)),
+        AL_RUWACH => Some(Box::new(ruwach::SkillRuwach)),
+        AL_TELEPORT => Some(Box::new(teleport::SkillTeleport)),
+        AL_WARP => Some(Box::new(warpportal::SkillWarpPortal)),
+        CD_ARBITRIUM => Some(Box::new(arbitrium::SkillArbitrium)),
+        CD_ARBITRIUM_ATK => Some(Box::new(arbitrium::SkillArbitriumAttack)),
+        CD_ARGUTUS_TELUM => status(),
+        CD_ARGUTUS_VITA => status(),
+        CD_BENEDICTUM => status(),
+        CD_COMPETENTIA => Some(Box::new(competentia::SkillCompetentia)),
+        CD_DILECTIO_HEAL => Some(Box::new(dilectioheal::SkillDilectioHeal)),
+        CD_DIVINUS_FLOS => Some(Box::new(divinusflos::SkillDivinusFlos)),
+        CD_EFFLIGO => Some(Box::new(effligo::SkillEffligo)),
+        CD_FRAMEN => Some(Box::new(framen::SkillFramen)),
+        CD_MEDIALE_VOTUM => Some(Box::new(medialevotum::SkillMedialeVotum)),
+        CD_PETITIO => Some(Box::new(petitio::SkillPetitio)),
+        CD_PNEUMATICUS_PROCELLA => Some(Box::new(pneumaticusprocella::SkillPneumaticusProcella)),
+        CD_PRESENS_ACIES => status(),
+        CD_RELIGIO => status(),
+        CD_REPARATIO => Some(Box::new(reparatio::SkillReparatio)),
+        CH_CHAINCRUSH => Some(Box::new(chaincrushcombo::SkillChainCrushCombo)),
+        CH_PALMSTRIKE => Some(Box::new(ragingpalmstrike::SkillRagingPalmStrike)),
+        CH_SOULCOLLECT => Some(Box::new(zen::SkillZen)),
+        CH_TIGERFIST => Some(Box::new(glacierfist::SkillGlacierFist)),
+        HP_ASSUMPTIO => Some(Box::new(assumptio::SkillAssumptio)),
+        HP_BASILICA => Some(Box::new(basilica::SkillBasilica)),
+        IQ_BLAZING_FLAME_BLAST => Some(Box::new(blazingflameblast::SkillBlazingFlameBlast)),
+        IQ_EXPOSION_BLASTER => Some(Box::new(explosionblaster::SkillExplosionBlaster)),
+        IQ_FIRM_FAITH => status(),
+        IQ_FIRST_BRAND => Some(Box::new(firstbrand::SkillFirstBrand)),
+        IQ_FIRST_FAITH_POWER => status(),
+        IQ_JUDGE => status(),
+        IQ_MASSIVE_F_BLASTER => Some(Box::new(massiveflameblaster::SkillMassiveFlameBlaster)),
+        IQ_OLEUM_SANCTUM => Some(Box::new(oleumsanctum::SkillOleumSanctum)),
+        IQ_POWERFUL_FAITH => status(),
+        IQ_SECOND_FAITH => Some(Box::new(secondfaith::SkillSecondFaith)),
+        IQ_SECOND_FLAME => Some(Box::new(secondflame::SkillSecondFlame)),
+        IQ_SECOND_JUDGEMENT => Some(Box::new(secondjudgement::SkillSecondJudgement)),
+        IQ_SINCERE_FAITH => status(),
+        IQ_THIRD_CONSECRATION => Some(Box::new(thirdconsecration::SkillThirdConsecration)),
+        IQ_THIRD_EXOR_FLAME => status(),
+        IQ_THIRD_FLAME_BOMB => Some(Box::new(thirdflamebomb::SkillThirdFlameBomb)),
+        IQ_THIRD_PUNISH => Some(Box::new(thirdpunish::SkillThirdPunish)),
+        MO_ABSORBSPIRITS => Some(Box::new(absorbspiritsphere::SkillAbsorbSpiritSphere)),
+        MO_BALKYOUNG => Some(Box::new(kiexplosion::SkillKiExplosion)),
+        MO_BLADESTOP => status(),
+        MO_BODYRELOCATION => Some(Box::new(snap::SkillSnap)),
+        MO_CALLSPIRITS => Some(Box::new(summonspiritsphere::SkillSummoningSpiritSphere)),
+        MO_CHAINCOMBO => Some(Box::new(ragingquadrupleblow::SkillRagingQuadrupleBlow)),
+        MO_COMBOFINISH => Some(Box::new(ragingthrust::SkillRagingThrust)),
+        MO_EXPLOSIONSPIRITS => status(),
+        MO_EXTREMITYFIST => Some(Box::new(asurastrike::SkillAsuraStrike)),
+        MO_FINGEROFFENSIVE => Some(Box::new(throwspiritsphere::SkillThrowSpiritSphere)),
+        MO_INVESTIGATE => Some(Box::new(occultimpaction::SkillOccultImpaction)),
+        MO_KITRANSLATION => Some(Box::new(kitranslation::SkillKiTranslation)),
+        MO_STEELBODY => status(),
+        MO_TRIPLEATTACK => Some(Box::new(ragingtrifectablow::SkillRagingTrifectaBlow)),
+        PR_ASPERSIO => Some(Box::new(aspersio::SkillAspersio)),
+        PR_BENEDICTIO => Some(Box::new(bssacramenti::SkillBenedictioSanctissimiSacramenti)),
+        PR_GLORIA => Some(Box::new(gloria::SkillGloria)),
+        PR_IMPOSITIO => Some(Box::new(impositiomanus::SkillImpositioManus)),
+        PR_KYRIE => Some(Box::new(kyrieeleison::SkillKyrieEleison)),
+        PR_LEXAETERNA => status(),
+        PR_LEXDIVINA => Some(Box::new(lexdivina::SkillLexDivina)),
+        PR_MAGNIFICAT => Some(Box::new(magnificat::SkillMagnificat)),
+        PR_MAGNUS => Some(Box::new(magnusexorcismus::SkillMagnusExorcismus)),
+        PR_REDEMPTIO => Some(Box::new(redemptio::SkillRedemptio)),
+        PR_SANCTUARY => Some(Box::new(sanctuary::SkillSanctuary)),
+        PR_SLOWPOISON => status(),
+        PR_STRECOVERY => Some(Box::new(statusrecovery::SkillStatusRecovery)),
+        PR_SUFFRAGIUM => Some(Box::new(suffragium::SkillSuffragium)),
+        PR_TURNUNDEAD => Some(Box::new(turnundead::SkillTurnUndead)),
+        SR_ASSIMILATEPOWER => Some(Box::new(assimilatepower::SkillAssimilatePower)),
+        SR_CRESCENTELBOW => status(),
+        SR_CRESCENTELBOW_AUTOSPELL => Some(Box::new(WeaponSkillImpl { id: skill_id })),
+        SR_CURSEDCIRCLE => Some(Box::new(cursedcircle::SkillCursedCircle)),
+        SR_DRAGONCOMBO => Some(Box::new(dragoncombo::SkillDragonCombo)),
+        SR_EARTHSHAKER => Some(Box::new(earthshaker::SkillEarthShaker)),
+        SR_FALLENEMPIRE => Some(Box::new(fallenempire::SkillFallenEmpire)),
+        SR_FLASHCOMBO => Some(Box::new(flashcombo::SkillFlashCombo)),
+        SR_GATEOFHELL => Some(Box::new(gateofhell::SkillGateOfHell)),
+        SR_GENTLETOUCH_CHANGE => status(),
+        SR_GENTLETOUCH_CURE => Some(Box::new(gentletouchcure::SkillGentleTouchCure)),
+        SR_GENTLETOUCH_ENERGYGAIN => status(),
+        SR_GENTLETOUCH_QUIET => Some(Box::new(gentletouchquiet::SkillGentleTouchQuiet)),
+        SR_GENTLETOUCH_REVITALIZE => status(),
+        SR_HOWLINGOFLION => Some(Box::new(howlingoflion::SkillHowlingOfLion)),
+        SR_KNUCKLEARROW => Some(Box::new(knucklearrow::SkillKnuckleArrow)),
+        SR_LIGHTNINGWALK => status(),
+        SR_POWERVELOCITY => Some(Box::new(powervelocity::SkillPowerVelocity)),
+        SR_RAISINGDRAGON => Some(Box::new(raisingdragon::SkillRaisingDragon)),
+        SR_RAMPAGEBLASTER => Some(Box::new(rampageblaster::SkillRampageBlaster)),
+        SR_RIDEINLIGHTNING => Some(Box::new(rideinlightening::SkillRideInLightening)),
+        SR_SKYNETBLOW => Some(Box::new(skynetblow::SkillSkyNetBlow)),
+        SR_TIGERCANNON => Some(Box::new(tigercannon::SkillTigerCannon)),
+        SR_WINDMILL => Some(Box::new(windmill::SkillWindmill)),
+        _ => None,
+    }
+}

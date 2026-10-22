@@ -1,0 +1,55 @@
+# Architect's fix file for iz_dun01 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds iz_dun01
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 1439 model faces on 50 models
+architect-fix	1	iz_dun01	gnd:5092190:1a1394e32e2635e9	gat:1800014:b0558ddabff843a3
+R	rsw:217110:5e42094148ded19d
+M	0	11875:b33735f4cf246e8d	0	14-37	under+behind
+M	1	11875:b33735f4cf246e8d	0	14-37	under+behind
+M	2	6963:0c1138843a1e0cbd	0	12-13,20-21,24-25,28-29,32-35,38-39,42-43,46-47,50-53,56-57,60-61,64-65,68-71,74-75,78-79,82-83,86-89,94	under+behind
+M	3	1903:560efbca76f31704	0	8-23	behind
+M	4	1903:560efbca76f31704	0	8-25	under+behind
+M	5	3915:ada579a54e997e06	0	0-7,18-37,48-69	under+behind
+M	6	1903:560efbca76f31704	0	8-23	behind
+M	7	1903:560efbca76f31704	0	8-23	behind
+M	8	3191:7bc9416e6b29cb44	0	42-57	under
+M	9	3191:7bc9416e6b29cb44	0	42-57	under
+M	10	3191:7bc9416e6b29cb44	0	42-57	under
+M	11	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	12	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74,76,79-97	behind
+M	13	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74,76,79-97	behind
+M	15	3583:613ee579aad3252d	0	0-8,10-17,20-45	behind
+M	19	2079:bc326bd24c38722f	0	12-35	behind
+M	20	2079:bc326bd24c38722f	0	12-35	behind
+M	21	2079:bc326bd24c38722f	0	12-35	behind
+M	22	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74,76,79-97	behind
+M	23	3583:613ee579aad3252d	0	0,3-8,11-15,17,20-45	behind
+M	24	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74,76,79-97	behind
+M	26	3191:7bc9416e6b29cb44	0	42-57	under
+M	27	3191:7bc9416e6b29cb44	0	42-57	under
+M	28	3191:7bc9416e6b29cb44	0	42-57	under
+M	29	2079:bc326bd24c38722f	0	12-35	behind
+M	30	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	33	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	34	2079:bc326bd24c38722f	0	12-35	behind
+M	35	2079:bc326bd24c38722f	0	12-35	behind
+M	36	2079:bc326bd24c38722f	0	12-35	behind
+M	37	2079:bc326bd24c38722f	0	12-35	behind
+M	38	2079:bc326bd24c38722f	0	12-35	behind
+M	41	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	42	3191:7bc9416e6b29cb44	0	42-57	under
+M	43	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	44	2079:bc326bd24c38722f	0	12-35	behind
+M	46	2079:bc326bd24c38722f	0	12-35	behind
+M	47	2079:bc326bd24c38722f	0	12-35	behind
+M	48	6467:9566c25c6fa74937	0	24-29,36-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	49	2079:bc326bd24c38722f	0	12-35	behind
+M	50	2079:bc326bd24c38722f	0	12-35	behind
+M	51	2079:bc326bd24c38722f	0	12-35	behind
+M	71	2079:bc326bd24c38722f	0	12-35	behind
+M	72	2079:bc326bd24c38722f	0	12-35	behind
+M	73	6467:9566c25c6fa74937	0	24-29,34-37,40-41,45,55-63,65-72,74-76,79-97	behind
+M	89	1743:dff1d01e4dedcfdc	0	0-17	under
+M	95	3191:7bc9416e6b29cb44	0	42-57	under
+M	96	3191:7bc9416e6b29cb44	0	42-57	under
+M	97	3191:7bc9416e6b29cb44	0	42-57	under
+M	98	3191:7bc9416e6b29cb44	0	42-57	under

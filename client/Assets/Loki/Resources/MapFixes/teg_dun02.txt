@@ -1,0 +1,32 @@
+# Architect's fix file for teg_dun02 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds teg_dun02
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 452 model faces on 27 models
+architect-fix	1	teg_dun02	gnd:1869454:431bc86716c501dc	gat:800014:1f89b378149bd105
+R	rsw:95306:1d03972f34cc6ea8
+M	7	2599:5f77d4ce5be5b25b	0	0-27,34-35,42-43	under+behind
+M	11	8083:1aa00c46837192ae	0	20-21	behind
+M	17	4007:1524d9958835d250	0	0-14,17-27	under+behind
+M	22	2803:a488b9b419f1d375	0	12-29	under+behind
+M	23	2803:a488b9b419f1d375	0	12-21,24-29	under+behind
+M	24	2803:a488b9b419f1d375	0	12-29	under+behind
+M	25	2803:a488b9b419f1d375	0	12-29	under+behind
+M	26	2803:a488b9b419f1d375	0	18-21,24-29	under+behind
+M	28	2803:a488b9b419f1d375	0	12-29	under+behind
+M	29	2803:a488b9b419f1d375	0	12-29	under+behind
+M	30	2803:a488b9b419f1d375	0	12-29	under+behind
+M	31	2803:a488b9b419f1d375	0	12-29	under+behind
+M	32	2803:a488b9b419f1d375	0	12-15,18-29	under+behind
+M	33	4007:1524d9958835d250	0	0-12,20-23,32	under+behind
+M	35	2803:a488b9b419f1d375	0	12-29	under+behind
+M	36	2803:a488b9b419f1d375	0	12-17,22-29	under+behind
+M	37	2803:a488b9b419f1d375	0	12-13,16-29	under+behind
+M	38	2803:a488b9b419f1d375	0	12-13,24-29	behind
+M	39	2803:a488b9b419f1d375	0	12-29	under+behind
+M	40	2803:a488b9b419f1d375	0	12-29	under+behind
+M	41	2803:a488b9b419f1d375	0	14-15,18-19,24-29	under+behind
+M	42	2803:a488b9b419f1d375	0	12-29	under+behind
+M	44	2803:a488b9b419f1d375	0	12-29	under+behind
+M	46	2803:a488b9b419f1d375	0	12-13,16-29	under+behind
+M	47	2803:a488b9b419f1d375	0	12-29	under+behind
+M	48	2803:a488b9b419f1d375	0	12-15,18-29	under+behind
+M	82	2803:a488b9b419f1d375	0	12-29	under+behind

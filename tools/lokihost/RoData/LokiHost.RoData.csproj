@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Client wave 7 (w7host): the Loki client's own pure-C# readers of the player's Ragnarok Online install, compiled for
+       Loki Host as PresenceWire.cs is (links across the repo: moving those files breaks this build). Loki Host reads the
+       host's install with the very code the client reads a player's with, and both compute the same data stamp.
+       A project of its own because the client's files are written without nullable annotations (Core has them on).
+       The files must stay free of UnityEngine; the one thing they take from a Unity-bound client file (RoReader.Latin1)
+       is given by RoReaderShim.cs.
+       Since the merge of client wave 7 (integ-w7): w7data's IO\RoLookup.cs and Data\RoInstall.cs (+ Data\Lub51.cs,
+       Data\PyCompat.cs and Data\PyJson.cs for its OrderedMap, which RoInstall needs to run the patcher's settings) are linked too, and Core\HostInstall.cs (the one
+       place that decides which files the host's install offers) opens the install through RoInstall.Open: the archives of
+       the install's own order (DATA.INI) and the loose data\ folder by the clientinfo's readfolder tag, as the client does. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>Loki.IO</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\IO\GrfArchive.cs" Link="IO\GrfArchive.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\IO\GrfCrypt.cs" Link="IO\GrfCrypt.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\IO\MapDataStamp.cs" Link="IO\MapDataStamp.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\IO\RoLookup.cs" Link="IO\RoLookup.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Data\RoInstall.cs" Link="Data\RoInstall.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Data\Lub51.cs" Link="Data\Lub51.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Data\PyCompat.cs" Link="Data\PyCompat.cs" />
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Data\PyJson.cs" Link="Data\PyJson.cs" />
+  </ItemGroup>
+</Project>

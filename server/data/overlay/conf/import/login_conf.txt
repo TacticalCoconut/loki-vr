@@ -1,0 +1,3 @@
+// Project Loki ? local server
+new_account: yes
+use_web_auth_token: no

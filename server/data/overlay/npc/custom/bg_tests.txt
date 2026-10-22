@@ -1,0 +1,212 @@
+//===== Loki wave D (bg) parity test NPC =====================================
+// Test servers only. The parity scenarios of testrig/parity/bg/ drive it: whisper
+// "NPC:BGTest" with a test name (and '#'-separated arguments), or join its waiting
+// room on bat_room. Both the module (server/data/overlay, embedded by datagen) and
+// the private rAthena oracle (npc/custom) load this same file. It covers the
+// battleground script commands the stock scripts never use (bg_create, bg_join,
+// bg_info, bg_getareausers, bg_monster_set_team, waitingroom2bg(_single), addrid 6)
+// and the team events (quit / death).
+//============================================================================
+bat_room,154,153,4	script	BGTest	418,{
+	end;
+OnInit:
+	waitingroom "BG Test",10;
+	end;
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	if (.@t$ == "mk") {
+		$@bgt_a = bg_create("bat_c01", 52, 129, "BGTest::OnAQuit", "BGTest::OnADie");
+		$@bgt_b = bg_create("bat_c01", 147, 55, "BGTest::OnBQuit", "BGTest::OnBDie");
+		.@none = bg_create("no_such_map", 1, 1);
+		.@dash = bg_create("-", 0, 0);
+		dispbottom "teams " + $@bgt_a + " " + $@bgt_b + " " + .@none + " " + .@dash;
+		dispbottom "dash join " + bg_join(.@dash);
+		bg_destroy .@dash;
+		dispbottom "after dash " + getcharid(4);
+		end;
+	}
+	if (.@t$ == "joina") {
+		dispbottom "joina " + bg_join($@bgt_a) + " bg " + (getcharid(4) == $@bgt_a);
+		end;
+	}
+	if (.@t$ == "joina2") {
+		dispbottom "joina2 " + bg_join($@bgt_a, "bat_c01", 54, 127) + " bg " + (getcharid(4) == $@bgt_a);
+		end;
+	}
+	if (.@t$ == "joinb") {
+		dispbottom "joinb " + bg_join($@bgt_b, "bat_c01", 140, 60) + " bg " + (getcharid(4) == $@bgt_b);
+		end;
+	}
+	if (.@t$ == "joinbad") {
+		dispbottom "again " + bg_join($@bgt_a);
+		dispbottom "noteam " + bg_join(99);
+		dispbottom "nomap " + bg_join($@bgt_a, "no_such_map", 1, 1);
+		end;
+	}
+	if (.@t$ == "notbg") {
+		dispbottom "notbg " + bg_join($@bgt_b, "prontera", 150, 150);
+		end;
+	}
+	if (.@t$ == "info") {
+		dispbottom "mine " + (getcharid(4) == $@bgt_a) + " " + (getcharid(4) == $@bgt_b) + " " + (getcharid(4) == 0);
+		dispbottom "count " + bg_get_data($@bgt_a, 0) + " " + bg_get_data($@bgt_b, 0) + " " + bg_get_data(99, 0);
+		.@n = bg_get_data($@bgt_a, 1);
+		dispbottom "list " + .@n + " " + $@arenamemberscount + " " + ($@arenamembers[0] == getcharid(3)) + " " + ($@arenamembers[1] > 0);
+		bg_get_data $@bgt_a, 7;
+		dispbottom "area " + bg_getareausers($@bgt_a, "bat_c01", 40, 110, 70, 140) + " " + bg_getareausers($@bgt_a, "bat_c01", 0, 0, 10, 10) + " " + bg_getareausers($@bgt_a, "no_such_map", 0, 0, 300, 300) + " " + bg_getareausers(99, "bat_c01", 0, 0, 300, 300);
+		end;
+	}
+	if (.@t$ == "score") {
+		bg_updatescore "bat_c01", 3, 4;
+		bg_updatescore "no_such_map", 1, 1;
+		dispbottom "score done";
+		end;
+	}
+	if (.@t$ == "setxy") {
+		bg_team_setxy $@bgt_a, 56, 125;
+		bg_team_setxy 99, 1, 1;
+		dispbottom "setxy done";
+		end;
+	}
+	if (.@t$ == "warpa") {
+		bg_warp $@bgt_a, "bat_c01", 60, 120;
+		bg_warp $@bgt_a, "no_such_map", 1, 1;
+		bg_warp 99, "bat_c01", 60, 120;
+		end;
+	}
+	if (.@t$ == "mob") {
+		$@bgt_mob = bg_monster($@bgt_b, "bat_c01", 61, 121, "BG Plant", 1078, "BGTest::OnMobDead");
+		dispbottom "mob " + ($@bgt_mob > 0) + " " + bg_monster($@bgt_b, "no_such_map", 1, 1, "x", 1078) + " " + bg_monster($@bgt_b, "bat_c01", 61, 121, "x", 99999);
+		end;
+	}
+	if (.@t$ == "mobteam") {
+		bg_monster_set_team $@bgt_mob, $@bgt_a;
+		bg_monster_set_team 0, $@bgt_a;
+		bg_monster_set_team getcharid(3), $@bgt_a;
+		dispbottom "mobteam done";
+		end;
+	}
+	if (.@t$ == "mobkill") {
+		killmonster "bat_c01", "BGTest::OnMobDead";
+		dispbottom "mobkill done";
+		end;
+	}
+	if (.@t$ == "addrid") {
+		addrid 6, 0, $@bgt_a;
+		dispbottom "addrid run by " + strcharinfo(0);
+		end;
+	}
+	if (.@t$ == "addrid0") {
+		addrid 6, 0, 0;
+		dispbottom "addrid0 done";
+		end;
+	}
+	if (.@t$ == "leave") {
+		bg_leave;
+		dispbottom "left " + getcharid(4);
+		end;
+	}
+	if (.@t$ == "desert") {
+		bg_desert;
+		dispbottom "deserted " + getcharid(4);
+		end;
+	}
+	if (.@t$ == "wr") {
+		$@bgt_w = waitingroom2bg("bat_c02", 52, 129, "BGTest::OnAQuit", "");
+		dispbottom "wr " + ($@bgt_w > 0) + " members " + $@arenamembersnum + " " + ($@arenamembers[0] > 0) + " mine " + (getcharid(4) == $@bgt_w);
+		dispbottom "wr bad " + waitingroom2bg("no_such_map", 1, 1) + " " + waitingroom2bg("bat_c02", 1, 1, "", "", "NoSuchNpc");
+		end;
+	}
+	if (.@t$ == "wrsingle") {
+		dispbottom "wrsingle " + waitingroom2bg_single($@bgt_w, "bat_c02", 60, 120, "BGTest");
+		end;
+	}
+	if (.@t$ == "wrsingle2") {
+		dispbottom "wrsingle2 " + waitingroom2bg_single($@bgt_w, "BGTest") + " " + waitingroom2bg_single(99, "bat_c02", 1, 1, "BGTest");
+		end;
+	}
+	if (.@t$ == "destroy") {
+		bg_destroy $@bgt_a;
+		bg_destroy $@bgt_b;
+		bg_destroy $@bgt_w;
+		bg_destroy 99;
+		dispbottom "destroyed " + getcharid(4) + " " + bg_get_data($@bgt_a, 0);
+		end;
+	}
+	if (.@t$ == "binfo") {
+		.@k$ = "KVM (Level 59 and below";
+		dispbottom "binfo " + bg_info(.@k$, 0) + " " + bg_info(.@k$, 1) + " " + bg_info(.@k$, 2) + " " + bg_info(.@k$, 3) + " " + bg_info(.@k$, 4) + " " + bg_info(.@k$, 6);
+		.@m = bg_info("Tierra Gorge", 5);
+		dispbottom "maps " + .@m + " " + .@bgmapscount + " " + .@bgmaps$[0] + " " + .@bgmaps$[1];
+		dispbottom "binfo bad " + bg_info("tierra gorge", 0);
+		bg_info "No Such BG", 0;
+		end;
+	}
+	if (.@t$ == "binfo2") {
+		bg_info "Flavius", 9;
+		end;
+	}
+	if (.@t$ == "party") {
+		party_create "BG Party " + getcharid(0), getcharid(0), 0, 0;
+		dispbottom "party created";
+		end;
+	}
+	if (.@t$ == "partyadd") {
+		dispbottom "partyadd " + party_addmember(getcharid(1), getcharid(0, "BG Tester 4"));
+		end;
+	}
+	if (.@t$ == "partyend") {
+		party_destroy getcharid(1);
+		dispbottom "party gone";
+		end;
+	}
+	if (.@t$ == "flav") {
+		$@FlaviusBG1_id1 = bg_create("bat_b01", 10, 290, "start#bat_b01::OnGuillaumeQuit", "");
+		$@FlaviusBG1_id2 = bg_create("bat_b01", 390, 10, "start#bat_b01::OnCroixQuit", "");
+		dispbottom "flav teams " + $@FlaviusBG1_id1 + " " + $@FlaviusBG1_id2;
+		end;
+	}
+	if (.@t$ == "flavja") {
+		dispbottom "flavja " + bg_join($@FlaviusBG1_id1);
+		end;
+	}
+	if (.@t$ == "flavjb") {
+		dispbottom "flavjb " + bg_join($@FlaviusBG1_id2);
+		end;
+	}
+	if (.@t$ == "flavgo") {
+		donpcevent "start#bat_b01::OnReadyCheck";
+		dispbottom "flavgo " + $@FlaviusBG1 + " " + ($@FlavBG1_C1_ID > 0) + " " + ($@FlavBG1_C2_ID > 0) + " " + mobcount("bat_b01", "guardian#bat_b01_a::OnMyMobDead") + " " + mobcount("bat_b01", "guardian#bat_b01_b::OnMyMobDead");
+		end;
+	}
+	if (.@t$ == "flavinfo") {
+		dispbottom "flavinfo " + $@FlaviusBG1 + " " + $@FlaviusBG1_id1 + " " + $@FlaviusBG1_id2 + " " + bg_get_data($@FlaviusBG1_id1, 0) + " " + checkcell("bat_b01", 61, 150, cell_chkbasilica) + " " + checkcell("bat_b01", 61, 150, cell_chkpass);
+		end;
+	}
+	if (.@t$ == "reserve") {
+		bg_reserve "bat_c03";
+		bg_reserve "bat_c03", true;
+		bg_unbook "bat_c03";
+		bg_reserve "prontera";
+		bg_unbook "no_such_map";
+		dispbottom "reserve done";
+		end;
+	}
+	dispbottom "unknown test " + .@t$;
+	end;
+OnADie:
+	dispbottom "A died " + getcharid(4);
+	end;
+OnBDie:
+	dispbottom "B died " + getcharid(4);
+	end;
+OnAQuit:
+	.quit_a = .quit_a + 1;
+	end;
+OnBQuit:
+	.quit_b = .quit_b + 1;
+	end;
+OnMobDead:
+	dispbottom "mob dead";
+	end;
+}

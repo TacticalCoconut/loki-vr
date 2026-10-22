@@ -1,0 +1,35 @@
+# Architect's fix file for teg_dun01 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds teg_dun01
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 581 model faces on 30 models
+architect-fix	1	teg_dun01	gnd:5220518:ebf111bd15d9d529	gat:1800014:0b1967b5ba2420db
+R	rsw:115186:852b004a3d80e0b9
+M	9	1831:282bd580b2abba77	0	6-7,16-17,20-29	under+behind
+M	21	1975:be37f62bd698a552	0	0-1,10-11,18-19	behind
+M	22	3415:2c12297e5d4365d5	0	0-13,26-27,36-49	behind
+M	26	1831:8373e5baa5530921	0	0-5,8-15,18-29	under+behind
+M	28	18399:0a6b1931a0324cbb	0	220-222,228-229,232-233,236-237,242-248,250-252,256-277,334-338	under+behind
+M	29	18399:0a6b1931a0324cbb	0	272-276,334-335,337	behind
+M	30	18399:a2db1a2f2ab10f95	0	351-354,356,360-363,367-376,379,387-390,392,396-399,404-413,415	behind
+M	32	18399:0a6b1931a0324cbb	0	228-229,232-233,242-249,256-265,268-269,272-277	under+behind
+M	34	18399:a2db1a2f2ab10f95	0	351-354,356,360-363,367-377,379,387-390,392,396-399,403-413,415	behind
+M	73	4027:56c0097c3f85216b	0	0-3,10,12-13	behind
+M	91	1687:682b7ae324f586f0	0	26-27,30-31	under
+M	92	1687:682b7ae324f586f0	0	14-15	behind
+M	95	1375:b8751a7575a6df38	0	0-4,6-11,14-15,19	under+behind
+M	96	1031:9a1356f02a401e0f	0	2-3	under
+M	97	3331:2346d8076ae8c55e	0	0-63	under+behind
+M	99	3199:73b63196ad26465b	0	22-23,25,28-31,34-37,40-43	behind
+M	100	3199:73b63196ad26465b	0	22-25,28-31,34-37	behind
+M	122	5311:034c6b6bb769f294	0	2-3,18-21,24-25,80-83	under+behind
+M	123	4927:20906166cf1a9c2d	0	0-5	under+behind
+M	127	2815:61c3b98ede114a4d	0	0-3,6-7	behind
+M	129	18399:0a6b1931a0324cbb	0	221-223,228-229,236-237,246-248,250-252,256-257,262-263,265-266,269-275,339	under+behind
+M	130	18399:0a6b1931a0324cbb	0	220-223,228-229,232-233,236-237,242-253,256-276,336-337,339	under+behind
+M	134	9775:0ed14375100632e2	0	67-70,82-86,126-130	under+behind
+M	135	9775:0ed14375100632e2	0	9-13,17,67-77,124	under+behind
+M	136	9775:0ed14375100632e2	0	9-13,27-31,48,63-66,68-69,71-76,82-84,86-88,90,93,95-99,126-128,130	under+behind
+M	137	9775:0ed14375100632e2	0	89-90	behind
+M	138	9775:0ed14375100632e2	0	9-13,65,69-70	under+behind
+M	139	9775:0ed14375100632e2	0	89-90	behind
+M	144	1375:b8751a7575a6df38	0	0-9,11,14-17,19-20,22-23	under+behind
+M	145	1375:b8751a7575a6df38	0	0-4,6-11,14-15,17-20,22-23	under+behind

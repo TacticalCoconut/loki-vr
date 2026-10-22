@@ -1,0 +1,517 @@
+# Loki's OWN skill effects (client wave 5, w5fxown): a DESIGN, not the official client's look (no source shows that: design notes).
+# Made by client/tools/fx/build_own_fx.py from rAthena e985006 db/re/skill_db.yml + design notes + the GRF's file NAMES.
+# Read by client/Assets/Loki/Runtime/Fx/OwnSkillFx.cs. Every texture / STR named here is read from the PLAYER'S GRF at run time; a missing one is skipped.
+# palette	element	name	r,g,b	blend	spark	orb	column	puff	sigil
+palette	-1	steel	0.90,0.94,1.00	add	pikapika_white.tga	glow11.bmp	ring_white.tga	smoke.tga	magic_target.tga
+palette	0	neutral	1.00,0.95,0.80	add	pikapika_white.tga	glow11.bmp	ring_white.tga	smoke.tga	magic_target.tga
+palette	1	water	0.45,0.72,1.00	add	iceparticle.bmp	waterorb.bmp	ring_blue.tga	freezing_smoke.bmp	magic_y_01.tga
+palette	2	earth	0.90,0.68,0.38	add	stone-1.bmp	stoneorb.bmp	ring_brown.tga	smoke_mud.bmp	magic_y_01.tga
+palette	3	fire	1.00,0.50,0.16	add	fireparticle.tga	fireorb.bmp	ring_red.tga	fire_smoke_a.bmp	magic_y_01.tga
+palette	4	wind	0.78,1.00,0.58	add	pikapika_lime.tga	lightningorb.bmp	ring_yellow.tga	smoke.tga	magic_y_01.tga
+palette	5	poison	0.62,0.92,0.36	add	pikapika_genetic_yellowgreen.tga	poison_pupu.bmp	magic_green.tga	poison_smoke.bmp	magic_y_01.tga
+palette	6	holy	1.00,0.93,0.62	add	ring_star.tga	glow11.bmp	ring_white.tga	smoke.tga	magic_target.tga
+palette	7	dark	0.62,0.34,0.92	add	pikapika_violet.tga	glow12.bmp	ring_purple.tga	smoke.tga	magic_y_01.tga
+palette	8	ghost	0.80,0.66,1.00	add	pikapika_lilac.tga	ghost01.bmp	ring_purple.tga	smoke.tga	magic_y_01.tga
+palette	9	undead	0.62,0.82,0.50	add	pikapika_genetic_yellowgreen.tga	ghost01.bmp	ring_jadu.tga	smoke_mud.bmp	magic_y_01.tga
+# skill	id	aegis	verdict	recipe	arg	palette	kind	target	type	range	splash	hits	maxlv	status	files (phase:anchor:kind:file:level;...)
+skill	10	MG_SIGHT	nice to have	song	ring	3	buff	Self	Magic	0	3	1	1	Sight	
+skill	93	WZ_ESTIMATION	nice to have	mark		8	util	Attack	Magic	9	0	1	1		
+skill	146	SM_AUTOBERSERK	nice to have	aura		0	buff	Self	Weapon	0	0	1	1	AutoBerserk	
+skill	149	TF_SPRINKLESAND	needed	strike		2	attack	Attack	Weapon	1	0	1	1	Blind	
+skill	150	TF_BACKSLIDING	nice to have	pulse		0	util	Self	Weapon	0	0	1	1		
+skill	151	TF_PICKSTONE	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	221	RG_FLAGGRAFFITI	nice to have	zone		7	util	Ground		0	0	1	5		
+skill	222	RG_CLEANER	nice to have	zone		7	util	Ground		1	5	1	1		
+skill	231	AM_POTIONPITCHER	needed	heal		2	heal	Support		9	0	1	5		
+skill	232	AM_CANNIBALIZE	nice to have	zone		2	util	Ground		4	0	1	5		
+skill	264	MO_BODYRELOCATION	needed	zone		0	util	Ground		18	0	1	1		
+skill	269	MO_BLADESTOP	nice to have	aura		0	buff	Self	Weapon	0	0	1	5	BladeStop_Wait	
+skill	275	SA_CASTCANCEL	nice to have	pulse		8	util	Self	Magic	0	0	1	5		
+skill	279	SA_AUTOSPELL	nice to have	aura		8	buff	Self	Magic	0	0	1	10	AutoSpell	
+skill	290	SA_ABRACADABRA	nice to have	pulse		8	util	Self	Magic	0	0	1	10		
+skill	291	SA_MONOCELL	nice to have	mark		8	util	Attack	Magic	9	0	1	1		
+skill	292	SA_CLASSCHANGE	nice to have	mark		8	util	Attack	Magic	9	0	1	1		
+skill	294	SA_REVERSEORCISH	nice to have	aura		8	buff	Self	Magic	9	0	1	1	Orcish	
+skill	295	SA_DEATH	nice to have	mark		8	util	Attack	Magic	9	0	1	1		
+skill	296	SA_FORTUNE	nice to have	mark		8	util	Attack	Magic	9	0	1	1		
+skill	297	SA_TAMINGMONSTER	nice to have	mark		8	util	Attack	Magic	9	0	1	1		
+skill	298	SA_QUESTION	nice to have	pulse		8	util	Self	Magic	9	0	1	1		
+skill	299	SA_GRAVITY	nice to have	pulse		8	util	Self	Magic	9	0	1	1		
+skill	300	SA_LEVELUP	nice to have	pulse		8	util	Self	Magic	9	0	1	1		
+skill	301	SA_INSTANTDEATH	nice to have	nova		8	attack	Self	Magic	9	0	1	1		
+skill	302	SA_FULLRECOVERY	nice to have	heal		8	heal	Self	Magic	9	0	1	1		
+skill	303	SA_COMA	nice to have	nova		8	attack	Self	Magic	9	0	1	1	Coma	
+skill	304	BD_ADAPTATION	nice to have	aura		0	buff	Self		0	0	1	1	Adaptation	
+skill	305	BD_ENCORE	nice to have	aura		0	buff	Self		0	0	1	1	Dancing	
+skill	317	BA_DISSONANCE	nice to have	song	notes	0	buff	Self	Magic	0	4	1	5		
+skill	325	DC_UGLYDANCE	nice to have	song	notes	0	buff	Self	Misc	0	4	1	5		
+skill	334	WE_MALE	nice to have	pulse		0	util	Self		9	0	1	1		
+skill	335	WE_FEMALE	nice to have	pulse		0	util	Self		9	0	1	1		
+skill	358	LK_TENSIONRELAX	nice to have	aura		0	buff	Self	Weapon	0	0	1	1	TensionRelax	
+skill	362	HP_BASILICA	nice to have	aura		6	buff	Self	Magic	0	0	1	5	Basilica	
+skill	365	HW_MAGICCRASHER	needed	shot		-1	attack	Attack	Weapon	9	0	1	1		
+skill	381	SN_FALCONASSAULT	needed	shot		4	attack	Attack	Misc	9	0	1	5		
+skill	396	CG_MARIONETTE	needed	bless		0	buff	Support		7	0	1	1	Marionette	
+skill	397	LK_SPIRALPIERCE	needed	shot		-1	attack	Attack	Weapon	4	0	5	5	Ankle	
+skill	400	HW_NAPALMVULCAN	needed	napalm		8	attack	Attack	Magic	9	1	1	5	Curse	
+skill	408	WE_BABY	needed	aura		0	buff	Self		9	0	1	1	ProtectExp	
+skill	412	TK_READYSTORM	nice to have	tk_ready	storm	0	buff	Self	Weapon	0	0	1	1	ReadyStorm	
+skill	413	TK_STORMKICK	needed	tk_storm		-1	attack	Self	Weapon	-2	2	-3	7		
+skill	414	TK_READYDOWN	nice to have	tk_ready	down	0	buff	Self	Weapon	0	0	1	1	ReadyDown	
+skill	415	TK_DOWNKICK	needed	tk_down		-1	attack	Self	Weapon	-2	0	-3	7	Stun	
+skill	416	TK_READYTURN	nice to have	tk_ready	turn	0	buff	Self	Weapon	0	0	1	1	ReadyTurn	
+skill	417	TK_TURNKICK	needed	tk_turn		-1	attack	Self	Weapon	-2	1	-3	7		
+skill	418	TK_READYCOUNTER	nice to have	tk_ready	counter	0	buff	Self	Weapon	0	0	1	1	ReadyCounter	
+skill	419	TK_COUNTER	needed	tk_counter		-1	attack	Self	Weapon	-2	0	-3	7		
+skill	420	TK_DODGE	nice to have	tk_dodge		0	buff	Self	Weapon	0	0	1	1	Dodge	
+skill	425	TK_SEVENWIND	nice to have	tk_sevenwind	2,4,1,3,8,7,6	2	buff	Self	Weapon	0	0	1	7	SevenWind	
+skill	427	SG_FEEL	needed	sg_feel		0	util	Self	Magic	0	0	1	3		
+skill	428	SG_SUN_WARM	not needed	sg_warm	sun	-1	buff	Self	Weapon	1	1	1	3	Warm	
+skill	429	SG_MOON_WARM	not needed	sg_warm	moon	-1	buff	Self	Weapon	1	1	1	3	Warm	
+skill	430	SG_STAR_WARM	not needed	sg_warm	star	-1	buff	Self	Weapon	1	1	1	3	Warm	
+skill	431	SG_SUN_COMFORT	needed	sg_comfort	sun	0	buff	Self	Magic	0	0	1	4	Sun_Comfort	
+skill	432	SG_MOON_COMFORT	needed	sg_comfort	moon	0	buff	Self	Magic	0	0	1	4	Moon_Comfort	
+skill	433	SG_STAR_COMFORT	needed	sg_comfort	star	0	buff	Self	Magic	0	0	1	4	Star_Comfort	
+skill	434	SG_HATE	nice to have	sg_hate		0	util	Attack	Magic	9	0	1	3		
+skill	445	SL_ALCHEMIST	needed	spirit	pikapika_genetic_yellowgreen.tga|0.70,1.00,0.35	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	447	SL_MONK	needed	spirit	pikapika_sun_orange.tga|1.00,0.62,0.22	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	448	SL_STAR	needed	spirit	pikapika_ultramarine.tga|0.40,0.55,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	449	SL_SAGE	needed	spirit	pikapika_sorcerer_light_blue.tga|0.55,0.85,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	450	SL_CRUSADER	needed	spirit	pikapika_royal_guard_blue.tga|0.35,0.55,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	451	SL_SUPERNOVICE	needed	spirit	pikapika_cyan.tga|0.40,1.00,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	452	SL_KNIGHT	needed	spirit	pikapika_rune_knight_red.tga|1.00,0.35,0.30	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	453	SL_WIZARD	needed	spirit	pikapika_warlock_violet.tga|0.75,0.45,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	454	SL_PRIEST	needed	spirit	pikapika_archbishop_white.tga|1.00,0.97,0.88	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	455	SL_BARDDANCER	needed	spirit	pikapika_minstrel_pink.tga|1.00,0.55,0.80	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	456	SL_ROGUE	needed	spirit	pikapika_gray.tga|0.75,0.78,0.85	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	457	SL_ASSASIN	needed	spirit	pikapika_guillotine_cross_silver.tga|0.85,0.88,0.95	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	458	SL_BLACKSMITH	needed	spirit	pikapika_mechanic_gold.tga|1.00,0.82,0.35	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	460	SL_HUNTER	needed	spirit	pikapika_ranger_green.tga|0.45,1.00,0.50	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	461	SL_SOULLINKER	needed	spirit	pikapika_lilac.tga|0.82,0.62,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	464	SL_KAUPE	needed	kaupe		8	buff	Support	Magic	9	0	1	3	Kaupe	
+skill	465	SL_KAITE	needed	kaite		8	buff	Support	Magic	9	0	1	7	Kaite	
+skill	471	SL_SKE	needed	eske		8	debuff	Attack	Magic	9	0	1	3	Ske	
+skill	476	ST_FULLSTRIP	needed	mark		7	util	Attack	Weapon	1	0	1	5		
+skill	478	CR_SLIMPITCHER	nice to have	zone		2	util	Ground		3	3	1	10		
+skill	482	PF_DOUBLECASTING	needed	aura		8	buff	Self	Magic	0	0	1	5	DoubleCast	
+skill	483	HW_GANBANTEIN	needed	ganbantein		8	util	Ground		18	1	1	1		
+skill	485	WS_CARTTERMINATION	needed	cartterm		-1	attack	Attack	Weapon	-2	0	1	10	Stun	
+skill	489	CG_TAROTCARD	needed	tarot		0	debuff	Attack	Misc	9	0	1	5	TarotCard	
+skill	490	CR_ACIDDEMONSTRATION	needed	shot		-1	attack	Attack	Weapon	9	0	1	10		
+skill	491	CR_CULTIVATION	nice to have	zone		2	util	Ground		1	0	1	2		
+skill	492	ITEM_ENCHANTARMS	nice to have	aura		0	buff	Self		0	0	1	10	EnchantArms	
+skill	493	TK_MISSION	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	494	SL_HIGH	needed	spirit	pikapika_white.tga|1.00,1.00,1.00	8	buff	Support	Magic	9	0	1	5	Spirit	
+skill	496	AM_TWILIGHT1	needed	pulse		2	util	Self		0	0	1	1		
+skill	497	AM_TWILIGHT2	needed	pulse		2	util	Self		0	0	1	1		
+skill	498	AM_TWILIGHT3	needed	pulse		2	util	Self		0	0	1	1		
+skill	499	HT_POWER	needed	shot		-1	attack	Attack	Weapon	-9	0	2	1		
+skill	501	GS_FLING	needed	shot		-1	attack	Attack	Misc	9	0	1	1	Fling	
+skill	504	GS_MADNESSCANCEL	needed	aura		3	buff	Self	Weapon	0	0	1	1	MadnessCancel	
+skill	505	GS_ADJUSTMENT	needed	aura		3	buff	Self	Weapon	0	0	1	1	Adjustment	
+skill	508	GS_CRACKER	nice to have	curse		-1	debuff	Attack	Weapon	-9	0	1	1	Stun	
+skill	514	GS_PIERCINGSHOT	needed	shot		-1	attack	Attack	Weapon	-9	0	1	5	Bleeding	
+skill	517	GS_GATLINGFEVER	needed	gatling		-1	buff	Self	Weapon	0	0	1	10	GatlingFever	
+skill	521	GS_GROUNDDRIFT	needed	field		-1	attack	Ground	Weapon	-9	1	1	10		
+skill	529	NJ_SHADOWJUMP	nice to have	zone		7	util	Ground		6	0	1	5		
+skill	531	NJ_UTSUSEMI	nice to have	aura		7	buff	Self		0	0	1	5	Utsusemi	
+skill	532	NJ_BUNSINJYUTSU	needed	mirror		7	buff	Self	Magic	0	0	1	10	Bunsinjyutsu	
+skill	542	NJ_KAMAITACHI	needed	bolt		4	attack	Attack	Magic	5	1	-5	5		
+skill	543	NJ_NEN	nice to have	aura		7	buff	Self		0	0	1	5	Nen	
+skill	688	GM_SANDMAN	nice to have	bless		0	buff	Support		9	0	1	10		
+skill	692	ALL_CATCRY	nice to have	nova		-1	attack	Self		0	0	1	1		
+skill	693	ALL_PARTYFLEE	nice to have	song	ring	0	buff	Self	Magic	0	-1	1	1	PartyFlee	
+skill	697	ALL_REVERSEORCISH	nice to have	aura		0	buff	Self	Magic	9	0	1	1	Orcish	
+skill	784	ALL_EVENT_20TH_ANNIVERSARY	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	1002	CR_SHRINK	needed	aura		2	buff	Self	Weapon	0	0	1	1	Shrink	
+skill	1005	RG_CLOSECONFINE	needed	curse		7	debuff	Attack	Weapon	1	0	1	1	CloseConfine2	
+skill	1006	WZ_SIGHTBLASTER	needed	nova		3	attack	Self	Magic	0	1	1	1	SightBlaster	
+skill	1014	PR_REDEMPTIO	nice to have	heal		6	heal	Self	Magic	0	14	1	1		
+skill	1015	MO_KITRANSLATION	nice to have	bless		0	buff	Support	Weapon	9	0	1	1		
+skill	1016	MO_BALKYOUNG	needed	strike		-1	attack	Attack	Weapon	-1	1	1	1	Stun	
+skill	2003	RK_DEATHBOUND	nice to have	aura		0	buff	Self	Weapon	0	0	1	10	DeathBound	
+skill	2004	RK_HUNDREDSPEAR	needed	shot		-1	attack	Attack	Weapon	7	1	-5	10		
+skill	2005	RK_WINDCUTTER	nice to have	nova		-1	attack	Self	Weapon	0	1	1	5		
+skill	2012	RK_CRUSHSTRIKE	nice to have	nova		-1	attack	Self		1	0	1	1	CrushStrike	
+skill	2013	RK_REFRESH	nice to have	heal		0	heal	Self		0	0	1	1	Refresh	
+skill	2014	RK_GIANTGROWTH	nice to have	aura		0	buff	Self		0	0	1	1	GiantGrowth	
+skill	2015	RK_STONEHARDSKIN	nice to have	aura		0	buff	Self		0	0	1	1	StoneHardSkin	
+skill	2016	RK_VITALITYACTIVATION	nice to have	aura		0	buff	Self		0	0	1	1	VitalityActivation	
+skill	2017	RK_STORMBLAST	nice to have	nova		-1	attack	Self	Weapon	0	3	1	1		
+skill	2018	RK_FIGHTINGSPIRIT	nice to have	aura		0	buff	Self		0	0	1	1	FightingSpirit	
+skill	2019	RK_ABUNDANCE	nice to have	aura		6	buff	Self		9	0	1	1	Abundance	
+skill	2020	RK_PHANTOMTHRUST	needed	shot		-1	attack	Attack	Weapon	5	0	1	5		
+skill	2021	GC_VENOMIMPRESS	needed	curse		7	debuff	Attack		10	0	1	5	VenomImpress	
+skill	2022	GC_CROSSIMPACT	needed	shot		-1	attack	Attack	Weapon	7	0	-7	5		
+skill	2023	GC_DARKILLUSION	needed	shot		-1	attack	Attack	Weapon	5	0	1	5		
+skill	2026	GC_ANTIDOTE	nice to have	heal		7	heal	Support		5	0	1	1		
+skill	2027	GC_POISONINGWEAPON	nice to have	aura		7	buff	Self		0	0	1	5	PoisoningWeapon	
+skill	2028	GC_WEAPONBLOCKING	nice to have	aura		7	buff	Self		0	0	1	5	WeaponBlocking	
+skill	2029	GC_COUNTERSLASH	nice to have	nova		-1	attack	Self	Weapon	0	1	1	10		
+skill	2030	GC_WEAPONCRUSH	nice to have	nova		-1	attack	Self	Weapon	-2	0	1	5		
+skill	2031	GC_VENOMPRESSURE	needed	strike		-1	attack	Attack	Weapon	1	0	1	5		
+skill	2033	GC_CLOAKINGEXCEED	nice to have	aura		7	buff	Self	Weapon	0	0	1	5	CloakingExceed	
+skill	2034	GC_PHANTOMMENACE	nice to have	nova		-1	attack	Self	Weapon	0	3	1	1		
+skill	2037	GC_CROSSRIPPERSLASHER	needed	shot		-1	attack	Attack	Weapon	9	0	1	5		
+skill	2041	AB_CLEMENTIA	nice to have	song	ring	6	buff	Self	Magic	0	3	1	3	Blessing	
+skill	2042	AB_CANTO	nice to have	song	ring	6	buff	Self	Magic	0	3	1	3	IncreaseAgi	
+skill	2045	AB_PRAEFATIO	nice to have	song	ring	6	buff	Self	Magic	0	15	1	10	Kyrie	
+skill	2046	AB_ORATIO	needed	song	ring	6	buff	Self	Magic	0	15	1	10	Oratio	
+skill	2047	AB_LAUDAAGNUS	nice to have	song	ring	6	buff	Self	Magic	0	15	1	4	LaudaAgnus	
+skill	2048	AB_LAUDARAMUS	nice to have	song	ring	6	buff	Self	Magic	0	15	1	4	LaudaRamus	
+skill	2050	AB_RENOVATIO	nice to have	heal		6	heal	Self	Magic	11	15	1	4	Renovatio	
+skill	2052	AB_CLEARANCE	needed	mark		6	util	Attack	Magic	11	0	1	5		
+skill	2053	AB_EXPIATIO	nice to have	heal		6	heal	Support	Magic	11	0	1	5	Expiatio	
+skill	2055	AB_DUPLELIGHT_MELEE	needed	strike		-1	attack	Attack	Weapon	-1	0	1	10		
+skill	2056	AB_DUPLELIGHT_MAGIC	needed	strike		6	attack	Attack	Magic	-1	0	1	10		
+skill	2057	AB_SILENTIUM	nice to have	song	ring	6	buff	Self	Magic	0	4	1	5		
+skill	2202	WL_SOULEXPANSION	needed	bolt		8	attack	Attack	Magic	11	1	-2	5		
+skill	2210	WL_DRAINLIFE	needed	bolt		8	attack	Attack	Magic	11	0	1	5		
+skill	2212	WL_HELLINFERNO	needed	bolt		3	attack	Attack	Magic	11	1	1	5		
+skill	2213	WL_COMET	needed	field		8	attack	Ground	Magic	11	6	-10	5	Magic_Poison	
+skill	2214	WL_CHAINLIGHTNING	nice to have	mark		8	util	Attack	Magic	11	0	1	5		
+skill	2217	WL_TETRAVORTEX	needed	bolt	multi	8	attack	Attack	Magic	11	0	1	10		
+skill	2218	WL_TETRAVORTEX_FIRE	needed	bolt		3	attack	Attack	Magic	11	0	1	5		
+skill	2219	WL_TETRAVORTEX_WATER	needed	bolt		1	attack	Attack	Magic	11	0	1	5		
+skill	2220	WL_TETRAVORTEX_WIND	needed	bolt		4	attack	Attack	Magic	11	0	1	5		
+skill	2221	WL_TETRAVORTEX_GROUND	needed	bolt		2	attack	Attack	Magic	11	0	1	5		
+skill	2225	WL_SUMMON_ATK_FIRE	needed	bolt		3	attack	Attack	Magic	11	0	1	5		
+skill	2226	WL_SUMMON_ATK_WIND	needed	bolt		4	attack	Attack	Magic	11	0	1	5		
+skill	2227	WL_SUMMON_ATK_WATER	needed	bolt		1	attack	Attack	Magic	11	0	1	5		
+skill	2228	WL_SUMMON_ATK_GROUND	needed	bolt		2	attack	Attack	Magic	11	0	1	5		
+skill	2230	WL_RELEASE	needed	bolt		8	attack	Attack	Magic	11	0	1	2		
+skill	2234	RA_FEARBREEZE	nice to have	nova		4	attack	Self		0	0	1	5	FearBreeze	
+skill	2240	RA_WUGMASTERY	nice to have	nova		4	attack	Self		0	0	1	1		
+skill	2242	RA_WUGDASH	nice to have	nova		-1	attack	Self	Weapon	0	1	1	1	WugDash	
+skill	2246	RA_SENSITIVEKEEN	nice to have	nova		4	attack	Self	Weapon	0	3	1	5		
+skill	2256	NC_BOOSTKNUCKLE	needed	shot		-1	attack	Attack	Weapon	11	0	1	5		
+skill	2257	NC_PILEBUNKER	needed	strike		-1	attack	Attack	Weapon	3	0	1	3		
+skill	2258	NC_VULCANARM	needed	shot		-1	attack	Attack	Weapon	13	2	1	3		
+skill	2259	NC_FLAMELAUNCHER	needed	shot		3	attack	Attack	Weapon	5	1	1	3		
+skill	2260	NC_COLDSLOWER	needed	field		1	attack	Ground	Weapon	7	2	1	3		
+skill	2261	NC_ARMSCANNON	needed	shot		-1	attack	Attack	Weapon	9	1	1	5		
+skill	2262	NC_ACCELERATION	nice to have	aura		3	buff	Self		0	0	1	3	Acceleration	
+skill	2263	NC_HOVERING	nice to have	aura		3	buff	Self		0	0	1	1	Hovering	
+skill	2264	NC_F_SIDESLIDE	nice to have	pulse		3	util	Self		0	0	1	1		
+skill	2265	NC_B_SIDESLIDE	nice to have	pulse		3	util	Self		0	0	1	1		
+skill	2267	NC_SELFDESTRUCTION	nice to have	nova		3	attack	Self	Weapon	0	2	1	3		
+skill	2268	NC_SHAPESHIFT	nice to have	aura		3	buff	Self		0	0	1	4	ShapeShift	
+skill	2269	NC_EMERGENCYCOOL	nice to have	pulse		3	util	Self		0	0	1	1		
+skill	2270	NC_INFRAREDSCAN	needed	song	ring	3	buff	Self		0	7	1	1	InfraredScan	
+skill	2271	NC_ANALYZE	nice to have	curse		3	debuff	Attack		9	0	1	3	Analyze	
+skill	2272	NC_MAGNETICFIELD	needed	song	ring	3	buff	Self		0	2	1	3	MagneticField	
+skill	2278	NC_AXEBOOMERANG	needed	shot		-1	attack	Attack	Weapon	5	0	1	5		
+skill	2280	NC_AXETORNADO	nice to have	nova		-1	attack	Self	Weapon	0	2	-6	5		
+skill	2281	NC_SILVERSNIPER	nice to have	zone		3	util	Ground		2	0	1	5		
+skill	2282	NC_MAGICDECOY	nice to have	zone		3	util	Ground		2	0	1	5		
+skill	2283	NC_DISJOINT	nice to have	mark		3	util	Attack		5	0	1	1		
+skill	2284	SC_FATALMENACE	needed	strike		-1	attack	Attack	Weapon	2	1	1	10		
+skill	2286	SC_AUTOSHADOWSPELL	nice to have	aura		7	buff	Self		0	0	1	10	_AutoShadowSpell	
+skill	2287	SC_SHADOWFORM	nice to have	curse		7	debuff	Attack		5	0	1	5	_ShadowForm	
+skill	2290	SC_INVISIBILITY	nice to have	aura		7	buff	Self		0	0	1	5	_Invisibility	
+skill	2291	SC_DEADLYINFECT	nice to have	aura		7	buff	Self		0	0	1	5	_DeadlyInfect	
+skill	2298	SC_STRIPACCESSARY	needed	curse		7	debuff	Attack		3	0	1	5	_StripAccessory	
+skill	2313	LG_FORCEOFVANGUARD	nice to have	aura		0	buff	Self		0	0	1	5	ForceOfVanguard	
+skill	2340	SR_ASSIMILATEPOWER	nice to have	song	ring	0	buff	Self		1	2	1	1		
+skill	2342	SR_CRESCENTELBOW_AUTOSPELL	needed	strike		-1	attack	Attack	Weapon	1	0	1	5		
+skill	2344	SR_GENTLETOUCH_QUIET	needed	strike		-1	attack	Attack	Weapon	2	0	1	5		
+skill	2345	SR_GENTLETOUCH_CURE	nice to have	heal		0	heal	Support		2	0	1	5		
+skill	2346	SR_GENTLETOUCH_ENERGYGAIN	nice to have	aura		0	buff	Self		1	0	1	5	Gt_EnergyGain	
+skill	2347	SR_GENTLETOUCH_CHANGE	nice to have	aura		0	buff	Self		2	0	1	5	Gt_Change	
+skill	2348	SR_GENTLETOUCH_REVITALIZE	nice to have	aura		0	buff	Self		2	0	1	5	Gt_Revitalize	
+skill	2414	WM_REVERBERATION	needed	bolt		-1	attack	Attack	Magic	9	2	-10	5		
+skill	2416	WM_REVERBERATION_MAGIC	needed	strike		-1	attack	Attack	Magic	0	0	10	5		
+skill	2417	WM_DOMINION_IMPULSE	needed	zone		0	util	Ground		11	5	1	1		
+skill	2420	WM_VOICEOFSIREN	nice to have	song	notes	0	buff	Self		0	2	1	5	VoiceOfSiren	
+skill	2427	WM_SONG_OF_MANA	needed	song	notes	0	buff	Self		0	5	1	5	SongOfMana	
+skill	2428	WM_DANCE_WITH_WUG	needed	song	notes	0	buff	Self		0	5	1	5	DanceWithWug	
+skill	2430	WM_SATURDAY_NIGHT_FEVER	needed	song	notes	0	buff	Self		0	3	1	5	SaturdayNightFever	
+skill	2431	WM_LERADS_DEW	needed	song	notes	0	buff	Self		0	5	1	5	LeradsDew	
+skill	2432	WM_MELODYOFSINK	needed	song	notes	0	buff	Self		0	5	1	5	MelodyOfSink	
+skill	2433	WM_BEYOND_OF_WARCRY	needed	song	notes	0	buff	Self		0	5	1	5	BeyondOfWarcry	
+skill	2434	WM_UNLIMITED_HUMMING_VOICE	needed	song	notes	0	buff	Self		0	5	1	5	UnlimitedHummingVoice	
+skill	2445	SO_SPELLFIST	nice to have	aura		8	buff	Self		1	0	1	10	SpellFist	
+skill	2446	SO_EARTHGRAVE	needed	field		2	attack	Ground	Magic	9	0	-3	5		
+skill	2448	SO_POISON_BUSTER	needed	bolt		5	attack	Attack	Magic	9	3	1	5		
+skill	2450	SO_CLOUD_KILL	needed	field		5	attack	Ground	Magic	9	0	1	5	Cloud_Poison	
+skill	2451	SO_STRIKING	nice to have	bless		8	buff	Support		9	0	1	5	Striking	
+skill	2455	SO_ARRULLO	nice to have	zone		8	util	Ground	Magic	7	1	1	5	DeepSleep	
+skill	2456	SO_EL_CONTROL	nice to have	pulse		8	util	Self		0	0	1	4		
+skill	2461	SO_EL_ACTION	nice to have	mark		8	util	Attack		5	0	1	1		
+skill	2462	SO_EL_ANALYSIS	nice to have	pulse		8	util	Self		0	0	1	2		
+skill	2464	SO_EL_CURE	nice to have	heal		8	heal	Self		0	0	1	1		
+skill	2477	GN_CARTCANNON	needed	shot		-1	attack	Attack	Weapon	7	1	1	5		
+skill	2478	GN_CARTBOOST	nice to have	aura		2	buff	Self		0	0	1	5	Gn_CartBoost	
+skill	2480	GN_BLOOD_SUCKER	nice to have	bless		2	buff	Support	Misc	11	0	1	5	BloodSucker	
+skill	2481	GN_SPORE_EXPLOSION	needed	shot		-1	attack	Attack	Weapon	11	1	2	10	Spore_Explosion	
+skill	2483	GN_CRAZYWEED	needed	zone		2	util	Ground	Weapon	11	4	1	10		
+skill	2484	GN_CRAZYWEED_ATK	needed	field		-1	attack	Ground	Weapon	5	2	2	10		
+skill	2485	GN_DEMONIC_FIRE	needed	field		3	attack	Ground	Magic	9	0	1	5		
+skill	2486	GN_FIRE_EXPANSION	needed	field		2	attack	Ground		9	0	1	5		
+skill	2489	GN_FIRE_EXPANSION_ACID	needed	shot		2	attack	Attack	Misc	11	0	1	10		
+skill	2490	GN_HELLS_PLANT	needed	aura		2	buff	Self		0	0	1	5	Hells_Plant	
+skill	2491	GN_HELLS_PLANT_ATK	needed	strike		-1	attack	Attack	Weapon	0	2	1	5		
+skill	2492	GN_MANDRAGORA	nice to have	song	ring	2	buff	Self		0	5	1	5	Mandragora	
+skill	2493	GN_SLINGITEM	nice to have	bless		2	buff	Support		11	0	1	1		
+skill	2498	GN_SLINGITEM_RANGEMELEEATK	needed	shot		2	attack	Attack	Weapon	11	0	1	1		
+skill	2515	AB_SECRAMENT	nice to have	bless		6	buff	Support	Magic	11	0	1	5	Secrament	
+skill	2516	WM_SEVERE_RAINSTORM_MELEE	needed	shot		-1	attack	Attack	Weapon	11	5	1	5		
+skill	2519	LG_OVERBRAND_BRANDISH	nice to have	strike		-1	attack	Attack	Weapon	1	0	1	5		
+skill	2520	LG_OVERBRAND_PLUSATK	nice to have	strike		-1	attack	Attack	Weapon	1	0	1	5		
+skill	2533	ALL_ODINS_RECALL	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	2535	ALL_BUYING_STORE	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	2536	ALL_GUARDIAN_RECALL	nice to have	aura		0	buff	Self		0	0	1	1	Guardian_Recall	
+skill	2537	ALL_ODINS_POWER	nice to have	bless		0	buff	Support		9	0	1	2	Odins_Power	
+skill	2543	ALL_RAY_OF_PROTECTION	nice to have	bless		6	buff	Support	Magic	1	0	1	1	Protection	
+skill	2553	RL_MASS_SPIRAL	needed	shot		-1	attack	Attack	Weapon	-15	0	1	5	Bleeding	
+skill	2559	RL_QD_SHOT	nice to have	nova		-1	attack	Self	Weapon	-9	10	1	1		
+skill	2565	RL_R_TRIP	nice to have	nova		-1	attack	Self	Weapon	0	3	1	10		
+skill	2571	RL_HAMMER_OF_GOD	needed	shot		3	attack	Attack	Weapon	11	2	1	10		
+skill	2572	RL_R_TRIP_PLUSATK	needed	strike		-1	attack	Attack	Weapon	0	0	1	5		
+skill	2575	SJ_LUNARSTANCE	nice to have	aura		0	buff	Self		0	0	1	3	LunarStance	
+skill	2578	SJ_STARSTANCE	nice to have	aura		0	buff	Self		0	0	1	3	StarStance	
+skill	2580	SJ_FLASHKICK	needed	strike		-1	attack	Attack	Weapon	1	0	1	7	FlashKick	
+skill	2581	SJ_STAREMPEROR	nice to have	nova		-1	attack	Self	Weapon	0	3	1	5	Silence	
+skill	2582	SJ_NOVAEXPLOSING	needed	strike		0	attack	Attack	Misc	3	0	1	5	NovaExplosing	
+skill	2583	SJ_UNIVERSESTANCE	nice to have	aura		0	buff	Self		0	0	1	3	UniverseStance	
+skill	2584	SJ_FALLINGSTAR	nice to have	aura		0	buff	Self		0	0	1	10	FallingStar	
+skill	2585	SJ_GRAVITYCONTROL	nice to have	curse		0	debuff	Attack		9	0	1	1	GravityControl	
+skill	2587	SJ_BOOKOFCREATINGSTAR	needed	field		-1	attack	Ground	Weapon	7	0	1	5	CreatingStar	
+skill	2591	SJ_SUNSTANCE	nice to have	aura		0	buff	Self		0	0	1	3	SunStance	
+skill	2593	SJ_PROMINENCEKICK	needed	strike		-1	attack	Attack	Weapon	1	1	1	7		
+skill	2595	SJ_FALLINGSTAR_ATK2	needed	strike		-1	attack	Attack	Weapon	1	2	-3	10		
+skill	2596	SP_SOULGOLEM	nice to have	bless		8	buff	Support	Magic	9	0	1	5	SoulGolem	
+skill	2597	SP_SOULSHADOW	nice to have	bless		8	buff	Support	Magic	9	0	1	5	SoulShadow	
+skill	2598	SP_SOULFALCON	nice to have	bless		8	buff	Support	Magic	9	0	1	5	SoulFalcon	
+skill	2599	SP_SOULFAIRY	nice to have	bless		8	buff	Support	Magic	9	0	1	5	SoulFairy	
+skill	2601	SP_SOULCURSE	nice to have	curse		8	debuff	Attack	Magic	9	3	1	5	SoulCurse	
+skill	2604	SP_SWHOO	needed	bolt		-1	attack	Attack	Magic	9	1	-5	10		
+skill	2605	SP_SOULUNITY	nice to have	song	ring	8	buff	Self	Magic	11	1	1	7	SoulUnity	
+skill	2608	SP_SOULREVOLVE	nice to have	bless		8	buff	Support	Magic	9	0	1	3		
+skill	2609	SP_SOULCOLLECT	needed	aura		8	buff	Self	Magic	0	0	1	5	SoulCollect	
+skill	2612	SP_KAUTE	nice to have	bless		8	buff	Support	Magic	7	0	1	5		
+skill	3011	KO_MEIKYOUSISUI	nice to have	aura		7	buff	Self		0	0	1	5	Meikyousisui	
+skill	3012	KO_ZANZOU	nice to have	pulse		7	util	Self		0	0	1	5		
+skill	3013	KO_KYOUGAKU	nice to have	curse		7	debuff	Attack		5	0	1	5	Kyougaku	
+skill	3014	KO_JYUSATSU	nice to have	curse		7	debuff	Attack		5	0	1	5	Curse	
+skill	3015	KO_KAHU_ENTEN	nice to have	pulse		3	util	Self		0	0	1	1		
+skill	3016	KO_HYOUHU_HUBUKI	nice to have	pulse		1	util	Self		0	0	1	1		
+skill	3017	KO_KAZEHU_SEIRAN	nice to have	pulse		4	util	Self		0	0	1	1		
+skill	3018	KO_DOHU_KOUKAI	nice to have	pulse		2	util	Self		0	0	1	1		
+skill	3020	KO_ZENKAI	needed	field		7	attack	Ground	Magic	7	0	1	1	Zenkai	
+skill	3021	KO_GENWAKU	nice to have	bless		7	buff	Support		5	0	1	5		
+skill	3023	KG_KAGEHUMI	needed	song	ring	7	buff	Self		0	2	1	5	Kagehumi	
+skill	3028	OB_OBOROGENSOU_TRANSITION_ATK	nice to have	nova		7	attack	Self	Weapon	1	3	1	1		
+skill	3035	ECLAGE_RECALL	nice to have	aura		0	buff	Self		0	0	1	1	Eclage_Recall	
+skill	3041	ALL_NIFLHEIM_RECALL	nice to have	aura		0	buff	Self		0	0	1	1	All_Niflheim_Recall	
+skill	3042	ALL_PRONTERA_RECALL	nice to have	aura		0	buff	Self		0	0	1	2	All_Prontera_Recall	
+skill	3043	ALL_GLASTHEIM_RECALL	nice to have	aura		0	buff	Self		0	0	1	1	All_Glastheim_Recall	
+skill	3044	ALL_THANATOS_RECALL	nice to have	aura		0	buff	Self		0	0	1	1	All_Thanatos_Recall	
+skill	3045	ALL_LIGHTHALZEN_RECALL	nice to have	aura		0	buff	Self		0	0	1	1	All_Lighthalzen_Recall	
+skill	5015	NC_MAGMA_ERUPTION_DOTDAMAGE	needed	strike		3	attack	Attack	Misc	1	0	1	5	Burning	
+skill	5023	SU_LOPE	nice to have	zone		2	util	Ground		6	0	1	3		
+skill	5028	SU_CN_METEOR	needed	grf	field	2	attack	Ground	Magic	9	3	-5	5	Curse	main:cell:SPR:su_cn_meteor/su_cn_meteor:0;main:cell:STR:su_cn_meteor/su_cn_meteor0:0
+skill	5030	SU_SV_ROOTTWIST_ATK	needed	strike		5	attack	Attack	Misc	0	0	1	5		
+skill	5034	SU_PICKYPECK_DOUBLE_ATK	needed	strike		-1	attack	Attack	Weapon	0	0	-5	5		
+skill	5036	SU_LUNATICCARROTBEAT	needed	grf	shot	-1	attack	Attack	Weapon	9	1	-3	5	Stun	main:target:SPR:su_lunaticcarrotbeat/su_lunaticcarrotbeat:0;main:target:STR:su_lunaticcarrotbeat/su_lunaticcarrotbeat:0
+skill	5040	SU_BUNCHOFSHRIMP	needed	grf	song	2	buff	Self		0	-1	1	5	Shrimp	main:caster:STR:su_bunchofshrimp/su_bunchofshrimp:0
+skill	5042	SU_CN_METEOR2	needed	field		2	attack	Ground	Magic	9	3	-5	5		
+skill	5043	SU_LUNATICCARROTBEAT2	needed	shot		-1	attack	Attack	Weapon	9	1	-3	5		
+skill	5067	ALL_EQSWITCH	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	5068	CG_SPECIALSINGER	nice to have	pulse		0	util	Self		1	0	1	1		
+skill	5072	AB_VITUPERATUM	nice to have	curse		6	debuff	Attack	Magic	9	1	1	5	Aeterna	
+skill	5073	AB_CONVENIO	nice to have	pulse		6	util	Self		0	0	1	1		
+skill	5076	NV_HELPANGEL	nice to have	heal		0	heal	Self		0	7	1	1	HelpAngel	
+skill	5078	WL_READING_SB_READING	nice to have	nova		8	attack	Self		0	0	1	10		
+skill	5202	DK_SERVANTWEAPON_ATK	needed	strike		-1	attack	Attack	Weapon	1	4	3	5		
+skill	5209	DK_HACKANDSLASHER_ATK	needed	strike		-1	attack	Attack	Weapon	2	1	2	10		
+skill	5210	DK_DRAGONIC_AURA	needed	shot		-1	attack	Attack	Weapon	7	0	1	10	Dragonic_Aura	
+skill	5214	AG_DEADLY_PROJECTION	needed	grf	bolt	9	attack	Attack	Magic	9	0	1	5	Deadly_Defeasance	cast:caster:STR:deadly_projection/deadly_projection_cast/deadly_projection_cast:0;cast:caster:STR:deadly_projection/deadly_projection_cast_bottom/deadly_projection_cast_bottom:0;hit:target:STR:deadly_projection/deadly_projection_hit/deadly_projection_hit:0;main:target:STR:deadly_projection/efst_deadly_defeasance/efst_deadly_defeasance:0
+skill	5215	AG_DESTRUCTIVE_HURRICANE	needed	grf	nova	4	attack	Self	Magic	0	3	1	5	Climax_Des_Hu	main:caster:STR:destructive_hurricane/destructive_hurricane/destructive_hurricane:0;main:caster:STR:destructive_hurricane/destructive_hurricane_bottom/destructive_hurricane_bottom:0;cast:caster:STR:destructive_hurricane/destructive_hurricane_cast/destructive_hurricane_cast:0;cast:caster:STR:destructive_hurricane/destructive_hurricane_cast_bottom/destructive_hurricane_cast_bottom:0;main:caster:STR:destructive_hurricane/destructive_hurricane_climax/destructive_hurricane_climax:0;hit:target:STR:destructive_hurricane/destructive_hurricane_hit/destructive_hurricane_hit:0
+skill	5217	AG_MYSTERY_ILLUSION	needed	grf	field	7	attack	Ground	Magic	9	0	1	5		main:cell:STR:mystery_illusion/mystery_illusion/mystery_illusion:0;main:cell:STR:mystery_illusion/mystery_illusion_bottom/mystery_illusion_bottom:0;cast:caster:STR:mystery_illusion/mystery_illusion_cast/mystery_illusion_cast:0;cast:caster:STR:mystery_illusion/mystery_illusion_cast_bottom/mystery_illusion_cast_bottom:0;hit:target:STR:mystery_illusion/mystery_illusion_hit/mystery_illusion_hit:0
+skill	5218	AG_VIOLENT_QUAKE	needed	field		2	attack	Ground	Magic	9	3	1	5	Climax_Earth	
+skill	5219	AG_VIOLENT_QUAKE_ATK	needed	field		2	attack	Ground	Magic	9	0	1	5		
+skill	5220	AG_SOUL_VC_STRIKE	needed	grf	bolt	8	attack	Attack	Magic	9	1	3	5		cast:caster:STR:soul_vc_strike/soul_vc_strike_cast/soul_vc_strike_cast:0;cast:caster:STR:soul_vc_strike/soul_vc_strike_cast_bottom/soul_vc_strike_cast_bottom:0;hit:target:STR:soul_vc_strike/soul_vc_strike_hit/soul_vc_strike_hit:0
+skill	5221	AG_STRANTUM_TREMOR	needed	field		2	attack	Ground	Magic	9	0	-2	5		
+skill	5222	AG_ALL_BLOOM	needed	field		3	attack	Ground	Magic	9	3	1	5	Climax_Bloom	
+skill	5223	AG_ALL_BLOOM_ATK	needed	field		3	attack	Ground	Magic	9	0	1	5		
+skill	5224	AG_ALL_BLOOM_ATK2	needed	field		3	attack	Ground	Magic	9	0	1	5		
+skill	5225	AG_CRYSTAL_IMPACT	needed	grf	nova	1	attack	Self	Magic	0	4	1	5	Climax_CryImp	main:caster:STR:crystal_impact/crystal_impact/crystal_impact:0;main:caster:STR:crystal_impact/crystal_impact_bottom/crystal_impact_bottom:0;main:caster:STR:crystal_impact/crystal_impact_buff/crystal_impact_buff:0;cast:caster:STR:crystal_impact/crystal_impact_cast/crystal_impact_cast:0;cast:caster:STR:crystal_impact/crystal_impact_cast_bottom/crystal_impact_cast_bottom:0;hit:target:STR:crystal_impact/crystal_impact_hit/crystal_impact_hit:0
+skill	5226	AG_CRYSTAL_IMPACT_ATK	needed	field		1	attack	Ground	Magic	0	0	1	5		
+skill	5227	AG_TORNADO_STORM	needed	field		4	attack	Ground	Magic	9	0	1	5		
+skill	5229	AG_FLORAL_FLARE_ROAD	needed	field		3	attack	Ground	Magic	9	0	-2	5		
+skill	5230	AG_ASTRAL_STRIKE	needed	field		8	attack	Ground	Magic	9	2	1	10		
+skill	5231	AG_ASTRAL_STRIKE_ATK	needed	field		8	attack	Ground	Magic	9	0	1	10		
+skill	5232	AG_CLIMAX	needed	grf	aura	8	buff	Self	Magic	0	0	1	5	Climax	main:caster:STR:climax/climax/climax:0;main:caster:STR:climax/climax_bottom/climax_bottom_1:1;main:caster:STR:climax/climax_bottom/climax_bottom_2:2;main:caster:STR:climax/climax_bottom/climax_bottom_3:3;main:caster:STR:climax/climax_bottom/climax_bottom_4:4;main:caster:STR:climax/climax_bottom/climax_bottom_5:5;cast:caster:STR:climax/climax_cast/climax_cast:0;cast:caster:STR:climax/climax_cast_loop/climax_cast_loop:0;main:caster:STR:climax/climax_light/climax_light:0
+skill	5233	AG_ROCK_DOWN	needed	bolt		2	attack	Attack	Magic	9	2	-5	5		
+skill	5234	AG_STORM_CANNON	needed	bolt		4	attack	Attack	Magic	9	1	-2	5		
+skill	5235	AG_CRIMSON_ARROW	needed	bolt		3	attack	Attack	Magic	9	1	1	5		
+skill	5236	AG_CRIMSON_ARROW_ATK	needed	bolt		3	attack	Attack	Magic	9	2	-2	5		
+skill	5237	AG_FROZEN_SLASH	needed	grf	nova	1	attack	Self	Magic	0	4	-3	5		main:caster:STR:frozen_slash/frozen_slash/frozen_slash:0;cast:caster:STR:frozen_slash/frozen_slash_casting/frozen_slash_cast:0;cast:caster:STR:frozen_slash/frozen_slash_casting_bottom/frozen_slash_cast_bottom:0;hit:target:STR:frozen_slash/frozen_slash_hit/frozen_slash_hit:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_01:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_02:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_03:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_04:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_05:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_06:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_07:0;main:caster:STR:frozen_slash/frozen_slash_ice/frozen_slash_ice_08:0
+skill	5238	IQ_POWERFUL_FAITH	nice to have	aura		6	buff	Self		0	0	1	5	Powerful_Faith	
+skill	5239	IQ_FIRM_FAITH	nice to have	aura		6	buff	Self		0	0	1	5	Firm_Faith	
+skill	5241	IQ_OLEUM_SANCTUM	nice to have	nova		-1	attack	Self	Weapon	9	3	1	5	Holy_Oil	
+skill	5242	IQ_SINCERE_FAITH	nice to have	aura		6	buff	Self		0	0	1	5	Sincere_Faith	
+skill	5243	IQ_MASSIVE_F_BLASTER	nice to have	nova		-1	attack	Self	Weapon	9	4	1	10	Massive_F_Blaster	
+skill	5244	IQ_EXPOSION_BLASTER	nice to have	nova		-1	attack	Self	Weapon	9	3	1	5		
+skill	5245	IQ_FIRST_BRAND	needed	strike		-1	attack	Attack	Weapon	3	3	1	5	First_Brand	
+skill	5246	IQ_FIRST_FAITH_POWER	nice to have	aura		6	buff	Self		0	0	1	5	First_Faith_Power	
+skill	5247	IQ_JUDGE	needed	grf	aura	6	buff	Self		0	0	1	5	Second_Judge	main:caster:STR:4ig_judge/judge/judge:0
+skill	5248	IQ_SECOND_FLAME	needed	strike		-1	attack	Attack	Weapon	3	3	1	5	Second_Brand	
+skill	5249	IQ_SECOND_FAITH	needed	strike		-1	attack	Attack	Weapon	3	3	-2	5	Second_Brand	
+skill	5250	IQ_SECOND_JUDGEMENT	needed	strike		-1	attack	Attack	Weapon	3	3	3	5	Second_Brand	
+skill	5251	IQ_THIRD_PUNISH	needed	strike		-1	attack	Attack	Weapon	3	3	3	5		
+skill	5252	IQ_THIRD_FLAME_BOMB	needed	strike		-1	attack	Attack	Weapon	3	3	1	5		
+skill	5253	IQ_THIRD_CONSECRATION	needed	strike		-1	attack	Attack	Weapon	3	3	5	5		
+skill	5254	IQ_THIRD_EXOR_FLAME	nice to have	aura		6	buff	Self		0	0	1	5	Third_Exor_Flame	
+skill	5265	IG_SHIELD_SHOOTING	needed	grf	shot	-1	attack	Attack	Weapon	9	2	-7	5	Shield_Power	main:target:STR:shield_shooting/shield_shooting/shield_shooting:0;cast:caster:STR:shield_shooting/shield_shooting_cast/shield_shooting_cast:0;hit:target:STR:shield_shooting/shield_shooting_hit/shield_shooting_hit:0
+skill	5268	CD_REPARATIO	nice to have	heal		6	heal	Support		9	0	1	5		
+skill	5269	CD_MEDIALE_VOTUM	nice to have	bless		6	buff	Support		9	4	1	5	Mediale	
+skill	5271	CD_ARGUTUS_VITA	nice to have	bless		6	buff	Support		9	0	1	5	A_Vita	
+skill	5272	CD_ARGUTUS_TELUM	nice to have	bless		6	buff	Support		9	0	1	5	A_Telum	
+skill	5273	CD_ARBITRIUM	needed	grf	bolt	6	attack	Attack	Magic	9	4	2	10	HandicapState_DeepSilence	main:target:STR:arbitrium/arbitrium/arbitrium:0;main:target:STR:arbitrium/arbitrium_bottom/arbitrium_bottom:0;cast:caster:STR:arbitrium/arbitrium_cast/arbitrium_cast:0;cast:caster:STR:arbitrium/arbitrium_cast_bottom/arbitrium_cast_bottom:0;hit:target:STR:arbitrium/arbitrium_hit/arbitrium_hit:0
+skill	5274	CD_ARBITRIUM_ATK	needed	bolt		6	attack	Attack	Magic	9	4	1	10		
+skill	5275	CD_PRESENS_ACIES	nice to have	bless		6	buff	Support		9	0	1	5	Pre_Acies	
+skill	5277	CD_EFFLIGO	needed	grf	strike	-1	attack	Attack	Weapon	2	0	-7	10		main:target:STR:effligo/effligo/effligo:0;main:target:STR:effligo/effligo_bottom/effligo_bottom:0;hit:target:STR:effligo/effligo_hit/effligo_hit:0
+skill	5278	CD_COMPETENTIA	needed	grf	song	6	buff	Self		0	10	1	5	Competentia	main:caster:STR:competentia/competentia/competentia:0;main:caster:STR:competentia/competentia_bottom/competentia_bottom:0;cast:caster:STR:competentia/competentia_cast/competentia_cast:0;cast:caster:STR:competentia/competentia_cast_particle/competentia_cast_particle:0
+skill	5279	CD_PNEUMATICUS_PROCELLA	needed	field		0	attack	Ground	Magic	9	0	-10	10		
+skill	5280	CD_DILECTIO_HEAL	nice to have	heal		6	heal	Support		9	1	1	5		
+skill	5281	CD_RELIGIO	needed	grf	bless	6	buff	Support		9	0	1	5	Religio	main:target:STR:religio/religio/religio:0;cast:caster:STR:religio/religio_cast/religio_cast:0
+skill	5282	CD_BENEDICTUM	needed	grf	bless	6	buff	Support		9	0	1	5	Benedictum	main:target:STR:benedictum/benedictum/benedictum:0;cast:caster:STR:benedictum/benedictum_cast/benedictum_cast:0;cast:caster:STR:benedictum/benedictum_cast_bottom/benedictum_cast_bottom:0
+skill	5283	CD_PETITIO	needed	grf	strike	-1	attack	Attack	Weapon	2	1	1	10		main:target:STR:petitio/petitio/petitio:0;main:target:STR:petitio/petitio_bottom/petitio_bottom:0
+skill	5284	CD_FRAMEN	needed	bolt		6	attack	Attack	Magic	9	2	1	5		
+skill	5287	SHC_SAVAGE_IMPACT	needed	grf	shot	-1	attack	Attack	Weapon	7	2	3	10		main:target:STR:savage_impact/savage_impact/savage_impact:0;hit:target:STR:savage_impact/savage_impact_hit/savage_impact_hit:0
+skill	5289	SHC_ETERNAL_SLASH	needed	grf	strike	-1	attack	Attack	Weapon	3	0	1	5	E_Slash_Count	main:target:STR:eternal_slash/eternal_slash/eternal_slash:0;main:target:STR:eternal_slash/eternal_slash_bottom/eternal_slash_bottom:0;hit:target:STR:eternal_slash/eternal_slash_hit/eternal_slash_hit:0
+skill	5290	SHC_POTENT_VENOM	nice to have	aura		7	buff	Self		0	0	1	10	Potent_Venom	
+skill	5294	SHC_FATAL_SHADOW_CROW	needed	grf	shot	-1	attack	Attack	Weapon	9	3	1	10	Darkcrow	main:target:STR:fatal_shadow_crow/fatal_shadow_crow/fatal_shadow_crow:0;main:target:STR:fatal_shadow_crow/fatal_shadow_crow_bottom/fatal_shadow_crow_bottom:0;hit:target:STR:fatal_shadow_crow/fatal_shadow_crow_hit/fatal_shadow_crow_hit:0
+skill	5295	MT_AXE_STOMP	nice to have	nova		-1	attack	Self	Weapon	0	1	1	5	Axe_Stomp	
+skill	5296	MT_RUSH_QUAKE	needed	shot		-1	attack	Attack	Weapon	9	1	1	10	Rush_Quake2	
+skill	5297	MT_M_MACHINE	nice to have	pulse		3	util	Self		0	0	1	5		
+skill	5298	MT_A_MACHINE	needed	grf	shot	-1	attack	Attack	Weapon	7	4	4	5		main:target:STR:a_machine/a_machine/a_machine_attack:0;cast:caster:STR:a_machine/a_machine_cast/a_machine_cast:0;hit:target:STR:a_machine/a_machine_hit/a_machine_hit:0
+skill	5299	MT_D_MACHINE	nice to have	bless		3	buff	Support		1	0	1	5	D_Machine	
+skill	5306	AG_DESTRUCTIVE_HURRICANE_CLIMAX	needed	strike		4	attack	Attack	Magic	0	0	1	5		
+skill	5307	BO_ACIDIFIED_ZONE_WATER_ATK	needed	strike		1	attack	Attack	Weapon	0	0	1	5		
+skill	5308	BO_ACIDIFIED_ZONE_GROUND_ATK	needed	strike		2	attack	Attack	Weapon	0	0	1	5		
+skill	5309	BO_ACIDIFIED_ZONE_WIND_ATK	needed	strike		4	attack	Attack	Weapon	0	0	1	5		
+skill	5310	BO_ACIDIFIED_ZONE_FIRE_ATK	needed	strike		3	attack	Attack	Weapon	0	0	1	5		
+skill	5313	ABC_STRIP_SHADOW	nice to have	curse		7	debuff	Attack		1	0	1	5	Shadow_Strip	
+skill	5314	ABC_ABYSS_DAGGER	needed	grf	nova	-1	attack	Self	Weapon	0	3	2	5	Abyss_Dagger	main:caster:STR:abyss_dagger/abyss_dagger/abyss_dagger:0
+skill	5315	ABC_UNLUCKY_RUSH	needed	grf	shot	-1	attack	Attack	Weapon	7	0	1	5	HandicapState_Misfortune	main:target:STR:unlucky_rush/unlucky_rush/unlucky_rush:0;cast:caster:STR:unlucky_rush/unlucky_rush_cast/unlucky_rush_cast:0;hit:target:STR:unlucky_rush/unlucky_rush_hit/unlucky_rush_hit:0
+skill	5316	ABC_CHAIN_REACTION_SHOT	needed	grf	shot	-1	attack	Attack	Weapon	9	2	1	5		main:target:STR:chain_reaction_shot/chain_reaction_shot/chain_reaction_shot:0;cast:caster:STR:chain_reaction_shot/chain_reaction_shot_cast/chain_reaction_shot_cast:0;cast:caster:STR:chain_reaction_shot/chain_reaction_shot_cast_bottom/chain_reaction_shot_cast_bottom:0;hit:target:STR:chain_reaction_shot/chain_reaction_shot_hit/chain_reaction_shot_hit:0;hit:target:STR:chain_reaction_shot/chain_reaction_shot_hitsub/chain_reaction_shot_hitsub:0
+skill	5317	ABC_FROM_THE_ABYSS	needed	grf	aura	7	buff	Self		0	0	1	5	AbyssForceWeapon	main:caster:STR:from_the_abyss/from_the_abyss_shadow/from_the_abyss_shadow:0;main:caster:STR:from_the_abyss/from_the_abyss_shadowball_create/from_the_abyss_shadowball_create:0
+skill	5318	ABC_ABYSS_SLAYER	needed	grf	aura	7	buff	Self		0	0	1	10	Abyss_Slayer	main:caster:STR:4abc_abyss_slayer/abyss_slayer/abyss_slayer:0
+skill	5319	ABC_ABYSS_STRIKE	needed	grf	field	3	attack	Ground	Magic	9	0	1	10		main:cell:STR:abyss_strike/abyss_strike/abyss_strike:0;main:cell:STR:abyss_strike/abyss_strike_bottom/abyss_strike_bottom:0;cast:caster:STR:abyss_strike/abyss_strike_cast/abyss_strike_cast:0;cast:caster:STR:abyss_strike/abyss_strike_cast_bottom/abyss_strike_cast_bottom:0;main:cell:STR:abyss_strike/abyss_strike_ground/abyss_strike_ground:0;main:cell:STR:abyss_strike/abyss_strike_ground_bottom/abyss_strike_ground_bottom:0;hit:target:STR:abyss_strike/abyss_strike_hit/abyss_strike_hit:0
+skill	5320	ABC_DEFT_STAB	needed	grf	strike	-1	attack	Attack	Weapon	2	2	5	10		main:target:STR:deft_stab/deft_stab/deft_stab:0
+skill	5321	ABC_ABYSS_SQUARE	needed	grf	field	7	attack	Ground	Magic	9	0	1	5		main:cell:STR:abyss_square/abyss_square/abyss_square:0;main:cell:STR:abyss_square/abyss_square_bottom/abyss_square_bottom:0;hit:target:STR:abyss_square/abyss_square_hit/abyss_square_hit:0
+skill	5322	ABC_FRENZY_SHOT	needed	grf	shot	-1	attack	Attack	Weapon	9	0	2	10		main:target:STR:frenzy_shot/frenzy_shot/frenzy_shot:0;hit:target:STR:frenzy_shot/frenzy_shot_hit/frenzy_shot_hit:0
+skill	5324	WH_WIND_SIGN	nice to have	curse		4	debuff	Attack		9	0	1	5	WindSign	
+skill	5326	WH_HAWKRUSH	needed	grf	shot	4	attack	Attack	Weapon	9	0	-2	5		main:target:STR:hawkrush/hawkrush/hawkrush:0
+skill	5327	WH_HAWK_M	nice to have	pulse		4	util	Self		0	0	1	1		
+skill	5329	WH_HAWKBOOMERANG	needed	shot		4	attack	Attack	Weapon	9	0	1	5		
+skill	5330	WH_GALESTORM	needed	grf	shot	-1	attack	Attack	Weapon	9	2	-5	10		main:target:STR:galestorm/galestorm/galestorm:0;main:target:STR:galestorm/galestorm_arrow/galestorm_arrow:0;cast:caster:STR:galestorm/galestorm_cast/galestorm_cast:0;hit:target:STR:galestorm/galestorm_hit/galestorm_hit:0
+skill	5331	WH_DEEPBLINDTRAP	needed	grf	field	7	attack	Ground	Weapon	1	0	1	5		main:cell:STR:deepblindtrap/deepblindtrap/deepblindtrap:0;main:cell:STR:deepblindtrap/deepblindtrap_bottom/deepblindtrap_bottom:0;cast:caster:STR:deepblindtrap/deepblindtrap_cast/deepblindtrap_cast:0;hit:target:STR:deepblindtrap/deepblindtrap_hit/deepblindtrap_hit:0
+skill	5332	WH_SOLIDTRAP	needed	grf	field	2	attack	Ground	Weapon	1	0	1	5		main:cell:STR:solidtrap/solidtrap/solidtrap:0;main:cell:STR:solidtrap/solidtrap_bottom/solidtrap_bottom:0;cast:caster:STR:solidtrap/solidtrap_cast/solidtrap_cast:0;cast:caster:STR:solidtrap/solidtrap_cast_bottom/solidtrap_cast_bottom:0;hit:target:STR:solidtrap/solidtrap_hit/solidtrap_hit:0
+skill	5333	WH_SWIFTTRAP	needed	grf	field	4	attack	Ground	Weapon	1	0	1	5		main:cell:STR:swifttrap/swifttrap/swifttrap:0;main:cell:STR:swifttrap/swifttrap_bottom/swifttrap_bottom:0;cast:caster:STR:swifttrap/swifttrap_cast/swifttrap_cast:0;hit:target:STR:swifttrap/swifttrap_hit/swifttrap_hit:0
+skill	5335	WH_FLAMETRAP	needed	grf	field	3	attack	Ground	Weapon	1	0	1	5		main:cell:STR:flametrap/flametrap/flametrap:0;main:cell:STR:flametrap/flametrap_bottom/flametrap_bottom:0;cast:caster:STR:flametrap/flametrap_cast/flametrap_cast:0;hit:target:STR:flametrap/flametrap_hit/flametrap_hit:0
+skill	5338	BO_THE_WHOLE_PROTECTION	nice to have	song	ring	2	buff	Self		0	7	1	5		
+skill	5339	BO_ADVANCE_PROTECTION	nice to have	bless		2	buff	Support		1	0	1	4	ProtectShadowEquip	
+skill	5340	BO_ACIDIFIED_ZONE_WATER	needed	grf	shot	1	attack	Attack	Weapon	7	1	7	5		main:target:STR:acidified_zone_water/acidified_zone_water_b/acidified_zone_water_b:0;main:target:STR:acidified_zone_water/acidified_zone_water_b_bottom/acidified_zone_water_b_bottom:0;cast:caster:STR:acidified_zone_water/acidified_zone_water_cast/acidified_zone_water_cast:0;cast:caster:STR:acidified_zone_water/acidified_zone_water_cast_bottom/acidified_zone_water_cast_bottom:0;hit:target:STR:acidified_zone_water/acidified_zone_water_hit/acidified_zone_water_hit:0;main:target:STR:acidified_zone_water/acidified_zone_water_water/acidified_zone_water_water:0
+skill	5341	BO_ACIDIFIED_ZONE_GROUND	needed	grf	shot	2	attack	Attack	Weapon	7	1	7	5		main:target:STR:acidified_zone_ground/acidified_zone_ground_b/acidified_zone_ground_b:0;main:target:STR:acidified_zone_ground/acidified_zone_ground_b_bottom/acidified_zone_ground_b_bottom:0;cast:caster:STR:acidified_zone_ground/acidified_zone_ground_cast/acidified_zone_ground_cast:0;cast:caster:STR:acidified_zone_ground/acidified_zone_ground_cast_bottom/acidified_zone_ground_cast_bottom:0;hit:target:STR:acidified_zone_ground/acidified_zone_ground_hit/acidified_zone_ground_hit:0;main:target:STR:acidified_zone_ground/acidified_zone_ground_water/acidified_zone_ground_water:0
+skill	5342	BO_ACIDIFIED_ZONE_WIND	needed	grf	shot	4	attack	Attack	Weapon	7	1	7	5		main:target:STR:acidified_zone_wind/acidified_zone_wind_b/acidified_zone_wind_b:0;main:target:STR:acidified_zone_wind/acidified_zone_wind_b_bottom/acidified_zone_wind_b_bottom:0;cast:caster:STR:acidified_zone_wind/acidified_zone_wind_cast/acidified_zone_wind_cast:0;cast:caster:STR:acidified_zone_wind/acidified_zone_wind_cast_bottom/acidified_zone_wind_cast_bottom:0;hit:target:STR:acidified_zone_wind/acidified_zone_wind_hit/acidified_zone_wind_hit:0;main:target:STR:acidified_zone_wind/acidified_zone_wind_water/acidified_zone_wind_water:0
+skill	5343	BO_ACIDIFIED_ZONE_FIRE	needed	grf	shot	3	attack	Attack	Weapon	7	1	7	5		main:target:STR:acidified_zone_fire/acidified_zone_fire_b/acidified_zone_fire_b:0;main:target:STR:acidified_zone_fire/acidified_zone_fire_b_bottom/acidified_zone_fire_b_bottom:0;cast:caster:STR:acidified_zone_fire/acidified_zone_fire_cast/acidified_zone_fire_cast:0;cast:caster:STR:acidified_zone_fire/acidified_zone_fire_cast_bottom/acidified_zone_fire_cast_bottom:0;hit:target:STR:acidified_zone_fire/acidified_zone_fire_hit/acidified_zone_fire_hit:0;main:target:STR:acidified_zone_fire/acidified_zone_fire_water/acidified_zone_fire_water:0
+skill	5344	BO_WOODENWARRIOR	nice to have	aura		2	buff	Self		0	0	1	5	Bionic_WoodenWarrior	
+skill	5345	BO_WOODEN_FAIRY	needed	grf	aura	2	buff	Self		0	0	1	5	Bionic_Wooden_Fairy	main:caster:STR:wooden_fairy/fairy_dusty/fairy_dusty:0;cast:caster:STR:wooden_fairy/wooden_cast/wooden_cast:0;cast:caster:STR:wooden_fairy/wooden_cast_bottom/wooden_cast_bottom:0
+skill	5346	BO_CREEPER	nice to have	aura		2	buff	Self		0	0	1	5	Bionic_Creeper	
+skill	5347	BO_RESEARCHREPORT	needed	grf	aura	2	buff	Self		0	0	1	1	ResearchReport	main:caster:STR:research_report/researchreport/researchreport:0
+skill	5348	BO_HELLTREE	needed	grf	aura	2	buff	Self		0	0	1	5	Bionic_HellTree	main:caster:STR:helltree/hell_dusty/hell_dusty:0;main:caster:STR:helltree/hell_howling/hell_howling:0;cast:caster:STR:helltree/helltree_cast/helltree_cast:0;cast:caster:STR:helltree/helltree_cast_bottom/helltree_cast_bottom:0
+skill	5350	TR_RETROSPECTION	nice to have	pulse		0	util	Self		0	0	1	1		
+skill	5354	TR_ROSEBLOSSOM_ATK	needed	shot		-1	attack	Attack	Weapon	9	1	1	5		
+skill	5356	TR_METALIC_FURY	needed	bolt		-1	attack	Attack	Magic	9	2	1	5		
+skill	5357	TR_SOUNDBLEND	needed	grf	curse	-1	debuff	Attack	Magic	9	0	1	5	SoundBlend	main:target:STR:soundblend/soundblend/soundblend:0;cast:caster:STR:soundblend/soundblend_cast/soundblend_cast:0;cast:caster:STR:soundblend/soundblend_cast_bottom/soundblend_cast_bottom:0
+skill	5361	TR_MUSICAL_INTERLUDE	needed	grf	song	0	buff	Self		0	7	1	5	Musical_Interlude	main:caster:STR:musical_interlude/musical_interlude/musical_interlude:0;cast:caster:STR:musical_interlude/musical_interlude_cast/musical_interlude_cast:0
+skill	5363	TR_NIPELHEIM_REQUIEM	nice to have	song	notes	0	buff	Self		0	7	1	5		
+skill	5366	EM_SPELL_ENCHANTING	needed	grf	bless	8	buff	Support		9	0	1	5	Spell_Enchanting	main:target:STR:spell_enchanting/spell_enchanting/spell_enchanting:0
+skill	5367	EM_ACTIVITY_BURN	needed	grf	mark	8	util	Attack		9	0	1	5		main:target:STR:activity_burn/activity_burn/activity_burn:0;cast:caster:STR:activity_burn/activity_burn_cast/activity_burn_cast:0;cast:caster:STR:activity_burn/activity_burn_cast_bottom/activity_burn_cast_bottom:0
+skill	5368	EM_INCREASING_ACTIVITY	needed	grf	bless	8	buff	Support		9	0	1	5		main:target:STR:increasing_activity/increasing_activity/increasing_activity:0;cast:caster:STR:increasing_activity/increasing_activity_cast/increasing_activity_cast:0;cast:caster:STR:increasing_activity/increasing_activity_cast_bottom/increasing_activity_cast_bottom:0
+skill	5369	EM_DIAMOND_STORM	needed	grf	field	1	attack	Ground	Magic	9	0	-5	5	HandicapState_FrostBite	main:cell:STR:diamond_storm/diamond_storm/diamond_storm:0;main:cell:STR:diamond_storm/diamond_storm_bottom/diamond_storm_bottom:0;cast:caster:STR:diamond_storm/diamond_storm_cast/diamond_storm_cast:0;cast:caster:STR:diamond_storm/diamond_storm_cast_bottom/diamond_storm_cast_bottom:0;hit:target:STR:diamond_storm/diamond_storm_hit/diamond_storm_hit:0
+skill	5370	EM_LIGHTNING_LAND	needed	grf	field	4	attack	Ground	Magic	9	0	1	5	Handicapstate_Lightningstrike	main:cell:STR:lightning_land/lightning_land/lightning_land:0;main:cell:STR:lightning_land/lightning_land_bottom/lightning_land_bottom:0;cast:caster:STR:lightning_land/lightning_land_cast/lightning_land_cast:0;cast:caster:STR:lightning_land/lightning_land_cast_bottom/lightning_land_cast_bottom:0;hit:target:STR:lightning_land/lightning_land_hit/lightning_land_hit:0
+skill	5371	EM_VENOM_SWAMP	needed	grf	field	5	attack	Ground	Magic	9	0	1	5	HandicapState_DeadlyPoison	main:cell:STR:venom_swamp/venom_swamp_bottom/venom_swamp_bottom:0;cast:caster:STR:venom_swamp/venom_swamp_cast/venom_swamp_cast:0;cast:caster:STR:venom_swamp/venom_swamp_cast_bottom/venom_swamp_cast_bottom:0;hit:target:STR:venom_swamp/venom_swamp_hit/venom_swamp_hit:0
+skill	5372	EM_CONFLAGRATION	needed	grf	field	3	attack	Ground	Magic	9	0	1	5	Handicapstate_Conflagration	main:cell:STR:conflagration/conflagration/conflagration:0;main:cell:STR:conflagration/conflagration_bottom/conflagration_bottom:0;cast:caster:STR:conflagration/conflagration_cast/conflagration_cast:0;cast:caster:STR:conflagration/conflagration_cast_bottom/conflagration_cast_bottom:0;hit:target:STR:conflagration/conflagration_hit/conflagration_hit:0
+skill	5373	EM_TERRA_DRIVE	needed	field		2	attack	Ground	Magic	9	0	-5	5	Handicapstate_Crystallization	
+skill	5380	EM_ELEMENTAL_BUSTER	needed	grf	nova	8	attack	Self	Magic	0	0	1	10		cast:caster:STR:elemental_buster/elemental_buster_cast/elemental_buster_cast:0
+skill	5381	EM_ELEMENTAL_VEIL	nice to have	aura		8	buff	Self		0	0	1	5	Elemental_Veil	
+skill	5382	ABC_CHAIN_REACTION_SHOT_ATK	needed	shot		-1	attack	Attack	Weapon	9	3	-2	5		
+skill	5383	ABC_FROM_THE_ABYSS_ATK	needed	grf	strike	7	attack	Attack	Magic	1	4	5	5		cast:caster:STR:from_the_abyss/from_the_abyss_attack/from_the_abyss_attack:0;hit:target:STR:from_the_abyss/from_the_abyss_shadowball_die/from_the_abyss_shadowball_die:0
+skill	5384	BO_WOODEN_THROWROCK	nice to have	shot		2	attack	Attack		9	0	1	1		
+skill	5385	BO_WOODEN_ATTACK	nice to have	strike		2	attack	Attack		1	0	1	1		
+skill	5389	EM_ELEMENTAL_BUSTER_FIRE	needed	grf	nova	3	attack	Self	Magic	0	6	-10	10		main:caster:STR:elemental_buster/elemental_buster/elemental_buster_fire/elemental_buster_fire:0;main:caster:STR:elemental_buster/elemental_buster/elemental_buster_fire_bottom/elemental_buster_fire_bottom:0;hit:target:STR:elemental_buster/elemental_buster_hit/elemental_buster_fire_hit/elemental_buster_fire_hit:0
+skill	5390	EM_ELEMENTAL_BUSTER_WATER	needed	grf	nova	1	attack	Self	Magic	0	6	-10	10		main:caster:STR:elemental_buster/elemental_buster/elemental_buster_water/elemental_buster_water:0;main:caster:STR:elemental_buster/elemental_buster/elemental_buster_water_bottom/elemental_buster_water_bottom:0;hit:target:STR:elemental_buster/elemental_buster_hit/elemental_buster_water_hit/elemental_buster_water_hit:0
+skill	5391	EM_ELEMENTAL_BUSTER_WIND	needed	grf	nova	4	attack	Self	Magic	0	6	-10	10		main:caster:STR:elemental_buster/elemental_buster/elemental_buster_wind/elemental_buster_wind:0;main:caster:STR:elemental_buster/elemental_buster/elemental_buster_wind_bottom/elemental_buster_wind_bottom:0;hit:target:STR:elemental_buster/elemental_buster_hit/elemental_buster_wind_hit/elemental_buster_wind_hit:0
+skill	5392	EM_ELEMENTAL_BUSTER_GROUND	nice to have	grf	nova	2	attack	Self	Magic	0	6	-10	10		main:caster:STR:elemental_buster/elemental_buster/elemental_buster_land/elemental_buster_land:0;main:caster:STR:elemental_buster/elemental_buster/elemental_buster_land_bottom/elemental_buster_land_bottom:0;hit:target:STR:elemental_buster/elemental_buster_hit/elemental_buster_land_hit/elemental_buster_land_hit:0
+skill	5393	EM_ELEMENTAL_BUSTER_POISON	needed	grf	nova	5	attack	Self	Magic	0	6	-10	10		main:caster:STR:elemental_buster/elemental_buster/elemental_buster_poison/elemental_buster_poison:0;main:caster:STR:elemental_buster/elemental_buster/elemental_buster_poison_bottom/elemental_buster_poison_bottom:0;hit:target:STR:elemental_buster/elemental_buster_hit/elemental_buster_poison_hit/elemental_buster_poison_hit:0
+skill	5412	NW_GRENADES_DROPPING	needed	grf	field	-1	attack	Ground	Weapon	-9	5	3	5		main:cell:STR:night_watch/nw_grenades_dropping/grenades_dropping/grenades_dropping:0;main:cell:STR:night_watch/nw_grenades_dropping/grenades_dropping_bottom/grenades_dropping_bottom:0
+skill	5423	SOA_TALISMAN_OF_FIVE_ELEMENTS	needed	grf	bless	0	buff	Support		9	0	1	5	Talisman_of_five_Elements	main:target:STR:soul_ascetic/soa_talisman_of_five_elements/min_talisman_of_the_five_elements:0
+skill	5425	SOA_EXORCISM_OF_MALICIOUS_SOUL	needed	grf	nova	-1	attack	Self	Magic	0	5	-5	5		main:caster:STR:soul_ascetic/soa_exorcism_of_malicious_soul/min_exorcism_of_malicuous_soul:0
+skill	5456	HN_JUPITEL_THUNDER_STORM	needed	grf	bolt	4	attack	Attack	Magic	11	2	-6	10		main:target:STR:hyper_novice/hn_jupitel_thunder_storm/jupitel_thunder_storm/jupitel_thunder_storm_00:0;main:target:STR:hyper_novice/hn_jupitel_thunder_storm/jupitel_thunder_storm/jupitel_thunder_storm_01:0;main:target:STR:hyper_novice/hn_jupitel_thunder_storm/jupitel_thunder_storm/jupitel_thunder_storm_02:0;main:target:STR:hyper_novice/hn_jupitel_thunder_storm/jupitel_thunder_storm_ball/jupitel_thunder_storm_ball:0
+skill	5465	SKE_RISING_SUN	needed	grf	strike	-1	attack	Attack	Weapon	2	0	-2	5		main:target:STR:sky_emperor/ske_rising_sun/ske_rising_sun:0
+skill	5468	SKE_RISING_MOON	needed	grf	nova	-1	attack	Self	Weapon	2	2	-2	5		main:caster:STR:sky_emperor/ske_rising_moon/min_ske_rising_moon_00:0;main:caster:STR:sky_emperor/ske_rising_moon/min_ske_rising_moon_01:0;main:caster:STR:sky_emperor/ske_rising_moon/min_ske_rising_moon_02:0;main:caster:STR:sky_emperor/ske_rising_moon/min_ske_rising_moon_03:0;main:caster:STR:sky_emperor/ske_rising_moon/min_ske_rising_moon_04:0;main:caster:STR:sky_emperor/ske_rising_moon/min_ske_rising_moon_05:0
+skill	5470	SKE_DAWN_BREAK	needed	grf	nova	-1	attack	Self	Weapon	1	2	-2	5		main:caster:STR:sky_emperor/ske_dawn_break/min_ske_dawn_break:0
+skill	5472	SKE_STAR_BURST	needed	strike		-1	attack	Attack	Weapon	2	0	-2	5	Star_Burst	
+skill	5475	SKE_ENCHANTING_SKY	needed	grf	aura	0	buff	Self	Magic	0	0	1	10	Sky_Enchant	main:caster:STR:sky_emperor/ske_enchanting_sky/min_ske_enchanting_sky_00:0;main:caster:STR:sky_emperor/ske_enchanting_sky/min_ske_enchanting_sky_01:0
+skill	5483	SS_FUUMASHOUAKU	needed	grf	field	-1	attack	Ground	Weapon	9	0	1	10	Nightmare	main:cell:STR:shinkiro_shiranui/ss_fuumashouaku/fuumashouaku/fuumashouaku:0;main:cell:STR:shinkiro_shiranui/ss_fuumashouaku/fuumashouaku_00/fuumashouaku_00:0
+skill	5492	SS_ANTENPOU	needed	grf	nova	7	attack	Self	Magic	1	2	-2	10	Nightmare	main:caster:STR:shinkiro_shiranui/ss_antenpou/min_antenpou:0
+skill	5499	SS_FOUR_CHARM	nice to have	pulse		7	util	Self	Magic	1	0	1	1		
+skill	5500	NW_WILD_SHOT	needed	shot		-1	attack	Attack	Weapon	-9	2	7	5		
+skill	5501	NW_MIDNIGHT_FALLEN	needed	field		-1	attack	Ground	Weapon	-9	2	3	5		
+skill	5502	SKE_SKY_SUN	nice to have	nova		-1	attack	Self	Weapon	1	1	-5	5		
+skill	5503	SKE_SKY_MOON	needed	strike		-1	attack	Attack	Weapon	2	2	-3	5		
+skill	5504	SKE_STAR_LIGHT_KICK	needed	shot		-1	attack	Attack	Weapon	7	2	-7	5		
+skill	5505	HN_OVERCOMING_CRISIS	nice to have	aura		0	buff	Self	Magic	1	0	1	5	Overcoming_Crisis	
+skill	5506	SH_CHUL_HO_BATTERING	needed	shot		-1	attack	Attack	Weapon	9	2	5	7		
+skill	5507	SH_HYUN_ROK_SPIRIT_POWER	needed	bolt		0	attack	Attack	Magic	9	2	7	7		
+skill	6001	DK_DRAGONIC_BREATH	needed	shot		-1	attack	Attack	Weapon	9	3	-2	10		
+skill	6002	MT_SPARK_BLASTER	needed	shot		-1	attack	Attack	Weapon	9	3	2	10		
+skill	6003	MT_TRIPLE_LASER	needed	shot		-1	attack	Attack	Weapon	11	0	3	5		
+skill	6004	MT_MIGHTY_SMASH	nice to have	nova		-1	attack	Self	Weapon	1	1	5	10		
+skill	6005	BO_EXPLOSIVE_POWDER	nice to have	nova		-1	attack	Self	Weapon	0	3	3	5		
+skill	6006	BO_MAYHEMIC_THORNS	needed	shot		-1	attack	Attack	Weapon	9	3	3	10		
+skill	6502	DK_DRAGONIC_PIERCE	needed	shot		-1	attack	Attack	Weapon	7	0	5	5		
+skill	6503	IG_RADIANT_SPEAR	needed	shot		-1	attack	Attack	Weapon	7	1	2	10		
+skill	6504	IG_IMPERIAL_CROSS	needed	strike		-1	attack	Attack	Weapon	2	0	3	5		
+skill	6505	IG_IMPERIAL_PRESSURE	needed	bolt		-1	attack	Attack	Magic	9	2	-7	5		
+skill	6506	MT_RUSH_STRIKE	needed	shot		-1	attack	Attack	Weapon	7	1	7	5		
+skill	6507	MT_POWERFUL_SWING	needed	strike		-1	attack	Attack	Weapon	2	1	5	5		
+skill	6508	MT_ENERGY_CANNONADE	needed	shot		-1	attack	Attack	Weapon	9	2	7	5		
+skill	6509	BO_MYSTERY_POWDER	needed	strike		-1	attack	Attack	Weapon	3	2	-5	5	Mystery_Powder	
+skill	6510	BO_DUST_EXPLOSION	needed	strike		-1	attack	Attack	Weapon	3	2	5	5		
+skill	6511	SHC_CROSS_SLASH	needed	strike		-1	attack	Attack	Weapon	3	2	3	5	WeaponBlock_On	
+skill	6512	ABC_HIT_AND_SLIDING	needed	strike		-1	attack	Attack	Weapon	2	0	-5	5	Chasing	
+skill	6513	ABC_CHASING_BREAK	needed	shot		-1	attack	Attack	Weapon	7	2	5	5		
+skill	6514	ABC_CHASING_SHOT	needed	shot		-1	attack	Attack	Weapon	7	2	2	5		
+skill	6515	ABC_ABYSS_FLAME	needed	bolt		3	attack	Attack	Magic	9	2	3	5		
+skill	6516	AG_ENERGY_CONVERSION	nice to have	pulse		8	util	Self	Magic	0	0	1	5		
+skill	6517	EM_PSYCHIC_STREAM	needed	bolt		0	attack	Attack	Magic	9	2	5	5		
+skill	6518	CD_DIVINUS_FLOS	needed	bolt		6	attack	Attack	Magic	9	3	-5	5		
+skill	6519	IQ_BLAZING_FLAME_BLAST	needed	shot		-1	attack	Attack	Weapon	7	0	-7	5		
+skill	6520	WH_WILD_WALK	needed	shot		4	attack	Attack	Weapon	11	0	-3	5	Wild_Walk	
+skill	6521	TR_RHYTHMICAL_WAVE	needed	bolt		-1	attack	Attack	Magic	9	2	5	5		
+skill	6522	ABC_ABYSS_FLAME_ATK	needed	bolt		3	attack	Attack	Magic	9	2	5	5		
+skill	8443	EM_EL_FLAMETECHNIC	nice to have	aura		8	buff	Self		0	0	1	1	FlameTechnic_Option	
+skill	8444	EM_EL_FLAMEARMOR	nice to have	aura		8	buff	Self		0	0	1	1	FlameArmor_Option	
+skill	8445	EM_EL_FLAMEROCK	needed	bolt		3	attack	Attack	Magic	6	3	-2	1		
+skill	8446	EM_EL_COLD_FORCE	nice to have	aura		8	buff	Self		0	0	1	1	Cold_Force_Option	
+skill	8447	EM_EL_CRYSTAL_ARMOR	nice to have	aura		8	buff	Self		0	0	1	1	Crystal_Armor_Option	
+skill	8448	EM_EL_AGE_OF_ICE	needed	bolt		1	attack	Attack	Magic	9	5	-4	1		
+skill	8449	EM_EL_GRACE_BREEZE	nice to have	aura		8	buff	Self		0	0	1	1	Grace_Breeze_Option	
+skill	8450	EM_EL_EYES_OF_STORM	nice to have	aura		8	buff	Self		0	0	1	1	Eyes_Of_Storm_Option	
+skill	8451	EM_EL_STORM_WIND	needed	bolt		4	attack	Attack	Magic	11	2	-4	1		
+skill	8452	EM_EL_EARTH_CARE	nice to have	aura		8	buff	Self		0	0	1	1	Earth_Care_Option	
+skill	8453	EM_EL_STRONG_PROTECTION	nice to have	aura		8	buff	Self		0	0	1	1	Strong_Protection_Option	
+skill	8454	EM_EL_AVALANCHE	needed	bolt		2	attack	Attack	Magic	5	4	7	1		
+skill	8455	EM_EL_DEEP_POISONING	nice to have	aura		8	buff	Self		0	0	1	1	Deep_Poisoning_Option	
+skill	8456	EM_EL_POISON_SHIELD	nice to have	aura		8	buff	Self		0	0	1	1	Poison_Shield_Option	
+skill	8457	EM_EL_DEADLY_POISON	needed	bolt		5	attack	Attack	Magic	5	4	5	1		
+skill	8601	ABR_BATTLE_BUSTER	needed	strike		-1	attack	Attack	Weapon	1	0	1	1		
+skill	8602	ABR_DUAL_CANNON_FIRE	needed	shot		-1	attack	Attack	Weapon	9	0	1	1		
+skill	8604	ABR_NET_SUPPORT	nice to have	song	ring	0	buff	Self		0	12	1	1		
+skill	8605	ABR_INFINITY_BUSTER	needed	shot		-1	attack	Attack	Weapon	9	0	1	1		

@@ -1,0 +1,59 @@
+//===== Project Loki: client wave 4 (w4items) test fixture ==================
+// Private rAthena copy "w4items" (index 44) only; installed by install-w4items-fixture.sh (which also loads rAthena's
+// sql-files/roulette_default_data.sql into the copy's current database, as Loki Host does).
+//   @w4market     opens the market W4Market (marketshop: Red Potion 20 z, stock 5; Orange Potion 100 z, unlimited)
+//   @w4pointshop  sets #W4PTS to 50 and opens the point shop W4Points (Red Potion 5 points)
+//   @w4itemshop   opens the item shop W4Items (currency Jellopy 909: Yellow Potion 503 for 4)
+//   @w4sell       opens the plain shop W4Shop's sell list (callshop option 2)
+//   @w4coins      sets the roulette coins: 1 bronze, 10 silver, 0 gold (RouletteBronze / Silver / Gold, pc.hpp:52-54)
+//   @w4cook       gives a Level 1 Cookbook (7472), 3 Grapes (514), 2 Red Potions (501) and opens `cooking 15`
+//                 (a legendary set: 100 % success, skill.cpp:13181-13183) -> Grape Juice Herbal Tea 12046 (produce_db 53)
+//   @w4gift       a +7 Main Gauche with a Drops Card, grade B and three random options (as w3equip's @w3gift)
+//============================================================================
+-	marketshop	W4Market	FAKE_NPC,501:20:5,502:100:-1
+-	pointshop	W4Points	FAKE_NPC,#W4PTS,501:5
+-	itemshop	W4Items	FAKE_NPC,909,503:4
+-	shop	W4Shop	FAKE_NPC,501:-1
+-	script	W4ItemsFixture	-1,{
+OnInit:
+	bindatcmd "w4market", strnpcinfo(3) + "::OnMarket";
+	bindatcmd "w4pointshop", strnpcinfo(3) + "::OnPoints";
+	bindatcmd "w4itemshop", strnpcinfo(3) + "::OnItems";
+	bindatcmd "w4sell", strnpcinfo(3) + "::OnSell";
+	bindatcmd "w4coins", strnpcinfo(3) + "::OnCoins";
+	bindatcmd "w4cook", strnpcinfo(3) + "::OnCook";
+	bindatcmd "w4gift", strnpcinfo(3) + "::OnGift";
+	end;
+OnMarket:
+	callshop "W4Market", 0;
+	end;
+OnPoints:
+	set #W4PTS, 50;
+	callshop "W4Points", 0;
+	end;
+OnItems:
+	callshop "W4Items", 0;
+	end;
+OnSell:
+	callshop "W4Shop", 2;
+	end;
+OnCoins:
+	set RouletteBronze, 1;
+	set RouletteSilver, 10;
+	set RouletteGold, 0;
+	dispbottom "W4Coins: bronze 1, silver 10, gold 0.";
+	end;
+OnCook:
+	getitem 7472, 1;
+	getitem 514, 3;
+	getitem 501, 2;
+	cooking 15;
+	end;
+OnGift:
+	setarray .@opt_id[0], 1, 13, 24;
+	setarray .@opt_val[0], 100, 3, 5;
+	setarray .@opt_prm[0], 0, 0, 0;
+	getitem4 1207, 1, 1, 7, 0, 4004, 0, 0, 0, 3, .@opt_id, .@opt_val, .@opt_prm;
+	dispbottom "W4Gift: +7 Main Gauche with options given.";
+	end;
+}

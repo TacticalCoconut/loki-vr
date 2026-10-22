@@ -1,0 +1,15 @@
+// groul_tests2.txt - the second file of the groul parity rig (see groul_tests.txt; not in scripts_custom.conf): it
+// defines F_Groul again (npc_parse_function: "Overwriting user function") and one NPC that calls it.
+
+function	script	F_Groul	{
+	return "F_Groul v2: " + getarg(0);
+}
+
+guild_vs1-1,54,52,4	script	Groul Three#gr	4_F_KAFRA3,{
+	mes "[" + strnpcinfo(0) + "]";
+	mes F_Groul(strnpcinfo(3));
+	close;
+OnInit:
+	announce "groul OnInit " + strnpcinfo(3), bc_all;
+	end;
+}

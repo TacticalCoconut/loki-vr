@@ -1,0 +1,28 @@
+# Project Loki - every account is a GM: the default group (0) gets the Admin permission set directly
+# (all_commands = every atcommand). Game rules still apply: all_skill / all_equipment /
+# skill_unconditional / item_unconditional / bypass_max_stat stay off.
+#
+# NOTE: do NOT use "Inherit: Admin" here. Admin inherits Support -> Super Player -> Player (group 0),
+# so that would be an inheritance cycle, and rAthena's PlayerGroupDatabase::loadingFinished() loops
+# forever on a cycle (the map-server hangs after "Done reading ... conf/import/groups.yml").
+# Import entries patch the base entry with the same Id; commands the group already has must not be re-listed.
+Header:
+  Type: PLAYER_GROUP_DB
+  Version: 1
+
+Body:
+  - Id: 0
+    Level: 99
+    LogCommands: true
+    Permissions:
+      command_enable: true
+      use_check: true
+      use_changemaptype: true
+      all_commands: true
+      channel_admin: true
+      can_trade_bounded: true
+      macro_register: true
+      trade_unconditional: true
+      receive_requests: true
+      view_equipment: true
+      any_warp: true            # @warp / @recall into nowarpto maps (guild castles) for the WoE smoke test

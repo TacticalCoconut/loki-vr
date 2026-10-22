@@ -1,0 +1,24 @@
+# Architect's fix file for 1@md_pay (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds 1@md_pay
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 243 model faces on 19 models
+architect-fix	1	1@md_pay	gnd:4811926:b861cfe9ae76fdbc	gat:1800014:103e056f5abafe7e
+R	rsw:123534:4326fb86dae9f7c9
+M	2	1743:dff1d01e4dedcfdc	0	0-17	under
+M	3	1743:dff1d01e4dedcfdc	0	0-17	under
+M	11	1743:dff1d01e4dedcfdc	0	0-17	under
+M	12	1543:cd11f81109fa49fb	0	8-19	under+behind
+M	13	1543:99259abef86578c3	0	8-13,16-19	under+behind
+M	14	1543:99259abef86578c3	0	8-19	under
+M	15	1543:99259abef86578c3	0	8-13,16-19	under
+M	16	1543:99259abef86578c3	0	8-19	under+behind
+M	24	1743:dff1d01e4dedcfdc	0	0-17	under
+M	25	1543:cd11f81109fa49fb	0	10-11,18-19	under+behind
+M	26	1543:99259abef86578c3	0	8-19	under
+M	27	1543:99259abef86578c3	0	8-11,13-19	under
+M	28	1543:99259abef86578c3	0	8-25	under+behind
+M	29	1543:99259abef86578c3	0	8-11,14-19	under
+M	40	1543:cd11f81109fa49fb	0	8-13,16-17	under
+M	41	1543:99259abef86578c3	0	8-19	under
+M	42	1543:99259abef86578c3	0	8-19	under
+M	43	1543:99259abef86578c3	0	8-17	under
+M	54	1743:dff1d01e4dedcfdc	0	0-17	under

@@ -1,0 +1,65 @@
+# Architect's fix file for 8@thts (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds 8@thts
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 0 ground walls drawn from both sides, 36 turned to face the other side, 0 floors drawn, 0 holes filled; 1 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 310 model faces on 20 models
+architect-fix	1	8@thts	gnd:639870:28a6aff30479cd37	gat:1568014:05f58bba2f604f43
+W	65	64	N	flip	step
+W	66	64	N	flip	step
+W	67	64	N	flip	step
+W	68	64	N	flip	step
+W	69	64	N	flip	step
+W	70	64	N	flip	step
+W	64	65	N	flip	step
+W	64	65	E	flip	step
+W	66	65	N	flip	step
+W	67	65	N	flip	step
+W	68	65	N	flip	step
+W	69	65	N	flip	step
+W	71	65	N	flip	step
+W	63	66	N	flip	step
+W	63	66	E	flip	step
+W	65	66	N	flip	step
+W	65	66	E	flip	step
+W	70	66	N	flip	step
+W	72	66	N	flip	step
+W	62	67	E	flip	step
+W	64	67	N	flip	step
+W	64	67	E	flip	step
+W	71	67	N	flip	step
+W	62	68	E	flip	step
+W	63	68	E	flip	step
+W	62	69	E	flip	step
+W	63	69	E	flip	step
+W	62	70	E	flip	step
+W	63	70	E	flip	step
+W	62	71	E	flip	step
+W	63	71	E	flip	step
+W	62	72	E	flip	step
+W	64	72	E	flip	step
+W	63	73	E	flip	step
+W	65	73	E	flip	step
+W	64	74	E	flip	step
+R	rsw:116991:f7b834cf99d5001b
+M	15	3519:5008194e0c3d66b4	0	2-3,5-6,9-10,46-47	behind
+M	24	3087:e84ea1d1a21cdb08	0	8-13,26-36,51-52,57-58	behind
+M	31	5727:cc922285540646cd	0	18-19,42,53-56,59-60,64-65	behind
+M	36	3087:e84ea1d1a21cdb08	0	14-17,20-21,24-25,38-41	behind
+M	37	5727:cc922285540646cd	0	18-19,54-56,59-60,64-65	behind
+M	47	3087:e84ea1d1a21cdb08	0	14-17,20-21,24-25,38-41	behind
+M	50	5727:cc922285540646cd	0	74-76,79,94-96,98,102,117-118,123-124	behind
+M	54	5727:cc922285540646cd	0	11-12,27,33-35	behind
+M	55	5727:cc922285540646cd	0	0-7,43-50,66-73,109-116	under
+M	57	5727:cc922285540646cd	0	0-7,43-50,66-68,70-73,109-110,113-116	under
+M	60	3519:5008194e0c3d66b4	0	0-1,11,13-17,19-45,48-56,59-64,70-71,76-77	under+behind
+M	68	5727:cc922285540646cd	0	6-7,43-48,72-73,109-114	under
+M	69	3519:5008194e0c3d66b4	0	20-36,39-40,48-50,52,54-56,59-60,62-63,76-77	under+behind
+M	73	3519:5008194e0c3d66b4	0	2-3,5-6,9-10,46-47	behind
+M	75	1603:88e486af98560b8e	0	2-7	behind
+M	105	1603:88e486af98560b8e	0	2-7	behind
+M	108	1603:88e486af98560b8e	0	2-6	behind
+M	109	1603:88e486af98560b8e	0	2-7	behind
+M	127	3087:e84ea1d1a21cdb08	0	0-7,43-50	under
+M	133	3087:e84ea1d1a21cdb08	0	6-7,43-48	under

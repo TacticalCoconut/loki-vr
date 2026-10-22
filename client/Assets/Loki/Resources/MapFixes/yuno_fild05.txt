@@ -1,0 +1,42 @@
+# Architect's fix file for yuno_fild05 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds yuno_fild05
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 766 model faces on 37 models
+architect-fix	1	yuno_fild05	gnd:5774614:caa72583d74a46e5	gat:3200014:056027b0e6a80063
+R	rsw:257678:23bde2a28a223ea6
+M	4	2791:2fcc9ecfcfa87723	0	0-4,7-10,13,15-18,23-24,27-29,37-38,41-42,45-46,49,53-54,58	under+behind
+M	6	3319:9c654f1755a5b524	0	0-5,24-28,42-43	under+behind
+M	8	2791:2fcc9ecfcfa87723	0	0-1,3-4,9,15-20,37-38,41-42,49-50,54-55	under+behind
+M	14	2791:2fcc9ecfcfa87723	0	0-1,5,15-18,21-24,27-28,37-44,47-49,51	behind
+M	17	2791:2fcc9ecfcfa87723	0	0-6,11-12,15-20,23-26,28,31-44,47-49,51,54-58	under+behind
+M	362	2791:2fcc9ecfcfa87723	0	5,39-40,43-44	behind
+M	471	2791:2fcc9ecfcfa87723	0	0-5,9,13-20,23-24,27-28,37-44,47-51,54-58	under+behind
+M	656	6875:82ca7cb9de26d9b3	0	0-28,30-37,39-50,57-69,72-77,84-85,90-108,110-113,115-117,121-122,127-128	under+behind
+M	657	3191:7bc9416e6b29cb44	0	42-57	under
+M	661	3191:7bc9416e6b29cb44	0	42,45-57	under
+M	662	3191:7bc9416e6b29cb44	0	42,45-57	under
+M	663	3191:7bc9416e6b29cb44	0	42-57	under
+M	664	3191:7bc9416e6b29cb44	0	44,46-53,55-56	under
+M	665	3191:7bc9416e6b29cb44	0	44,46-53,55-56	under
+M	666	3191:7bc9416e6b29cb44	0	42-57	under
+M	667	3191:7bc9416e6b29cb44	0	46-57	under
+M	668	3191:7bc9416e6b29cb44	0	44,46-56	under
+M	669	3191:7bc9416e6b29cb44	0	42-43,46-57	under
+M	670	3191:7bc9416e6b29cb44	0	43-44,46-57	under
+M	671	3191:7bc9416e6b29cb44	0	44-57	under
+M	672	3191:7bc9416e6b29cb44	0	43-44,46-57	under
+M	673	3191:7bc9416e6b29cb44	0	46-57	under
+M	674	3191:7bc9416e6b29cb44	0	43,46-57	under
+M	675	3191:7bc9416e6b29cb44	0	42,45-57	under
+M	676	3191:7bc9416e6b29cb44	0	43-44,46-57	under
+M	677	3191:7bc9416e6b29cb44	0	42-43,46-57	under
+M	681	6875:82ca7cb9de26d9b3	0	0-28,30-37,40-46,48-52,57-69,72-77,90,93-108,110-113,115-117,121-122,127-128	under+behind
+M	682	3191:7bc9416e6b29cb44	0	42-57	under
+M	683	3191:7bc9416e6b29cb44	0	44-57	under
+M	684	3191:7bc9416e6b29cb44	0	44-57	under
+M	685	3191:7bc9416e6b29cb44	0	42-57	under
+M	686	3191:7bc9416e6b29cb44	0	42-57	under
+M	687	3191:7bc9416e6b29cb44	0	42-57	under
+M	688	3191:7bc9416e6b29cb44	0	42-57	under
+M	690	3191:7bc9416e6b29cb44	0	42-57	under
+M	691	3191:7bc9416e6b29cb44	0	42-57	under
+M	692	3191:7bc9416e6b29cb44	0	42-43,45-54,56-57	under

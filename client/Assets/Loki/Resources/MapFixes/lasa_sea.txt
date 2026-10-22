@@ -1,0 +1,23 @@
+# Architect's fix file for lasa_sea (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds lasa_sea
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 401 model faces on 18 models
+architect-fix	1	lasa_sea	gnd:2027454:45090d10e99523d8	gat:968014:7e4697dd868a1ea1
+R	rsw:235502:8c6e3b2d8354a073
+M	50	3823:3d0df1d139c9b8ef	0	0-1,6-7	behind
+M	70	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	119	2239:95b29c6e30195343	0	16-19,30-33,35-36,43-44,47-48	under+behind
+M	139	583:65ae15af5d349206	0	0-4	under
+M	168	583:94eb806c6e00b9f1	0	2-4	under
+M	216	583:94eb806c6e00b9f1	0	0-4	under
+M	281	583:94eb806c6e00b9f1	0	0-4	under
+M	302	583:94eb806c6e00b9f1	0	0-4	under
+M	303	2239:2912018886e8aaa9	0	32-33	behind
+M	320	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	323	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	355	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	356	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	357	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	385	583:94eb806c6e00b9f1	0	0-4	under
+M	396	2239:2912018886e8aaa9	0	8-11,24-27,41-42,45-46	under+behind
+M	449	2263:2a8c8a5ca8aca74d	0	0-47	under
+M	474	583:65ae15af5d349206	0	0-4	under

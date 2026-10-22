@@ -1,0 +1,17 @@
+//===== Project Loki: client wave 5 (w5ui) test fixture ==================
+// Private rAthena copy "w5ui" (index 56) only; installed by install-w5ui-fixture.sh (which also loads rAthena's
+// sql-files/roulette_default_data.sql into the copy's current database, as Loki Host does).
+//   @w5coins      sets the roulette coins: 2 bronze, 20 silver, 0 gold (RouletteBronze / Silver / Gold are script params that
+//                 update the character's cached points at once: pc_setparam, pc.cpp:10606-10617)
+//============================================================================
+-	script	W5UiFixture	-1,{
+OnInit:
+	bindatcmd "w5coins", strnpcinfo(3) + "::OnCoins";
+	end;
+OnCoins:
+	set RouletteBronze, 2;
+	set RouletteSilver, 20;
+	set RouletteGold, 0;
+	dispbottom "W5Coins: bronze 2, silver 20, gold 0.";
+	end;
+}

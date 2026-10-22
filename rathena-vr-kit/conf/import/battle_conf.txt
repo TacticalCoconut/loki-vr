@@ -1,0 +1,2 @@
+// Loki VR: extended tabletop/VR view range (default 60 cells)
+area_size: 60

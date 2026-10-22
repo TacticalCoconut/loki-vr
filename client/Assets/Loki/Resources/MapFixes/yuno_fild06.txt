@@ -1,0 +1,37 @@
+# Architect's fix file for yuno_fild06 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds yuno_fild06
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 624 model faces on 32 models
+architect-fix	1	yuno_fild06	gnd:5608534:12ca0bf7c4869ff7	gat:3200014:dc0d4fa8c25d57b6
+R	rsw:304382:6cf5cc72714e2611
+M	9	1783:910e01adee701700	0	0-3	behind
+M	10	9775:0ed14375100632e2	0	5-6,9-13,27-31,40-44,47-48,56-68,71-75,95-99,118-119,122-130	under+behind
+M	11	3191:7bc9416e6b29cb44	0	43,46-57	under
+M	12	6875:82ca7cb9de26d9b3	0	0-28,30-37,40-50,52,57-69,72-77,82-108,110-113,115-117,121-122,127-128	under+behind
+M	78	3191:7bc9416e6b29cb44	0	46-57	under
+M	79	3191:7bc9416e6b29cb44	0	42-43,45-57	under
+M	80	3191:7bc9416e6b29cb44	0	46-57	under
+M	81	3191:7bc9416e6b29cb44	0	42-57	under
+M	82	3191:7bc9416e6b29cb44	0	42,44-57	under
+M	83	3191:7bc9416e6b29cb44	0	46-57	under
+M	84	3191:7bc9416e6b29cb44	0	46-57	under
+M	85	3191:7bc9416e6b29cb44	0	42-57	under
+M	86	3191:7bc9416e6b29cb44	0	46-57	under
+M	87	3191:7bc9416e6b29cb44	0	45-57	under
+M	88	3191:7bc9416e6b29cb44	0	46-57	under
+M	89	3191:7bc9416e6b29cb44	0	45-57	under
+M	90	3191:7bc9416e6b29cb44	0	42,46-57	under
+M	91	3191:7bc9416e6b29cb44	0	42-57	under
+M	92	3191:7bc9416e6b29cb44	0	42,46-57	under
+M	93	3191:7bc9416e6b29cb44	0	42,45-57	under
+M	94	3191:7bc9416e6b29cb44	0	42,44,46-57	under
+M	95	3191:7bc9416e6b29cb44	0	42-44,46-55,57	under
+M	96	3191:7bc9416e6b29cb44	0	43,46-57	under
+M	97	3191:7bc9416e6b29cb44	0	43,46-57	under
+M	98	3191:7bc9416e6b29cb44	0	42-57	under
+M	99	3191:7bc9416e6b29cb44	0	42-57	under
+M	100	3191:7bc9416e6b29cb44	0	43-44,46-57	under
+M	101	3191:7bc9416e6b29cb44	0	42-43,45-57	under
+M	102	3191:7bc9416e6b29cb44	0	42-43,45-57	under
+M	103	3191:7bc9416e6b29cb44	0	46-57	under
+M	387	6875:82ca7cb9de26d9b3	0	1-2,8-20,23-28,30-37,40-46,48-50,57-69,72-77,84-85,96-97,99-105,110,113,115-117,121-122,127-128	under+behind
+M	550	3191:7bc9416e6b29cb44	0	46-57	under

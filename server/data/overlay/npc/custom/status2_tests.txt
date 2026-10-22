@@ -1,0 +1,92 @@
+//===== Loki wave D (status2) parity test NPC ==================================
+// Test servers only. The parity scenarios of testrig/parity/status2/ whisper
+// "NPC:S2Sc" with a command and '#'-separated numeric arguments. Both the
+// module (server/data/overlay, embedded by datagen) and the private rAthena
+// oracle (npc/custom) load this same file.
+//   s#type#tick#v1#v2#v3#v4           sc_start4 (rate 10000, flag SCSTART_NOAVOID)
+//   r#type#tick#v1#v2#v3#v4#rate#flag sc_start4 with a rate (0-10000) and flags
+//   e#type                            sc_end (type -1: every status)
+//   x#from#to                         sc_end of every active status from..to-1 (NoClearbuff ones too; a
+//                                     NoClearbuff + NoForcedEnd one stops the script, as sc_end fails)
+//   g#type                            the status's active flag and val1..val4
+//   i#item                            consumeitem (the item's script runs)
+//   hp                                HP / SP
+//   heal#hp#sp                        heal
+//   k#hp                              heal -hp (status_damage without a source), then natural regen off again
+//                                     (SC_REGENERATION val4 3) in the same run
+//   ph#hp#sp                          percentheal
+//   eq#item                           equip the item (by id)
+//   mount#on                          setmounting (SC_ALL_RIDING) on / off
+//============================================================================
+-	script	S2Sc	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	.@a = atoi(@whispervar1$);
+	.@b = atoi(@whispervar2$);
+	.@c = atoi(@whispervar3$);
+	.@d = atoi(@whispervar4$);
+	.@e = atoi(@whispervar5$);
+	.@f = atoi(@whispervar6$);
+	.@g = atoi(@whispervar7$);
+	.@h = atoi(@whispervar8$);
+	if (.@t$ == "s") {
+		sc_start4 .@a, .@b, .@c, .@d, .@e, .@f;
+		end;
+	}
+	if (.@t$ == "r") {
+		sc_start4 .@a, .@b, .@c, .@d, .@e, .@f, .@g, .@h;
+		end;
+	}
+	if (.@t$ == "e") {
+		sc_end .@a;
+		end;
+	}
+	if (.@t$ == "x") {
+		for (.@i = .@a; .@i < .@b; .@i++)
+			if (getstatus(.@i))
+				sc_end .@i;
+		end;
+	}
+	if (.@t$ == "g") {
+		dispbottom "sc " + .@a + ": " + getstatus(.@a) + " " + getstatus(.@a, 1) + " " + getstatus(.@a, 2) + " " + getstatus(.@a, 3) + " " + getstatus(.@a, 4);
+		end;
+	}
+	if (.@t$ == "i") {
+		consumeitem .@a;
+		end;
+	}
+	if (.@t$ == "hp") {
+		dispbottom "hp " + Hp + "/" + MaxHp + " sp " + Sp + "/" + MaxSp;
+		end;
+	}
+	if (.@t$ == "heal") {
+		heal .@a, .@b;
+		end;
+	}
+	if (.@t$ == "k") {
+		heal -.@a, 0;
+		sc_start4 SC_REGENERATION, 600000, 1, 0, 0, 3;
+		end;
+	}
+	if (.@t$ == "ph") {
+		percentheal .@a, .@b;
+		end;
+	}
+	if (.@t$ == "eq") {
+		equip .@a;
+		end;
+	}
+	if (.@t$ == "mount") {
+		setmounting;
+		dispbottom "mounting " + ismounting();
+		end;
+	}
+	dispbottom "S2Sc: unknown command " + .@t$;
+	end;
+}
+
+// SC_BOSSMAPINFO with a boss on the map (port wave H, hplay2; testrig/parity/status2/bossinfo.txt): a `boss_monster`
+// that cannot move (Red Plant 1078) at a fixed cell with a 1x1 area (mob.cpp:1142 skips the cell search for it), on a
+// map nothing else uses (the monster exists only once a player enters the map: dynamic mobs), back 10 minutes after
+// its death (the Convex Mirror then names the time left).
+guild_vs5,50,50,1,1	boss_monster	S2 Boss	1078,1,600000,0

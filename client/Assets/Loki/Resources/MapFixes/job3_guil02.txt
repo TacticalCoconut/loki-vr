@@ -1,0 +1,62 @@
+# Architect's fix file for job3_guil02 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds job3_guil02
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 9 ground walls drawn from both sides, 30 turned to face the other side, 0 floors drawn, 0 holes filled; 1 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 141 model faces on 14 models
+architect-fix	1	job3_guil02	gnd:156494:d7581c2eca99010b	gat:128014:6ffa7da695ce4adf
+W	17	16	N	flip	ledge
+W	18	16	N	flip	ledge
+W	19	16	N	flip	ledge
+W	20	16	N	flip	ledge
+W	21	16	N	flip	ledge
+W	22	16	N	flip	ledge
+W	23	16	N	flip	ledge
+W	24	16	N	both	ledge
+W	25	16	N	both	ledge
+W	26	16	N	both	ledge
+W	16	17	E	flip	ledge
+W	26	17	E	flip	outer
+W	16	18	E	flip	ledge
+W	26	18	E	flip	outer
+W	16	19	E	flip	ledge
+W	26	19	E	flip	outer
+W	15	20	N	both	ledge
+W	26	20	E	flip	outer
+W	14	21	E	both	ledge
+W	26	21	E	flip	outer
+W	14	22	E	both	ledge
+W	26	22	E	flip	outer
+W	26	23	E	flip	outer
+W	16	24	E	both	ledge
+W	26	24	E	flip	outer
+W	16	25	E	both	ledge
+W	26	25	E	flip	outer
+W	16	26	E	both	ledge
+W	17	26	N	flip	outer
+W	18	26	N	flip	outer
+W	19	26	N	flip	outer
+W	20	26	N	flip	outer
+W	21	26	N	flip	outer
+W	22	26	N	flip	outer
+W	23	26	N	flip	outer
+W	24	26	N	flip	outer
+W	25	26	N	flip	outer
+W	26	26	N	flip	outer
+W	26	26	E	flip	inner
+R	rsw:74334:ddcad49ac9a1eec9
+M	4	3199:73b63196ad26465b	0	36-37,40-43	under+behind
+M	5	1831:8373e5baa5530921	0	0-3,8-13,18-29	under+behind
+M	11	1031:9a1356f02a401e0f	0	2-3	behind
+M	13	2815:61c3b98ede114a4d	0	4,6-8	behind
+M	14	1759:7e422a144231151f	0	9-12	behind
+M	18	7615:43c61d3381f1e4ad	0	80-97	behind
+M	21	1119:3e61f68513c159b2	0	0-7	behind
+M	22	1119:3e61f68513c159b2	0	0-7	behind
+M	23	4927:20906166cf1a9c2d	0	0-3,6-7,10-15,20-21,24-25,44-45,60-63	behind
+M	24	4927:20906166cf1a9c2d	0	4-8	behind
+M	25	1947:eaea0f61c65dddb0	0	0-7,24-31	behind
+M	26	1947:eaea0f61c65dddb0	0	0-7,24-31	behind
+M	27	1903:9c4100deba7e19d7	0	12-15	behind
+M	28	1903:9c4100deba7e19d7	0	18-23	behind

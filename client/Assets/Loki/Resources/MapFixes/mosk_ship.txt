@@ -1,0 +1,26 @@
+# Architect's fix file for mosk_ship (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds mosk_ship
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 0 ground walls drawn from both sides, 15 turned to face the other side, 0 floors drawn, 0 holes filled; 1 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 68 model faces on 2 models
+architect-fix	1	mosk_ship	gnd:772326:0e46fe259930d96b	gat:800014:8651e209e12ee727
+W	47	52	N	flip	step
+W	48	52	N	flip	step
+W	49	52	N	flip	step
+W	50	52	N	flip	step
+W	51	52	N	flip	step
+W	46	53	E	flip	step
+W	46	54	E	flip	step
+W	47	54	E	flip	step
+W	48	54	E	flip	step
+W	46	55	E	flip	step
+W	47	55	N	flip	step
+W	47	55	E	flip	step
+W	48	55	N	flip	step
+W	48	55	E	flip	step
+W	46	56	E	flip	step
+R	rsw:72598:f3e28f0ed994bd3b
+M	0	62147:55012e525b044f5d	0	296,298-301,314-317,328-330,334-336,506-510,512,514,516-517,520,524	under+behind
+M	23	9271:85a9f6cc9058aa61	0	0-31,50-57,72-73	under+behind

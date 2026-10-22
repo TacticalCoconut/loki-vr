@@ -1,0 +1,221 @@
+# Architect's fix file for lhz_d_n2 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds lhz_d_n2
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 87 ground walls drawn from both sides, 104 turned to face the other side, 0 floors drawn, 18 holes filled; 3 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 14 model faces on 3 models
+architect-fix	1	lhz_d_n2	gnd:577726:2c20464cd535efde	gat:122894:a47459eca7d46f1a
+W	30	2	E	both	step
+W	30	3	E	both	step
+W	32	4	E	both	step
+W	28	5	E	both	inner
+W	32	5	E	both	step
+W	22	6	E	both	step
+W	26	6	E	flip	step
+W	32	6	E	both	step
+W	20	7	E	both	step
+W	22	7	E	flip	step
+W	26	7	E	both	inner
+W	27	7	E	flip	step
+W	32	7	E	both	step
+W	20	8	E	both	step
+W	22	8	E	flip	step
+W	26	8	E	both	inner
+W	32	8	E	both	step
+W	20	9	E	both	step
+W	26	9	E	both	inner
+W	32	9	E	both	step
+W	34	9	E	both	inner
+W	35	9	E	both	inner
+W	22	10	E	flip	inner
+W	26	10	E	both	inner
+W	32	10	E	both	step
+W	34	10	E	both	inner
+W	20	11	E	both	step
+W	24	11	E	both	step
+W	26	11	E	both	inner
+W	26	12	E	both	inner
+W	35	12	E	both	inner
+W	26	13	E	both	inner
+W	38	13	E	flip	inner
+W	26	14	E	both	step
+W	30	14	E	flip	step
+W	31	14	E	flip	step
+W	32	14	E	both	step
+W	37	14	E	flip	inner
+W	26	15	E	flip	inner
+W	32	15	E	flip	step
+W	34	15	E	flip	step
+W	37	15	E	flip	inner
+W	26	16	E	both	step
+W	32	16	E	flip	step
+W	37	16	E	flip	inner
+W	16	17	E	both	ledge
+W	22	17	E	both	inner
+W	23	17	N	both	ledge
+W	24	17	N	both	ledge
+W	26	17	E	flip	step
+W	32	17	E	flip	step
+W	37	17	E	flip	inner
+W	16	18	E	both	ledge
+W	17	18	E	flip	interior
+W	22	18	N	flip	interior
+W	25	18	N	flip	interior
+W	27	18	E	flip	interior
+W	32	18	E	flip	step
+W	34	18	E	flip	step
+W	36	18	N	both	step
+W	41	18	E	flip	inner
+W	11	19	N	flip	interior
+W	16	19	E	both	ledge
+W	21	19	E	flip	interior
+W	24	19	E	flip	interior
+W	32	19	E	flip	step
+W	34	19	E	flip	step
+W	36	19	N	flip	step
+W	39	19	E	both	inner
+W	41	19	E	flip	inner
+W	21	20	N	flip	step
+W	22	20	N	flip	step
+W	23	20	N	flip	step
+W	24	20	N	flip	step
+W	25	20	N	flip	step
+W	26	20	N	flip	step
+W	32	20	E	flip	step
+W	39	20	E	both	inner
+W	41	20	E	flip	inner
+W	6	21	N	flip	inner
+W	7	21	N	flip	inner
+W	8	21	N	flip	inner
+W	9	21	N	flip	inner
+W	15	21	N	both	step
+W	17	21	E	both	inner
+W	19	21	E	both	inner
+W	25	21	E	flip	step
+W	27	21	E	both	step
+W	29	21	E	both	step
+W	30	21	E	flip	outer
+W	32	21	N	both	step
+W	32	21	E	flip	step
+W	38	21	N	flip	inner
+W	39	21	N	flip	inner
+W	40	21	N	flip	inner
+W	41	21	N	flip	inner
+W	41	21	E	flip	inner
+W	11	22	N	both	inner
+W	12	22	N	both	inner
+W	13	22	N	both	inner
+W	14	22	N	both	inner
+W	15	22	N	both	inner
+W	17	22	N	flip	interior
+W	17	22	E	both	inner
+W	18	22	N	both	step
+W	19	22	N	flip	step
+W	20	22	N	flip	step
+W	22	22	N	flip	step
+W	25	22	N	flip	step
+W	25	22	E	flip	step
+W	27	22	N	flip	step
+W	27	22	E	flip	step
+W	28	22	N	flip	step
+W	29	22	N	both	step
+W	29	22	E	both	step
+W	30	22	N	flip	interior
+W	30	22	E	flip	outer
+W	32	22	N	both	inner
+W	33	22	N	both	inner
+W	34	22	N	both	inner
+W	35	22	N	both	inner
+W	36	22	N	both	inner
+W	37	22	E	flip	inner
+W	18	23	N	flip	interior
+W	24	23	E	flip	step
+W	26	23	E	flip	step
+W	29	23	N	flip	interior
+W	29	23	E	flip	interior
+W	37	23	E	flip	inner
+W	19	24	N	flip	outer
+W	20	24	N	flip	outer
+W	21	24	N	both	step
+W	22	24	N	flip	step
+W	23	24	N	flip	step
+W	24	24	N	flip	step
+W	24	24	E	flip	step
+W	25	24	N	flip	step
+W	26	24	N	both	step
+W	26	24	E	both	step
+W	27	24	N	flip	outer
+W	28	24	N	flip	outer
+W	28	24	E	flip	interior
+W	37	24	E	flip	inner
+W	10	25	N	flip	inner
+W	11	25	N	flip	inner
+W	12	25	N	both	inner
+W	13	25	N	both	inner
+W	21	25	N	both	step
+W	22	25	N	flip	step
+W	25	25	N	flip	step
+W	26	25	N	flip	step
+W	26	25	E	flip	interior
+W	34	25	N	both	inner
+W	35	25	N	both	inner
+W	36	25	N	flip	inner
+W	37	25	N	flip	inner
+W	37	25	E	flip	inner
+W	24	26	E	both	step
+W	27	26	E	both	inner
+W	18	27	N	both	step
+W	19	27	N	both	step
+W	20	27	N	both	step
+W	21	27	N	both	step
+W	22	27	N	both	step
+W	23	27	N	both	step
+W	24	27	N	both	step
+W	24	27	E	both	step
+W	25	27	N	both	step
+W	26	27	N	both	step
+W	27	27	N	both	step
+W	28	27	N	both	step
+W	29	27	N	both	step
+W	30	27	E	both	inner
+W	33	27	E	both	inner
+W	17	28	E	both	step
+W	19	28	N	flip	inner
+W	20	28	N	flip	inner
+W	21	28	N	flip	inner
+W	22	28	N	flip	inner
+W	23	28	N	flip	inner
+W	24	28	N	flip	inner
+W	25	28	N	flip	inner
+W	26	28	N	flip	inner
+W	27	28	N	flip	inner
+W	28	28	N	flip	inner
+W	30	28	E	both	inner
+W	33	28	E	flip	inner
+W	14	29	N	flip	inner
+W	17	29	E	both	step
+W	33	29	N	flip	inner
+W	33	29	E	flip	inner
+F	16	17	-2	hole
+F	23	17	-5.2	hole
+F	24	17	-5.2	hole
+F	31	17	-2	hole
+F	16	18	-2	hole
+F	31	18	-2	hole
+F	16	19	-2	hole
+F	31	19	-2	hole
+F	16	20	-2	hole
+F	17	20	-2	hole
+F	18	20	-2	hole
+F	19	20	-2	hole
+F	20	20	-2	hole
+F	27	20	-2	hole
+F	28	20	-2	hole
+F	29	20	-2	hole
+F	30	20	-2	hole
+F	31	20	-2	hole
+R	rsw:94954:349ae0cf7a27ed76
+M	27	943:2947795d2f348fb6	0	7-10	behind
+M	31	5695:5aac8b76770f47e6	0	96-97,100-103	under+behind
+M	68	943:2947795d2f348fb6	0	7-10	behind

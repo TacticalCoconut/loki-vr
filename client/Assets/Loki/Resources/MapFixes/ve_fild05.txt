@@ -1,0 +1,34 @@
+# Architect's fix file for ve_fild05 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ve_fild05
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 0 ground walls drawn from both sides, 6 turned to face the other side, 0 floors drawn, 0 holes filled; 1 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 196 model faces on 19 models
+architect-fix	1	ve_fild05	gnd:4410582:79accf7c5cbd2599	gat:3200014:75f3551e716c6dbd
+W	46	92	N	flip	step
+W	47	92	N	flip	step
+W	45	93	E	flip	step
+W	45	94	E	flip	step
+W	45	95	E	flip	step
+W	45	96	E	flip	step
+R	rsw:290810:4cd07ecf928455d7
+M	10	1203:6bf0026e185f6253	0	0-7,9-15	under+behind
+M	11	1395:fa20358cd2cb96a6	0	0-5,16-17	under+behind
+M	32	9287:6afbd4d853f0d4b1	0	0-11,74-81,84-89,130-155	under+behind
+M	54	22323:5dee259db0db5629	0	173-174,181-182,197-206,369-370,372-375,394,400,409,418-419,437,439,447	behind
+M	111	799:9577c6cce3348c09	0	0-1,4-7	under+behind
+M	356	20979:4906e111694bae20	0	2-5,12-13,30,40-42,44-45,58-59,70-71,82-83,94-95,106	under+behind
+M	358	20979:4906e111694bae20	0	34-35,38	behind
+M	360	20979:4906e111694bae20	0	27,34-35,38-39	under+behind
+M	361	20979:4906e111694bae20	0	0-1,10-11,23,26,32-39,54,56-57,68-69,80-81	under+behind
+M	362	20979:4906e111694bae20	0	34-35,38	behind
+M	366	20979:4906e111694bae20	0	34-35,38	behind
+M	369	20979:4906e111694bae20	0	34-35,38	behind
+M	370	20979:4906e111694bae20	0	34-35,38-39	under+behind
+M	372	20979:4906e111694bae20	0	34-35,38	behind
+M	373	20979:4906e111694bae20	0	50-51	behind
+M	383	20979:4906e111694bae20	0	32-33,36-37,39	under
+M	386	20979:4906e111694bae20	0	32-39	under+behind
+M	387	20979:4906e111694bae20	0	34-35,38-39	under+behind
+M	874	799:19ae2bacc62a9515	0	6-7	behind

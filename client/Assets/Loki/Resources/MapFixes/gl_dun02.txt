@@ -1,0 +1,149 @@
+# Architect's fix file for gl_dun02 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds gl_dun02
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 11 ground walls drawn from both sides, 26 turned to face the other side, 13 floors drawn, 0 holes filled; 12 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 1460 model faces on 90 models
+architect-fix	1	gl_dun02	gnd:4879086:f2a2c7ea0f8d63cd	gat:1800014:360854dfcaa96a4f
+W	110	133	N	flip	step
+W	111	133	N	flip	step
+W	112	133	N	flip	step
+W	113	133	N	flip	step
+W	109	134	E	flip	step
+W	110	134	N	flip	step
+W	111	134	N	flip	step
+W	112	134	N	flip	step
+W	113	134	N	flip	step
+W	109	135	E	flip	step
+W	110	135	N	flip	step
+W	111	135	N	flip	step
+W	112	135	N	flip	step
+W	113	135	N	flip	step
+W	109	136	E	flip	step
+W	110	136	N	flip	step
+W	111	136	N	flip	step
+W	112	136	N	flip	step
+W	113	136	N	flip	step
+W	110	137	N	flip	step
+W	111	137	N	flip	step
+W	112	137	N	flip	step
+W	113	137	N	flip	step
+W	113	139	E	flip	outer
+W	113	140	E	flip	inner
+W	113	141	E	flip	inner
+W	109	142	N	both	step
+W	115	142	N	both	interior
+W	105	148	N	both	interior
+W	108	148	N	both	interior
+W	109	148	N	both	inner
+W	110	148	N	both	inner
+W	111	148	N	both	inner
+W	112	148	N	both	inner
+W	113	148	N	both	inner
+W	114	148	N	both	inner
+W	115	148	N	both	interior
+T	12	15	draw	walkable
+T	12	16	draw	walkable
+T	12	17	draw	walkable
+T	62	22	draw	walkable
+T	41	98	draw	walkable
+T	111	98	draw	walkable
+T	44	99	draw	walkable
+T	39	100	draw	walkable
+T	24	120	draw	walkable
+T	24	121	draw	walkable
+T	96	124	draw	walkable
+T	97	124	draw	walkable
+T	102	129	draw	walkable
+R	rsw:168106:f5a7199a25775e2a
+M	7	2935:d081ea856c12b806	0	6-11,18-23,30-35,40-43,46-47,54-55,60-63	under+behind
+M	8	2023:f2ecff1bff5c2e8b	0	6-11,18-27,30-31,36-39	behind
+M	9	2191:110d71846af7ce28	0	8-11,18-27,30-31,36-39	under+behind
+M	10	4423:702ba30f424c6f65	0	12-17,23,40-41,44-48,52-53,56-59	under+behind
+M	13	2791:2fcc9ecfcfa87723	0	5,39-40,43-44,51-52	behind
+M	17	11595:5e04b005736acd54	0	58-59,224-225	behind
+M	20	18399:0a6b1931a0324cbb	0	220-223,236-237,248-253,264-271,277	under+behind
+M	23	4443:55deecf29025b676	0	0-3,6-9,20-25,28-29,32-55,57-58,60-61	under+behind
+M	26	18399:0a6b1931a0324cbb	0	220-223,228-233,236-237,240-253,256-277,334-337	under+behind
+M	28	2791:2fcc9ecfcfa87723	0	0-1,5-6,9-12,15-18,21-28,31-44,47-51,53-56	under+behind
+M	33	4443:55deecf29025b676	0	0-3,6-9,20-21,24-25,44-55,57-58,60-61	under+behind
+M	34	3811:c35f39226fc50326	0	0-3,6,8-11,14-19,22	under
+M	38	3811:c35f39226fc50326	0	0-8,10-11,14,17,20-21,23	under
+M	39	3811:c35f39226fc50326	0	0-16,18-19,22	under+behind
+M	40	4443:55deecf29025b676	0	0,2,6,8,20-21,24-25,44-55,57-58,60-61	under+behind
+M	41	2023:f2ecff1bff5c2e8b	0	18-21,30-31,36-39	under+behind
+M	42	2935:d081ea856c12b806	0	18-21,23,30-39,54-55,60-63	under+behind
+M	43	2191:110d71846af7ce28	0	6-9,18-19,24-27,30-31,38-43	under+behind
+M	44	4423:702ba30f424c6f65	0	12-17,23-27,40-41,44-48,52-53,56-59	under+behind
+M	45	2803:a488b9b419f1d375	0	12-13,22-23	behind
+M	46	2803:a488b9b419f1d375	0	12-13,22-23	behind
+M	48	2039:fe5291f5bc1a2473	2	0-5,8-9	behind
+M	49	2039:fe5291f5bc1a2473	2	2-5	behind
+M	52	18399:a2db1a2f2ab10f95	0	351-354,360-361,387-390,392,396-399,403-413,415	behind
+M	53	18399:0a6b1931a0324cbb	0	220-223,228-229,232-233,236-237,242-253,256-277,310-311,326-327,330-331,334-338	under+behind
+M	54	3535:bed17c1b65a1bfed	0	12,18-19,23-33,35	behind
+M	55	2803:a488b9b419f1d375	0	12-15,22-23	behind
+M	56	2803:a488b9b419f1d375	0	14-15	behind
+M	57	2803:a488b9b419f1d375	0	12-19,24-29	behind
+M	58	2803:a488b9b419f1d375	0	14-17	behind
+M	60	2803:a488b9b419f1d375	0	18-19,24-29	under+behind
+M	61	2803:a488b9b419f1d375	0	12-21,24-29	under+behind
+M	62	2803:a488b9b419f1d375	0	12-13	behind
+M	64	2803:a488b9b419f1d375	0	12-13,18-21,24-29	under+behind
+M	66	2803:a488b9b419f1d375	0	18-23	behind
+M	68	2803:a488b9b419f1d375	0	14-21	behind
+M	69	2803:a488b9b419f1d375	0	14-15,24-29	behind
+M	70	2803:a488b9b419f1d375	0	12-13,22-23	behind
+M	71	2803:a488b9b419f1d375	0	14-17	behind
+M	72	2803:a488b9b419f1d375	0	14-19	behind
+M	73	2803:a488b9b419f1d375	0	12-13,20-23	behind
+M	74	2803:a488b9b419f1d375	0	20-23	behind
+M	78	2803:a488b9b419f1d375	0	18-21	behind
+M	79	2803:a488b9b419f1d375	0	12-13,22-23	behind
+M	80	2803:a488b9b419f1d375	0	12-17,22-23	behind
+M	81	2803:a488b9b419f1d375	0	12-13,16-19,24-29	under+behind
+M	84	2803:a488b9b419f1d375	0	12-13,16-29	under+behind
+M	106	18399:0a6b1931a0324cbb	0	220-223,236-237,248-253,264-277,339	under+behind
+M	145	18399:0a6b1931a0324cbb	0	220-223,236-237,246-253,256-257,262-277	under+behind
+M	146	1591:1a45db588335631d	0	4-5	under
+M	147	1495:3b64d68be7d177eb	0	6-7	under
+M	153	2251:f97f8c69fd10d0a8	0	0-1,24-35	behind
+M	154	1867:1825e726e45bc1f0	0	20-21,24-35	behind
+M	155	25595:ad7271b9a36dab46	0	171-172,175-178,183-184,187-188,193-196	behind
+M	160	2251:f97f8c69fd10d0a8	0	24-35	behind
+M	163	4423:702ba30f424c6f65	0	12-17,23-27,40-41,44-48,52-53,56-59	under+behind
+M	164	2191:110d71846af7ce28	0	6-9,18-19,24-27,30-31,41-43	under+behind
+M	165	2023:f2ecff1bff5c2e8b	0	6-11,18-27,30-31,36-39	behind
+M	166	2935:d081ea856c12b806	0	6-11,18-23,30-35,40-43,46-47,54-55,60-63	under+behind
+M	167	2023:f2ecff1bff5c2e8b	0	6-11,18-27,30-31,36-39	behind
+M	168	4423:702ba30f424c6f65	0	12-17,23-27,40-41,44-48,52-53,56-59	under+behind
+M	169	4423:702ba30f424c6f65	0	12-17,23-27,40-41,44-48,52-53,56-59	under+behind
+M	178	21315:17552cbbda183d5a	0	42-47,51-71,78-90,93-94,97,132-133,141,146,155,157-159,162-163,168-169,174-175,227,231-232,234-237,247-248,250-251,254,274,276-283,295-296,300,310,315-316,318-319,322,342-343,345-346,349-351,363-364,368,375,384-385,388-390,395,405,407-410,418-425	under+behind
+M	187	3535:bed17c1b65a1bfed	0	48,54-55,59-69,71-79	behind
+M	188	3535:bed17c1b65a1bfed	0	7-10,16-17,37-40,43-46,51-53,56-57	under+behind
+M	192	9775:766317aadaf99c10	0	82-86,89-90,93-94,109-110,113-119,122-130	under+behind
+M	215	2767:b569e83845bf451d	0	0,2-3,6,16,18-19,22	under
+M	216	3811:c35f39226fc50326	0	0,2-3,6,8,10-11,14,16,18-19,22	under
+M	217	3811:c35f39226fc50326	0	0,2-3,6,16,18-19,22	under
+M	218	2767:b569e83845bf451d	0	0,2-3,6,8,10-11,14,16,18-19,22,24,26-27,30,32,34-35,38,40,42-43,46	under
+M	219	3811:c35f39226fc50326	0	0-7,16-23	under
+M	221	3811:c35f39226fc50326	0	0,2-3,6,16,18-19,22	under
+M	232	3343:51083ec0a1afa3de	0	64	behind
+M	233	3343:51083ec0a1afa3de	0	64	behind
+M	234	3343:51083ec0a1afa3de	0	64	behind
+M	237	3487:72678c3a53a16394	0	0-1	under
+M	238	799:19ae2bacc62a9515	0	0-1,4-5	under+behind
+M	239	3487:72678c3a53a16394	0	0-1,4-5	under+behind
+M	248	3535:bed17c1b65a1bfed	0	7-10,12,16-19,23-33,35,43-46,48,52-55,59-69,71	behind
+M	249	26627:652ba840262e4b32	0	188-189,195-198,200-201,219-220,223,225-226,229,237-238	under+behind
+M	252	2875:9e3b7fb5d194b2ea	0	1-3,10-13,15	under+behind
+M	256	9775:4a6b7f20237b8f6b	0	0-5	under+behind
+M	264	2047:a0c978294d7cc392	0	8-9	behind
+M	266	4423:702ba30f424c6f65	0	12-17,23-27,40-41,44-48,52-53,56-59	under+behind
+M	267	2935:d081ea856c12b806	0	6-11,18-23,30-35,40-43,46-47,54-55,60-63	under+behind
+M	268	2935:d081ea856c12b806	0	6-11,18-23,30-35,40-43,46-47,54-55,60-63	under+behind
+M	285	955:c775fcc44c0c6988	0	0-1	behind
+M	287	2803:a488b9b419f1d375	0	12-13,22-23	behind
+M	288	4443:55deecf29025b676	0	44-55,57-58,60-61	behind
+M	289	4443:55deecf29025b676	0	44-55,57-58,60-61	behind

@@ -1,0 +1,82 @@
+{
+"sizes": [
+{
+"name": "packet_itemlist_equip",
+"id": 2873,
+"dyn": true,
+"size": 40805
+},
+{
+"name": "packet_itemlist_normal",
+"id": 2825,
+"dyn": true,
+"size": 20405
+},
+{
+"name": "PACKET_ZC_SPRITE_CHANGE",
+"id": 471,
+"dyn": false,
+"size": 15
+},
+{
+"name": "PACKET_ZC_USE_ITEM_ACK",
+"id": 456,
+"dyn": false,
+"size": 15
+},
+{
+"name": "PACKET_ZC_UPDATE_ITEM_FROM_BUYING_STORE",
+"id": 2534,
+"dyn": false,
+"size": 24
+},
+{
+"name": "packet_roulette_open_ack",
+"id": 2586,
+"dyn": false,
+"size": 25
+},
+{
+"name": "packet_roulette_info_ack",
+"id": 2588,
+"dyn": true,
+"size": 512
+},
+{
+"name": "packet_roulette_itemrecv_ack",
+"id": 2594,
+"dyn": false,
+"size": 7
+},
+{
+"name": "packet_roulette_generate_ack",
+"id": 2592,
+"dyn": false,
+"size": 23
+},
+{
+"name": "PACKET_ZC_ADD_MEMBER_TO_GROUP",
+"id": 2788,
+"dyn": false,
+"size": 89
+},
+{
+"name": "PACKET_ZC_GROUP_LIST",
+"id": 2789,
+"dyn": true,
+"size": 28
+},
+{
+"name": "PACKET_ZC_ACK_BAN_GUILD",
+"id": 2690,
+"dyn": false,
+"size": 46
+},
+{
+"name": "PACKET_ZC_ACK_LEAVE_GUILD",
+"id": 2691,
+"dyn": false,
+"size": 46
+}
+]
+}

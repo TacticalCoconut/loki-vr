@@ -1,0 +1,32 @@
+# Line endings. The module, rocli, the test rig and the docs are LF on every checkout (bash scripts, rocli
+# scenarios and the oracle's shell scripts run from Windows and WSL checkouts alike; the cloud rig wrote them LF).
+# Windows batch files are CRLF; patches and binaries are kept byte for byte.
+* text=auto
+*.rs text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.lock text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.conf text eol=lf
+*.tsv text eol=lf
+*.json text eol=lf
+*.cs text eol=lf
+*.cginc text eol=lf
+*.shader text eol=lf
+*.asmdef text eol=lf
+*.meta text eol=lf
+*.gitignore text eol=lf
+*.gitattributes text eol=lf
+testrig/bin/* text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.patch -text
+*.bin binary
+*.z binary
+*.wasm binary
+*.png binary
+*.dll binary

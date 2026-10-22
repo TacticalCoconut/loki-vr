@@ -1,0 +1,60 @@
+// groul_bad.txt - lines npc_parsesrcfile refuses, skips or half accepts (the groul parity rig, wave G; not in
+// scripts_custom.conf: the scenario loads it with @loadnpc). Everything on guild_vs1-1, in sight of 50,50.
+
+guild_vs1-1,58,54,4	script	Groul Good#gb	4_F_01,{
+	mes "good";
+	close;
+}
+
+// a script that does not compile: parse_script fails, npc_parse_script goes on with the NPC
+guild_vs1-1,59,54,4	script	Groul Broken#gb	4_F_02,{
+	mes "broken" +;
+	close;
+}
+
+// an unknown map: the line and its script are skipped
+groul_nomap,10,10,4	script	Groul Nowhere#gb	4_F_01,{
+	end;
+}
+
+// coordinates outside the map: skipped with its script
+guild_vs1-1,3000,54,4	script	Groul Outside#gb	4_F_01,{
+	end;
+}
+
+// a duplicate of an NPC that does not exist
+guild_vs1-1,60,54,4	duplicate(Groul Nobody#gb)	Groul Orphan#gb	4_F_01
+
+// a word npc_parsesrcfile does not know
+guild_vs1-1,60,54,4	nonsense	Groul Nonsense#gb	4_F_01
+
+// a shop whose item list cannot be read, and a shop with a second, unreadable item
+guild_vs1-1,61,54,4	shop	Groul BadShop#gb	4_M_01,abc
+guild_vs1-1,61,56,4	shop	Groul HalfShop#gb	4_M_01,512:10,abc
+
+// a warp to an unknown map
+guild_vs1-1,62,54,0	warp	groulbadwarp#gb	1,1,groul_nomap,10,10
+
+// a monster that does not exist
+guild_vs1-1,50,40,0,0	monster	Groul Ghost	32000,1,0,0,0
+
+// a map flag that does not exist
+guild_vs1-1	mapflag	groul_noflag
+
+// a script NPC with a view that is no constant: JT_INVISIBLE
+guild_vs1-1,60,56,4	script	Groul Unseen#gb	GROUL_NO_SPRITE,{
+	end;
+}
+
+// the last good NPC
+guild_vs1-1,59,56,4	script	Groul Last#gb	4_F_01,{
+	mes "last";
+	close;
+}
+
+// a script whose braces never close: npc_skip_script fails and the rest of the file is not read
+guild_vs1-1,58,56,4	script	Groul Open#gb	4_F_01,{
+	mes "open";
+guild_vs1-1,62,56,4	script	Groul Never#gb	4_F_01,{
+	end;
+}

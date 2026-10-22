@@ -1,0 +1,58 @@
+# Architect's fix file for jupe_cave (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds jupe_cave
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 25 ground walls drawn from both sides, 22 turned to face the other side, 0 floors drawn, 0 holes filled; 2 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 4 model faces on 2 models
+architect-fix	1	jupe_cave	gnd:642222:42000721511053d9	gat:464014:e78accb0a48413f3
+W	70	21	N	both	ledge
+W	71	21	N	both	ledge
+W	72	21	N	both	ledge
+W	73	21	N	both	ledge
+W	74	21	N	both	ledge
+W	75	21	N	both	ledge
+W	76	21	N	both	ledge
+W	77	21	N	both	ledge
+W	69	22	E	both	step
+W	18	23	N	both	step
+W	19	23	N	both	step
+W	20	23	N	both	step
+W	21	23	N	both	step
+W	22	23	N	both	step
+W	66	23	N	flip	step
+W	67	23	N	both	step
+W	68	23	N	both	step
+W	69	23	N	both	step
+W	69	23	E	both	step
+W	70	23	N	flip	step
+W	70	23	E	both	step
+W	65	24	E	flip	step
+W	66	24	E	flip	step
+W	67	24	E	flip	step
+W	68	24	E	flip	step
+W	69	24	E	flip	step
+W	70	24	E	flip	step
+W	65	25	E	flip	step
+W	66	25	E	flip	step
+W	67	25	E	flip	step
+W	68	25	E	flip	step
+W	69	25	E	flip	step
+W	70	25	E	flip	step
+W	65	26	E	flip	step
+W	66	26	E	flip	step
+W	67	26	E	flip	step
+W	68	26	E	flip	step
+W	69	26	E	flip	step
+W	70	26	E	flip	step
+W	65	27	E	both	step
+W	66	27	E	both	step
+W	67	27	E	both	step
+W	68	27	E	both	step
+W	69	27	E	both	step
+W	70	27	E	flip	step
+W	69	28	E	flip	step
+W	70	28	E	both	step
+R	rsw:78066:ab0f02dd16dd0f27
+M	17	1319:e189506513713f79	0	2-3	under
+M	23	1319:e189506513713f79	0	2-3	under

@@ -1,0 +1,334 @@
+//! skills/mage/skill_factory_mage.cpp: SkillFactoryMage::create and the mage family's classes (rAthena e985006):
+//! Mage, Wizard, High Wizard, Sage, Professor, Warlock, Sorcerer, Arch Mage and Elemental Master. One file per
+//! rAthena file (`<file>.rs` for `skills/mage/<file>.cpp`), holding the classes that file holds.
+
+use super::{SkillImpl, StatusSkillImpl, WeaponSkillImpl};
+use crate::db::skills::*;
+
+pub mod activityburn;
+pub mod allbloom;
+pub mod arrullo;
+pub mod astralstrike;
+pub mod beastlyhypnosis;
+pub mod blindingmist;
+pub mod castcancel;
+pub mod chainlightning;
+pub mod classchange;
+pub mod cloudkill;
+pub mod coldbolt;
+pub mod coma;
+pub mod comet;
+pub mod conflagration;
+pub mod createelementalconverter;
+pub mod crimsonarrow;
+pub mod crimsonrock;
+pub mod crystalimpact;
+pub mod deadlyprojection;
+pub mod deluge;
+pub mod destructivehurricane;
+pub mod diamonddust;
+pub mod diamondstorm;
+pub mod dispell;
+pub mod drainlife;
+pub mod earthgrave;
+pub mod earthinsignia;
+pub mod earthspike;
+pub mod earthstrain;
+pub mod electricwalk;
+pub mod elem_iface;
+pub mod elementalaction;
+pub mod elementalbuster;
+pub mod elementalchangeearth;
+pub mod elementalchangefire;
+pub mod elementalchangewater;
+pub mod elementalchangewind;
+pub mod elementalshield;
+pub mod elementalveil;
+pub mod endowblaze;
+pub mod endowquake;
+pub mod endowtornado;
+pub mod endowtsunami;
+pub mod energycoat;
+pub mod energyconversion;
+pub mod fiberlock;
+pub mod fireball;
+pub mod firebolt;
+pub mod fireinsignia;
+pub mod firepillar;
+pub mod firewalk;
+pub mod firewall;
+pub mod floralflareroad;
+pub mod fourspiritanalysis;
+pub mod frostdiver;
+pub mod frostnova;
+pub mod frostymisty;
+pub mod frozenslash;
+pub mod ganbantein;
+pub mod golddigger;
+pub mod gravitationfield;
+pub mod gravity;
+pub mod grimreaper;
+pub mod heavensdrive;
+pub mod hellinferno;
+pub mod hindsight;
+pub mod hocuspocus;
+pub mod icewall;
+pub mod increasingactivity;
+pub mod indulge;
+pub mod jackfrost;
+pub mod jupitelthunder;
+pub mod leveling;
+pub mod lightningbolt;
+pub mod lightningland;
+pub mod lordofvermilion;
+pub mod magicrod;
+pub mod magneticearth;
+pub mod meteorstorm;
+pub mod mindbreaker;
+pub mod monocell;
+pub mod monsterchant;
+pub mod mysteryillusion;
+pub mod napalmbeat;
+pub mod napalmvulcan;
+pub mod poisonbuster;
+pub mod psychicstream;
+pub mod psychicwave;
+pub mod quagmire;
+pub mod questioning;
+pub mod rainofcrystal;
+pub mod readingspellbook;
+pub mod rejuvenation;
+pub mod release;
+pub mod rockdown;
+pub mod safetywall;
+pub mod sense;
+pub mod siennaexecrate;
+pub mod sight;
+pub mod sightblaster;
+pub mod sightrasher;
+pub mod soulexhale;
+pub mod soulexpansion;
+pub mod soulsiphon;
+pub mod soulstrike;
+pub mod soulvulcanstrike;
+pub mod spellbreaker;
+pub mod spellfist;
+pub mod spiritcontrol;
+pub mod spiritrecovery;
+pub mod stasis;
+pub mod stonecurse;
+pub mod stormcannon;
+pub mod stormgust;
+pub mod strantumtremor;
+pub mod striking;
+pub mod suicide;
+pub mod summonearthspirittera;
+pub mod summonelementalardor;
+pub mod summonelementaldiluvio;
+pub mod summonelementalprocella;
+pub mod summonelementalserpens;
+pub mod summonelementalterremotus;
+pub mod summonfireball;
+pub mod summonfirespiritagni;
+pub mod summonlightningball;
+pub mod summonstone;
+pub mod summonwaterball;
+pub mod summonwaterspiritaqua;
+pub mod summonwindspiritventus;
+pub mod terradrive;
+pub mod tetravortex;
+pub mod thunderstorm;
+pub mod tornadostorm;
+pub mod vacuumextreme;
+pub mod varetyrspear;
+pub mod venomswamp;
+pub mod violentquake;
+pub mod volcano;
+pub mod warmer;
+pub mod waterball;
+pub mod waterinsignia;
+pub mod whirlwind;
+pub mod whiteimprison;
+pub mod windinsignia;
+
+/// SkillFactoryMage::create, its cases in rAthena's order.
+pub fn create(skill_id: u16) -> Option<Box<dyn SkillImpl>> {
+    match skill_id {
+        AG_ALL_BLOOM => Some(Box::new(allbloom::SkillAllBloom)),
+        AG_ALL_BLOOM_ATK => Some(Box::new(allbloom::SkillAllBloomAttack)),
+        AG_ALL_BLOOM_ATK2 => Some(Box::new(allbloom::SkillAllBloomAttack2)),
+        AG_ASTRAL_STRIKE => Some(Box::new(astralstrike::SkillAstralStrike)),
+        AG_ASTRAL_STRIKE_ATK => Some(Box::new(astralstrike::SkillAstralStrikeAttack)),
+        AG_CLIMAX => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        AG_CRIMSON_ARROW => Some(Box::new(crimsonarrow::SkillCrimsonArrow)),
+        AG_CRIMSON_ARROW_ATK => Some(Box::new(crimsonarrow::SkillCrimsonArrowAttack)),
+        AG_CRYSTAL_IMPACT => Some(Box::new(crystalimpact::SkillCrystalImpact)),
+        AG_CRYSTAL_IMPACT_ATK => Some(Box::new(crystalimpact::SkillCrystalImpactAttack)),
+        AG_DEADLY_PROJECTION => Some(Box::new(deadlyprojection::SkillDeadlyProjection)),
+        AG_DESTRUCTIVE_HURRICANE => Some(Box::new(destructivehurricane::SkillDestructiveHurricane)),
+        AG_DESTRUCTIVE_HURRICANE_CLIMAX => Some(Box::new(destructivehurricane::SkillDestructiveHurricaneClimax)),
+        AG_ENERGY_CONVERSION => Some(Box::new(energyconversion::SkillEnergyConversion)),
+        AG_FLORAL_FLARE_ROAD => Some(Box::new(floralflareroad::SkillFloralFlareRoad)),
+        AG_FROZEN_SLASH => Some(Box::new(frozenslash::SkillFrozenSlash)),
+        AG_MYSTERY_ILLUSION => Some(Box::new(mysteryillusion::SkillMysteryIllusion)),
+        AG_RAIN_OF_CRYSTAL => Some(Box::new(rainofcrystal::SkillRainOfCrystal)),
+        AG_ROCK_DOWN => Some(Box::new(rockdown::SkillRockDown)),
+        AG_SOUL_VC_STRIKE => Some(Box::new(soulvulcanstrike::SkillSoulVulcanStrike)),
+        AG_STORM_CANNON => Some(Box::new(stormcannon::SkillStormCannon)),
+        AG_STRANTUM_TREMOR => Some(Box::new(strantumtremor::SkillStrantumTremor)),
+        AG_TORNADO_STORM => Some(Box::new(tornadostorm::SkillTornadoStorm)),
+        AG_VIOLENT_QUAKE => Some(Box::new(violentquake::SkillViolentQuake)),
+        AG_VIOLENT_QUAKE_ATK => Some(Box::new(violentquake::SkillViolentQuakeAttack)),
+        EM_ACTIVITY_BURN => Some(Box::new(activityburn::SkillActivityBurn)),
+        EM_CONFLAGRATION => Some(Box::new(conflagration::SkillConflagration)),
+        EM_DIAMOND_STORM => Some(Box::new(diamondstorm::SkillDiamondStorm)),
+        EM_ELEMENTAL_BUSTER => Some(Box::new(elementalbuster::SkillElementalBuster)),
+        EM_ELEMENTAL_BUSTER_FIRE => Some(Box::new(elementalbuster::SkillElementalBusterFire)),
+        EM_ELEMENTAL_BUSTER_GROUND => Some(Box::new(elementalbuster::SkillElementalBusterGround)),
+        EM_ELEMENTAL_BUSTER_POISON => Some(Box::new(elementalbuster::SkillElementalBusterPoison)),
+        EM_ELEMENTAL_BUSTER_WATER => Some(Box::new(elementalbuster::SkillElementalBusterWater)),
+        EM_ELEMENTAL_BUSTER_WIND => Some(Box::new(elementalbuster::SkillElementalBusterWind)),
+        EM_ELEMENTAL_VEIL => Some(Box::new(elementalveil::SkillElementalVeil)),
+        EM_INCREASING_ACTIVITY => Some(Box::new(increasingactivity::SkillIncreasingActivity)),
+        EM_LIGHTNING_LAND => Some(Box::new(lightningland::SkillLightningLand)),
+        EM_PSYCHIC_STREAM => Some(Box::new(psychicstream::SkillPsychicStream)),
+        EM_SPELL_ENCHANTING => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        EM_SUMMON_ELEMENTAL_ARDOR => Some(Box::new(summonelementalardor::SkillSummonElementalArdor)),
+        EM_SUMMON_ELEMENTAL_DILUVIO => Some(Box::new(summonelementaldiluvio::SkillSummonElementalDiluvio)),
+        EM_SUMMON_ELEMENTAL_PROCELLA => Some(Box::new(summonelementalprocella::SkillSummonElementalProcella)),
+        EM_SUMMON_ELEMENTAL_SERPENS => Some(Box::new(summonelementalserpens::SkillSummonElementalSerpens)),
+        EM_SUMMON_ELEMENTAL_TERREMOTUS => Some(Box::new(summonelementalterremotus::SkillSummonElementalTerremotus)),
+        EM_TERRA_DRIVE => Some(Box::new(terradrive::SkillTerraDrive)),
+        EM_VENOM_SWAMP => Some(Box::new(venomswamp::SkillVenomSwamp)),
+        HW_GANBANTEIN => Some(Box::new(ganbantein::SkillGanbantein)),
+        HW_GRAVITATION => Some(Box::new(gravitationfield::SkillGravitationField)),
+        HW_MAGICCRASHER => Some(Box::new(WeaponSkillImpl { id: skill_id })),
+        HW_MAGICPOWER => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        HW_NAPALMVULCAN => Some(Box::new(napalmvulcan::SkillNapalmVulcan)),
+        MG_COLDBOLT => Some(Box::new(coldbolt::SkillColdBolt)),
+        MG_ENERGYCOAT => Some(Box::new(energycoat::SkillEnergyCoat)),
+        MG_FIREBALL => Some(Box::new(fireball::SkillFireBall)),
+        MG_FIREBOLT => Some(Box::new(firebolt::SkillFireBolt)),
+        MG_FIREWALL => Some(Box::new(firewall::SkillFireWall)),
+        MG_FROSTDIVER => Some(Box::new(frostdiver::SkillFrostDiver)),
+        MG_LIGHTNINGBOLT => Some(Box::new(lightningbolt::SkillLightningBolt)),
+        MG_NAPALMBEAT => Some(Box::new(napalmbeat::SkillNapalmBeat)),
+        MG_SAFETYWALL => Some(Box::new(safetywall::SkillSafetyWall)),
+        MG_SIGHT => Some(Box::new(sight::SkillSight)),
+        MG_SOULSTRIKE => Some(Box::new(soulstrike::SkillSoulStrike)),
+        MG_STONECURSE => Some(Box::new(stonecurse::SkillStoneCurse)),
+        MG_THUNDERSTORM => Some(Box::new(thunderstorm::SkillThunderStorm)),
+        PF_DOUBLECASTING => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        PF_FOGWALL => Some(Box::new(blindingmist::SkillBlindingMist)),
+        PF_HPCONVERSION => Some(Box::new(indulge::SkillIndulge)),
+        PF_MEMORIZE => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        PF_MINDBREAKER => Some(Box::new(mindbreaker::SkillMindBreaker)),
+        PF_SOULBURN => Some(Box::new(soulsiphon::SkillSoulSiphon)),
+        PF_SOULCHANGE => Some(Box::new(soulexhale::SkillSoulExhale)),
+        PF_SPIDERWEB => Some(Box::new(fiberlock::SkillFiberLock)),
+        SA_ABRACADABRA => Some(Box::new(hocuspocus::SkillHocusPocus)),
+        SA_AUTOSPELL => Some(Box::new(hindsight::SkillHindsight)),
+        SA_CASTCANCEL => Some(Box::new(castcancel::SkillCastCancel)),
+        SA_CLASSCHANGE => Some(Box::new(classchange::SkillClassChange)),
+        SA_COMA => Some(Box::new(coma::SkillComa)),
+        SA_CREATECON => Some(Box::new(createelementalconverter::SkillCreateElementalConverter)),
+        SA_DEATH => Some(Box::new(grimreaper::SkillGrimReaper)),
+        SA_DELUGE => Some(Box::new(deluge::SkillDeluge)),
+        SA_DISPELL => Some(Box::new(dispell::SkillDispell)),
+        SA_ELEMENTFIRE => Some(Box::new(elementalchangefire::SkillElementalChangeFire)),
+        SA_ELEMENTGROUND => Some(Box::new(elementalchangeearth::SkillElementalChangeEarth)),
+        SA_ELEMENTWATER => Some(Box::new(elementalchangewater::SkillElementalChangeWater)),
+        SA_ELEMENTWIND => Some(Box::new(elementalchangewind::SkillElementalChangeWind)),
+        SA_FLAMELAUNCHER => Some(Box::new(endowblaze::SkillEndowBlaze)),
+        SA_FORTUNE => Some(Box::new(golddigger::SkillGoldDigger)),
+        SA_FROSTWEAPON => Some(Box::new(endowtsunami::SkillEndowTsunami)),
+        SA_FULLRECOVERY => Some(Box::new(rejuvenation::SkillRejuvenation)),
+        SA_GRAVITY => Some(Box::new(gravity::SkillGravity)),
+        SA_INSTANTDEATH => Some(Box::new(suicide::SkillSuicide)),
+        SA_LANDPROTECTOR => Some(Box::new(magneticearth::SkillMagneticEarth)),
+        SA_LEVELUP => Some(Box::new(leveling::SkillLeveling)),
+        SA_LIGHTNINGLOADER => Some(Box::new(endowtornado::SkillEndowTornado)),
+        SA_MAGICROD => Some(Box::new(magicrod::SkillMagicRod)),
+        SA_MONOCELL => Some(Box::new(monocell::SkillMonocell)),
+        SA_QUESTION => Some(Box::new(questioning::SkillQuestioning)),
+        SA_REVERSEORCISH => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        SA_SEISMICWEAPON => Some(Box::new(endowquake::SkillEndowQuake)),
+        SA_SPELLBREAKER => Some(Box::new(spellbreaker::SkillSpellBreaker)),
+        SA_SUMMONMONSTER => Some(Box::new(monsterchant::SkillMonsterChant)),
+        SA_TAMINGMONSTER => Some(Box::new(beastlyhypnosis::SkillBeastlyHypnosis)),
+        SA_VIOLENTGALE => Some(Box::new(whirlwind::SkillWhirlwind)),
+        SA_VOLCANO => Some(Box::new(volcano::SkillVolcano)),
+        SO_ARRULLO => Some(Box::new(arrullo::SkillArrullo)),
+        SO_CLOUD_KILL => Some(Box::new(cloudkill::SkillCloudKill)),
+        SO_DIAMONDDUST => Some(Box::new(diamonddust::SkillDiamondDust)),
+        SO_EARTHGRAVE => Some(Box::new(earthgrave::SkillEarthGrave)),
+        SO_EARTH_INSIGNIA => Some(Box::new(earthinsignia::SkillEarthInsignia)),
+        SO_ELECTRICWALK => Some(Box::new(electricwalk::SkillElectricWalk)),
+        SO_ELEMENTAL_SHIELD => Some(Box::new(elementalshield::SkillElementalShield)),
+        SO_EL_ACTION => Some(Box::new(elementalaction::SkillElementalAction)),
+        SO_EL_ANALYSIS => Some(Box::new(fourspiritanalysis::SkillFourSpiritAnalysis)),
+        SO_EL_CONTROL => Some(Box::new(spiritcontrol::SkillSpiritControl)),
+        SO_EL_CURE => Some(Box::new(spiritrecovery::SkillSpiritRecovery)),
+        SO_FIREWALK => Some(Box::new(firewalk::SkillFireWalk)),
+        SO_FIRE_INSIGNIA => Some(Box::new(fireinsignia::SkillFireInsignia)),
+        SO_POISON_BUSTER => Some(Box::new(poisonbuster::SkillPoisonBuster)),
+        SO_PSYCHIC_WAVE => Some(Box::new(psychicwave::SkillPsychicWave)),
+        SO_SPELLFIST => Some(Box::new(spellfist::SkillSpellFist)),
+        SO_STRIKING => Some(Box::new(striking::SkillStriking)),
+        SO_SUMMON_AGNI => Some(Box::new(summonfirespiritagni::SkillSummonFireSpiritAgni)),
+        SO_SUMMON_AQUA => Some(Box::new(summonwaterspiritaqua::SkillSummonWaterSpiritAqua)),
+        SO_SUMMON_TERA => Some(Box::new(summonearthspirittera::SkillSummonEarthSpiritTera)),
+        SO_SUMMON_VENTUS => Some(Box::new(summonwindspiritventus::SkillSummonWindSpiritVentus)),
+        SO_VACUUM_EXTREME => Some(Box::new(vacuumextreme::SkillVacuumExtreme)),
+        SO_VARETYR_SPEAR => Some(Box::new(varetyrspear::SkillVaretyrSpear)),
+        SO_WARMER => Some(Box::new(warmer::SkillWarmer)),
+        SO_WATER_INSIGNIA => Some(Box::new(waterinsignia::SkillWaterInsignia)),
+        SO_WIND_INSIGNIA => Some(Box::new(windinsignia::SkillWindInsignia)),
+        WL_CHAINLIGHTNING => Some(Box::new(chainlightning::SkillChainLightning)),
+        WL_CHAINLIGHTNING_ATK => Some(Box::new(chainlightning::SkillChainLightningAttack)),
+        WL_COMET => Some(Box::new(comet::SkillComet)),
+        WL_CRIMSONROCK => Some(Box::new(crimsonrock::SkillCrimsonRock)),
+        WL_DRAINLIFE => Some(Box::new(drainlife::SkillDrainLife)),
+        WL_EARTHSTRAIN => Some(Box::new(earthstrain::SkillEarthStrain)),
+        WL_FROSTMISTY => Some(Box::new(frostymisty::SkillFrostyMisty)),
+        WL_HELLINFERNO => Some(Box::new(hellinferno::SkillHellInferno)),
+        WL_JACKFROST => Some(Box::new(jackfrost::SkillJackFrost)),
+        WL_MARSHOFABYSS => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        WL_READING_SB_READING => Some(Box::new(readingspellbook::SkillReadingSpellbook)),
+        WL_RECOGNIZEDSPELL => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        WL_RELEASE => Some(Box::new(release::SkillRelease)),
+        WL_SIENNAEXECRATE => Some(Box::new(siennaexecrate::SkillSiennaExecrate)),
+        WL_SOULEXPANSION => Some(Box::new(soulexpansion::SkillSoulExpansion)),
+        WL_STASIS => Some(Box::new(stasis::SkillStasis)),
+        WL_SUMMONBL => Some(Box::new(summonlightningball::SkillSummonLightningBall)),
+        WL_SUMMONFB => Some(Box::new(summonfireball::SkillSummonFireBall)),
+        WL_SUMMONSTONE => Some(Box::new(summonstone::SkillSummonStone)),
+        WL_SUMMONWB => Some(Box::new(summonwaterball::SkillSummonWaterBall)),
+        WL_SUMMON_ATK_FIRE => Some(Box::new(summonfireball::SkillSummonAttackFire)),
+        WL_SUMMON_ATK_GROUND => Some(Box::new(summonstone::SkillSummonAttackEarth)),
+        WL_SUMMON_ATK_WATER => Some(Box::new(summonwaterball::SkillSummonAttackWater)),
+        WL_SUMMON_ATK_WIND => Some(Box::new(summonlightningball::SkillSummonAttackWind)),
+        WL_TELEKINESIS_INTENSE => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        WL_TETRAVORTEX => Some(Box::new(tetravortex::SkillTetraVortex)),
+        WL_TETRAVORTEX_FIRE => Some(Box::new(tetravortex::SkillTetraVortexFire)),
+        WL_TETRAVORTEX_GROUND => Some(Box::new(tetravortex::SkillTetraVortexEarth)),
+        WL_TETRAVORTEX_WATER => Some(Box::new(tetravortex::SkillTetraVortexWater)),
+        WL_TETRAVORTEX_WIND => Some(Box::new(tetravortex::SkillTetraVortexWind)),
+        WL_WHITEIMPRISON => Some(Box::new(whiteimprison::SkillWhiteImprison)),
+        WZ_EARTHSPIKE => Some(Box::new(earthspike::SkillEarthSpike)),
+        WZ_ESTIMATION => Some(Box::new(sense::SkillSense)),
+        WZ_FIREPILLAR => Some(Box::new(firepillar::SkillFirePillar)),
+        WZ_FROSTNOVA => Some(Box::new(frostnova::SkillFrostNova)),
+        WZ_HEAVENDRIVE => Some(Box::new(heavensdrive::SkillHeavensDrive)),
+        WZ_ICEWALL => Some(Box::new(icewall::SkillIceWall)),
+        WZ_JUPITEL => Some(Box::new(jupitelthunder::SkillJupitelThunder)),
+        WZ_METEOR => Some(Box::new(meteorstorm::SkillMeteorStorm)),
+        WZ_QUAGMIRE => Some(Box::new(quagmire::SkillQuagmire)),
+        WZ_SIGHTBLASTER => Some(Box::new(sightblaster::SkillSightBlaster)),
+        WZ_SIGHTRASHER => Some(Box::new(sightrasher::SkillSightRasher)),
+        WZ_STORMGUST => Some(Box::new(stormgust::SkillStormGust)),
+        WZ_VERMILION => Some(Box::new(lordofvermilion::SkillLordOfVermilion)),
+        WZ_WATERBALL => Some(Box::new(waterball::SkillWaterBall)),
+        _ => None,
+    }
+}

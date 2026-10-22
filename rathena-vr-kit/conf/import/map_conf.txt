@@ -1,0 +1,4 @@
+// Loki VR custom NPC scripts (Horde EXP rewards, Bestiary Codex bounties, VR Controls Tutorial)
+npc: npc/custom/loki_horde.txt
+npc: npc/custom/loki_codex.txt
+npc: npc/custom/loki_tutorial.txt

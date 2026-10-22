@@ -1,0 +1,50 @@
+# Architect's fix file for que_dan01 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds que_dan01
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 1188 model faces on 45 models
+architect-fix	1	que_dan01	gnd:344086:7d979134802be913	gat:128014:97d96c70b4425d8f
+R	rsw:86934:b7130deea4128c6c
+M	0	1543:30bfb5f60fe3f976	0	8-11,17	under
+M	1	1543:cd11f81109fa49fb	0	8-19	under
+M	3	3583:0fe2fee19691b1ef	0	8,10-11,16,18-19,22,56,58-59,62	under
+M	4	2767:b569e83845bf451d	0	2-3,6,8,10-11,14,16-20,22-24,26-27,30,32,34-35,38,40,42-43,46	under
+M	5	6963:c9ec582bb3302318	0	34-127	under
+M	8	6963:c9ec582bb3302318	0	32-127	under
+M	9	3583:0fe2fee19691b1ef	0	0-16,18-19,22,24-32,34-55	under
+M	15	6963:c9ec582bb3302318	0	36-39,42-127	under
+M	16	6963:c9ec582bb3302318	0	38-40,42-43,45-127	under
+M	17	2767:b569e83845bf451d	0	44	under
+M	18	3811:a09a0dd5fe60ccbe	0	0-7,16-23	under
+M	23	1543:cd11f81109fa49fb	0	8-9,16-19	behind
+M	24	1543:cd11f81109fa49fb	0	14-17	behind
+M	25	1543:30bfb5f60fe3f976	0	8-15	under
+M	26	1543:30bfb5f60fe3f976	0	10-19	under
+M	28	6963:c9ec582bb3302318	0	32-127	under
+M	29	2767:b569e83845bf451d	0	16,18,36,45,47	under
+M	30	2767:b569e83845bf451d	0	44,46	under
+M	43	1543:cd11f81109fa49fb	0	8-13,16-17	under
+M	44	2767:b569e83845bf451d	0	41,44-45	under
+M	50	2767:b569e83845bf451d	0	16,31	under
+M	51	3811:a09a0dd5fe60ccbe	0	0-8,10-11,14,16-23	under
+M	55	6963:c9ec582bb3302318	0	32-127	under
+M	57	3583:0fe2fee19691b1ef	0	16,18,38	under
+M	58	3583:0fe2fee19691b1ef	0	0-32,34-55,57,60-61,63	under
+M	60	3811:a09a0dd5fe60ccbe	0	0-23	under
+M	61	2767:b569e83845bf451d	0	33,37,44-45	under
+M	62	3811:a09a0dd5fe60ccbe	0	0,2-3,6,16,18-19,22	under
+M	64	3811:a09a0dd5fe60ccbe	0	0-7,17,20-21,23	under
+M	65	3583:0fe2fee19691b1ef	0	0-8,10-11,14,16-32,34-55	under
+M	66	3811:a09a0dd5fe60ccbe	0	0-7,9,12-13,15-23	under
+M	67	2767:b569e83845bf451d	0	1,4-5,7-32,34-47	under
+M	68	2767:b569e83845bf451d	0	13,45,47	under
+M	69	3811:1f7d63678300eb66	0	13	under
+M	71	3811:1f7d63678300eb66	0	0-7,16,18-19,22	under
+M	72	3811:1f7d63678300eb66	0	1,4-5,7,17,20-21,23	under
+M	73	3811:a09a0dd5fe60ccbe	0	1,4-5,7,17,20-21,23	under
+M	74	2767:b569e83845bf451d	0	8-15	under
+M	75	2767:b569e83845bf451d	0	0,2-3,6,8-12,14-32,34-47	under
+M	76	3811:1f7d63678300eb66	0	0-8,10-11,14,16,18-19,22	under
+M	77	6963:c9ec582bb3302318	0	32-127	under
+M	80	2767:b569e83845bf451d	0	29,39,46	under
+M	81	2767:b569e83845bf451d	0	25,31,34,44	under
+M	82	2767:b569e83845bf451d	0	2-6,32,37,40,47	under
+M	83	2767:b569e83845bf451d	0	18,25,34,37	under

@@ -1,0 +1,9 @@
+// Project Loki ? Renewal, "faster progression" placeholder rates (5x); change here.
+base_exp_rate: 500
+job_exp_rate: 500
+
+// Project Loki (patched server): natural HP/SP recovery per tick is multiplied by this while sitting
+loki_sit_regen_rate: 25
+
+// Loki Host: area_size (default ViewRadius 60)
+area_size: 60

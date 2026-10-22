@@ -1,0 +1,56 @@
+{
+    "clientRoot": "C:\\Ragnarok Online",
+    "grfs": [
+        "data.grf"
+    ],
+    "startMap": "prontera",
+    "loginHost": "127.0.0.1",
+    "loginPort": 7900,
+    "username": "",
+    "password": "",
+    "charName": "",
+    "debugAutoWalk": false,
+    "startupCommands": [],
+    "bgmOverrides": [
+        {
+            "map": "prontera",
+            "file": "bgm/prontera_classic.ogg"
+        },
+        {
+            "map": "prt_in",
+            "file": "bgm/prontera_classic.ogg"
+        }
+    ],
+    "textLanguage": "en",
+    "textPack": "textpack",
+    "servers": [
+        {
+            "name": "Loki Host (rAthena + VR Relay)",
+            "host": "127.0.0.1",
+            "port": 7900,
+            "kind": "rathena",
+            "database": "loki",
+            "scheme": "",
+            "presencePort": 7903
+        },
+        {
+            "name": "rAthena (Standard Local)",
+            "host": "127.0.0.1",
+            "port": 6900,
+            "kind": "rathena",
+            "database": "loki",
+            "scheme": "",
+            "presencePort": 0
+        },
+        {
+            "name": "SpacetimeDB (Local)",
+            "host": "127.0.0.1",
+            "port": 3000,
+            "kind": "spacetimedb",
+            "database": "loki",
+            "scheme": "ws",
+            "presencePort": 0
+        }
+    ],
+    "hashedLogin": true
+}

@@ -1,0 +1,698 @@
+# Client wave 22 (w22tree), point 64: the element(s) of the damage each skill can inflict (the skill tree's Element filter). Made by
+# client/tools/w22/build_skill_tags.py from rAthena (e985006): db/re/skill_db.yml, src/map/battle.cpp, status.cpp, skills/**.
+# Do not edit: change the rules and rebuild. Read by Game/SkillElements.cs. Loki's own data: skill ids, rAthena's constants.
+#
+# E rows: a skill.  E <tab> id <tab> rAthena constant <tab> elements <tab> why (one per element)
+# A skill without a row inflicts no damage of its own (a buff, a heal, a passive ...).
+#
+# THE RULES (battle.cpp battle_get_weapon_element / battle_get_magic_element / battle_get_misc_element, 3460-3545):
+#   which skills      the ones that attack (the rule of skill_tags.txt: Type Weapon / Magic / Misc and it deals damage), and the ones
+#                     whose sub-skills do: skill_db rows named <skill>_<part> that are in no job tree deal that skill's damage
+#                     (WL_CHAINLIGHTNING_ATK); a skill with sub-skills and no Element of its own: only the sub-skills count
+#   Element: a name   that element (a list per level: every level's)
+#   no Element        Neutral (skill.cpp:15022-15024)
+#   Element: Weapon   "Weapon": the weapon's element now; a bow's or a gun's ammunition and an endow go over it (battle.cpp:3468-3488,
+#                     magic 3506-3511). A Misc attack: Neutral (3533-3536)
+#   Element: Endowed  "Weapon" as well: the element of the endow on the user, Neutral without one (3489-3490, 3513-3514;
+#                     status.cpp status_calc_attack_element). A Misc attack: Neutral
+#   Element: Random   every element (3491-3492; only NPC_RANDOMATTACK)
+#   its class         what its own modifyElement sets (src/map/skills/**) is added (a state of its user: Dragon Breath with Giant
+#                     Growth); set without a condition, or "for the damage" (Shield Boomerang), it replaces the row's; the
+#                     ammunition's element is "Weapon"; a line for monsters only is left out (Spiral Pierce)
+#   an endow          a skill that deals no damage and gives a status that status_calc_attack_element turns into the weapon's element
+#                     (Endow Blaze, Aspersio, Enchant Poison, Mild Wind): that element (FLAGGED: ENDOWS_COUNT in the tool)
+E	5	SM_BASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	7	SM_MAGNUM	Fire	Fire: skill_db
+E	11	MG_NAPALMBEAT	Ghost	Ghost: skill_db
+E	13	MG_SOULSTRIKE	Ghost	Ghost: skill_db
+E	14	MG_COLDBOLT	Water	Water: skill_db
+E	15	MG_FROSTDIVER	Water	Water: skill_db
+E	17	MG_FIREBALL	Fire	Fire: skill_db
+E	18	MG_FIREWALL	Fire	Fire: skill_db
+E	19	MG_FIREBOLT	Fire	Fire: skill_db
+E	20	MG_LIGHTNINGBOLT	Wind	Wind: skill_db
+E	21	MG_THUNDERSTORM	Wind	Wind: skill_db
+E	24	AL_RUWACH	Holy	Holy: skill_db
+E	42	MC_MAMMONITE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	46	AC_DOUBLE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	47	AC_SHOWER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	52	TF_POISON	Poison	Poison: skill_db
+E	56	KN_PIERCE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	57	KN_BRANDISHSPEAR	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	58	KN_SPEARSTAB	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	59	KN_SPEARBOOMERANG	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	61	KN_AUTOCOUNTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	62	KN_BOWLINGBASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	68	PR_ASPERSIO	Holy	Holy: gives it to the weapon (Aspersio, status.cpp:8856)
+E	69	PR_BENEDICTIO	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	77	PR_TURNUNDEAD	Holy	Holy: skill_db
+E	79	PR_MAGNUS	Holy	Holy: skill_db
+E	80	WZ_FIREPILLAR	Fire	Fire: skill_db
+E	81	WZ_SIGHTRASHER	Fire	Fire: skill_db
+E	83	WZ_METEOR	Fire	Fire: skill_db
+E	84	WZ_JUPITEL	Wind	Wind: skill_db
+E	85	WZ_VERMILION	Wind	Wind: skill_db
+E	86	WZ_WATERBALL	Water	Water: skill_db
+E	88	WZ_FROSTNOVA	Water	Water: skill_db
+E	89	WZ_STORMGUST	Water	Water: skill_db
+E	90	WZ_EARTHSPIKE	Earth	Earth: skill_db
+E	91	WZ_HEAVENDRIVE	Earth	Earth: skill_db
+E	116	HT_LANDMINE	Earth	Earth: skill_db
+E	121	HT_FREEZINGTRAP	Water	Water: skill_db
+E	122	HT_BLASTMINE	Wind	Wind: skill_db
+E	123	HT_CLAYMORETRAP	Fire	Fire: skill_db
+E	129	HT_BLITZBEAT	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	136	AS_SONICBLOW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	137	AS_GRIMTOOTH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	138	AS_ENCHANTPOISON	Poison	Poison: gives it to the weapon (Encpoison, status.cpp:8854)
+E	139	AS_POISONREACT	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	141	AS_SPLASHER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	148	AC_CHARGEARROW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	149	TF_SPRINKLESAND	Earth	Earth: skill_db
+E	152	TF_THROWSTONE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	153	MC_CARTREVOLUTION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	156	AL_HOLYLIGHT	Holy	Holy: skill_db
+E	158	NPC_PIERCINGATT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	159	NPC_MENTALBREAKER	Ghost	Ghost: skill_db
+E	160	NPC_RANGEATTACK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	170	NPC_CRITICALSLASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	171	NPC_COMBOATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	172	NPC_GUIDEDATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	173	NPC_SELFDESTRUCTION	Fire	Fire: skill_db
+E	174	NPC_SPLASHATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	176	NPC_POISON	Poison,Weapon	Poison: by NPC_POISON_BUSTER: skill_db; Weapon: the weapon's (battle.cpp:3468)
+E	177	NPC_BLINDATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	178	NPC_SILENCEATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	179	NPC_STUNATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	180	NPC_PETRIFYATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	181	NPC_CURSEATTACK	Dark	Dark: skill_db
+E	182	NPC_SLEEPATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	183	NPC_RANDOMATTACK	Neutral,Water,Earth,Fire,Wind,Poison,Holy,Dark,Ghost,Undead	Neutral: a random one (battle.cpp:3491); Water: a random one (battle.cpp:3491); Earth: a random one (battle.cpp:3491); Fire: a random one (battle.cpp:3491); Wind: a random one (battle.cpp:3491); Poison: a random one (battle.cpp:3491); Holy: a random one (battle.cpp:3491); Dark: a random one (battle.cpp:3491); Ghost: a random one (battle.cpp:3491); Undead: a random one (battle.cpp:3491)
+E	184	NPC_WATERATTACK	Water	Water: skill_db
+E	185	NPC_GROUNDATTACK	Earth	Earth: skill_db
+E	186	NPC_FIREATTACK	Fire	Fire: skill_db
+E	187	NPC_WINDATTACK	Wind	Wind: skill_db
+E	188	NPC_POISONATTACK	Poison	Poison: skill_db
+E	189	NPC_HOLYATTACK	Holy	Holy: skill_db
+E	190	NPC_DARKNESSATTACK	Dark	Dark: skill_db
+E	191	NPC_TELEKINESISATTACK	Ghost	Ghost: skill_db
+E	192	NPC_MAGICALATTACK	Weapon	Weapon: the weapon's (battle.cpp:3506)
+E	195	NPC_SMOKING	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	199	NPC_BLOODDRAIN	Dark	Dark: skill_db
+E	200	NPC_ENERGYDRAIN	Dark	Dark: skill_db
+E	202	NPC_DARKBREATH	Dark	Dark: skill_db
+E	212	RG_BACKSTAP	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	214	RG_RAID	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	219	RG_INTIMIDATE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	229	AM_DEMONSTRATION	Fire	Fire: skill_db
+E	230	AM_ACIDTERROR	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	250	CR_SHIELDCHARGE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	251	CR_SHIELDBOOMERANG	Neutral	Neutral: always, by its class (skills/swordman/shieldboomerang.cpp)
+E	253	CR_HOLYCROSS	Holy	Holy: skill_db
+E	254	CR_GRANDCROSS	Holy	Holy: skill_db
+E	266	MO_INVESTIGATE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	267	MO_FINGEROFFENSIVE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	271	MO_EXTREMITYFIST	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	272	MO_CHAINCOMBO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	273	MO_COMBOFINISH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	280	SA_FLAMELAUNCHER	Fire	Fire: gives it to the weapon (Fireweapon, status.cpp:8848)
+E	281	SA_FROSTWEAPON	Water	Water: gives it to the weapon (Waterweapon, status.cpp:8842)
+E	282	SA_LIGHTNINGLOADER	Wind	Wind: gives it to the weapon (Windweapon, status.cpp:8851)
+E	283	SA_SEISMICWEAPON	Earth	Earth: gives it to the weapon (Earthweapon, status.cpp:8845)
+E	301	SA_INSTANTDEATH	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	303	SA_COMA	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	316	BA_MUSICALSTRIKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	317	BA_DISSONANCE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	324	DC_THROWARROW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	337	ITM_TOMAHAWK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	338	NPC_DARKCROSS	Dark	Dark: skill_db
+E	339	NPC_GRANDDARKNESS	Dark	Dark: skill_db
+E	340	NPC_DARKSTRIKE	Dark	Dark: skill_db
+E	341	NPC_DARKTHUNDER	Dark	Dark: skill_db
+E	344	NPC_ARMORBRAKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	345	NPC_HELMBRAKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	346	NPC_SHIELDBRAKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	347	NPC_UNDEADATTACK	Undead	Undead: skill_db
+E	348	NPC_CHANGEUNDEAD	Undead	Undead: skill_db
+E	365	HW_MAGICCRASHER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	367	PA_PRESSURE	Holy	Holy: skill_db
+E	368	PA_SACRIFICE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	370	CH_PALMSTRIKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	371	CH_TIGERFIST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	372	CH_CHAINCRUSH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	375	PF_SOULBURN	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	379	ASC_BREAKER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	381	SN_FALCONASSAULT	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	382	SN_SHARPSHOOTING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	394	CG_ARROWVULCAN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	397	LK_SPIRALPIERCE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	398	LK_HEADCRUSH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	399	LK_JOINTBEAT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	400	HW_NAPALMVULCAN	Ghost	Ghost: skill_db
+E	406	ASC_METEORASSAULT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	413	TK_STORMKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	415	TK_DOWNKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	417	TK_TURNKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	419	TK_COUNTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	421	TK_JUMPKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	425	TK_SEVENWIND	Water,Earth,Fire,Wind,Holy,Dark,Ghost	Water: gives it to the weapon (Waterweapon, status.cpp:8842); Earth: gives it to the weapon (Earthweapon, status.cpp:8845); Fire: gives it to the weapon (Fireweapon, status.cpp:8848); Wind: gives it to the weapon (Windweapon, status.cpp:8851); Holy: gives it to the weapon (Aspersio, status.cpp:8856); Dark: gives it to the weapon (Shadowweapon, status.cpp:8858); Ghost: gives it to the weapon (Ghostweapon, status.cpp:8860)
+E	467	SL_STIN	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	468	SL_STUN	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	469	SL_SMA	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	480	PA_SHIELDCHAIN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	484	HW_GRAVITATION	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	485	WS_CARTTERMINATION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	490	CR_ACIDDEMONSTRATION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	499	HT_POWER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	501	GS_FLING	Neutral	Neutral: a Misc attack does not take the weapon's (battle.cpp:3533)
+E	502	GS_TRIPLEACTION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	503	GS_BULLSEYE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	512	GS_TRACKING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	513	GS_DISARM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	514	GS_PIERCINGSHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	515	GS_RAPIDSHOWER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	516	GS_DESPERADO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	518	GS_DUST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	519	GS_FULLBUSTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	520	GS_SPREADATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	521	GS_GROUNDDRIFT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	523	NJ_SYURIKEN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	524	NJ_KUNAI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	525	NJ_HUUMA	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	526	NJ_ZENYNAGE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	527	NJ_TATAMIGAESHI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	528	NJ_KASUMIKIRI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	530	NJ_KIRIKAGE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	534	NJ_KOUENKA	Fire	Fire: skill_db
+E	535	NJ_KAENSIN	Fire	Fire: skill_db
+E	536	NJ_BAKUENRYU	Fire	Fire: skill_db
+E	537	NJ_HYOUSENSOU	Water	Water: skill_db
+E	539	NJ_HYOUSYOURAKU	Water	Water: skill_db
+E	540	NJ_HUUJIN	Wind	Wind: skill_db
+E	541	NJ_RAIGEKISAI	Wind	Wind: skill_db
+E	542	NJ_KAMAITACHI	Wind	Wind: skill_db
+E	544	NJ_ISSEN	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	653	NPC_EARTHQUAKE	Neutral	Neutral: always, by its class (skills/npc/earthquake.cpp)
+E	654	NPC_FIREBREATH	Fire	Fire: skill_db
+E	655	NPC_ICEBREATH	Water	Water: skill_db
+E	656	NPC_THUNDERBREATH	Wind	Wind: skill_db
+E	657	NPC_ACIDBREATH	Poison	Poison: skill_db
+E	658	NPC_DARKNESSBREATH	Dark	Dark: skill_db
+E	660	NPC_BLEEDING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	661	NPC_PULSESTRIKE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	662	NPC_HELLJUDGEMENT	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	673	NPC_CRITICALWOUND	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	679	NPC_VAMPIRE_GIFT	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	706	NPC_VENOMFOG	Poison	Poison: skill_db
+E	708	NPC_COMET	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	709	NPC_ICEMINE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	711	NPC_FLAMECROSS	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	712	NPC_PULSESTRIKE2	Dark	Dark: skill_db
+E	713	NPC_DANCINGBLADE	Neutral	Neutral: by NPC_DANCINGBLADE_ATK: no Element in skill_db (skill.cpp:15022)
+E	714	NPC_DANCINGBLADE_ATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	715	NPC_DARKPIERCING	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	716	NPC_MAXPAIN	Neutral	Neutral: by NPC_MAXPAIN_ATK: no Element in skill_db (skill.cpp:15022)
+E	717	NPC_MAXPAIN_ATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	719	NPC_HELLBURNING	Fire	Fire: skill_db
+E	720	NPC_JACKFROST	Water	Water: skill_db
+E	722	NPC_WIDESUCK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	723	NPC_STORMGUST2	Water	Water: skill_db
+E	724	NPC_FIRESTORM	Fire	Fire: skill_db
+E	725	NPC_REVERBERATION	Neutral	Neutral: by NPC_REVERBERATION_ATK: no Element in skill_db (skill.cpp:15022)
+E	726	NPC_REVERBERATION_ATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	728	NPC_ARROWSTORM	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	731	NPC_DRAGONBREATH	Water,Fire	Water: skill_db; Fire: skill_db
+E	732	NPC_FATALMENACE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	733	NPC_MAGMA_ERUPTION	Neutral,Fire	Neutral: by NPC_MAGMA_ERUPTION_DOTDAMAGE: no Element in skill_db (skill.cpp:15022); Fire: skill_db
+E	734	NPC_MAGMA_ERUPTION_DOTDAMAGE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	736	NPC_PSYCHIC_WAVE	Water,Earth,Fire,Wind,Poison	Water: the summoned spirit's (skills/npc/npcpsychicwave.cpp:18; status.cpp:12203-12239, 12936-12948); Earth: the summoned spirit's (skills/npc/npcpsychicwave.cpp:18; status.cpp:12203-12239, 12936-12948); Fire: skill_db; Wind: the summoned spirit's (skills/npc/npcpsychicwave.cpp:18; status.cpp:12203-12239, 12936-12948); Poison: the summoned spirit's (skills/npc/npcpsychicwave.cpp:18; status.cpp:12203-12239, 12936-12948)
+E	737	NPC_RAYOFGENESIS	Holy	Holy: skill_db
+E	739	NPC_CLOUD_KILL	Poison	Poison: skill_db
+E	740	NPC_IGNITIONBREAK	Fire	Fire: skill_db
+E	741	NPC_PHANTOMTHRUST	Neutral	Neutral: skill_db
+E	742	NPC_POISON_BUSTER	Poison	Poison: skill_db
+E	744	NPC_ELECTRICWALK	Wind	Wind: skill_db
+E	745	NPC_FIREWALK	Fire	Fire: skill_db
+E	749	NPC_WIDECRITICALWOUND	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	764	NPC_BLEEDING2	Neutral	Neutral: skill_db
+E	765	NPC_ICEBREATH2	Water	Water: skill_db
+E	768	NPC_HELLJUDGEMENT2	Neutral	Neutral: skill_db
+E	769	NPC_RAINOFMETEOR	Fire	Fire: skill_db
+E	770	NPC_GROUNDDRIVE	Earth	Earth: skill_db
+E	780	NPC_CANE_OF_EVIL_EYE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	783	NPC_KILLING_AURA	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	1001	KN_CHARGEATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	1004	AS_VENOMKNIFE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	1006	WZ_SIGHTBLASTER	Fire	Fire: skill_db
+E	1009	HT_PHANTASMIC	Wind	Wind: skill_db
+E	1016	MO_BALKYOUNG	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2002	RK_SONICWAVE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2004	RK_HUNDREDSPEAR	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2005	RK_WINDCUTTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2006	RK_IGNITIONBREAK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2008	RK_DRAGONBREATH	Fire,Holy,Dark	Fire: skill_db; Holy: in a state of its user (skills/swordman/dragonbreath.cpp); Dark: in a state of its user (skills/swordman/dragonbreath.cpp)
+E	2017	RK_STORMBLAST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2020	RK_PHANTOMTHRUST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2022	GC_CROSSIMPACT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2023	GC_DARKILLUSION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2029	GC_COUNTERSLASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2030	GC_WEAPONCRUSH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2031	GC_VENOMPRESSURE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2034	GC_PHANTOMMENACE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2036	GC_ROLLINGCUTTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2037	GC_CROSSRIPPERSLASHER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2038	AB_JUDEX	Holy	Holy: skill_db
+E	2040	AB_ADORAMUS	Neutral,Holy	Neutral: in a state of its user (skills/acolyte/adoramus.cpp); Holy: skill_db
+E	2054	AB_DUPLELIGHT	Neutral,Weapon	Neutral: by AB_DUPLELIGHT_MAGIC: no Element in skill_db (skill.cpp:15022); Weapon: by AB_DUPLELIGHT_MELEE: the weapon's (battle.cpp:3468)
+E	2055	AB_DUPLELIGHT_MELEE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2056	AB_DUPLELIGHT_MAGIC	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2201	WL_WHITEIMPRISON	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2202	WL_SOULEXPANSION	Ghost	Ghost: skill_db
+E	2203	WL_FROSTMISTY	Water	Water: skill_db
+E	2204	WL_JACKFROST	Water	Water: skill_db
+E	2210	WL_DRAINLIFE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2211	WL_CRIMSONROCK	Fire	Fire: skill_db
+E	2212	WL_HELLINFERNO	Fire,Dark	Fire: skill_db; Dark: in a state of its user (skills/mage/hellinferno.cpp)
+E	2213	WL_COMET	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2214	WL_CHAINLIGHTNING	Wind	Wind: by WL_CHAINLIGHTNING_ATK: skill_db
+E	2215	WL_CHAINLIGHTNING_ATK	Wind	Wind: skill_db
+E	2216	WL_EARTHSTRAIN	Earth	Earth: skill_db
+E	2217	WL_TETRAVORTEX	Water,Earth,Fire,Wind	Water: by WL_TETRAVORTEX_WATER: skill_db; Earth: by WL_TETRAVORTEX_GROUND: skill_db; Fire: by WL_TETRAVORTEX_FIRE: skill_db; Wind: by WL_TETRAVORTEX_WIND: skill_db
+E	2218	WL_TETRAVORTEX_FIRE	Fire	Fire: skill_db
+E	2219	WL_TETRAVORTEX_WATER	Water	Water: skill_db
+E	2220	WL_TETRAVORTEX_WIND	Wind	Wind: skill_db
+E	2221	WL_TETRAVORTEX_GROUND	Earth	Earth: skill_db
+E	2222	WL_SUMMONFB	Fire	Fire: skill_db
+E	2223	WL_SUMMONBL	Wind	Wind: skill_db
+E	2224	WL_SUMMONWB	Water	Water: skill_db
+E	2225	WL_SUMMON_ATK_FIRE	Fire	Fire: skill_db
+E	2226	WL_SUMMON_ATK_WIND	Wind	Wind: skill_db
+E	2227	WL_SUMMON_ATK_WATER	Water	Water: skill_db
+E	2228	WL_SUMMON_ATK_GROUND	Earth	Earth: skill_db
+E	2229	WL_SUMMONSTONE	Earth	Earth: skill_db
+E	2230	WL_RELEASE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2233	RA_ARROWSTORM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2236	RA_AIMEDBOLT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2239	RA_CLUSTERBOMB	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2242	RA_WUGDASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2243	RA_WUGSTRIKE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2244	RA_WUGBITE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2246	RA_SENSITIVEKEEN	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2253	RA_FIRINGTRAP	Fire	Fire: skill_db
+E	2254	RA_ICEBOUNDTRAP	Water	Water: skill_db
+E	2256	NC_BOOSTKNUCKLE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2257	NC_PILEBUNKER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2258	NC_VULCANARM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2259	NC_FLAMELAUNCHER	Fire	Fire: skill_db
+E	2260	NC_COLDSLOWER	Water	Water: skill_db
+E	2261	NC_ARMSCANNON	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2267	NC_SELFDESTRUCTION	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2278	NC_AXEBOOMERANG	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2279	NC_POWERSWING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2280	NC_AXETORNADO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2284	SC_FATALMENACE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2288	SC_TRIANGLESHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2290	SC_INVISIBILITY	Ghost	Ghost: gives it to the weapon (_Invisibility, status.cpp:8860)
+E	2304	SC_FEINTBOMB	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2307	LG_CANNONSPEAR	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2308	LG_BANISHINGPOINT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2310	LG_SHIELDPRESS	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2312	LG_PINPOINTATTACK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2314	LG_RAGEBURST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2317	LG_OVERBRAND	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2320	LG_MOONSLASHER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2321	LG_RAYOFGENESIS	Neutral,Holy	Neutral: in a state of its user (skills/swordman/rayofgenesis.cpp); Holy: skill_db
+E	2323	LG_EARTHDRIVE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2324	LG_HESPERUSLIT	Holy,Weapon	Holy: in a state of its user (skills/swordman/hesperuslit.cpp); Weapon: the weapon's (battle.cpp:3468)
+E	2326	SR_DRAGONCOMBO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2327	SR_SKYNETBLOW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2328	SR_EARTHSHAKER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2329	SR_FALLENEMPIRE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2330	SR_TIGERCANNON	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2332	SR_RAMPAGEBLASTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2333	SR_CRESCENTELBOW	Weapon	Weapon: by SR_CRESCENTELBOW_AUTOSPELL: the weapon's (battle.cpp:3468)
+E	2336	SR_KNUCKLEARROW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2337	SR_WINDMILL	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2342	SR_CRESCENTELBOW_AUTOSPELL	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2343	SR_GATEOFHELL	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2344	SR_GENTLETOUCH_QUIET	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2413	WM_METALICSOUND	Weapon	Weapon: the weapon's (battle.cpp:3506)
+E	2414	WM_REVERBERATION	Neutral,Weapon	Neutral: no Element in skill_db (skill.cpp:15022); Weapon: the ammunition's (skills/archer/reverberation.cpp)
+E	2415	WM_REVERBERATION_MELEE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2416	WM_REVERBERATION_MAGIC	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2418	WM_SEVERE_RAINSTORM	Weapon	Weapon: by WM_SEVERE_RAINSTORM_MELEE: the weapon's (battle.cpp:3468)
+E	2426	WM_GREAT_ECHO	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2443	SO_FIREWALK	Fire	Fire: skill_db
+E	2444	SO_ELECTRICWALK	Wind	Wind: skill_db
+E	2446	SO_EARTHGRAVE	Earth	Earth: skill_db
+E	2447	SO_DIAMONDDUST	Water	Water: skill_db
+E	2448	SO_POISON_BUSTER	Poison	Poison: skill_db
+E	2449	SO_PSYCHIC_WAVE	Neutral,Water,Earth,Fire,Wind,Poison	Neutral: no Element in skill_db (skill.cpp:15022); Water: the summoned spirit's (skills/mage/psychicwave.cpp:36-49; status.cpp:12203-12239, 12936-12948); Earth: the summoned spirit's (skills/mage/psychicwave.cpp:36-49; status.cpp:12203-12239, 12936-12948); Fire: the summoned spirit's (skills/mage/psychicwave.cpp:36-49; status.cpp:12203-12239, 12936-12948); Wind: the summoned spirit's (skills/mage/psychicwave.cpp:36-49; status.cpp:12203-12239, 12936-12948); Poison: the summoned spirit's (skills/mage/psychicwave.cpp:36-49; status.cpp:12203-12239, 12936-12948)
+E	2450	SO_CLOUD_KILL	Poison	Poison: skill_db
+E	2454	SO_VARETYR_SPEAR	Wind	Wind: skill_db
+E	2465	SO_FIRE_INSIGNIA	Fire	Fire: gives it to the weapon (Fire_Insignia, status.cpp:8849)
+E	2466	SO_WATER_INSIGNIA	Water	Water: gives it to the weapon (Water_Insignia, status.cpp:8843)
+E	2467	SO_WIND_INSIGNIA	Wind	Wind: gives it to the weapon (Wind_Insignia, status.cpp:8852)
+E	2468	SO_EARTH_INSIGNIA	Earth	Earth: gives it to the weapon (Earth_Insignia, status.cpp:8846)
+E	2476	GN_CART_TORNADO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2477	GN_CARTCANNON	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2479	GN_THORNS_TRAP	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2481	GN_SPORE_EXPLOSION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2482	GN_WALLOFTHORN	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2483	GN_CRAZYWEED	Weapon	Weapon: by GN_CRAZYWEED_ATK: the weapon's (battle.cpp:3468)
+E	2484	GN_CRAZYWEED_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2485	GN_DEMONIC_FIRE	Fire	Fire: skill_db
+E	2486	GN_FIRE_EXPANSION	Neutral	Neutral: by GN_FIRE_EXPANSION_ACID: no Element in skill_db (skill.cpp:15022)
+E	2489	GN_FIRE_EXPANSION_ACID	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2490	GN_HELLS_PLANT	Weapon	Weapon: by GN_HELLS_PLANT_ATK: the weapon's (battle.cpp:3468)
+E	2491	GN_HELLS_PLANT_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2493	GN_SLINGITEM	Neutral	Neutral: by GN_SLINGITEM_RANGEMELEEATK: no Element in skill_db (skill.cpp:15022)
+E	2498	GN_SLINGITEM_RANGEMELEEATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2516	WM_SEVERE_RAINSTORM_MELEE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2517	SR_HOWLINGOFLION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2518	SR_RIDEINLIGHTNING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2519	LG_OVERBRAND_BRANDISH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2520	LG_OVERBRAND_PLUSATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2553	RL_MASS_SPIRAL	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2554	RL_BANISHING_BUSTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2555	RL_B_TRAP	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2557	RL_S_STORM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2559	RL_QD_SHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2561	RL_FIREDANCE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2562	RL_H_MINE	Fire,Weapon	Fire: in a state of its user (skills/gunslinger/howlingmine.cpp); Weapon: the weapon's (battle.cpp:3468)
+E	2565	RL_R_TRIP	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2566	RL_D_TAIL	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2567	RL_FIRE_RAIN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2569	RL_AM_BLAST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2570	RL_SLUGSHOT	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2571	RL_HAMMER_OF_GOD	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2572	RL_R_TRIP_PLUSATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2576	SJ_FULLMOONKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2579	SJ_NEWMOONKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2580	SJ_FLASHKICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2581	SJ_STAREMPEROR	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2582	SJ_NOVAEXPLOSING	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	2584	SJ_FALLINGSTAR	Weapon	Weapon: by SJ_FALLINGSTAR_ATK: the weapon's (battle.cpp:3468)
+E	2587	SJ_BOOKOFCREATINGSTAR	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2592	SJ_SOLARBURST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2593	SJ_PROMINENCEKICK	Fire	Fire: always, by its class (skills/taekwon/prominencekick.cpp)
+E	2594	SJ_FALLINGSTAR_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2595	SJ_FALLINGSTAR_ATK2	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	2600	SP_CURSEEXPLOSION	Dark	Dark: skill_db
+E	2602	SP_SPA	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	2603	SP_SHA	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	2604	SP_SWHOO	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	2610	SP_SOULEXPLOSION	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	3004	KO_JYUMONJIKIRI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	3005	KO_SETSUDAN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	3006	KO_BAKURETSU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	3007	KO_HAPPOKUNAI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	3008	KO_MUCHANAGE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	3009	KO_HUUMARANKA	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	3010	KO_MAKIBISHI	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	3019	KO_KAIHOU	Neutral,Water,Earth,Fire,Wind	Neutral: no Element in skill_db (skill.cpp:15022); Water: the spirit charms' (skills/ninja/releaseninjaspell.cpp:29-34; map.hpp:429-433); Earth: the spirit charms' (skills/ninja/releaseninjaspell.cpp:29-34; map.hpp:429-433); Fire: the spirit charms' (skills/ninja/releaseninjaspell.cpp:29-34; map.hpp:429-433); Wind: the spirit charms' (skills/ninja/releaseninjaspell.cpp:29-34; map.hpp:429-433)
+E	3020	KO_ZENKAI	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	3027	OB_OBOROGENSOU	Neutral	Neutral: by OB_OBOROGENSOU_TRANSITION_ATK: no Element in skill_db (skill.cpp:15022)
+E	3028	OB_OBOROGENSOU_TRANSITION_ATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5001	GC_DARKCROW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5003	GN_ILLUSIONDOPING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5004	RK_DRAGONBREATH_WATER	Neutral,Water,Ghost	Neutral: in a state of its user (skills/swordman/dragonbreath.cpp); Water: skill_db; Ghost: in a state of its user (skills/swordman/dragonbreath.cpp)
+E	5006	NC_MAGMA_ERUPTION	Neutral,Weapon	Neutral: by NC_MAGMA_ERUPTION_DOTDAMAGE: no Element in skill_db (skill.cpp:15022); Weapon: the weapon's (battle.cpp:3468)
+E	5015	NC_MAGMA_ERUPTION_DOTDAMAGE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5019	SU_BITE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5021	SU_SCRATCH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5026	SU_SV_STEMSPEAR	Water,Earth,Fire,Wind,Ghost	Water: skill_db; Earth: skill_db; Fire: skill_db; Wind: skill_db; Ghost: skill_db
+E	5028	SU_CN_METEOR	Neutral,Water,Earth,Fire,Wind,Holy,Dark	Neutral: no Element in skill_db (skill.cpp:15022); Water: in a state of its user (skills/summoner/catnipmeteor.cpp); Earth: in a state of its user (skills/summoner/catnipmeteor.cpp); Fire: in a state of its user (skills/summoner/catnipmeteor.cpp); Wind: in a state of its user (skills/summoner/catnipmeteor.cpp); Holy: in a state of its user (skills/summoner/catnipmeteor.cpp); Dark: in a state of its user (skills/summoner/catnipmeteor.cpp)
+E	5029	SU_SV_ROOTTWIST	Poison	Poison: by SU_SV_ROOTTWIST_ATK: skill_db
+E	5030	SU_SV_ROOTTWIST_ATK	Poison	Poison: skill_db
+E	5032	SU_SCAROFTAROU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5033	SU_PICKYPECK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5034	SU_PICKYPECK_DOUBLE_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5036	SU_LUNATICCARROTBEAT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5042	SU_CN_METEOR2	Neutral,Water,Earth,Fire,Wind,Holy,Dark	Neutral: no Element in skill_db (skill.cpp:15022); Water: in a state of its user (skills/summoner/catnipmeteor.cpp); Earth: in a state of its user (skills/summoner/catnipmeteor.cpp); Fire: in a state of its user (skills/summoner/catnipmeteor.cpp); Wind: in a state of its user (skills/summoner/catnipmeteor.cpp); Holy: in a state of its user (skills/summoner/catnipmeteor.cpp); Dark: in a state of its user (skills/summoner/catnipmeteor.cpp)
+E	5043	SU_LUNATICCARROTBEAT2	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5046	SU_SVG_SPIRIT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5201	DK_SERVANTWEAPON	Weapon	Weapon: by DK_SERVANTWEAPON_ATK: the weapon's (battle.cpp:3468)
+E	5202	DK_SERVANTWEAPON_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5204	DK_SERVANT_W_PHANTOM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5205	DK_SERVANT_W_DEMOL	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5208	DK_HACKANDSLASHER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5209	DK_HACKANDSLASHER_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5210	DK_DRAGONIC_AURA	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5211	DK_MADNESS_CRUSHER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5213	DK_STORMSLASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5214	AG_DEADLY_PROJECTION	Undead	Undead: skill_db
+E	5215	AG_DESTRUCTIVE_HURRICANE	Wind	Wind: skill_db
+E	5216	AG_RAIN_OF_CRYSTAL	Water	Water: skill_db
+E	5217	AG_MYSTERY_ILLUSION	Dark	Dark: skill_db
+E	5218	AG_VIOLENT_QUAKE	Earth	Earth: skill_db
+E	5219	AG_VIOLENT_QUAKE_ATK	Earth	Earth: skill_db
+E	5220	AG_SOUL_VC_STRIKE	Ghost	Ghost: skill_db
+E	5221	AG_STRANTUM_TREMOR	Earth	Earth: skill_db
+E	5222	AG_ALL_BLOOM	Fire	Fire: skill_db
+E	5223	AG_ALL_BLOOM_ATK	Fire	Fire: skill_db
+E	5224	AG_ALL_BLOOM_ATK2	Fire	Fire: skill_db
+E	5225	AG_CRYSTAL_IMPACT	Water	Water: skill_db
+E	5226	AG_CRYSTAL_IMPACT_ATK	Water	Water: skill_db
+E	5227	AG_TORNADO_STORM	Wind	Wind: skill_db
+E	5229	AG_FLORAL_FLARE_ROAD	Fire	Fire: skill_db
+E	5230	AG_ASTRAL_STRIKE	Neutral	Neutral: by AG_ASTRAL_STRIKE_ATK: no Element in skill_db (skill.cpp:15022)
+E	5231	AG_ASTRAL_STRIKE_ATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5233	AG_ROCK_DOWN	Earth	Earth: skill_db
+E	5234	AG_STORM_CANNON	Wind	Wind: skill_db
+E	5235	AG_CRIMSON_ARROW	Fire	Fire: skill_db
+E	5236	AG_CRIMSON_ARROW_ATK	Fire	Fire: skill_db
+E	5237	AG_FROZEN_SLASH	Water	Water: skill_db
+E	5241	IQ_OLEUM_SANCTUM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5243	IQ_MASSIVE_F_BLASTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5244	IQ_EXPOSION_BLASTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5245	IQ_FIRST_BRAND	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5248	IQ_SECOND_FLAME	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5249	IQ_SECOND_FAITH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5250	IQ_SECOND_JUDGEMENT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5251	IQ_THIRD_PUNISH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5252	IQ_THIRD_FLAME_BOMB	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5253	IQ_THIRD_CONSECRATION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5263	IG_GRAND_JUDGEMENT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5264	IG_JUDGEMENT_CROSS	Neutral	Neutral: skill_db
+E	5265	IG_SHIELD_SHOOTING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5266	IG_OVERSLASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5267	IG_CROSS_RAIN	Holy	Holy: skill_db
+E	5273	CD_ARBITRIUM	Holy	Holy: skill_db
+E	5274	CD_ARBITRIUM_ATK	Holy	Holy: skill_db
+E	5277	CD_EFFLIGO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5279	CD_PNEUMATICUS_PROCELLA	Neutral	Neutral: skill_db
+E	5283	CD_PETITIO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5284	CD_FRAMEN	Holy	Holy: skill_db
+E	5286	SHC_DANCING_KNIFE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5287	SHC_SAVAGE_IMPACT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5289	SHC_ETERNAL_SLASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5291	SHC_SHADOW_STAB	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5292	SHC_IMPACT_CRATER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5294	SHC_FATAL_SHADOW_CROW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5295	MT_AXE_STOMP	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5296	MT_RUSH_QUAKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5298	MT_A_MACHINE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5306	AG_DESTRUCTIVE_HURRICANE_CLIMAX	Wind	Wind: skill_db
+E	5307	BO_ACIDIFIED_ZONE_WATER_ATK	Water	Water: skill_db
+E	5308	BO_ACIDIFIED_ZONE_GROUND_ATK	Earth	Earth: skill_db
+E	5309	BO_ACIDIFIED_ZONE_WIND_ATK	Wind	Wind: skill_db
+E	5310	BO_ACIDIFIED_ZONE_FIRE_ATK	Fire	Fire: skill_db
+E	5314	ABC_ABYSS_DAGGER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5315	ABC_UNLUCKY_RUSH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5316	ABC_CHAIN_REACTION_SHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5317	ABC_FROM_THE_ABYSS	Neutral	Neutral: by ABC_FROM_THE_ABYSS_ATK: no Element in skill_db (skill.cpp:15022)
+E	5319	ABC_ABYSS_STRIKE	Fire	Fire: skill_db
+E	5320	ABC_DEFT_STAB	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5321	ABC_ABYSS_SQUARE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5322	ABC_FRENZY_SHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5326	WH_HAWKRUSH	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5329	WH_HAWKBOOMERANG	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5330	WH_GALESTORM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5331	WH_DEEPBLINDTRAP	Dark	Dark: skill_db
+E	5332	WH_SOLIDTRAP	Earth	Earth: skill_db
+E	5333	WH_SWIFTTRAP	Wind	Wind: skill_db
+E	5334	WH_CRESCIVE_BOLT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5335	WH_FLAMETRAP	Fire	Fire: skill_db
+E	5340	BO_ACIDIFIED_ZONE_WATER	Water	Water: skill_db
+E	5341	BO_ACIDIFIED_ZONE_GROUND	Earth	Earth: skill_db
+E	5342	BO_ACIDIFIED_ZONE_WIND	Wind	Wind: skill_db
+E	5343	BO_ACIDIFIED_ZONE_FIRE	Fire	Fire: skill_db
+E	5353	TR_ROSEBLOSSOM	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5354	TR_ROSEBLOSSOM_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5355	TR_RHYTHMSHOOTING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5356	TR_METALIC_FURY	Weapon	Weapon: the weapon's (battle.cpp:3506)
+E	5357	TR_SOUNDBLEND	Weapon	Weapon: the weapon's (battle.cpp:3506)
+E	5369	EM_DIAMOND_STORM	Water	Water: skill_db
+E	5370	EM_LIGHTNING_LAND	Wind	Wind: skill_db
+E	5371	EM_VENOM_SWAMP	Poison	Poison: skill_db
+E	5372	EM_CONFLAGRATION	Fire	Fire: skill_db
+E	5373	EM_TERRA_DRIVE	Earth	Earth: skill_db
+E	5380	EM_ELEMENTAL_BUSTER	Water,Earth,Fire,Wind,Poison	Water: by EM_ELEMENTAL_BUSTER_WATER: skill_db; Earth: by EM_ELEMENTAL_BUSTER_GROUND: skill_db; Fire: by EM_ELEMENTAL_BUSTER_FIRE: skill_db; Wind: by EM_ELEMENTAL_BUSTER_WIND: skill_db; Poison: by EM_ELEMENTAL_BUSTER_POISON: skill_db
+E	5382	ABC_CHAIN_REACTION_SHOT_ATK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5383	ABC_FROM_THE_ABYSS_ATK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	5389	EM_ELEMENTAL_BUSTER_FIRE	Fire	Fire: skill_db
+E	5390	EM_ELEMENTAL_BUSTER_WATER	Water	Water: skill_db
+E	5391	EM_ELEMENTAL_BUSTER_WIND	Wind	Wind: skill_db
+E	5392	EM_ELEMENTAL_BUSTER_GROUND	Earth	Earth: skill_db
+E	5393	EM_ELEMENTAL_BUSTER_POISON	Poison	Poison: skill_db
+E	5405	NW_THE_VIGILANTE_AT_NIGHT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5406	NW_ONLY_ONE_BULLET	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5407	NW_SPIRAL_SHOOTING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5408	NW_MAGAZINE_FOR_ONE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5409	NW_WILD_FIRE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5410	NW_BASIC_GRENADE	Water,Earth,Fire,Wind,Holy,Dark,Weapon	Water: in a state of its user (skills/gunslinger/basicgrenade.cpp); Earth: in a state of its user (skills/gunslinger/basicgrenade.cpp); Fire: in a state of its user (skills/gunslinger/basicgrenade.cpp); Wind: in a state of its user (skills/gunslinger/basicgrenade.cpp); Holy: in a state of its user (skills/gunslinger/basicgrenade.cpp); Dark: in a state of its user (skills/gunslinger/basicgrenade.cpp); Weapon: the weapon's (battle.cpp:3468)
+E	5411	NW_HASTY_FIRE_IN_THE_HOLE	Water,Earth,Fire,Wind,Holy,Dark,Weapon	Water: in a state of its user (skills/gunslinger/hastyfireinthehole.cpp); Earth: in a state of its user (skills/gunslinger/hastyfireinthehole.cpp); Fire: in a state of its user (skills/gunslinger/hastyfireinthehole.cpp); Wind: in a state of its user (skills/gunslinger/hastyfireinthehole.cpp); Holy: in a state of its user (skills/gunslinger/hastyfireinthehole.cpp); Dark: in a state of its user (skills/gunslinger/hastyfireinthehole.cpp); Weapon: the weapon's (battle.cpp:3468)
+E	5412	NW_GRENADES_DROPPING	Water,Earth,Fire,Wind,Holy,Dark,Weapon	Water: in a state of its user (skills/gunslinger/grenadesdropping.cpp); Earth: in a state of its user (skills/gunslinger/grenadesdropping.cpp); Fire: in a state of its user (skills/gunslinger/grenadesdropping.cpp); Wind: in a state of its user (skills/gunslinger/grenadesdropping.cpp); Holy: in a state of its user (skills/gunslinger/grenadesdropping.cpp); Dark: in a state of its user (skills/gunslinger/grenadesdropping.cpp); Weapon: the weapon's (battle.cpp:3468)
+E	5415	NW_MISSION_BOMBARD	Water,Earth,Fire,Wind,Holy,Dark,Weapon	Water: in a state of its user (skills/gunslinger/missionbombard.cpp); Earth: in a state of its user (skills/gunslinger/missionbombard.cpp); Fire: in a state of its user (skills/gunslinger/missionbombard.cpp); Wind: in a state of its user (skills/gunslinger/missionbombard.cpp); Holy: in a state of its user (skills/gunslinger/missionbombard.cpp); Dark: in a state of its user (skills/gunslinger/missionbombard.cpp); Weapon: the weapon's (battle.cpp:3468)
+E	5424	SOA_TALISMAN_OF_SOUL_STEALING	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5425	SOA_EXORCISM_OF_MALICIOUS_SOUL	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5426	SOA_TALISMAN_OF_BLUE_DRAGON	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5427	SOA_TALISMAN_OF_WHITE_TIGER	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5428	SOA_TALISMAN_OF_RED_PHOENIX	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5429	SOA_TALISMAN_OF_BLACK_TORTOISE	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5430	SOA_TALISMAN_OF_FOUR_BEARING_GOD	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5431	SOA_CIRCLE_OF_DIRECTIONS_AND_ELEMENTALS	Weapon	Weapon: the endow's, Neutral without one (battle.cpp:3513)
+E	5435	SH_CHUL_HO_SONIC_CLAW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5436	SH_HOWLING_OF_CHUL_HO	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5437	SH_HOGOGONG_STRIKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5445	SH_HYUN_ROKS_BREEZE	Neutral,Water,Earth,Fire,Wind,Holy,Dark	Neutral: no Element in skill_db (skill.cpp:15022); Water: in a state of its user (skills/summoner/hyunrokbreeze.cpp); Earth: in a state of its user (skills/summoner/hyunrokbreeze.cpp); Fire: in a state of its user (skills/summoner/hyunrokbreeze.cpp); Wind: in a state of its user (skills/summoner/hyunrokbreeze.cpp); Holy: in a state of its user (skills/summoner/hyunrokbreeze.cpp); Dark: in a state of its user (skills/summoner/hyunrokbreeze.cpp)
+E	5446	SH_HYUN_ROK_CANNON	Neutral,Water,Earth,Fire,Wind,Holy,Dark	Neutral: no Element in skill_db (skill.cpp:15022); Water: in a state of its user (skills/summoner/hyunrokcannon.cpp); Earth: in a state of its user (skills/summoner/hyunrokcannon.cpp); Fire: in a state of its user (skills/summoner/hyunrokcannon.cpp); Wind: in a state of its user (skills/summoner/hyunrokcannon.cpp); Holy: in a state of its user (skills/summoner/hyunrokcannon.cpp); Dark: in a state of its user (skills/summoner/hyunrokcannon.cpp)
+E	5451	HN_DOUBLEBOWLINGBASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5452	HN_MEGA_SONIC_BLOW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5453	HN_SHIELD_CHAIN_RUSH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5454	HN_SPIRAL_PIERCE_MAX	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5455	HN_METEOR_STORM_BUSTER	Fire	Fire: skill_db
+E	5456	HN_JUPITEL_THUNDER_STORM	Wind	Wind: skill_db
+E	5457	HN_JACK_FROST_NOVA	Water	Water: skill_db
+E	5458	HN_HELLS_DRIVE	Earth	Earth: skill_db
+E	5459	HN_GROUND_GRAVITATION	Neutral	Neutral: skill_db
+E	5460	HN_NAPALM_VULCAN_STRIKE	Ghost	Ghost: skill_db
+E	5465	SKE_RISING_SUN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5466	SKE_NOON_BLAST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5467	SKE_SUNSET_BLAST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5468	SKE_RISING_MOON	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5469	SKE_MIDNIGHT_KICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5470	SKE_DAWN_BREAK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5471	SKE_TWINKLING_GALAXY	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5472	SKE_STAR_BURST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5473	SKE_STAR_CANNON	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5474	SKE_ALL_IN_THE_SKY	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5476	SS_TOKEDASU	Dark	Dark: skill_db
+E	5477	SS_SHIMIRU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5480	SS_KAGEGARI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5481	SS_KAGENOMAI	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5482	SS_KAGEGISSEN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5483	SS_FUUMASHOUAKU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5484	SS_FUUMAKOUCHIKU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5485	SS_KUNAIWAIKYOKU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5486	SS_KUNAIKAITEN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5487	SS_KUNAIKUSSETSU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5488	SS_SEKIENHOU	Fire	Fire: skill_db
+E	5489	SS_REIKETSUHOU	Water	Water: skill_db
+E	5490	SS_RAIDENPOU	Wind	Wind: skill_db
+E	5491	SS_KINRYUUHOU	Earth	Earth: skill_db
+E	5492	SS_ANTENPOU	Dark	Dark: skill_db
+E	5493	SS_KAGEAKUMU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5494	SS_HITOUAKUMU	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5495	SS_ANKOKURYUUAKUMU	Fire,Dark	Fire: in a state of its user (skills/ninja/darkdragonnightmare.cpp); Dark: skill_db
+E	5500	NW_WILD_SHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5501	NW_MIDNIGHT_FALLEN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5502	SKE_SKY_SUN	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5503	SKE_SKY_MOON	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5504	SKE_STAR_LIGHT_KICK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5506	SH_CHUL_HO_BATTERING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	5507	SH_HYUN_ROK_SPIRIT_POWER	Neutral,Water,Earth,Fire,Wind,Holy,Dark	Neutral: skill_db; Water: in a state of its user (skills/summoner/hyunrokspiritpower.cpp); Earth: in a state of its user (skills/summoner/hyunrokspiritpower.cpp); Fire: in a state of its user (skills/summoner/hyunrokspiritpower.cpp); Wind: in a state of its user (skills/summoner/hyunrokspiritpower.cpp); Holy: in a state of its user (skills/summoner/hyunrokspiritpower.cpp); Dark: in a state of its user (skills/summoner/hyunrokspiritpower.cpp)
+E	6001	DK_DRAGONIC_BREATH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6002	MT_SPARK_BLASTER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6003	MT_TRIPLE_LASER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6004	MT_MIGHTY_SMASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6005	BO_EXPLOSIVE_POWDER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6006	BO_MAYHEMIC_THORNS	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6502	DK_DRAGONIC_PIERCE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6503	IG_RADIANT_SPEAR	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6504	IG_IMPERIAL_CROSS	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6505	IG_IMPERIAL_PRESSURE	Neutral,Holy	Neutral: no Element in skill_db (skill.cpp:15022); Holy: in a state of its user (skills/swordman/imperialpressure.cpp)
+E	6506	MT_RUSH_STRIKE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6507	MT_POWERFUL_SWING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6508	MT_ENERGY_CANNONADE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6509	BO_MYSTERY_POWDER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6510	BO_DUST_EXPLOSION	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6511	SHC_CROSS_SLASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6512	ABC_HIT_AND_SLIDING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6513	ABC_CHASING_BREAK	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6514	ABC_CHASING_SHOT	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6515	ABC_ABYSS_FLAME	Fire	Fire: skill_db
+E	6517	EM_PSYCHIC_STREAM	Neutral	Neutral: skill_db
+E	6518	CD_DIVINUS_FLOS	Neutral,Holy	Neutral: in a state of its user (skills/acolyte/divinusflos.cpp); Holy: skill_db
+E	6519	IQ_BLAZING_FLAME_BLAST	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	6520	WH_WILD_WALK	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	6521	TR_RHYTHMICAL_WAVE	Neutral,Weapon	Neutral: no Element in skill_db (skill.cpp:15022); Weapon: the ammunition's (skills/archer/rhythmicalwave.cpp)
+E	6522	ABC_ABYSS_FLAME_ATK	Fire	Fire: skill_db
+E	8009	HFLI_MOON	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8012	HFLI_SBR44	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8013	HVAN_CAPRICE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8016	HVAN_EXPLOSION	Neutral	Neutral: skill_db
+E	8019	MH_NEEDLE_OF_PARALYZE	Poison	Poison: skill_db
+E	8020	MH_POISON_MIST	Poison	Poison: skill_db
+E	8024	MH_ERASER_CUTTER	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8025	MH_XENO_SLASHER	Wind	Wind: skill_db
+E	8028	MH_SONIC_CRAW	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8029	MH_SILVERVEIN_RUSH	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8030	MH_MIDNIGHT_FRENZY	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8031	MH_STAHL_HORN	Neutral,Holy	Neutral: no Element in skill_db (skill.cpp:15022); Holy: in a state of its user (skills/homunculus/homunculus_steelhorn.cpp)
+E	8034	MH_HEILIGE_STANGE	Holy	Holy: skill_db
+E	8036	MH_TINDER_BREAKER	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8037	MH_CBC	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8038	MH_EQC	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8039	MH_MAGMA_FLOW	Fire	Fire: skill_db
+E	8041	MH_LAVA_SLIDE	Fire	Fire: skill_db
+E	8044	MH_BLAST_FORGE	Fire	Fire: skill_db
+E	8047	MH_TWISTER_CUTTER	Wind	Wind: skill_db
+E	8048	MH_ABSOLUTE_ZEPHYR	Wind	Wind: skill_db
+E	8051	MH_THE_ONE_FIGHTER_RISES	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8053	MH_TOXIN_OF_MANDARA	Neutral	Neutral: skill_db
+E	8054	MH_NEEDLE_STINGER	Poison	Poison: skill_db
+E	8056	MH_GLANZEN_SPIES	Holy	Holy: skill_db
+E	8057	MH_HEILIGE_PFERD	Holy	Holy: skill_db
+E	8201	MS_BASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8202	MS_MAGNUM	Fire	Fire: skill_db
+E	8203	MS_BOWLINGBASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8207	MA_DOUBLE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8208	MA_SHOWER	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8210	MA_LANDMINE	Earth	Earth: skill_db
+E	8212	MA_FREEZINGTRAP	Water	Water: skill_db
+E	8214	MA_CHARGEARROW	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8215	MA_SHARPSHOOTING	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8216	ML_PIERCE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8217	ML_BRANDISH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8218	ML_SPIRALPIERCE	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8225	MER_CRASH	Weapon	Weapon: the weapon's (battle.cpp:3468)
+E	8401	EL_CIRCLE_OF_FIRE	Fire	Fire: skill_db
+E	8403	EL_FIRE_MANTLE	Fire	Fire: skill_db
+E	8425	EL_FIRE_ARROW	Fire	Fire: skill_db
+E	8426	EL_FIRE_BOMB	Fire	Fire: skill_db
+E	8427	EL_FIRE_BOMB_ATK	Fire	Fire: skill_db
+E	8428	EL_FIRE_WAVE	Fire	Fire: skill_db
+E	8429	EL_FIRE_WAVE_ATK	Fire	Fire: skill_db
+E	8430	EL_ICE_NEEDLE	Water	Water: skill_db
+E	8431	EL_WATER_SCREW	Water	Water: skill_db
+E	8432	EL_WATER_SCREW_ATK	Water	Water: skill_db
+E	8433	EL_TIDAL_WEAPON	Water	Water: skill_db
+E	8434	EL_WIND_SLASH	Wind	Wind: skill_db
+E	8435	EL_HURRICANE	Wind	Wind: skill_db
+E	8436	EL_HURRICANE_ATK	Wind	Wind: skill_db
+E	8437	EL_TYPOON_MIS	Wind	Wind: skill_db
+E	8438	EL_TYPOON_MIS_ATK	Wind	Wind: skill_db
+E	8439	EL_STONE_HAMMER	Earth	Earth: skill_db
+E	8440	EL_ROCK_CRUSHER	Earth	Earth: skill_db
+E	8441	EL_ROCK_CRUSHER_ATK	Earth	Earth: skill_db
+E	8442	EL_STONE_RAIN	Earth	Earth: skill_db
+E	8445	EM_EL_FLAMEROCK	Fire	Fire: skill_db
+E	8448	EM_EL_AGE_OF_ICE	Water	Water: skill_db
+E	8451	EM_EL_STORM_WIND	Wind	Wind: skill_db
+E	8454	EM_EL_AVALANCHE	Earth	Earth: skill_db
+E	8457	EM_EL_DEADLY_POISON	Poison	Poison: skill_db
+E	8601	ABR_BATTLE_BUSTER	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8602	ABR_DUAL_CANNON_FIRE	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)
+E	8605	ABR_INFINITY_BUSTER	Neutral	Neutral: no Element in skill_db (skill.cpp:15022)

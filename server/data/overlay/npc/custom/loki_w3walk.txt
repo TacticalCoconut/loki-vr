@@ -1,0 +1,29 @@
+//===== Loki client wave 3b (w3walk) test fixture ============================
+// For the private rAthena copy "w3walk" only (install-w3walk-fixture.sh). payon's cells are identical in rAthena's map
+// cache and the LATAM GRF (design notes §1), so the client's routes are the server's.
+//  - W3WalkStop: a touch line across the smoke's first far route (payon 150,118 -> 104,71 passes x 110, y 72-91). A player
+//    stepping on it is stopped there by the server: unitstopwalk with USW_FIXPOS | USW_FORCE_STOP (9: the walk timer is not
+//    running inside OnTouch, rA unit.cpp:1711-1712), so ZC_STOPMOVE (clif_fixpos, :1732-1737) and no walk left
+//    (walkpath cleared, :1739-1742) — "the server stops it" mid-route. It announces the cell and the server's tick.
+//    Touch area x 108-116, y 76 (xs 4, ys 0: npc_setcells, npc.cpp:4994-5000); OnTouch runs when a walk step ends on it
+//    (unit_walktoxy_timer, unit.cpp:680-688). Sprite 111 (HIDDEN_NPC) is invisible in the client.
+//  - W3Walk Guide: an NPC with a dialog, 14 cells from payon 154,98 and 40 steps round the building (a far NPC).
+//  - w3walkdoor: a portal 9 cells from payon 148,144 and 40 steps round the building (a far portal); it leads to 156,110.
+//  - w3walktrap: a portal ON the smoke's first far route (it passes 129,104 128,103 127,102), out of sight when the walk
+//    begins: the client must plan round it once it comes into view (a player stepping on it would be sent back to 150,118).
+//============================================================================
+payon,112,76,0	script	W3WalkStop	111,4,0,{
+	end;
+OnTouch:
+	getmapxy(.@m$, .@x, .@y);
+	unitstopwalk getcharid(3), 9;
+	announce "w3walkstop " + strcharinfo(0) + " " + .@m$ + " " + .@x + " " + .@y + " " + gettimetick(0), bc_map;
+	end;
+}
+payon,140,104,4	script	W3Walk Guide	4_M_MANAGER,{
+	mes "[W3Walk Guide]";
+	mes "You walked all the way round.";
+	close;
+}
+payon,139,138,0	warp	w3walkdoor	1,1,payon,156,110
+payon,128,103,0	warp	w3walktrap	1,1,payon,150,118

@@ -1,0 +1,854 @@
+//===== Loki wave C (script2) parity test NPCs ================================
+// Test servers only. The parity scenarios of testrig/parity/script2/ drive them:
+// whisper "NPC:S2Test" with a test name (and '#'-separated arguments), or click
+// the NPCs on prt_evt_in. Both the module (server/data/overlay, embedded by
+// datagen) and the private rAthena oracle (npc/custom) load this same file.
+//============================================================================
+-	script	S2Test	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	if (.@t$ == "talk") {
+		unittalk getnpcid(0,"S2Walker"), "Walker speaking";
+		unittalk getcharid(3), "Player speaking";
+		unittalk getcharid(3), "Only for me", bc_self;
+		unittalk getnpcid(0,"S2Walker"), "not a player", bc_self;
+		dispbottom "talk done";
+		end;
+	}
+	if (.@t$ == "block") {
+		setpcblock PCBLOCK_MOVE|PCBLOCK_CHAT, true;
+		dispbottom "block=" + getpcblock();
+		setpcblock PCBLOCK_CHAT, false;
+		dispbottom "block=" + getpcblock();
+		end;
+	}
+	if (.@t$ == "unblock") {
+		setpcblock PCBLOCK_MOVE, false, getcharid(3);
+		dispbottom "block=" + getpcblock(getcharid(3));
+		pcblockmove getcharid(3), 1;
+		pcblockmove 0, 0;
+		end;
+	}
+	if (.@t$ == "save") {
+		savepoint "prt_evt_in", 30, 40;
+		dispbottom getsavepoint(0) + "," + getsavepoint(1) + "," + getsavepoint(2);
+		save "prt_evt_in", 26, 38, 2, 2;
+		dispbottom getsavepoint(0) + "," + getsavepoint(1) + "," + getsavepoint(2);
+		savepoint "prt_evt_in", 1, 1;
+		dispbottom "after invalid: " + getsavepoint(1);
+		end;
+	}
+	if (.@t$ == "gosave") {
+		warp "SavePoint", 0, 0;
+		end;
+	}
+	if (.@t$ == "mapwarp") {
+		mapwarp "prt_evt_in", "prt_evt_in", 40, 48;
+		end;
+	}
+	if (.@t$ == "areawarp") {
+		areawarp "prt_evt_in", 24, 36, 47, 53, "prt_evt_in", 30, 42, 26, 38;
+		end;
+	}
+	if (.@t$ == "areawarp2") {
+		areawarp "prt_evt_in", 24, 36, 47, 53, "prt_evt_in", 36, 43;
+		end;
+	}
+	if (.@t$ == "party") {
+		if (getcharid(1) == 0)
+			party_create "S2 Party " + getcharid(0), getcharid(0), 0, 0; // (without the item arguments rAthena reads stale stack data)
+		dispbottom "party ok";
+		end;
+	}
+	if (.@t$ == "partyend") {
+		if (getcharid(1))
+			party_destroy getcharid(1);
+		dispbottom "party gone";
+		end;
+	}
+	if (.@t$ == "warpparty") {
+		warpparty "prt_evt_in", 28, 42, getcharid(1);
+		end;
+	}
+	if (.@t$ == "warpparty2") {
+		warpparty "prt_evt_in", 30, 45, getcharid(1), "prt_evt_in", 2, 2;
+		end;
+	}
+	if (.@t$ == "warpparty3") {
+		warpparty "SavePointAll", 0, 0, getcharid(1);
+		end;
+	}
+	if (.@t$ == "links") {
+		dispbottom mesitemlink(501);
+		dispbottom mesitemlink("Red_Potion", false, "Red!");
+		dispbottom mesitemlink(1201, true);
+		dispbottom mesitemicon(501);
+		dispbottom mesitemicon("Knife", "Blade");
+		dispbottom itemlink(1201, 7, 4001, 0, 0, 0, 1);
+		dispbottom itemlink(501);
+		setarray .@id[0], 1, 2;
+		setarray .@val[0], 10, -5;
+		setarray .@par[0], 0, 3;
+		dispbottom itemlink(2301, 4, 0, 0, 0, 0, 0, .@id, .@val, .@par);
+		dispbottom meshyperlink("Loki", "https://example.invalid/loki");
+		dispbottom "links done";
+		end;
+	}
+	if (.@t$ == "emotion") {
+		dispbottom "before";
+		dispbottom mesemotion(1);
+		dispbottom "not reached";
+		end;
+	}
+	if (.@t$ == "hat") {
+		hateffect HAT_EF_FLUTTER_BUTTERFLY, true;
+		dispbottom "has=" + has_hateffect(HAT_EF_FLUTTER_BUTTERFLY);
+		hateffect HAT_EF_FLUTTER_BUTTERFLY, true;
+		hateffect HAT_EF_CAMELLIA_HAIR_PIN, true;
+		end;
+	}
+	if (.@t$ == "hatoff") {
+		hateffect HAT_EF_FLUTTER_BUTTERFLY, false;
+		hateffect HAT_EF_FLUTTER_BUTTERFLY, false;
+		dispbottom "has=" + has_hateffect(HAT_EF_FLUTTER_BUTTERFLY) + "," + has_hateffect(HAT_EF_CAMELLIA_HAIR_PIN);
+		hateffect 0, true;
+		end;
+	}
+	if (.@t$ == "nhat") {
+		hateffect HAT_EF_MAGICAL_FEATHER, true, getnpcid(0,"S2Walker");
+		end;
+	}
+	if (.@t$ == "nhatoff") {
+		hateffect HAT_EF_MAGICAL_FEATHER, false, getnpcid(0,"S2Walker");
+		end;
+	}
+	if (.@t$ == "units") {
+		.@w = getnpcid(0, "S2Walker");
+		dispbottom unitexists(.@w) + "," + getunittype(.@w) + "," + getunittype(getcharid(3)) + "," + unitexists(123) + "," + unitexists(getnpcid(0, "S2Test"));
+		dispbottom getunitname(.@w) + "," + getunitname(getcharid(3)) + "," + getunitname(getnpcid(0, "S2Test"));
+		dispbottom rid2name(.@w) + "," + rid2name(getcharid(3)) + "," + rid2name(getnpcid(0, "S2Test")) + "," + rid2name(1);
+		.@n = getmapunits(BL_NPC, "prt_evt_in", .@ids);
+		dispbottom "npcs " + .@n + ": " + .@ids[0] + "," + .@ids[1] + "," + .@ids[2];
+		.@n = getareaunits(BL_PC|BL_NPC, "prt_evt_in", 24, 36, 32, 53, .@names$);
+		dispbottom "area " + .@n + ": " + .@names$[0] + "," + .@names$[1] + "," + .@names$[2];
+		dispbottom "players " + getunits(BL_PC) + " mapnpcs " + getmapunits(BL_NPC, "prt_evt_in");
+		end;
+	}
+	if (.@t$ == "title") {
+		setunittitle getnpcid(0, "S2Walker"), "Walker Title";
+		dispbottom "title=" + getunittitle(getnpcid(0, "S2Walker"));
+		setunitname getnpcid(0, "S2Walker"), "renamed";
+		end;
+	}
+	if (.@t$ == "untitle") {
+		setunittitle getnpcid(0, "S2Walker"), "";
+		end;
+	}
+	if (.@t$ == "walk") {
+		npcwalkto 40, 42, "S2Walker";
+		end;
+	}
+	if (.@t$ == "walkback") {
+		npcwalkto 33, 44, "S2Walker";
+		end;
+	}
+	if (.@t$ == "reset") {
+		movenpc "S2Walker", 34, 45;
+		end;
+	}
+	if (.@t$ == "stopwalk") {
+		unitstopwalk getnpcid(0, "S2Walker");
+		dispbottom "stopped";
+		end;
+	}
+	if (.@t$ == "unitdata") {
+		.@w = getnpcid(0, "S2Walker");
+		getunitdata .@w, .@d;
+		dispbottom "before " + .@d[UNPC_CLASS] + "," + .@d[UNPC_X] + "," + .@d[UNPC_Y] + "," + .@d[UNPC_MAPID];
+		setunitdata .@w, UNPC_LEVEL, 50;
+		setunitdata .@w, UNPC_STR, 30;
+		setunitdata .@w, UNPC_PLUSALLSTAT, 5;
+		setunitdata .@w, UNPC_HEADTOP, 5;
+		setunitdata .@w, UNPC_GROUP_ID, 3;
+		getunitdata .@w, .@d;
+		dispbottom "stats " + .@d[UNPC_LEVEL] + "," + .@d[UNPC_HP] + "," + .@d[UNPC_MAXHP] + "," + .@d[UNPC_STR] + "," + .@d[UNPC_DEX] + "," + .@d[UNPC_HIT] + "," + .@d[UNPC_FLEE] + "," + .@d[UNPC_MATKMIN] + "," + .@d[UNPC_MATKMAX] + "," + .@d[UNPC_DEF] + "," + .@d[UNPC_MDEF];
+		dispbottom "more " + .@d[UNPC_AMOTION] + "," + .@d[UNPC_ADELAY] + "," + .@d[UNPC_ATKRANGE] + "," + .@d[UNPC_RACE] + "," + .@d[UNPC_ELELEVEL] + "," + .@d[UNPC_CRIT] + "," + .@d[UNPC_PDODGE] + "," + .@d[UNPC_HEADTOP] + "," + .@d[UNPC_GROUP_ID];
+		setunitdata .@w, UNPC_MAXHP, 500;
+		setunitdata .@w, UNPC_HP, 900;
+		getunitdata .@w, .@d;
+		dispbottom "hp " + .@d[UNPC_HP] + "/" + .@d[UNPC_MAXHP] + " str " + .@d[UNPC_STR];
+		setunitdata .@w, UNPC_CLASS, 4_F_02;
+		setunitdata .@w, UNPC_LOOKDIR, 2;
+		setunitdata .@w, 999, 1;
+		end;
+	}
+	if (.@t$ == "unitdata2") {
+		.@w = getnpcid(0, "S2Walker");
+		setunitdata .@w, UNPC_CLASS, 4_M_01;
+		setunitdata .@w, UNPC_HEADTOP, 0;
+		setunitdata .@w, UNPC_GROUP_ID, 0;
+		setunitdata .@w, UNPC_LOOKDIR, 4;
+		setunitdata .@w, UNPC_MAXHP, 1; // back to status_calc_npc's 1 / 1: the next run starts as after a restart
+		getunitdata getcharid(3), .@d;
+		end;
+	}
+	if (.@t$ == "sit") {
+		sit;
+		sit;
+		end;
+	}
+	if (.@t$ == "stand") {
+		stand;
+		stand;
+		stand "no such player";
+		end;
+	}
+	if (.@t$ == "flags") {
+		dispbottom "pvp=" + getmapflag("prt_evt_in", mf_pvp) + " nosave=" + getmapflag("prt_evt_in", mf_nosave) + " bexp=" + getmapflag("prt_evt_in", mf_bexp) + " max=" + getmapflag("prt_evt_in", 81);
+		setmapflag "prt_evt_in", mf_nightenabled;
+		setmapflag "prt_evt_in", mf_bexp, 150;
+		setmapflag "prt_evt_in", mf_nomemo;
+		setmapflagnosave "prt_evt_in", "prontera", 150, 160;
+		setmapflag "prt_evt_in", mf_gvg;
+		dispbottom "gvg=" + getmapflag("prt_evt_in", mf_gvg) + " bexp=" + getmapflag("prt_evt_in", mf_bexp) + " nomemo=" + getmapflag("prt_evt_in", mf_nomemo) + " nosave=" + getmapflag("prt_evt_in", mf_nosave);
+		setmapflag "prt_evt_in", mf_pvp;
+		dispbottom "pvp=" + getmapflag("prt_evt_in", mf_pvp) + " gvg=" + getmapflag("prt_evt_in", mf_gvg);
+		removemapflag "prt_evt_in", mf_pvp;
+		removemapflag "prt_evt_in", mf_bexp;
+		removemapflag "prt_evt_in", mf_nomemo;
+		removemapflag "prt_evt_in", mf_nosave;
+		setmapflag "prt_evt_in", 999;
+		setmapflag "no_such_map", mf_pvp;
+		dispbottom "after pvp=" + getmapflag("prt_evt_in", mf_pvp) + " bexp=" + getmapflag("prt_evt_in", mf_bexp);
+		setmapflag "prt_evt_in", mf_bexp, 100;
+		removemapflag "prt_evt_in", mf_gvg;
+		end;
+	}
+	if (.@t$ == "night") {
+		dispbottom "isnight=" + isnight() + " isday=" + isday();
+		night;
+		night;
+		dispbottom "isnight=" + isnight() + " isday=" + isday();
+		end;
+	}
+	if (.@t$ == "day") {
+		day;
+		day;
+		removemapflag "prt_evt_in", mf_nightenabled;
+		dispbottom "isnight=" + isnight();
+		end;
+	}
+	if (.@t$ == "cells") {
+		dispbottom "cells " + checkcell("prt_evt_in", 30, 42, cell_chkpass) + "," + checkcell("prt_evt_in", 34, 45, cell_chkpass) + "," + checkcell("prt_evt_in", 30, 42, cell_gettype) + "," + checkcell("prt_evt_in", 0, 0, cell_chknopass) + "," + checkcell("prt_evt_in", 30, 42, cell_chkbasilica);
+		setcell "prt_evt_in", 31, 42, 32, 43, cell_walkable, 0;
+		setcell "prt_evt_in", 31, 42, 31, 42, cell_basilica, 1;
+		dispbottom "set " + checkcell("prt_evt_in", 31, 42, cell_chkpass) + "," + checkcell("prt_evt_in", 32, 43, cell_gettype) + "," + checkcell("prt_evt_in", 31, 42, cell_chkbasilica) + "," + checkcell("prt_evt_in", 33, 42, cell_chkpass);
+		end;
+	}
+	if (.@t$ == "uncells") {
+		setcell "prt_evt_in", 32, 43, 31, 42, cell_walkable, 1;
+		setcell "prt_evt_in", 31, 42, 31, 42, cell_basilica, 0;
+		dispbottom "unset " + checkcell("prt_evt_in", 31, 42, cell_chkpass) + "," + checkcell("prt_evt_in", 31, 42, cell_chkbasilica);
+		end;
+	}
+	if (.@t$ == "wall") {
+		setwall "prt_evt_in", 36, 38, 4, 0, 0, "S2Wall";
+		setwall "prt_evt_in", 36, 38, 4, 0, 0, "S2Wall";
+		dispbottom "wall " + checkwall("S2Wall") + "," + checkcell("prt_evt_in", 36, 40, cell_chkpass) + "," + checkcell("prt_evt_in", 36, 40, cell_gettype);
+		end;
+	}
+	if (.@t$ == "unwall") {
+		delwall "S2Wall";
+		delwall "S2Wall";
+		dispbottom "wall " + checkwall("S2Wall") + "," + checkcell("prt_evt_in", 36, 40, cell_chkpass);
+		end;
+	}
+	if (.@t$ == "freecell") {
+		getfreecell "prt_evt_in", .@x, .@y, 30, 42, 3, 3;
+		dispbottom "free " + .@x + "," + .@y;
+		getfreecell "this", .@x, .@y;
+		dispbottom "free2 " + .@x + "," + .@y;
+		getfreecell "prt_evt_in", .@x, .@y, 30, 42, 0, 0;
+		dispbottom "free3 " + .@x + "," + .@y;
+		end;
+	}
+	if (.@t$ == "area") {
+		dispbottom "users " + getareausers("prt_evt_in", 24, 36, 47, 53) + "," + getareausers("prt_evt_in", 40, 50, 47, 53) + "," + getareausers("nomap", 1, 1, 2, 2);
+		viewpointmap "prt_evt_in", 1, 40, 48, 7, 0xFF0000;
+		makeitem 501, 1, "prt_evt_in", 35, 42;
+		makeitem 502, 1, "prt_evt_in", 44, 50;
+		cleanarea "prt_evt_in", 30, 40, 40, 45;
+		cleanarea "prt_evt_in", 0, 40, 40, 45;
+		cleanmap "prt_evt_in";
+		end;
+	}
+	if (.@t$ == "addrid") {
+		addrid getcharid(3);
+		dispbottom "addrid ran for " + getcharid(3);
+		end;
+	}
+	if (.@t$ == "looks") {
+		.@h = getlook(LOOK_HAIR);
+		.@hc = getlook(LOOK_HAIR_COLOR);
+		dispbottom "looks " + .@h + "," + .@hc + "," + getlook(LOOK_CLOTHES_COLOR) + "," + getlook(LOOK_WEAPON) + "," + getlook(LOOK_SHOES) + "," + getlook(LOOK_BODY2) + "," + getlook(99);
+		setlook LOOK_HAIR, 5;
+		setlook LOOK_HAIR_COLOR, 3;
+		setlook LOOK_CLOTHES_COLOR, 999;
+		changelook LOOK_HEAD_TOP, 5;
+		changelook LOOK_HAIR, 999;
+		changelook 77, 1;
+		dispbottom "now " + getlook(LOOK_HAIR) + "," + getlook(LOOK_HAIR_COLOR) + "," + getlook(LOOK_CLOTHES_COLOR) + "," + getlook(LOOK_HEAD_TOP);
+		setlook LOOK_HAIR, .@h;
+		setlook LOOK_HAIR_COLOR, .@hc;
+		setlook LOOK_CLOTHES_COLOR, 0;
+		changelook LOOK_HEAD_TOP, 0;
+		end;
+	}
+	if (.@t$ == "opts") {
+		dispbottom "opt " + checkoption(Option_Falcon) + "," + getgmlevel() + "," + getgroupid() + "," + checkoption1(0) + "," + checkoption2(0);
+		setoption Option_Falcon;
+		dispbottom "falcon " + checkfalcon() + "," + checkoption(Option_Falcon);
+		setoption Option_Wedding;
+		dispbottom "wedding " + checkoption(Option_Wedding);
+		setoption 0;
+		dispbottom "cleared " + checkfalcon() + "," + checkriding() + "," + checkwug() + "," + checkmadogear() + "," + checkdragon() + "," + ismounting();
+		setfalcon;
+		setriding;
+		setmadogear;
+		dispbottom "dragon " + setdragon(2);
+		end;
+	}
+	if (.@t$ == "mount") {
+		dispbottom "mount " + setmounting() + "," + ismounting();
+		end;
+	}
+	if (.@t$ == "unmount") {
+		dispbottom "unmount " + setmounting() + "," + ismounting();
+		end;
+	}
+	if (.@t$ == "misc") {
+		// idle seconds are whole-second differences (rAthena: last_tick - idletime), so only ranges compare
+		dispbottom "idle " + (checkidle() >= 2) + "," + checkidle("no such player") + " ip=" + getcharip() + ".";
+		dispbottom "cpc " + convertpcinfo(getcharid(0), CPC_NAME) + "," + convertpcinfo(strcharinfo(0), CPC_ACCOUNT) + "," + convertpcinfo(getcharid(3), CPC_CHAR) + "," + convertpcinfo(99, CPC_CHAR) + "," + convertpcinfo("nobody", CPC_NAME) + ".";
+		setfont 3;
+		setfont 3;
+		dispbottom "loot " + has_autoloot() + "," + autoloot() + "," + has_autoloot() + "," + autoloot(5000) + "," + has_autoloot() + "," + autoloot(20000) + "," + autoloot(0) + "," + has_autoloot();
+		end;
+	}
+	if (.@t$ == "mob1") {
+		monster "prt_evt_in", 40, 50, "S2Plant", 1750, 1;
+		.mob = $@mobid[0];
+		getunitdata .mob, .@d;
+		dispbottom "m1 " + .@d[UMOB_SIZE] + "," + .@d[UMOB_LEVEL] + "," + .@d[UMOB_HP] + "," + .@d[UMOB_MAXHP] + "," + .@d[UMOB_MASTERAID] + "," + .@d[UMOB_MAPID] + "," + .@d[UMOB_X] + "," + .@d[UMOB_Y] + "," + .@d[UMOB_SPEED] + "," + .@d[UMOB_MODE] + "," + .@d[UMOB_AI] + "," + .@d[UMOB_SCOPTION] + "," + .@d[UMOB_SEX] + "," + .@d[UMOB_CLASS] + "," + .@d[UMOB_LOOKDIR];
+		dispbottom "m2 " + .@d[UMOB_STR] + "," + .@d[UMOB_AGI] + "," + .@d[UMOB_VIT] + "," + .@d[UMOB_INT] + "," + .@d[UMOB_DEX] + "," + .@d[UMOB_LUK] + "," + .@d[UMOB_ATKRANGE] + "," + .@d[UMOB_ATKMIN] + "," + .@d[UMOB_ATKMAX] + "," + .@d[UMOB_MATKMIN] + "," + .@d[UMOB_MATKMAX] + "," + .@d[UMOB_DEF] + "," + .@d[UMOB_MDEF] + "," + .@d[UMOB_HIT] + "," + .@d[UMOB_FLEE] + "," + .@d[UMOB_PDODGE] + "," + .@d[UMOB_CRIT];
+		dispbottom "m3 " + .@d[UMOB_RACE] + "," + .@d[UMOB_ELETYPE] + "," + .@d[UMOB_ELELEVEL] + "," + .@d[UMOB_AMOTION] + "," + .@d[UMOB_ADELAY] + "," + .@d[UMOB_DMOTION] + "," + .@d[UMOB_TARGETID] + "," + .@d[UMOB_SLAVECPYMSTRMD] + "," + .@d[UMOB_DMGIMMUNE] + "," + .@d[UMOB_GROUP_ID] + "," + .@d[UMOB_IGNORE_CELL_STACK_LIMIT] + "," + .@d[UMOB_RES] + "," + .@d[UMOB_MRES] + "," + .@d[UMOB_DAMAGETAKEN];
+		end;
+	}
+	if (.@t$ == "mob2") {
+		setunitdata .mob, UMOB_LEVEL, 10;
+		setunitdata .mob, UMOB_MAXHP, 500;
+		setunitdata .mob, UMOB_HP, 200;
+		setunitdata .mob, UMOB_STR, 50;
+		setunitdata .mob, UMOB_DEX, 40;
+		setunitdata .mob, UMOB_ATKMIN, 100;
+		setunitdata .mob, UMOB_ATKMAX, 150;
+		setunitdata .mob, UMOB_DEF, 20;
+		setunitdata .mob, UMOB_FLEE, 30;
+		setunitdata .mob, UMOB_RACE, 2;
+		setunitdata .mob, UMOB_SIZE, 2;
+		setunitdata .mob, UMOB_SPEED, 300;
+		setunitdata .mob, UMOB_AI, 1;
+		setunitdata .mob, UMOB_DAMAGETAKEN, 50;
+		setunitdata .mob, UMOB_DMGIMMUNE, 1;
+		setunitdata .mob, UMOB_SLAVECPYMSTRMD, 1;
+		setunitname .mob, "Renamed Plant";
+		getunitdata .mob, .@d;
+		dispbottom "m4 " + .@d[UMOB_SIZE] + "," + .@d[UMOB_LEVEL] + "," + .@d[UMOB_HP] + "," + .@d[UMOB_MAXHP] + "," + .@d[UMOB_SPEED] + "," + .@d[UMOB_AI] + "," + .@d[UMOB_STR] + "," + .@d[UMOB_DEX] + "," + .@d[UMOB_ATKMIN] + "," + .@d[UMOB_ATKMAX] + "," + .@d[UMOB_DEF] + "," + .@d[UMOB_FLEE] + "," + .@d[UMOB_HIT] + "," + .@d[UMOB_CRIT] + "," + .@d[UMOB_RACE] + "," + .@d[UMOB_DAMAGETAKEN] + "," + .@d[UMOB_DMGIMMUNE] + "," + .@d[UMOB_SLAVECPYMSTRMD];
+		dispbottom "name " + getunitname(.mob);
+		end;
+	}
+	if (.@t$ == "mob3") {
+		setunitdata .mob, UMOB_CLASS, 4_M_01;
+		setunitdata .mob, UMOB_HEADTOP, 5;
+		setunitdata .mob, UMOB_HAIRCOLOR, 3;
+		setunitdata .mob, UMOB_WEAPON, 1;
+		setunitdata .mob, UMOB_LOOKDIR, 3;
+		setunitdata .mob, UMOB_GROUP_ID, 2;
+		setunitdata .mob, UMOB_SCOPTION, Option_Wedding;
+		getunitdata .mob, .@d;
+		dispbottom "m5 " + .@d[UMOB_CLASS] + "," + .@d[UMOB_HEADTOP] + "," + .@d[UMOB_HAIRCOLOR] + "," + .@d[UMOB_WEAPON] + "," + .@d[UMOB_LOOKDIR] + "," + .@d[UMOB_GROUP_ID] + "," + .@d[UMOB_SCOPTION];
+		setunitdata .mob, UMOB_SCOPTION, 0;
+		setunitdata .mob, UMOB_CLASS, 1750;
+		setunitdata .mob, UMOB_GROUP_ID, 0;
+		setunitdata .mob, 999, 1;
+		end;
+	}
+	if (.@t$ == "mob4") {
+		dispbottom "warp " + unitwarp(.mob, "this", 42, 50) + "," + unitwarp(.mob, "no_such_map", 42, 50) + "," + unitwarp(.mob, "prt_evt_in", 34, 44);
+		setunitdata .mob, UMOB_X, 44;
+		setunitdata .mob, UMOB_Y, 48;
+		getunitdata .mob, .@d;
+		dispbottom "at " + .@d[UMOB_X] + "," + .@d[UMOB_Y];
+		setunitdata .mob, UMOB_TARGETID, 0;
+		setunitdata .mob, UMOB_TARGETID, 99999999;
+		end;
+	}
+	if (.@t$ == "mob5") {
+		killmonster "prt_evt_in", "All";
+		dispbottom "killed " + unitexists(.mob);
+		end;
+	}
+	if (.@t$ == "uwalk") {
+		.@w = getnpcid(0, "S2Walker");
+		dispbottom "uwalk " + unitwalk(.@w, 38, 50, "S2Test::OnWalkDone");
+		dispbottom "again " + unitwalk(.@w, 38, 50);
+		end;
+	}
+	if (.@t$ == "uwalk2") {
+		.@w = getnpcid(0, "S2Walker");
+		// unreachable: 0, yet force_walk is set (rAthena tests the pushed pointer)
+		dispbottom "wall " + unitwalk(getcharid(3), 35, 44);
+		unitstopwalk getcharid(3), USW_FORCE_STOP;
+		dispbottom "far " + unitwalk(.@w, 250, 250);
+		dispbottom "stuck " + unitwalk(.@w, 38, 50);
+		unitstopwalk .@w, USW_FORCE_STOP;
+		dispbottom "freed " + unitwalk(.@w, 38, 51);
+		end;
+	}
+	if (.@t$ == "uwalkto") {
+		dispbottom "uwalkto " + unitwalkto(getnpcid(0, "S2Walker"), getcharid(3), "S2Test::OnWalkDone");
+		end;
+	}
+	if (.@t$ == "uwalkbad") {
+		dispbottom "bad " + unitwalkto(getnpcid(0, "S2Walker"), 99999999);
+		end;
+	}
+	if (.@t$ == "uwarp") {
+		.@w = getnpcid(0, "S2Walker");
+		dispbottom "npc warp " + unitwarp(.@w, "this", 36, 50) + "," + unitwarp(.@w, "no_such_map", 36, 50);
+		getunitdata .@w, .@d;
+		dispbottom "npc at " + .@d[UNPC_X] + "," + .@d[UNPC_Y] + "," + .@d[UNPC_MAPID];
+		dispbottom "pc warp " + unitwarp(getcharid(3), "this", 31, 43);
+		end;
+	}
+	if (.@t$ == "follow") {
+		movenpc "S2Walker", 40, 40;
+		pcfollow getcharid(3), getnpcid(0, "S2Walker");
+		dispbottom "following";
+		end;
+	}
+	if (.@t$ == "farfollow") {
+		// farther than AREA_SIZE (unit_can_reach_bl fails): pc_follow_timer warps the player to the target
+		warp "prt_evt_in", 25, 37;
+		movenpc "S2Walker", 46, 53;
+		pcfollow getcharid(3), getnpcid(0, "S2Walker");
+		end;
+	}
+	if (.@t$ == "stopfollow") {
+		pcstopfollow getcharid(3);
+		getmapxy .@map$, .@x, .@y, BL_PC;
+		dispbottom "stopped at " + .@x + "," + .@y;
+		end;
+	}
+	if (.@t$ == "push") {
+		pushpc DIR_EAST, 2;
+		getmapxy .@map$, .@x, .@y, BL_PC;
+		dispbottom "e2 " + .@x + "," + .@y;
+		pushpc DIR_WEST, -1;
+		getmapxy .@map$, .@x, .@y, BL_PC;
+		dispbottom "w-1 " + .@x + "," + .@y;
+		pushpc DIR_SOUTH, -1;
+		getmapxy .@map$, .@x, .@y, BL_PC;
+		dispbottom "s-1 " + .@x + "," + .@y;
+		pushpc 9, 1;
+		pushpc DIR_NORTH, 0;
+		getmapxy .@map$, .@x, .@y, BL_PC;
+		dispbottom "9 " + .@x + "," + .@y;
+		end;
+	}
+	if (.@t$ == "vend") {
+		dispbottom "vend " + checkvending() + "," + checkvending("no such player") + "," + checkvending(strcharinfo(0));
+		end;
+	}
+	if (.@t$ == "fx1") {
+		classchange 4_F_01, "S2Walker";
+		classchange 4_M_02, "S2Walker", bc_self;
+		classchange 1002;
+		classchange 0, "S2Walker";
+		donpcevent "S2Walker::OnFx";
+		misceffect EF_HIT2;
+		misceffect 5000;
+		end;
+	}
+	if (.@t$ == "fx2") {
+		playBGMall "bgm_all";
+		playBGMall "bgm_map", "prt_evt_in";
+		playBGMall "bgm_area", "prt_evt_in", 24, 36, 47, 53;
+		playBGMall "bgm_off", "prt_evt_in", 40, 50, 47, 53;
+		playBGMall "bgm_none", "no_such_map";
+		soundeffectall "se_area.wav", 0;
+		soundeffectall "se_map.wav", 1, "prt_evt_in";
+		soundeffectall "se_part.wav", 0, "prt_evt_in", 24, 36, 47, 53;
+		soundeffectall "se_bad.wav", 0, "prt_evt_in", 1;
+		end;
+	}
+	if (.@t$ == "fx3") {
+		removespecialeffect EF_HIT1, AREA, "S2Walker";
+		removespecialeffect EF_HIT1, SELF, "S2Walker";
+		removespecialeffect2 EF_HIT2;
+		removespecialeffect2 EF_HIT2, AREA, strcharinfo(0);
+		removespecialeffect -5;
+		removespecialeffect EF_HIT1, AREA, "NoSuchNpc";
+		removespecialeffect2 EF_HIT2, AREA, "no such player";
+		end;
+	}
+	if (.@t$ == "fx4") {
+		showdigit 123;
+		showdigit 5, 1;
+		showdigit -7, 2;
+		showdigit 150, 3;
+		showdigit 1, 4;
+		readbook 1, 2;
+		camerainfo 1000, 50, -3000;
+		opentips 3;
+		specialpopup 7;
+		setdialogalign 2;
+		setdialogalign 9;
+		setdialogsize 300, 200;
+		setdialogpos 10, 20;
+		setdialogpospercent 50, 120;
+		dispbottom "fx4 done";
+		end;
+	}
+	if (.@t$ == "fx5") {
+		dispbottom "ss " + showscript("hello script") + "," + showscript("walker says", getnpcid(0, "S2Walker")) + "," + showscript("only me", getcharid(3), SELF);
+		showscript "npc self", getnpcid(0, "S2Walker"), SELF;
+		globalmes "global hello";
+		globalmes "named hello", "S2Walker";
+		globalmes "nobody hears", "NoSuchNpc";
+		end;
+	}
+	if (.@t$ == "adm1") {
+		logmes "s2 log from player";
+		donpcevent "S2Walker::OnLog";
+		setbattleflag "no_such_flag", 1;
+		dispbottom "rev " + get_revision() + "," + get_githash();
+		dispbottom "md5 " + md5("") + "," + md5("hello") + "," + md5("The quick brown fox jumps over the lazy dog");
+		dispbottom "e1 " + escape_sql("ab'cd");
+		dispbottom "e2 " + escape_sql("x\"y");
+		dispbottom "e3 " + escape_sql("p\\q");
+		macro_detector;
+		macro_detector getcharid(3);
+		macro_detector "no such player";
+		end;
+	}
+	if (.@t$ == "bc1") {
+		// battle_config at run time (port wave I, iconf): battle_set_value's config_switch and range check (the DEFAULT
+		// for a value out of range), battle_get_value, no battle_adjust_conf after a set, the EXP rates in the
+		// monsters after a reload only
+		dispbottom "bc a " + getbattleflag("area_size") + "," + getbattleflag("AREA_SIZE") + "," + getbattleflag("no_such_flag");
+		setbattleflag "area_size", 20;
+		dispbottom "bc b " + getbattleflag("area_size");
+		setbattleflag "area_size", -1;
+		dispbottom "bc c " + getbattleflag("area_size");
+		setbattleflag "weapon_produce_rate", "yes";
+		setbattleflag "potion_produce_rate", "0x20";
+		setbattleflag "duel_time_interval", "off";
+		dispbottom "bc d " + getbattleflag("weapon_produce_rate") + "," + getbattleflag("potion_produce_rate") + "," + getbattleflag("duel_time_interval");
+		setbattleflag "max_aspd", 195;
+		dispbottom "bc e " + getbattleflag("max_aspd");
+		setbattleflag "max_aspd", 200;
+		dispbottom "bc f " + getbattleflag("max_aspd");
+		setbattleflag "feature.auction", 3;
+		setbattleflag "max_sp", 50;
+		dispbottom "bc g " + getbattleflag("feature.auction") + "," + getbattleflag("max_sp");
+		dispbottom "bc h " + getbattleflag("base_exp_rate") + "," + getmonsterinfo(1002, MOB_BASEEXP) + "," + getmonsterinfo(1002, MOB_JOBEXP) + "," + getmonsterinfo(1038, MOB_MVPEXP);
+		setbattleflag "base_exp_rate", 100;
+		setbattleflag "mvp_exp_rate", 250;
+		dispbottom "bc i " + getbattleflag("base_exp_rate") + "," + getmonsterinfo(1002, MOB_BASEEXP) + "," + getmonsterinfo(1038, MOB_MVPEXP);
+		setbattleflag "job_exp_rate", 150, 1;
+		dispbottom "bc j " + getmonsterinfo(1002, MOB_BASEEXP) + "," + getmonsterinfo(1002, MOB_JOBEXP) + "," + getmonsterinfo(1038, MOB_MVPEXP);
+		setbattleflag "loki_sit_regen_rate", 2000;
+		dispbottom "bc k " + getbattleflag("loki_sit_regen_rate");
+		end;
+	}
+	if (.@t$ == "bc2") {
+		dispbottom "bc2 " + getbattleflag("area_size") + "," + getbattleflag("max_aspd") + "," + getbattleflag("max_sp") + "," + getbattleflag("base_exp_rate") + "," + getbattleflag("job_exp_rate") + "," + getbattleflag("mvp_exp_rate") + "," + getbattleflag("weapon_produce_rate") + "," + getbattleflag("loki_sit_regen_rate");
+		dispbottom "bc2 m " + getmonsterinfo(1002, MOB_BASEEXP) + "," + getmonsterinfo(1002, MOB_JOBEXP) + "," + getmonsterinfo(1038, MOB_MVPEXP);
+		end;
+	}
+	if (.@t$ == "bc3") {
+		// mvp_exp_rate is not among the rates @reloadbattleconf compares (atcommand.cpp:4443-4478)
+		setbattleflag "mvp_exp_rate", 300, 1;
+		dispbottom "bc3 " + getbattleflag("mvp_exp_rate") + "," + getmonsterinfo(1038, MOB_MVPEXP);
+		end;
+	}
+	if (.@t$ == "perm") {
+		dispbottom "perm " + permission_check(PC_PERM_TRADE) + "," + permission_check(PC_PERM_USE_ALL_COMMANDS);
+		permission_remove PC_PERM_TRADE;
+		permission_add PC_PERM_USE_ALL_COMMANDS;
+		dispbottom "perm " + permission_check(PC_PERM_TRADE) + "," + permission_check(PC_PERM_USE_ALL_COMMANDS);
+		permission_add PC_PERM_TRADE;
+		permission_remove PC_PERM_USE_ALL_COMMANDS, getcharid(0);
+		dispbottom "perm " + permission_check(PC_PERM_TRADE, getcharid(0)) + "," + permission_check(PC_PERM_USE_ALL_COMMANDS);
+		permission_check(99);
+		end;
+	}
+	if (.@t$ == "nocmd") {
+		mes "[S2Test]";
+		mes "commands are off while we talk";
+		next;
+		mes "commands are back on";
+		enable_command;
+		next;
+		disable_command;
+		mes "and off again";
+		close;
+	}
+	if (.@t$ == "bind") {
+		bindatcmd "s2cmd", "S2Test::OnS2Cmd";
+		bindatcmd "@s2hi", "S2Test::OnS2Cmd", 0, 99;
+		bindatcmd "s2gm", "S2Test::OnS2Cmd", 99, 99;
+		useatcmd "@s2cmd from script";
+		end;
+	}
+	if (.@t$ == "unbind") {
+		dispbottom "unbind " + unbindatcmd("s2cmd") + "," + unbindatcmd("@s2cmd") + "," + unbindatcmd("#s2hi") + "," + unbindatcmd("s2gm");
+		end;
+	}
+	if (.@t$ == "kick") {
+		dispbottom "kicking";
+		kick;
+		dispbottom "after kick";
+		end;
+	}
+	if (.@t$ == "marry") {
+		dispbottom "marry " + marriage("S2 Tester2") + "," + marriage("S2 Tester2") + "," + getpartnerid() + "," + ispartneron();
+		wedding;
+		getitem 2634, 1;
+		end;
+	}
+	if (.@t$ == "fam") {
+		dispbottom "fam " + getpartnerid() + "," + ispartneron() + "," + getchildid() + "," + getmotherid() + "," + getfatherid() + "," + countitem(2634) + "," + countitem(2635);
+		end;
+	}
+	if (.@t$ == "ringf") {
+		getitem 2635, 1;
+		end;
+	}
+	if (.@t$ == "wpartner") {
+		dispbottom "wp " + warppartner("prt_evt_in", 40, 50) + "," + warppartner("no_such_map", 1, 1);
+		end;
+	}
+	if (.@t$ == "adopt") {
+		dispbottom "adopt " + adopt(strcharinfo(0), "S2 Tester2") + "," + adopt(getcharid(0), getpartnerid());
+		adopt strcharinfo(0), "nobody";
+		adopt 99999, "S2 Tester2";
+		end;
+	}
+	if (.@t$ == "divorce") {
+		dispbottom "div " + divorce() + "," + getpartnerid() + "," + divorce();
+		end;
+	}
+	if (.@t$ == "marry2") {
+		dispbottom "marry2 " + marriage("S2 Tester2");
+		getitem 2634, 1;
+		end;
+	}
+	if (.@t$ == "divorce2") {
+		dispbottom "div2 " + divorce() + "," + (getpartnerid() > 0) + "," + ispartneron();
+		end;
+	}
+	if (.@t$ == "shop1") {
+		dispbottom "shop " + npcshopitem("S2Shop", 501, 10, 502, -1) + "," + npcshopitem("NoSuchShop", 501, 1) + "," + npcshopattach("NoSuchShop");
+		callshop "S2Shop", 1;
+		end;
+	}
+	if (.@t$ == "shopbad") {
+		dispbottom "bad " + npcshopitem("S2Shop", 501, 5, 99999999, 1);
+		end;
+	}
+	if (.@t$ == "shop2") {
+		npcshopitem "S2Shop", 501, 10, 502, 20;
+		dispbottom "attach " + npcshopattach("S2Shop");
+		getitem 501, 5;
+		callshop "S2Shop", 1;
+		end;
+	}
+	if (.@t$ == "shop3") {
+		callshop "S2Shop", 2;
+		end;
+	}
+	if (.@t$ == "shop4") {
+		dispbottom "detach " + npcshopattach("S2Shop", 0);
+		callshop "S2Shop", 1;
+		end;
+	}
+	if (.@t$ == "cloak") {
+		dispbottom "cloaked " + isnpccloaked("S2Walker") + "," + isnpccloaked("S2Walker", getcharid(0));
+		cloakonnpc "S2Walker";
+		dispbottom "cloaked " + isnpccloaked("S2Walker");
+		cloakoffnpc "S2Walker";
+		isnpccloaked "NoSuchNpc";
+		end;
+	}
+	if (.@t$ == "tcount") {
+		addtimer 1000, "S2Test::OnTimerX";
+		addtimercount 2000, "S2Test::OnTimerX";
+		addtimercount 500, "S2Test::OnNoTimer";
+		ignoretimeout 1;
+		ignoretimeout 0, getcharid(0);
+		ignoretimeout 1, strcharinfo(0);
+		ignoretimeout 1, "no such player";
+		dispbottom "timer set";
+		end;
+	}
+	if (.@t$ == "dup") {
+		dispbottom "dup [" + duplicate("S2Walker", "prt_evt_in", 40, 40, "S2Copy") + "]";
+		end;
+	}
+	if (.@t$ == "pinfo") {
+		CHAR_VAR_S2 = 42;
+		@tmpv_s2$ = "hello";
+		dispbottom "info " + isdead() + "," + isdead(getcharid(3)) + "," + getvar(CHAR_VAR_S2, getcharid(0)) + "," + getvar(@tmpv_s2$, getcharid(0)) + "," + getvar(@nothing_s2, getcharid(0));
+		getvar CHAR_VAR_S2, 99999;
+		CHAR_VAR_S2 = 0;
+		dispbottom "ratio " + getbaseexp_ratio(10) + "," + getjobexp_ratio(50) + "," + getbaseexp_ratio(100, 50) + "," + getjobexp_ratio(1, 5);
+		getbaseexp_ratio 101;
+		getjobexp_ratio 10, 999;
+		dispbottom "scrate " + getscrate(SC_STUN, 5000) + "," + getscrate(SC_POISON, 7000, 99999999);
+		dispbottom "drops " + getareadropitem("prt_evt_in", 24, 36, 47, 53, 501) + "," + getareadropitem("prt_evt_in", 24, 36, 47, 53, "Red_Potion") + "," + getareadropitem("no_such_map", 1, 1, 2, 2, 501);
+		getareadropitem "prt_evt_in", 1, 1, 2, 2, 99999999;
+		dispbottom "last " + getvar(.npc_s2, getcharid(0));
+		dispbottom "not reached";
+		end;
+	}
+	if (.@t$ == "pexp") {
+		getexp2 20, 10;
+		getexp2 -5, 0;
+		getexp2 0, 0;
+		dispbottom "exp done";
+		end;
+	}
+	if (.@t$ == "pheal") {
+		percentheal -50, -50;
+		dispbottom "rec " + recovery(0) + "," + recovery(3) + "," + recovery(4, 2);
+		percentheal -30, 0;
+		areapercentheal "prt_evt_in", 24, 36, 47, 53, 20, 10;
+		areapercentheal "no_such_map", 1, 1, 2, 2, 20, 10;
+		recovery 9;
+		recovery 1;
+		percentheal 100, 100;
+		dispbottom "heal done";
+		end;
+	}
+	if (.@t$ == "preg") {
+		dispbottom "art " + callfunc("F_InsertArticle", "apple") + "|" + callfunc("F_InsertArticle", "hour") + "|" + callfunc("F_InsertArticle", "unicorn") + "|" + callfunc("F_InsertArticle", "poring") + "|" + callfunc("F_InsertArticle", "euro");
+		dispbottom "p1 " + preg_match("a(b)?c", "ac") + "," + preg_match("a(b)?c", "xabcx") + "," + preg_match("(a)(b)(c)(d)(e)(f)(g)(h)(i)(j)", "abcdefghij") + "," + preg_match("(\\w+)\\s+\\1", "hello hello") + "," + preg_match("x{2,3}", "axxb");
+		dispbottom "p2 " + preg_match("a.*?b", "aXbYb") + "," + preg_match("(ab", "ab") + "," + preg_match("abc$", "zabc") + "," + preg_match("^b", "ab", 1) + "," + preg_match("b", "ab", 1) + "," + preg_match("[A-Z][a-z]+", "hello World") + "," + preg_match("colou?r", "color");
+		dispbottom "p3 " + preg_match("(?:x|y)(z)", "yz") + "," + preg_match("q(?=u)", "quit") + "," + preg_match("q(?!u)", "quit") + "," + preg_match("\\d\\d:\\d\\d", "at 12:34") + "," + preg_match("", "abc") + "," + preg_match("((a)|(b))+", "ab");
+		end;
+	}
+	if (.@t$ == "psetoff") { donpcevent "S2Walker::OnPsetOff"; end; }
+	if (.@t$ == "pseton") { donpcevent "S2Walker::OnPsetOn"; end; }
+	if (.@t$ == "psetdel") { donpcevent "S2Walker::OnPsetDel"; end; }
+	if (.@t$ == "chan1") {
+		dispbottom "create " + channel_create("#s2chan", "[S2]") + "," + channel_create("#s2chan", "[S2]") + "," + channel_create("bad", "x") + "," + channel_create("#x", "x");
+		dispbottom "join " + channel_join("#s2chan") + "," + channel_join("#s2chan") + "," + channel_join("#nochan");
+		dispbottom "opt " + channel_getopt("#s2chan", CHAN_OPT_ANNOUNCE_JOIN) + "," + channel_getopt("#s2chan", CHAN_OPT_MSG_DELAY) + "," + channel_setopt("#s2chan", CHAN_OPT_ANNOUNCE_JOIN, 1) + "," + channel_getopt("#s2chan", CHAN_OPT_ANNOUNCE_JOIN) + "," + channel_setopt("#s2chan", CHAN_OPT_MSG_DELAY, 250) + "," + channel_getopt("#s2chan", CHAN_OPT_MSG_DELAY);
+		dispbottom "set " + channel_setcolor("#s2chan", 0x00FF00) + "," + channel_setpass("#s2chan", "secret") + "," + channel_setpass("#s2chan", "null") + "," + channel_setgroup("#s2chan", 0) + "," + channel_setgroup("#s2chan", 0, 1, 99);
+		dispbottom "chat " + channel_chat("#s2chan", "hello channel") + "," + channel_chat("#s2chan", "in red", 0x0000FF) + "," + channel_chat("prt_evt_in", "map") + "," + channel_chat("no_such_map", "x");
+		channel_setgroup "#s2chan", 0;
+		end;
+	}
+	if (.@t$ == "chan2") {
+		dispbottom "ban " + channel_ban("#s2chan", getcharid(0)) + "," + channel_join("#s2chan") + "," + channel_unban("#s2chan", getcharid(0)) + "," + channel_join("#s2chan");
+		dispbottom "kick " + channel_kick("#s2chan", strcharinfo(0)) + "," + channel_kick("#s2chan", getcharid(0)) + "," + channel_join("#s2chan");
+		dispbottom "priv " + channel_create("#s2priv", "[P]", "null", 0, 500, 0xFF0000, getcharid(0)) + "," + channel_chat("#s2priv", "private words") + "," + channel_kick("#s2priv", getcharid(0));
+		dispbottom "del " + channel_delete("#s2chan") + "," + channel_delete("#s2priv") + "," + channel_delete("#nochan");
+		end;
+	}
+	if (.@t$ == "idle2") {
+		dispbottom "idle2 " + (checkidle() <= 1) + "," + (checkidle(strcharinfo(0)) <= 1);
+		end;
+	}
+	if (.@t$ == "cpcbad") {
+		dispbottom "before";
+		dispbottom "x" + convertpcinfo(getcharid(0), 7);
+		dispbottom "not reached";
+		end;
+	}
+	dispbottom "S2Test: unknown test " + .@t$;
+	end;
+OnWalkDone:
+	npctalk "walk done", "S2Walker";
+	end;
+OnTimerX:
+	dispbottom "timer fired";
+	end;
+OnBuyItem:
+	dispbottom "bought " + getarraysize(@bought_nameid) + " [" + @bought_nameid[0] + "x" + @bought_quantity[0] + "][" + @bought_nameid[1] + "x" + @bought_quantity[1] + "]";
+	end;
+OnSellItem:
+	dispbottom "sold " + getarraysize(@sold_nameid) + " [" + @sold_nameid[0] + "x" + @sold_quantity[0] + " r" + @sold_refine[0] + " i" + @sold_identify[0] + " c" + @sold_card1[0] + "]";
+	end;
+OnS2Cmd:
+	dispbottom "cmd " + .@atcmd_command$ + " n=" + .@atcmd_numparameters + " [" + .@atcmd_parameters$[0] + "][" + .@atcmd_parameters$[1] + "][" + .@atcmd_parameters$[2] + "]";
+	end;
+}
+
+prt_evt_in,34,45,4	script	S2Walker	4_M_01,{
+	mes "[S2Walker]";
+	mes "Hello.";
+	close;
+OnLog:
+	logmes "s2 log from npc";
+	end;
+OnInit:
+	defpattern 1, "([^:]+) : (hello|hi) walker(.*)", "OnHello";
+	defpattern 1, "^(.*) : bye$", "OnBye";
+	defpattern 2, "(.*)walker(.*)", "OnAny";
+	activatepset 1;
+	end;
+OnHello:
+	npctalk "hi " + $@p1$ + "|" + $@p2$ + "|" + $@p3$ + "|" + $@p4$ + "|";
+	end;
+OnBye:
+	npctalk "bye " + $@p1$;
+	end;
+OnAny:
+	npctalk "any [" + $@p1$ + "][" + $@p2$ + "]";
+	end;
+OnPsetOff:
+	deactivatepset -1;
+	end;
+OnPsetOn:
+	activatepset 2;
+	activatepset 1;
+	end;
+OnPsetDel:
+	deletepset 1;
+	deletepset 2;
+	end;
+OnFx:
+	misceffect EF_HIT1;
+	classchange 4_M_01;
+	showscript "walker event";
+	removespecialeffect EF_HIT1;
+	removespecialeffect EF_HIT1, SELF;
+	end;
+}
+
+prt_evt_in,30,47,4	script	S2Bar	4_F_01,{
+	mes "[S2Bar]";
+	mes "A progress bar.";
+	next;
+	progressbar "0xFF0000", 2;
+	mes "Bar done.";
+	next;
+	progressbar_npc "0x00FF00", 1;
+	mes "NPC bar done.";
+	close;
+}
+
+prt_evt_in,28,47,4	shop	S2Shop	4_M_02,501:-1

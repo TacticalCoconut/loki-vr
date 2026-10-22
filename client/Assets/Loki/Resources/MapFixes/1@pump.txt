@@ -1,0 +1,47 @@
+# Architect's fix file for 1@pump (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds 1@pump
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 764 model faces on 42 models
+architect-fix	1	1@pump	gnd:558782:29ff4664f90054db	gat:384014:0c0431fb3cf0c14b
+R	rsw:173790:3faa8763b79d2d0c
+M	16	583:65ae15af5d349206	0	0,2-4	under
+M	22	583:65ae15af5d349206	0	0-2	under
+M	23	583:94eb806c6e00b9f1	0	0-4	under
+M	24	583:65ae15af5d349206	0	0-4	under
+M	28	583:94eb806c6e00b9f1	0	0-4	under
+M	29	583:65ae15af5d349206	0	0-2,4	under
+M	32	583:94eb806c6e00b9f1	0	0-4	under
+M	34	583:65ae15af5d349206	0	0-4	under
+M	35	583:65ae15af5d349206	0	0-4	under
+M	79	583:94eb806c6e00b9f1	0	1-4	under
+M	80	583:65ae15af5d349206	0	0-1,4	under
+M	86	583:65ae15af5d349206	0	0-4	under
+M	95	583:65ae15af5d349206	0	0-4	under
+M	102	583:65ae15af5d349206	0	0-4	under
+M	107	583:94eb806c6e00b9f1	0	0-4	under
+M	108	583:65ae15af5d349206	0	0-4	under
+M	115	583:94eb806c6e00b9f1	0	2	under
+M	117	583:65ae15af5d349206	0	0-4	under
+M	119	583:65ae15af5d349206	0	0-3	under
+M	123	583:94eb806c6e00b9f1	0	0-4	under
+M	126	583:94eb806c6e00b9f1	0	0-4	under
+M	127	583:65ae15af5d349206	0	0-4	under
+M	129	583:94eb806c6e00b9f1	0	0,2-4	under
+M	130	583:94eb806c6e00b9f1	0	0,2,4	under
+M	137	583:65ae15af5d349206	0	1-4	under
+M	139	583:94eb806c6e00b9f1	0	0-4	under
+M	142	583:65ae15af5d349206	0	0-4	under
+M	143	2239:2d208eb49f302bba	0	22-27,32-37,41-46	behind
+M	163	2263:15c86ee360558ed2	0	0-20,22-36,38-44,46-47	under
+M	208	2263:15c86ee360558ed2	0	0-20,22-36,38-44,46-47	under
+M	216	2263:15c86ee360558ed2	0	0-47	under
+M	266	2263:15c86ee360558ed2	0	0-47	under
+M	300	2263:15c86ee360558ed2	0	0-20,22-40,42-47	under
+M	306	2263:15c86ee360558ed2	0	0-20,22-39,42-44,46-47	under
+M	312	2263:15c86ee360558ed2	0	0-42,44,46	under
+M	318	2263:15c86ee360558ed2	0	0-39,42-47	under
+M	326	2263:15c86ee360558ed2	0	0-37,39,41-44,46-47	under
+M	328	2263:15c86ee360558ed2	0	0-20,22-37,39-40,42,44,46	under
+M	371	2263:15c86ee360558ed2	0	0-36,38-39,42-47	under
+M	419	2263:15c86ee360558ed2	0	0-31,33-39,43-44,46-47	under
+M	421	2263:15c86ee360558ed2	0	0-31,33-39,43-44,46-47	under
+M	423	2263:15c86ee360558ed2	0	0-35,38-39,41,43,46-47	under

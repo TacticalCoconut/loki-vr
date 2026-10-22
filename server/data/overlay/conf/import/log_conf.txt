@@ -1,0 +1,2 @@
+// Loki Host: log_zeny (every zeny change, for the admin tab's Zeny Ledger)
+log_zeny: 1

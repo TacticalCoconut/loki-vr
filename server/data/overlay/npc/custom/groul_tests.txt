@@ -1,0 +1,129 @@
+// groul_tests.txt - test NPCs of the groul parity rig (wave G: the roulette's script command, NPC files on a running
+// server). NOT listed in scripts_custom.conf: the scenarios of testrig/parity/groul load it with @loadnpc, so the
+// start-up world is the same with and without it. Everything is on guild_vs1-1, a map with no NPC, monster or map
+// flag of its own.
+
+function	script	F_Groul	{
+	return "F_Groul v1: " + getarg(0);
+}
+
+// a script NPC with OnInit, a login event and a `.` variable; the duplicate below shares its code and variables
+guild_vs1-1,50,54,4	script	Groul One#gr	4_F_KAFRA1,{
+	mes "[" + strnpcinfo(0) + "]";
+	mes F_Groul(strnpcinfo(3));
+	mes "loads " + .loads + ", $@groul " + $@groul + ", $groul " + $groul;
+	close;
+OnInit:
+	.loads++;
+	announce "groul OnInit " + strnpcinfo(3) + " " + .loads, bc_all;
+	end;
+OnPCLoginEvent:
+	dispbottom "groul login event: " + strnpcinfo(3);
+	end;
+}
+guild_vs1-1,52,54,4	duplicate(Groul One#gr)	Groul Two#gr	4_F_KAFRA2
+
+// shops: one with items, one whose only item does not exist ("Ignoring empty shop": it still takes an NPC id), and a
+// duplicate of the first
+guild_vs1-1,48,54,4	shop	Groul Shop#gr	4_M_01,512:10,501:-1
+guild_vs1-1,47,54,4	shop	Groul Empty#gr	4_M_01,3:10
+guild_vs1-1,46,54,4	duplicate(Groul Shop#gr)	Groul Shop2#gr	4_M_02
+
+// a warp
+guild_vs1-1,56,54,0	warp	groulwarp#gr	1,1,guild_vs1-1,50,46
+
+// the three states of w2
+guild_vs1-1,44,54,4	script(HIDDEN)	Groul Hidden#gr	4_M_03,{
+	end;
+}
+guild_vs1-1,43,54,4	script(CLOAKED)	Groul Cloaked#gr	4_M_04,{
+	end;
+}
+guild_vs1-1,42,54,4	script(DISABLED)	Groul Disabled#gr	4_M_05,{
+	end;
+}
+
+// a touch area
+guild_vs1-1,56,48,4	script	Groul Touch#gr	4_M_06,1,1,{
+	end;
+OnTouch:
+	dispbottom "groul touched " + strnpcinfo(3);
+	end;
+}
+
+// floating NPCs: OnInit without a view, and the player events (npc_read_event_script at run time)
+-	script	Groul Float#gr	-1,{
+OnInit:
+	announce "groul OnInit float", bc_all;
+	end;
+}
+-	script	Groul Ev#gr	-1,{
+OnPCLoginEvent:
+	dispbottom "groul login event: Ev";
+	end;
+OnPCBaseLvUpEvent:
+	dispbottom "groul base level event: Ev";
+	end;
+OnPCDieEvent:
+	dispbottom "groul die event: Ev";
+	end;
+}
+
+// the script commands: duplicate / duplicate_dynamic. Each choice first spawns a Black Mushroom: the id base of the
+// rig's relids.py, taken in the same script run as the duplicate (no world timer can take an id in between).
+guild_vs1-1,50,52,4	script	Groul Maker#gr	4_F_01,{
+	.@n$ = "";
+	.@s = select("plain:named:area:missing:shop:dynamic:warp:bad map:bad x:long name");
+	monster "guild_vs1-1", 48, 48, "Groul Base", 1084, 1;
+	switch (.@s) {
+	case 1: .@n$ = duplicate("Groul One#gr", "guild_vs1-1", 51, 58); break;
+	case 2: .@n$ = duplicate("Groul One#gr", "guild_vs1-1", 53, 58, "Named Dup", 4_F_02, 2); break;
+	case 3: .@n$ = duplicate("Groul Touch#gr", "guild_vs1-1", 56, 44, "Touch Dup", 4_M_04, 6, 2, 2); break;
+	case 4: .@n$ = duplicate("Groul Nobody", "guild_vs1-1", 51, 58); break;
+	case 5: .@n$ = duplicate("Groul Shop#gr", "guild_vs1-1", 49, 58); break;
+	case 6: .@n$ = duplicate_dynamic("Groul One#gr"); break;
+	case 7: .@n$ = duplicate("groulwarp#gr", "guild_vs1-1", 44, 44, "groulwarp2", 0, 0, 1, 1); break;
+	case 8: .@n$ = duplicate("Groul One#gr", "groul_nomap", 51, 58); break;
+	case 9: .@n$ = duplicate("Groul One#gr", "guild_vs1-1", 3000, 58); break;
+	case 10: .@n$ = duplicate("Groul One#gr", "guild_vs1-1", 51, 58, "A name that is longer than the fifty characters an NPC name may have"); break;
+	}
+	mes "duplicate: '" + .@n$ + "'";
+	close;
+}
+
+// barter_db's NPCs by their ids. "ids": the distances between five of them (the order BarterDatabase::loadingFinished
+// made them in). "reload": a Black Mushroom (the id base, $@mobid[0]), barter_db.reload() in the same script run, and
+// the five ids as offsets from the mushroom: the reload order and the ids it takes. "shop": a barter shop opens.
+guild_vs1-1,48,52,4	script	Groul Barter#gr	100,{
+	.@s = select("ids:reload:shop");
+	if (.@s == 3) {
+		callshop "barter_mall_coupon_1";
+		end;
+	}
+	.@a = getnpcid(0, "barter_mall_coupon_1");
+	if (.@s == 2) {
+		monster "guild_vs1-1", 48, 48, "Groul Base", 1084, 1;
+		.@a = $@mobid[0];
+		atcommand "@reloadbarterdb";
+		mes "barter_mall_coupon_1 " + (getnpcid(0, "barter_mall_coupon_1") - .@a);
+	}
+	mes "CachuaCoupon08 " + (getnpcid(0, "CachuaCoupon08") - .@a);
+	mes "barter_mall_coupon_6 " + (getnpcid(0, "barter_mall_coupon_6") - .@a);
+	mes "Quiver_Archer " + (getnpcid(0, "Quiver_Archer") - .@a);
+	mes "barter_Pet_Groomer " + (getnpcid(0, "barter_Pet_Groomer") - .@a);
+	mes "EnchantGradeExchange " + (getnpcid(0, "EnchantGradeExchange") - .@a);
+	close;
+}
+
+// open_roulette: for the player, for another character, for a character that is not online
+guild_vs1-1,52,52,4	script	Groul Roulette#gr	4_F_02,{
+	switch (select("self:player:nobody")) {
+	case 1: open_roulette; end;
+	case 2: open_roulette(getcharid(0, "Groul Player")); end;
+	case 3: open_roulette(1); dispbottom "after open_roulette(1)"; end;
+	}
+	end;
+}
+
+// monsters: two immobile plants on one cell
+guild_vs1-1,50,44,0,0	monster	Groul Plant	1078,2,0,0,0

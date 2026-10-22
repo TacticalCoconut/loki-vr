@@ -1,0 +1,30 @@
+//===== Loki client wave 3 (w3move) test fixture ============================
+// For the private rAthena copy "w3move" only (install-w3move-fixture.sh). A player stepping on one of these cells makes
+// the NPC announce the player's cell and the server's tick (gettimetick(0) = gettick(), rA script.cpp:10882-10886) to the
+// whole map, so the smoke can compare the moment the server's unit reached the cell with the moment the client drew it
+// there. The touch area is the cell alone (xs = ys = 0: npc_setcells, rA npc.cpp:4972-5000); OnTouch runs when a walk step
+// ends on it (unit_walktoxy_timer, rA unit.cpp:691-699). Each NPC stands on the second-to-last cell of a smoke route: a
+// unit ending its walk on an NPC's cell is moved off it (official_cell_stack_limit, unit.cpp:766-781), passing through is
+// not. Sprite 111 (HIDDEN_NPC) is invisible in the client.
+//============================================================================
+payon,141,115,0	script	W3Touch#pay1	111,0,0,{
+	end;
+OnTouch:
+	getmapxy(.@m$, .@x, .@y);
+	announce "w3touch " + strcharinfo(0) + " " + .@m$ + " " + .@x + " " + .@y + " " + gettimetick(0), bc_map;
+	end;
+}
+prontera,143,178,0	script	W3Touch#prt1	111,0,0,{
+	end;
+OnTouch:
+	getmapxy(.@m$, .@x, .@y);
+	announce "w3touch " + strcharinfo(0) + " " + .@m$ + " " + .@x + " " + .@y + " " + gettimetick(0), bc_map;
+	end;
+}
+prontera,158,172,0	script	W3Touch#prt2	111,0,0,{
+	end;
+OnTouch:
+	getmapxy(.@m$, .@x, .@y);
+	announce "w3touch " + strcharinfo(0) + " " + .@m$ + " " + .@x + " " + .@y + " " + gettimetick(0), bc_map;
+	end;
+}

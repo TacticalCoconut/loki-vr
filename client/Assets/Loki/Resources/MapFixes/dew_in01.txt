@@ -1,0 +1,66 @@
+# Architect's fix file for dew_in01 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds dew_in01
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 14 ground walls drawn from both sides, 34 turned to face the other side, 0 floors drawn, 0 holes filled; 2 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 340 model faces on 2 models
+architect-fix	1	dew_in01	gnd:88550:a7a9346376d66a98	gat:72014:45cdfde4637c744e
+W	6	14	N	flip	ledge
+W	7	14	N	flip	ledge
+W	8	14	N	flip	ledge
+W	9	14	N	both	ledge
+W	5	15	E	flip	ledge
+W	2	16	N	both	ledge
+W	3	16	N	both	ledge
+W	4	16	N	both	ledge
+W	5	16	E	both	ledge
+W	11	16	N	both	ledge
+W	1	17	E	flip	ledge
+W	13	17	E	flip	inner
+W	1	18	E	both	ledge
+W	13	18	E	flip	outer
+W	1	19	E	both	ledge
+W	13	19	E	flip	outer
+W	1	20	E	both	ledge
+W	9	20	E	flip	step
+W	13	20	E	flip	outer
+W	1	21	E	both	ledge
+W	9	21	E	flip	step
+W	13	21	E	flip	outer
+W	1	22	E	both	ledge
+W	6	22	N	flip	step
+W	7	22	N	flip	step
+W	8	22	N	flip	step
+W	9	22	N	flip	step
+W	9	22	E	flip	step
+W	13	22	E	flip	outer
+W	1	23	E	both	ledge
+W	13	23	E	flip	outer
+W	1	24	E	both	ledge
+W	13	24	E	flip	outer
+W	1	25	E	both	ledge
+W	13	25	E	flip	outer
+W	2	26	N	flip	inner
+W	3	26	N	flip	inner
+W	4	26	N	flip	outer
+W	5	26	N	flip	outer
+W	6	26	N	flip	outer
+W	7	26	N	flip	outer
+W	8	26	N	flip	outer
+W	9	26	N	flip	outer
+W	10	26	N	flip	outer
+W	11	26	N	flip	outer
+W	12	26	N	flip	inner
+W	13	26	N	flip	inner
+W	13	26	E	flip	inner
+R	rsw:104722:c85748ea1f17e178
+M	8	5699:358a495337d71094	1	36-37,39	under+behind
+M	77	92599:647fdda8c164c020	0	8-9,18-19,28-29,38-39,46-47	behind
+M	77	92599:647fdda8c164c020	2	4-5,9,14-17,23-29,42-49,63-66,72-75,90,101	under+behind
+M	77	92599:647fdda8c164c020	3	0,3-16,21-24,27-38,41-42,45-49,52-62,67-70,73-74,77-82,85-86,89,93-97	under
+M	77	92599:647fdda8c164c020	4	0-19,21-27,29-30,32-37,39,41-42,44-45,48,53-56,62-63,68-69,73-76,78-81,103-104,109-110,124,131-132,139,141,149,151-152,154-155,161,169,183	under+behind
+M	77	92599:647fdda8c164c020	5	280-285,309-310,315-316,321,324-325,328-329,412-413,416-417,673-679,682-684,699-705,708-710,729-731,734-736,760-762	under+behind
+M	77	92599:647fdda8c164c020	6	0	under
+M	77	92599:647fdda8c164c020	8	20-24,31-34,81-82	under+behind
+M	77	92599:647fdda8c164c020	9	25-26,81-86,94-99,108-111,114-115,121,128-131,137,150,152-155,185,193-195,197,236,249-250,257-258,272-273,282-284,293,295-296,298,324-325,380-385,393-398,407-409,420,427-430,448,450-455,458,484,492-493,519,526-527,543,548-549,554,556,575	under+behind

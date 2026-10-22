@@ -1,0 +1,25 @@
+//! skills/other/dualcannonfire.cpp: class SkillDualCannonFire : public WeaponSkillImpl (ABR_DUAL_CANNON_FIRE).
+
+use crate::battle::calc::Damage;
+use crate::db::skills::*;
+use crate::skills::{weapon_castend_damage_id, SkillImpl};
+use crate::unit::Unit;
+use crate::world::{Ctx, Tick};
+
+pub struct SkillDualCannonFire;
+
+impl SkillImpl for SkillDualCannonFire {
+    fn skill_id(&self) -> u16 {
+        ABR_DUAL_CANNON_FIRE
+    }
+
+    /// WeaponSkillImpl::castendDamageId.
+    fn castend_damage_id(&self, c: &Ctx, src: &Unit, target: &Unit, skill_lv: u16, tick: Tick, flag: &mut i32) {
+        weapon_castend_damage_id(c, self.skill_id(), src, target, skill_lv, tick, *flag);
+    }
+
+    /// SkillDualCannonFire::calculateSkillRatio ("TODO: Need official formula.").
+    fn calculate_skill_ratio(&self, _c: &Ctx, _wd: &Damage, _src: &Unit, _target: &Unit, _skill_lv: u16, base_skillratio: &mut i32, _mflag: i32) {
+        *base_skillratio += -100 + 8000;
+    }
+}

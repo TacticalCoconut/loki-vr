@@ -1,0 +1,82 @@
+# Architect's fix file for que_hugel (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds que_hugel
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 30 ground walls drawn from both sides, 41 turned to face the other side, 0 floors drawn, 0 holes filled; 2 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 31 model faces on 2 models
+architect-fix	1	que_hugel	gnd:554958:7e736e47ad9b7859	gat:800014:5a442034ab5ff3b9
+W	13	9	N	both	step
+W	14	9	N	both	step
+W	15	9	N	both	step
+W	16	9	N	both	step
+W	17	9	N	both	step
+W	18	9	N	flip	step
+W	19	9	N	flip	step
+W	20	9	N	both	step
+W	21	9	N	flip	step
+W	22	9	N	flip	step
+W	77	9	N	both	step
+W	78	9	N	both	step
+W	79	9	N	both	step
+W	80	9	N	both	step
+W	81	9	N	both	step
+W	82	9	N	both	step
+W	83	9	N	both	step
+W	84	9	N	both	step
+W	85	9	N	flip	step
+W	86	9	N	flip	step
+W	13	10	N	flip	interior
+W	13	10	E	flip	interior
+W	14	10	E	flip	interior
+W	15	10	E	front	interior
+W	16	10	N	both	step
+W	16	10	E	both	interior
+W	17	10	N	flip	step
+W	17	10	E	flip	interior
+W	18	10	N	flip	step
+W	19	10	N	flip	interior
+W	21	10	E	flip	interior
+W	77	10	N	both	interior
+W	77	10	E	flip	interior
+W	78	10	E	both	interior
+W	79	10	E	front	interior
+W	80	10	N	both	step
+W	80	10	E	both	interior
+W	81	10	N	both	step
+W	81	10	E	flip	interior
+W	82	10	N	flip	step
+W	83	10	N	flip	interior
+W	85	10	E	flip	interior
+W	17	11	N	both	step
+W	17	11	E	flip	interior
+W	18	11	N	both	step
+W	18	11	E	flip	interior
+W	19	11	N	both	interior
+W	80	11	E	both	inner
+W	81	11	N	both	step
+W	81	11	E	flip	interior
+W	82	11	N	both	step
+W	82	11	E	flip	interior
+W	83	11	N	both	interior
+W	16	13	N	flip	step
+W	16	13	E	flip	interior
+W	17	13	N	flip	interior
+W	17	13	E	both	interior
+W	80	13	N	flip	step
+W	80	13	E	flip	interior
+W	81	13	N	flip	interior
+W	81	13	E	both	interior
+W	18	14	N	flip	step
+W	18	14	E	flip	step
+W	82	14	N	flip	step
+W	82	14	E	flip	step
+W	14	15	N	flip	interior
+W	14	15	E	flip	interior
+W	78	15	N	flip	interior
+W	78	15	E	flip	interior
+W	14	16	E	flip	interior
+W	78	16	E	flip	interior
+R	rsw:78170:50d81168a01798c5
+M	11	4563:9be6613a07ddc16f	0	32-44	behind
+M	12	2287:db1250af4c12e245	0	12-15,18-19,32-43	under+behind

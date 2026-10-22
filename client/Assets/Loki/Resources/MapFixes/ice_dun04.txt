@@ -1,0 +1,10 @@
+# Architect's fix file for ice_dun04 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ice_dun04
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 26 model faces on 5 models
+architect-fix	1	ice_dun04	gnd:550326:2d0e16f7bace1452	gat:800014:b3b3b8b437e3bb22
+R	rsw:78366:3dc20780f1eadd2a
+M	22	1867:1825e726e45bc1f0	0	22-23	under
+M	27	1867:1825e726e45bc1f0	0	12-13	behind
+M	32	2251:f97f8c69fd10d0a8	0	10-11	behind
+M	40	2251:f97f8c69fd10d0a8	0	2-5	behind
+M	41	1867:1825e726e45bc1f0	0	12-13,20-21,24-35	behind

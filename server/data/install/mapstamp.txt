@@ -1,0 +1,12 @@
+stamp: g1-603785af4ecfea8d
+label: patch 1486
+stamp_maps: 965
+stamp_cells: 83707720
+stamp_unreadable: 0
+import_cache: 57 maps (0 kept, 57 from the install), content ee4bd5e95b3c0032e7a55556b8212b12c59c710b1cb6f7a6a12b299e49263641
+left_alone_water_only: 61
+not_in_the_install: 389
+maps_bin: 1265 maps, 57 differ from the stock maps.bin (51 walkable cells, 6 size, 0 otherwise)
+points_check: 1069 checked, 0 lost; reachability 1069 checked, 0 cut off
+walkable_cells_changed: morocc:1780 prontera:1275 amicitia1:1267 ba_pw02:926 1@mjo1:799 int_land:721 int_land01:721 int_land02:721 int_land03:721 int_land04:721 yuno_fild02:669 httyd_01:426 gw_fild02:254 alberta:234 hugel:214 pvp_y_8-2:183 bif_fild01:180 izlude:172 izlude_a:172 izlude_b:172 izlude_c:172 izlude_d:172 pvp_y_1-2:172 aldebaran:137 moc_para01:102 te_prt_gld:88 yuno:53 ba_lib:37 cmd_fild03:25 harboro2:24 juperos_02:24 tur_d04_i:17 aldeba_in:14 pay_arche:12 geffen:8 prt_castle:8 1@eom:6 gef_fild06:5 gon_dun03:4 malangdo:4 te_alde_gld:4 verus02:4 alb2trea:3 gefenia01:2 prt_mz03_i:2 2@gl_k:1 2@gl_k2:1 2@gl_kh:1 iz_d05_i:1 spl_fild01:1 spl_in02:1
+size_changed: pvp_y_2-2 268x300->268x268 pvp_y_3-2 268x300->268x268 pvp_y_4-2 268x300->268x268 pvp_y_5-2 268x300->268x268 pvp_y_6-2 268x300->268x268 pvp_y_7-2 268x300->268x268

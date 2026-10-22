@@ -1,0 +1,26 @@
+//===== Loki client wave 5 (w5move) test fixture ==========================
+// For the private rAthena copy "w5move" only (install-w5move-fixture.sh).
+// @w5spawn <mob id> <x> <y>: one monster exactly on (x, y) of the caller's map, and an announce to the caller alone,
+//   "w5spawn <mob id> <map> <x> <y> <gid>". The script command monster keeps a cell it is given (rA script.cpp
+//   BUILDIN(monster) -> mob_once_spawn -> mob_once_spawn_sub, mob.cpp:636-678: only a negative cell is searched for) and
+//   stores the new monster's id in $@mobid (script.cpp:11312); bindatcmd hands the command's words over in
+//   .@atcmd_parameters$ (npc.cpp:5126-5148). The smoke spawns plants (Blue Plant 1079: Ai 06, never moves, and IgnoreMelee …
+//   in db/re/mob_db.yml: is_infinite_defense, battle.cpp:2890-2908, so a hit does 1 damage), a target that stays where it was put.
+//============================================================================
+-	script	W5MoveSpawn	-1,{
+OnInit:
+	bindatcmd "w5spawn", strnpcinfo(3) + "::OnSpawn";
+	end;
+OnSpawn:
+	if (.@atcmd_numparameters < 3) {
+		dispbottom "usage: @w5spawn <mob id> <x> <y>";
+		end;
+	}
+	.@id = atoi(.@atcmd_parameters$[0]);
+	.@x = atoi(.@atcmd_parameters$[1]);
+	.@y = atoi(.@atcmd_parameters$[2]);
+	getmapxy(.@m$, .@px, .@py);
+	monster .@m$, .@x, .@y, "--ja--", .@id, 1;
+	announce "w5spawn " + .@id + " " + .@m$ + " " + .@x + " " + .@y + " " + $@mobid[0], bc_self;
+	end;
+}

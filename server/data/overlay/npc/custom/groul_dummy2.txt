@@ -1,0 +1,18 @@
+// groul_dummy2.txt - more @commands run with no player attached (the groul parity rig; port wave I, imaps; not in
+// scripts_custom.conf: the npc_dummy2 scenario loads it with @loadnpc): what such a command does to a named player,
+// at the dummy character's own place, and to the dummy itself (script.cpp:15736-15781 atcommand_sub).
+
+prontera,150,180,4	script	Dummy Worker#gd2	-1,{
+	end;
+OnInit:
+	// a #command on a named player: the items land in that player's inventory
+	charcommand "#item \"Groul Player\" 501 2";
+	// at the dummy's own place: a monster where the NPC stands (a Red Mushroom: it does not wander)
+	atcommand "@monster 1085 1";
+	// on the dummy itself: no client sees anything, and the script goes on
+	atcommand "@item 501 1";
+	atcommand "@heal";
+	atcommand "@jump 150 150";
+	atcommand "@broadcast worker done";
+	end;
+}

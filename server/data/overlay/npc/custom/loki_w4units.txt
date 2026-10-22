@@ -1,0 +1,87 @@
+//===== Loki client wave 4, w4units smoke fixture ============================
+// Test servers only (loaded from npc/scripts_custom.conf of the private rAthena copy "w4units", index 43).
+// Whisper "NPC:W4Units" a '#'-separated order (OnWhisperGlobal fills @whispervar0$..9$):
+//   mob#<x>#<y>#<class>#<hp>      a monster named "W4 Mob" at (x, y) on the invoker's map; <hp> > 0 sets its max HP and HP
+//                                 (UMOB_MAXHP / UMOB_HP) so a fight lasts; GID in $@w4mob
+//   still                         makes $@w4mob immobile (UMOB_MODE 0: no MD_CANMOVE / MD_CANATTACK)
+//   kill                          removes the monsters of the invoker's map
+//   sc#<name>#<ms>#<target>#<v1>  sc_start <status>,<ms>,<v1> unavoidable (rate 10000, NOAVOID|NOTICKDEF|NORATEDEF) on <target>:
+//                                 "mob" = $@w4mob, "me" = the invoker, else a character name (its account id is its GID)
+//   end#<name>#<target>           sc_end <status> on <target>
+//   hat#<id>#<0|1>#<target>       hateffect <id>,<0|1> on a character (the target attaches as the script's player)
+// <name>: run stormkick downkick turnkick counterkick dodge trickdead stop camouflage stealthfield shadowform suhide stoop
+//         intravision millenniumshield transform bladestopwait shadowweapon
+// It answers with a message "w4npc:<order> <target>:<result>" (a character: 1 = the status is on it afterwards, 0 = not; a monster: -).
+//============================================================================
+-	script	W4Units	-1,{
+OnWhisperGlobal:
+	.@cmd$ = @whispervar0$;
+	.@me = getcharid(3);
+	if (.@cmd$ == "mob") {
+		getmapxy(.@map$, .@x, .@y, BL_PC);
+		monster .@map$, atoi(@whispervar1$), atoi(@whispervar2$), "W4 Mob", atoi(@whispervar3$), 1;
+		$@w4mob = $@mobid[0];
+		if (atoi(@whispervar4$) > 0) {
+			setunitdata $@w4mob, UMOB_MAXHP, atoi(@whispervar4$);
+			setunitdata $@w4mob, UMOB_HP, atoi(@whispervar4$);
+		}
+		message strcharinfo(0), "w4npc:mob:" + $@w4mob;
+		end;
+	}
+	if (.@cmd$ == "still") {
+		setunitdata $@w4mob, UMOB_MODE, 0;
+		message strcharinfo(0), "w4npc:still:" + $@w4mob;
+		end;
+	}
+	if (.@cmd$ == "kill") {
+		getmapxy(.@map$, .@x, .@y, BL_PC);
+		killmonster .@map$, "All";
+		$@w4mob = 0;
+		message strcharinfo(0), "w4npc:kill:1";
+		end;
+	}
+	if (.@cmd$ == "hat") {
+		.@t$ = @whispervar3$;
+		.@cid = getcharid(0, .@t$);
+		if (.@cid == 0) { message strcharinfo(0), "w4npc:hat:no target " + .@t$; end; }
+		// hateffect <id>,<enable>{,<GID>} (script.cpp BUILDIN_DEF(hateffect,"ii?"): the optional GID picks the unit)
+		hateffect atoi(@whispervar1$), atoi(@whispervar2$), getcharid(3, .@t$);
+		message strcharinfo(0), "w4npc:hat " + @whispervar1$ + " " + .@t$ + ":" + @whispervar2$;
+		end;
+	}
+	.@name$ = @whispervar1$;
+	if (.@name$ == "run") .@sc = SC_RUN;
+	else if (.@name$ == "stormkick") .@sc = SC_READYSTORM;
+	else if (.@name$ == "downkick") .@sc = SC_READYDOWN;
+	else if (.@name$ == "turnkick") .@sc = SC_READYTURN;
+	else if (.@name$ == "counterkick") .@sc = SC_READYCOUNTER;
+	else if (.@name$ == "dodge") .@sc = SC_DODGE;
+	else if (.@name$ == "trickdead") .@sc = SC_TRICKDEAD;
+	else if (.@name$ == "stop") .@sc = SC_STOP;
+	else if (.@name$ == "camouflage") .@sc = SC_CAMOUFLAGE;
+	else if (.@name$ == "stealthfield") .@sc = SC_STEALTHFIELD;
+	else if (.@name$ == "shadowform") .@sc = SC__SHADOWFORM;
+	else if (.@name$ == "suhide") .@sc = SC_SUHIDE;
+	else if (.@name$ == "stoop") .@sc = SC_SU_STOOP;
+	else if (.@name$ == "intravision") .@sc = SC_INTRAVISION;
+	else if (.@name$ == "millenniumshield") .@sc = SC_MILLENNIUMSHIELD;
+	else if (.@name$ == "transform") .@sc = SC_MONSTER_TRANSFORM;
+	else if (.@name$ == "bladestopwait") .@sc = SC_BLADESTOP_WAIT;
+	else if (.@name$ == "shadowweapon") .@sc = SC_SHADOW_WEAPON;
+	else { message strcharinfo(0), "w4npc:" + .@cmd$ + ":unknown " + .@name$; end; }
+	.@t$ = (.@cmd$ == "sc") ? @whispervar3$ : @whispervar2$;
+	.@cid = 0;
+	if (.@t$ == "mob") .@gid = $@w4mob;
+	else if (.@t$ == "me") { .@gid = .@me; .@cid = getcharid(0); }
+	else { .@gid = getcharid(3, .@t$); .@cid = getcharid(0, .@t$); }
+	if (.@gid == 0) { message strcharinfo(0), "w4npc:" + .@cmd$ + ":no target " + .@t$; end; }
+	if (.@cmd$ == "sc")
+		sc_start .@sc, atoi(@whispervar2$), atoi(@whispervar4$), 10000, SCSTART_NOAVOID|SCSTART_NOTICKDEF|SCSTART_NORATEDEF, .@gid;
+	else if (.@cmd$ == "end")
+		sc_end .@sc, .@gid;
+	else { message strcharinfo(0), "w4npc:" + .@cmd$ + ":unknown"; end; }
+	.@r$ = "-";
+	if (.@cid) .@r$ = "" + getstatus(.@sc, 0, .@cid);
+	message strcharinfo(0), "w4npc:" + .@cmd$ + " " + .@name$ + " " + .@t$ + ":" + .@r$;
+	end;
+}

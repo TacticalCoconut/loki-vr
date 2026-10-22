@@ -1,0 +1,36 @@
+# Architect's fix file for moc_fild22b (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds moc_fild22b
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 0 ground walls drawn from both sides, 0 turned to face the other side, 6 floors drawn, 9 holes filled; 10 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 139 model faces on 12 models
+architect-fix	1	moc_fild22b	gnd:4428014:3c5020a4a673f310	gat:3200014:bc093ef067d123f3
+T	56	29	draw	walkable
+T	56	30	draw	walkable
+T	144	71	draw	walkable
+T	145	71	draw	walkable
+T	131	134	draw	walkable
+T	112	166	draw	walkable
+F	55	28	4.704	hole
+F	56	31	4.774	hole
+F	56	32	3.247	hole
+F	174	46	3.186	hole
+F	150	104	-1.242	hole
+F	157	111	2.563	hole
+F	174	111	-0.537	hole
+F	168	148	1.922	hole
+F	137	162	3.86	hole
+R	rsw:144734:29b6c0399a95eefc
+M	20	6195:a6460aa8bc9ba168	0	83-84,96	behind
+M	66	6195:a6460aa8bc9ba168	0	83-84,96	behind
+M	73	6195:a6460aa8bc9ba168	0	23-24,66,81-82,85-86,89-94,101,105-106,113-118,125-134,136-142	behind
+M	77	6195:a6460aa8bc9ba168	0	97-98,121-124	behind
+M	290	13755:e1d97fbe7119d9c7	0	134-147	behind
+M	291	13755:e1d97fbe7119d9c7	0	134-145,147	behind
+M	292	13755:e1d97fbe7119d9c7	0	12,14-15,134-147	behind
+M	293	13135:32a23a47b47e7de2	0	12-13,36-37,82-89	under+behind
+M	294	13135:32a23a47b47e7de2	0	82-89	under
+M	295	13135:32a23a47b47e7de2	0	82-89	under
+M	296	13135:32a23a47b47e7de2	0	82-89	under
+M	297	13135:32a23a47b47e7de2	0	82-89	under

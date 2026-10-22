@@ -1,0 +1,59 @@
+# Architect's fix file for abyss_01 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds abyss_01
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 17 ground walls drawn from both sides, 11 turned to face the other side, 0 floors drawn, 0 holes filled; 2 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 462 model faces on 22 models
+architect-fix	1	abyss_01	gnd:4335910:273daa8f960b6877	gat:1800014:e8f54716d7b68816
+W	12	10	N	flip	ledge
+W	13	10	N	flip	ledge
+W	14	10	N	flip	ledge
+W	12	12	N	flip	step
+W	13	12	N	flip	step
+W	14	12	N	flip	interior
+W	12	13	N	flip	step
+W	13	13	N	flip	step
+W	14	13	N	flip	interior
+W	12	14	N	flip	step
+W	13	14	N	flip	interior
+W	12	15	N	both	interior
+W	132	133	E	both	interior
+W	133	133	N	both	step
+W	133	134	N	both	step
+W	134	134	N	both	interior
+W	133	135	N	both	step
+W	133	135	E	both	step
+W	134	135	N	both	interior
+W	132	136	E	both	step
+W	133	136	N	both	step
+W	133	136	E	both	step
+W	134	136	N	both	step
+W	134	136	E	both	interior
+W	135	136	N	both	step
+W	132	137	E	both	interior
+W	133	137	E	both	step
+W	133	138	E	both	step
+R	rsw:164606:e8f01b74849c9aa1
+M	145	2395:01f9b807cf100d2c	0	2-3,14-19,34-35,42-43	behind
+M	188	1879:492ac639895aab01	0	1-11,13-15,17,19-21,23,25,27,29,34-39	under
+M	189	1891:876c33809c0070a7	0	3-21,23-35,39	under
+M	191	3339:843f67c0a531b2b5	0	14-15,18-19,30-31,38-39,42-43	behind
+M	192	2983:3816eb26afd0c999	0	6-7,10-11	behind
+M	199	1879:492ac639895aab01	0	0,2-10,12,15-19,24-31,33-39	under
+M	200	1879:492ac639895aab01	0	0,3,8,10-14,16,21,27,29,33,35,37-39	under
+M	201	1879:492ac639895aab01	0	1,3-5,7-14,17-20,22,25,27,29,31-35,37-39	under
+M	203	1879:492ac639895aab01	0	4-7,9-10,12-14,16-20,24,26-32,34	under
+M	204	1879:492ac639895aab01	0	0-2,4-11,13-14,18,23-26,29,31-35,37-38	under
+M	205	1891:876c33809c0070a7	0	0-2,4,6-7,9-10,12-27,30-32,34,36-39	under
+M	206	1891:876c33809c0070a7	0	1,4-5,7-18,20-29,31-36,39	under
+M	311	1879:492ac639895aab01	0	4-7,13,15-21,24-27,29-30,32-35	under
+M	312	1891:876c33809c0070a7	0	0-3,5-30,32-33,35-37,39	under
+M	314	1879:492ac639895aab01	0	2-3,8-23,25,27,29-32,34-39	under
+M	317	1879:492ac639895aab01	0	1,3,7,9,11,13,15,17,19-28,30-32,34-35,37-39	under
+M	321	3339:843f67c0a531b2b5	0	14-15,18-19,38-39,42-43,46-47	behind
+M	322	2983:3816eb26afd0c999	0	42-43	behind
+M	323	2983:3816eb26afd0c999	0	14-15,42-43	behind
+M	326	1975:be37f62bd698a552	0	18-19	behind
+M	327	1879:492ac639895aab01	0	0-3,5,7,11,15,17,19-22,24-32,34-37	under
+M	329	2983:3816eb26afd0c999	0	0-5,12-15,20-21,28-31,34-37,40-45,52-53	under+behind

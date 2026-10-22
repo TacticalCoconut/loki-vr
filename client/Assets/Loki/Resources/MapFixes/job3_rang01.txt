@@ -1,0 +1,15 @@
+# Architect's fix file for job3_rang01 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds job3_rang01
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 186 model faces on 10 models
+architect-fix	1	job3_rang01	gnd:235214:2f363565c09b1a67	gat:192014:14df85deccde79e6
+R	rsw:82146:3a269b08fc3ce5c2
+M	6	8475:3ea8c1797a2ca062	0	10-12,15-16,22-24,30-31,45-52,57-64,67-74,77-81,144-145	under+behind
+M	7	6099:1eaa33508d2d6096	0	22-23,49-50,61-62,71-72	behind
+M	8	6099:1eaa33508d2d6096	0	22-23,49-50,61-62,71-72	behind
+M	25	8475:3ea8c1797a2ca062	0	10,30-31,36-37,51-52,55-56,63-66,73-76,81,83-84	under+behind
+M	27	6099:1eaa33508d2d6096	0	10,30-31,36-37,51-52,55-56,63-66,73-76,83-84,117-120	under+behind
+M	37	8475:3ea8c1797a2ca062	0	10-12,15-16,22-24,30-31,45-52,59-64,69-74,77-81,144-145	under+behind
+M	43	8475:3ea8c1797a2ca062	0	36-37,55-56,65-66,75-76,83-84	behind
+M	44	6099:1eaa33508d2d6096	0	22-23,49-50,61-62,71-72	behind
+M	49	6099:1eaa33508d2d6096	0	10,30-31,36-37,51-52,55-56,63-66,73-76,83-84,117-120	under+behind
+M	54	6099:1eaa33508d2d6096	0	22-23,49-50,61-62,71-72	behind

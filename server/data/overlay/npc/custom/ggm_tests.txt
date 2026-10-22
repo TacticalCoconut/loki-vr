@@ -1,0 +1,258 @@
+//===== Loki wave G (ggm) parity test NPCs ===================================
+// Test servers only. The parity scenarios of testrig/parity/ggm/ whisper
+// "NPC:GgmT" with a command and '#'-separated arguments, and click the NPCs
+// on g_room2 (a map nothing else uses). Both the module (server/data/overlay,
+// embedded by datagen) and the private rAthena oracle (npc/custom) load this
+// same file. Commands of wave F's last script commands and of the macro
+// detector:
+//   plag#skill#lv          plagiarizeskill
+//   plagr#type             plagiarizeskillreset
+//   pvpon#map / pvpoff#map pvpon / pvpoff (the map flag after it)
+//   pvpbad                 pvpon / pvpoff of an unknown map
+//   sadd#n#ms              addspiritball of the attached player
+//   saddc#n#ms             ... by char id        saddn#n#ms#name  ... by name
+//   sdel#n / sdelc#n / sdeln#n#name              delspiritball
+//   scnt / scntn#name      countspiritball
+//   idle                   checkidlemer (attached, by name, unknown name)
+//   auction                openauction
+//   stor2#id#mode          openstorage2 id, mode       stor2d#id  (no mode)
+//   stor2a#id#mode#aid     openstorage2 id, mode, account id
+//   mob#class#x#y          one monster on the player's map (kept in .mob)
+//   uatk#type              unitattack player -> .mob (the player is in this NPC's script: pc_cant_act refuses)
+//   uatko#aid#type         unitattack of ANOTHER player (account id) -> .mob     ustopo#aid  its unitstopattack
+//   matk                   .mob -> player (name)
+//   matki                  .mob -> player (id)         natk  NPC -> .mob
+//   xatk                   .mob -> an unknown id       ustop / mstop  unitstopattack
+//   mkill                  killmonster of the test monsters
+//   ns#n                   what the next click on GgmCaster casts (npcskill)
+//   macro / macroa#aid / macron#name             macro_detector
+//   capret                 @captcha_retries
+//============================================================================
+-	script	GgmT	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	.@a = atoi(@whispervar1$);
+	.@b = atoi(@whispervar2$);
+	.@c = atoi(@whispervar3$);
+	if (.@t$ == "plag") {
+		dispbottom "plag " + .@a + " " + .@b + " = " + plagiarizeskill(.@a, .@b);
+		end;
+	}
+	if (.@t$ == "plagr") {
+		dispbottom "plagr " + .@a + " = " + plagiarizeskillreset(.@a);
+		end;
+	}
+	if (.@t$ == "pvpon") {
+		pvpon @whispervar1$;
+		dispbottom "pvpon " + @whispervar1$ + " = " + getmapflag(@whispervar1$, mf_pvp);
+		end;
+	}
+	if (.@t$ == "pvpoff") {
+		pvpoff @whispervar1$;
+		dispbottom "pvpoff " + @whispervar1$ + " = " + getmapflag(@whispervar1$, mf_pvp);
+		end;
+	}
+	if (.@t$ == "pvpbad") {
+		pvpon "ggm_no_such_map";
+		pvpoff "ggm_no_such_map";
+		dispbottom "pvpbad done";
+		end;
+	}
+	if (.@t$ == "sadd") {
+		addspiritball .@a, .@b;
+		dispbottom "sadd = " + countspiritball();
+		end;
+	}
+	if (.@t$ == "saddc") {
+		addspiritball .@a, .@b, getcharid(0);
+		dispbottom "saddc = " + countspiritball(getcharid(0));
+		end;
+	}
+	if (.@t$ == "saddn") {
+		addspiritball .@a, .@b, @whispervar3$;
+		dispbottom "saddn done";
+		end;
+	}
+	if (.@t$ == "sdel") {
+		delspiritball .@a;
+		dispbottom "sdel = " + countspiritball();
+		end;
+	}
+	if (.@t$ == "sdelc") {
+		delspiritball .@a, getcharid(0);
+		dispbottom "sdelc = " + countspiritball(getcharid(0));
+		end;
+	}
+	if (.@t$ == "sdeln") {
+		delspiritball .@a, @whispervar2$;
+		dispbottom "sdeln done";
+		end;
+	}
+	if (.@t$ == "scnt") {
+		dispbottom "scnt = " + countspiritball();
+		end;
+	}
+	if (.@t$ == "scntn") {
+		dispbottom "scntn = " + countspiritball(@whispervar1$);
+		end;
+	}
+	if (.@t$ == "idle") {
+		dispbottom "idle mer " + (checkidlemer() > 1700000000) + " name " + (checkidlemer(strcharinfo(0)) > 1700000000) + " none " + checkidlemer("Ggm Nobody");
+		end;
+	}
+	if (.@t$ == "auction") {
+		openauction;
+		dispbottom "auction done";
+		end;
+	}
+	if (.@t$ == "stor2") {
+		dispbottom "stor2 " + .@a + " " + .@b + " = " + openstorage2(.@a, .@b);
+		end;
+	}
+	if (.@t$ == "stor2d") {
+		dispbottom "stor2d " + .@a + " = " + openstorage2(.@a);
+		end;
+	}
+	if (.@t$ == "stor2a") {
+		dispbottom "stor2a " + .@a + " " + .@b + " " + .@c + " = " + openstorage2(.@a, .@b, .@c);
+		end;
+	}
+	if (.@t$ == "mob") {
+		monster strcharinfo(3), .@b, .@c, "--ja--", .@a, 1, "GgmT::OnDummy";
+		.mob = $@mobid[0];
+		dispbottom "mob " + .@a + " ok";
+		end;
+	}
+	if (.@t$ == "uatk") {
+		dispbottom "uatk " + .@a + " = " + unitattack(getcharid(3), .mob, .@a);
+		end;
+	}
+	if (.@t$ == "uatko") {
+		dispbottom "uatko " + .@b + " = " + unitattack(.@a, .mob, .@b);
+		end;
+	}
+	if (.@t$ == "ustopo") {
+		unitstopattack .@a;
+		dispbottom "ustopo done";
+		end;
+	}
+	if (.@t$ == "matk") {
+		dispbottom "matk = " + unitattack(.mob, strcharinfo(0));
+		end;
+	}
+	if (.@t$ == "matki") {
+		dispbottom "matki = " + unitattack(.mob, getcharid(3));
+		end;
+	}
+	if (.@t$ == "natk") {
+		dispbottom "natk = " + unitattack(getnpcid(0, "GgmCaster"), .mob);
+		end;
+	}
+	if (.@t$ == "xatk") {
+		dispbottom "xatk = " + unitattack(.mob, 99999999) + " " + unitattack(.mob, "Ggm Nobody");
+		end;
+	}
+	if (.@t$ == "ustop") {
+		unitstopattack getcharid(3);
+		dispbottom "ustop done";
+		end;
+	}
+	if (.@t$ == "mstop") {
+		unitstopattack .mob;
+		dispbottom "mstop done";
+		end;
+	}
+	if (.@t$ == "mkill") {
+		killmonster strcharinfo(3), "GgmT::OnDummy";
+		.mob = 0;
+		dispbottom "mkill done";
+		end;
+	}
+	if (.@t$ == "ns") {
+		@ggm_ns = .@a;
+		dispbottom "ns " + .@a;
+		end;
+	}
+	if (.@t$ == "macro") {
+		macro_detector;
+		dispbottom "macro done";
+		end;
+	}
+	if (.@t$ == "macroa") {
+		macro_detector .@a;
+		dispbottom "macroa done";
+		end;
+	}
+	if (.@t$ == "macron") {
+		macro_detector @whispervar1$;
+		dispbottom "macron done";
+		end;
+	}
+	if (.@t$ == "capret") {
+		dispbottom "captcha_retries = " + @captcha_retries;
+		end;
+	}
+	dispbottom "GgmT: unknown command " + .@t$;
+	end;
+OnDummy:
+	end;
+}
+
+// npcskill: the cast is chosen by the whisper "ns#n" before the click. (Skill names are no script constants: a bare
+// AL_HEAL would be an unset variable, 0; the skill is given as a string or by its id.)
+g_room2,23,24,4	script	GgmCaster	4_M_01,{
+	switch (@ggm_ns) {
+	case 0:
+		npcskill "AL_HEAL", 5, 50, 99;
+		break;
+	case 1:
+		npcskill "MG_SAFETYWALL", 1, 1, 1;
+		break;
+	case 2:
+		npcskill "AL_HEAL", 1, 131, 1;
+		break;
+	case 3:
+		npcskill "AL_HEAL", 1, 1, 276;
+		break;
+	case 4:
+		npcskill "GGM_NO_SUCH_SKILL", 1, 1, 1;
+		break;
+	case 5:
+		npcskill 0, 1, 1, 1;
+		break;
+	case 6:
+		npcskill 34, 10, 130, 275;
+		break;
+	case 7:
+		npcskill 29, 3, 10, 50;
+		npcskill 28, 1, 10, 50;
+		break;
+	case 8:
+		npcskill "MG_FIREBOLT", 3, 99, 99;
+		break;
+	case 9:
+		npcskill 99999, 1, 1, 1;
+		break;
+	case 10:
+		npcskill "AL_HEAL", 3, -1, 50;
+		break;
+	}
+	dispbottom "ns " + @ggm_ns + " done";
+	end;
+}
+
+// a dialog that stays open (pc_cant_act while it waits)
+g_room2,25,24,4	script	GgmTalk	4_F_01,{
+	mes "[GgmTalk]";
+	mes "one";
+	next;
+	mes "[GgmTalk]";
+	mes "two";
+	close;
+}
+
+// /kill on an NPC: the NPC and its duplicate go
+g_room2,27,24,4	script	GgmVictim	4_M_02,{
+	end;
+}
+g_room2,28,24,4	duplicate(GgmVictim)	GgmVictim#2	4_M_02

@@ -1,0 +1,94 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Attendance Database
+###########################################################################
+#
+# Attendance Settings
+#
+###########################################################################
+# - Start                   Start date.
+#   End                     End date.
+#   Rewards:                List of rewards for each day.
+#     - Day                 Reward day.
+#       ItemId              Item ID.
+###########################################################################
+
+Header:
+  Type: ATTENDANCE_DB
+  Version: 1
+
+# Project Loki: one period so the daily check-in window works. The 20 rewards are the client's own
+# data\luafiles514\lua files\datainfo\checkattendance.lub table (every item exists in db/re). Loki shows this
+# list from data/account/attendance.json, made from this file by tools/clientdata/build_account_tables.py.
+# A period whose End has passed is skipped at load (pc.cpp): add the next period here before 2027.
+Body:
+  - Start: 20260901
+    End: 20261231
+    Rewards:
+      - Day: 1
+        ItemId: 12209
+        Amount: 3
+      - Day: 2
+        ItemId: 22545
+        Amount: 18
+      - Day: 3
+        ItemId: 23012
+        Amount: 18
+      - Day: 4
+        ItemId: 12515
+        Amount: 18
+      - Day: 5
+        ItemId: 23475
+        Amount: 18
+      - Day: 6
+        ItemId: 17251
+      - Day: 7
+        ItemId: 13709
+      - Day: 8
+        ItemId: 17569
+      - Day: 9
+        ItemId: 12633
+        Amount: 18
+      - Day: 10
+        ItemId: 17162
+      - Day: 11
+        ItemId: 12754
+        Amount: 50
+      - Day: 12
+        ItemId: 12264
+        Amount: 18
+      - Day: 13
+        ItemId: 12261
+        Amount: 18
+      - Day: 14
+        ItemId: 12221
+      - Day: 15
+        ItemId: 6635
+        Amount: 2
+      - Day: 16
+        ItemId: 7338
+        Amount: 50
+      - Day: 17
+        ItemId: 12790
+      - Day: 18
+        ItemId: 14799
+      - Day: 19
+        ItemId: 25791
+      - Day: 20
+        ItemId: 20987

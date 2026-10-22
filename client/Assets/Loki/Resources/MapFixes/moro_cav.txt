@@ -1,0 +1,10 @@
+# Architect's fix file for moro_cav (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds moro_cav
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 41 model faces on 5 models
+architect-fix	1	moro_cav	gnd:346574:5ad6c5dee6f724d9	gat:200014:b222eaeff93dc6ca
+R	rsw:123998:2c5bc89e7ddcecd7
+M	0	4507:1292f236b0074706	0	50-55,80-85	under
+M	4	6103:f64d2e71484b28ec	0	44-45,101-104	under+behind
+M	32	6103:f64d2e71484b28ec	0	40-41,44-47,50,101-104	behind
+M	53	6103:f64d2e71484b28ec	0	44,101-104	behind
+M	117	6103:f64d2e71484b28ec	0	40-41,46-47,50,103-104	behind

@@ -1,0 +1,77 @@
+//===== Loki client wave 3, w3status smoke fixture ===========================
+// Test servers only (loaded from npc/scripts_custom.conf of the private rAthena copy "w3status").
+// Whisper "NPC:W3Status" a '#'-separated order (OnWhisperGlobal fills @whispervar0$..9$):
+//   mob#<x>#<y>                  a Poring named "W3 Poring" at (x, y) on the invoker's map, made immobile (UMOB_MODE 0); GID in $@w3mob
+//   sc#<name>#<ms>#<target>#<v1>  sc_start <status>,<ms>,<v1> unavoidable (rate 10000, NOAVOID|NOTICKDEF|NORATEDEF) on <target>:
+//                                "mob" = $@w3mob, "me" = the invoker, else a character name (its account id is its GID)
+//   end#<name>#<target>          sc_end <status> on <target>
+//   kill                         removes the W3 Porings of the invoker's map
+// <name>: stun sleep curse poison silence blind confusion bleeding dpoison angelus burning imprison stonewait stone freeze
+//         deepsleep hiding allriding energycoat explosionspirits swoo assumptio
+// It answers with a message "w3npc:<order> <target>:<result>" (a character: 1 = the status is on it afterwards, 0 = not; a monster: -).
+//============================================================================
+-	script	W3Status	-1,{
+OnWhisperGlobal:
+	.@cmd$ = @whispervar0$;
+	.@me = getcharid(3);
+	if (.@cmd$ == "mob") {
+		getmapxy(.@map$, .@x, .@y, BL_PC);
+		monster .@map$, atoi(@whispervar1$), atoi(@whispervar2$), "W3 Poring", 1002, 1;
+		$@w3mob = $@mobid[0];
+		// mode 0: no MD_CANMOVE, so it stays next to the host between the checks (a thawed Poring wandered out of view)
+		setunitdata $@w3mob, UMOB_MODE, 0;
+		message strcharinfo(0), "w3npc:mob:" + $@w3mob;
+		end;
+	}
+	if (.@cmd$ == "kill") {
+		getmapxy(.@map$, .@x, .@y, BL_PC);
+		killmonster .@map$, "All";
+		$@w3mob = 0;
+		message strcharinfo(0), "w3npc:kill:1";
+		end;
+	}
+	.@name$ = @whispervar1$;
+	if (.@name$ == "stun") .@sc = SC_STUN;
+	else if (.@name$ == "sleep") .@sc = SC_SLEEP;
+	else if (.@name$ == "curse") .@sc = SC_CURSE;
+	else if (.@name$ == "poison") .@sc = SC_POISON;
+	else if (.@name$ == "silence") .@sc = SC_SILENCE;
+	else if (.@name$ == "blind") .@sc = SC_BLIND;
+	else if (.@name$ == "confusion") .@sc = SC_CONFUSION;
+	else if (.@name$ == "bleeding") .@sc = SC_BLEEDING;
+	else if (.@name$ == "dpoison") .@sc = SC_DPOISON;
+	else if (.@name$ == "angelus") .@sc = SC_ANGELUS;
+	else if (.@name$ == "burning") .@sc = SC_BURNING;
+	else if (.@name$ == "imprison") .@sc = SC_WHITEIMPRISON;
+	else if (.@name$ == "stonewait") .@sc = SC_STONEWAIT;
+	else if (.@name$ == "stone") .@sc = SC_STONE;
+	else if (.@name$ == "freeze") .@sc = SC_FREEZE;
+	else if (.@name$ == "deepsleep") .@sc = SC_DEEPSLEEP;
+	else if (.@name$ == "hiding") .@sc = SC_HIDING;
+	else if (.@name$ == "allriding") .@sc = SC_ALL_RIDING;
+	else if (.@name$ == "energycoat") .@sc = SC_ENERGYCOAT;
+	else if (.@name$ == "explosionspirits") .@sc = SC_EXPLOSIONSPIRITS;
+	else if (.@name$ == "swoo") .@sc = SC_SWOO;
+	else if (.@name$ == "assumptio") .@sc = SC_ASSUMPTIO;
+	else { message strcharinfo(0), "w3npc:" + .@cmd$ + ":unknown " + .@name$; end; }
+	.@t$ = (.@cmd$ == "sc") ? @whispervar3$ : @whispervar2$;
+	.@cid = 0;
+	if (.@t$ == "mob") .@gid = $@w3mob;
+	else if (.@t$ == "me") { .@gid = .@me; .@cid = getcharid(0); }
+	else { .@gid = getcharid(3, .@t$); .@cid = getcharid(0, .@t$); }
+	if (.@gid == 0) { message strcharinfo(0), "w3npc:" + .@cmd$ + ":no target " + .@t$; end; }
+	// getstatus reads a character (by char id) only: for a monster the answer is "-". (Not a ?: — the script engine evaluates both
+	// branches, and getstatus with char id 0 aborts the script.)
+	if (.@cmd$ == "sc")
+		sc_start .@sc, atoi(@whispervar2$), atoi(@whispervar4$), 10000, SCSTART_NOAVOID|SCSTART_NOTICKDEF|SCSTART_NORATEDEF, .@gid;
+	else if (.@cmd$ == "end" && .@sc == SC_ALL_RIDING)
+		// NoClearbuff + NoForcedEnd: sc_end refuses it (script.cpp:12506-12509); starting it again ends it (EndReturn, status.cpp:10202-10215)
+		sc_start SC_ALL_RIDING, -1, 1, 10000, SCSTART_NOAVOID|SCSTART_NOTICKDEF|SCSTART_NORATEDEF, .@gid;
+	else if (.@cmd$ == "end")
+		sc_end .@sc, .@gid;
+	else { message strcharinfo(0), "w3npc:" + .@cmd$ + ":unknown"; end; }
+	.@r$ = "-";
+	if (.@cid) .@r$ = "" + getstatus(.@sc, 0, .@cid);
+	message strcharinfo(0), "w3npc:" + .@cmd$ + " " + .@name$ + " " + .@t$ + ":" + .@r$;
+	end;
+}

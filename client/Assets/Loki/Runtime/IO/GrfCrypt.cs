@@ -1,0 +1,218 @@
+using System;
+
+namespace Loki.IO
+{
+    /// <summary>
+    /// Gravity's GRF entry encryption: a single-round DES on 8-byte blocks plus a byte shuffle.
+    /// Ported from the Korangar client (MIT) which in turn copies the RustCrypto DES primitives
+    /// (Apache-2.0). Behaviour verified against Korangar's unit test vector in <see cref="SelfTest"/>.
+    /// </summary>
+    public static class GrfCrypt
+    {
+        public const byte FlagFile = 0x01;          // entry is a file (not a directory)
+        public const byte FlagFullMixCrypt = 0x02;  // DES on header blocks + every Nth block, shuffle on others
+        public const byte FlagHeaderDesCrypt = 0x04; // DES on the first 0x14 blocks only
+
+        private const int HeaderBlocks = 0x14;
+        private const int BlockSize = 8;
+
+        /// <param name="data">Buffer of <c>compressed_size_aligned</c> bytes (always a multiple of 8 for encrypted entries).</param>
+        /// <param name="forceHeaderOnly">libgrf/roBrowser rule: .gnd/.gat/.act/.str entries are only ever header-encrypted
+        /// even when flagged as full mix-crypt.</param>
+        public static void DecryptEntry(byte flags, uint compressedSize, byte[] data, int length, bool forceHeaderOnly)
+        {
+            bool onlyHeader;
+            int cycle;
+            if ((flags & FlagFullMixCrypt) != 0 && !forceHeaderOnly)
+            {
+                int digits = CountDigits(compressedSize);
+                cycle = digits < 3 ? 3 : digits < 5 ? digits + 1 : digits < 7 ? digits + 9 : digits + 15;
+                onlyHeader = false;
+            }
+            else if ((flags & (FlagHeaderDesCrypt | FlagFullMixCrypt)) != 0)
+            {
+                cycle = 0;
+                onlyHeader = true;
+            }
+            else return;
+
+            int full = (length / BlockSize) * BlockSize; // trailing partial block (if any) is left untouched, like libgrf
+            DecryptBlocks(data, 0, full, onlyHeader, cycle, 0);
+        }
+
+        private static int CountDigits(uint size)
+        {
+            int d = 0;
+            while (size > 0) { size /= 10; d++; }
+            return d < 1 ? 1 : d;
+        }
+
+        private static void DecryptBlocks(byte[] data, int offset, int length, bool onlyHeader, int cycle, int firstBlockNumber)
+        {
+            int nonDes = 0;
+            int blocks = length / BlockSize;
+            for (int i = 0; i < blocks; i++)
+            {
+                int blockNumber = firstBlockNumber + i;
+                int p = offset + i * BlockSize;
+                bool des = blockNumber < HeaderBlocks || (!onlyHeader && cycle > 0 && blockNumber % cycle == 0);
+                if (des)
+                {
+                    ulong block = ReadBE(data, p);
+                    block = DecodeDesBlock(block);
+                    WriteBE(data, p, block);
+                }
+                else if (!onlyHeader)
+                {
+                    if (nonDes == 7)
+                    {
+                        Scramble(data, p);
+                        nonDes = 0;
+                    }
+                    nonDes++;
+                }
+            }
+        }
+
+        private static ulong ReadBE(byte[] b, int p)
+        {
+            return ((ulong)b[p] << 56) | ((ulong)b[p + 1] << 48) | ((ulong)b[p + 2] << 40) | ((ulong)b[p + 3] << 32)
+                 | ((ulong)b[p + 4] << 24) | ((ulong)b[p + 5] << 16) | ((ulong)b[p + 6] << 8) | b[p + 7];
+        }
+        private static void WriteBE(byte[] b, int p, ulong v)
+        {
+            for (int i = 7; i >= 0; i--) { b[p + i] = (byte)v; v >>= 8; }
+        }
+
+        private static readonly int[] Shuffle = { 3, 4, 6, 0, 1, 2, 5 };
+        private static void Scramble(byte[] d, int p)
+        {
+            var copy = new byte[BlockSize];
+            Array.Copy(d, p, copy, 0, BlockSize);
+            for (int i = 0; i < 7; i++) d[p + i] = copy[Shuffle[i]];
+            byte last = copy[7];
+            switch (last)
+            {
+                case 0x00: last = 0x2B; break; case 0x2B: last = 0x00; break;
+                case 0x01: last = 0x68; break; case 0x68: last = 0x01; break;
+                case 0x48: last = 0x77; break; case 0x77: last = 0x48; break;
+                case 0x60: last = 0xFF; break; case 0xFF: last = 0x60; break;
+                case 0x6C: last = 0x80; break; case 0x80: last = 0x6C; break;
+                case 0xB9: last = 0xC0; break; case 0xC0: last = 0xB9; break;
+                case 0xEB: last = 0xFE; break; case 0xFE: last = 0xEB; break;
+            }
+            d[p + 7] = last;
+        }
+
+        public static ulong DecodeDesBlock(ulong block)
+        {
+            block = Ip(block);
+            block = Round(block, 0);
+            block = RotL(block, 32); // Gravity swapped the halves
+            return Fp(block);
+        }
+
+        private static ulong RotL(ulong v, int n) => (v << n) | (v >> (64 - n));
+
+        // ---- DES primitives (single round, zero key) ----
+        private static readonly byte[][] S = new byte[][]
+        {
+            new byte[]{0x0E,0x00,0x04,0x0F,0x0D,0x07,0x01,0x04,0x02,0x0E,0x0F,0x02,0x0B,0x0D,0x08,0x01,0x03,0x0A,0x0A,0x06,0x06,0x0C,0x0C,0x0B,0x05,0x09,0x09,0x05,0x00,0x03,0x07,0x08,0x04,0x0F,0x01,0x0C,0x0E,0x08,0x08,0x02,0x0D,0x04,0x06,0x09,0x02,0x01,0x0B,0x07,0x0F,0x05,0x0C,0x0B,0x09,0x03,0x07,0x0E,0x03,0x0A,0x0A,0x00,0x05,0x06,0x00,0x0D},
+            new byte[]{0x0F,0x03,0x01,0x0D,0x08,0x04,0x0E,0x07,0x06,0x0F,0x0B,0x02,0x03,0x08,0x04,0x0E,0x09,0x0C,0x07,0x00,0x02,0x01,0x0D,0x0A,0x0C,0x06,0x00,0x09,0x05,0x0B,0x0A,0x05,0x00,0x0D,0x0E,0x08,0x07,0x0A,0x0B,0x01,0x0A,0x03,0x04,0x0F,0x0D,0x04,0x01,0x02,0x05,0x0B,0x08,0x06,0x0C,0x07,0x06,0x0C,0x09,0x00,0x03,0x05,0x02,0x0E,0x0F,0x09},
+            new byte[]{0x0A,0x0D,0x00,0x07,0x09,0x00,0x0E,0x09,0x06,0x03,0x03,0x04,0x0F,0x06,0x05,0x0A,0x01,0x02,0x0D,0x08,0x0C,0x05,0x07,0x0E,0x0B,0x0C,0x04,0x0B,0x02,0x0F,0x08,0x01,0x0D,0x01,0x06,0x0A,0x04,0x0D,0x09,0x00,0x08,0x06,0x0F,0x09,0x03,0x08,0x00,0x07,0x0B,0x04,0x01,0x0F,0x02,0x0E,0x0C,0x03,0x05,0x0B,0x0A,0x05,0x0E,0x02,0x07,0x0C},
+            new byte[]{0x07,0x0D,0x0D,0x08,0x0E,0x0B,0x03,0x05,0x00,0x06,0x06,0x0F,0x09,0x00,0x0A,0x03,0x01,0x04,0x02,0x07,0x08,0x02,0x05,0x0C,0x0B,0x01,0x0C,0x0A,0x04,0x0E,0x0F,0x09,0x0A,0x03,0x06,0x0F,0x09,0x00,0x00,0x06,0x0C,0x0A,0x0B,0x01,0x07,0x0D,0x0D,0x08,0x0F,0x09,0x01,0x04,0x03,0x05,0x0E,0x0B,0x05,0x0C,0x02,0x07,0x08,0x02,0x04,0x0E},
+            new byte[]{0x02,0x0E,0x0C,0x0B,0x04,0x02,0x01,0x0C,0x07,0x04,0x0A,0x07,0x0B,0x0D,0x06,0x01,0x08,0x05,0x05,0x00,0x03,0x0F,0x0F,0x0A,0x0D,0x03,0x00,0x09,0x0E,0x08,0x09,0x06,0x04,0x0B,0x02,0x08,0x01,0x0C,0x0B,0x07,0x0A,0x01,0x0D,0x0E,0x07,0x02,0x08,0x0D,0x0F,0x06,0x09,0x0F,0x0C,0x00,0x05,0x09,0x06,0x0A,0x03,0x04,0x00,0x05,0x0E,0x03},
+            new byte[]{0x0C,0x0A,0x01,0x0F,0x0A,0x04,0x0F,0x02,0x09,0x07,0x02,0x0C,0x06,0x09,0x08,0x05,0x00,0x06,0x0D,0x01,0x03,0x0D,0x04,0x0E,0x0E,0x00,0x07,0x0B,0x05,0x03,0x0B,0x08,0x09,0x04,0x0E,0x03,0x0F,0x02,0x05,0x0C,0x02,0x09,0x08,0x05,0x0C,0x0F,0x03,0x0A,0x07,0x0B,0x00,0x0E,0x04,0x01,0x0A,0x07,0x01,0x06,0x0D,0x00,0x0B,0x08,0x06,0x0D},
+            new byte[]{0x04,0x0D,0x0B,0x00,0x02,0x0B,0x0E,0x07,0x0F,0x04,0x00,0x09,0x08,0x01,0x0D,0x0A,0x03,0x0E,0x0C,0x03,0x09,0x05,0x07,0x0C,0x05,0x02,0x0A,0x0F,0x06,0x08,0x01,0x06,0x01,0x06,0x04,0x0B,0x0B,0x0D,0x0D,0x08,0x0C,0x01,0x03,0x04,0x07,0x0A,0x0E,0x07,0x0A,0x09,0x0F,0x05,0x06,0x00,0x08,0x0F,0x00,0x0E,0x05,0x02,0x09,0x03,0x02,0x0C},
+            new byte[]{0x0D,0x01,0x02,0x0F,0x08,0x0D,0x04,0x08,0x06,0x0A,0x0F,0x03,0x0B,0x07,0x01,0x04,0x0A,0x0C,0x09,0x05,0x03,0x06,0x0E,0x0B,0x05,0x00,0x00,0x0E,0x0C,0x09,0x07,0x02,0x07,0x02,0x0B,0x01,0x04,0x0E,0x01,0x07,0x09,0x04,0x0C,0x0A,0x0E,0x08,0x02,0x0D,0x00,0x0F,0x06,0x0C,0x0A,0x09,0x0D,0x00,0x0F,0x03,0x03,0x05,0x05,0x06,0x08,0x0B},
+        };
+
+        private static ulong Round(ulong input, ulong key)
+        {
+            ulong left = input & (0xFFFF_FFFFUL << 32);
+            ulong right = input << 32;
+            return right | ((Feistel(right, key) ^ left) >> 32);
+        }
+
+        private static ulong Feistel(ulong right, ulong key)
+        {
+            ulong expanded = Expand(right);
+            ulong xored = expanded ^ key;
+            ulong substituted = SboxSubstitute(xored);
+            return PboxPermute(substituted);
+        }
+
+        private static ulong SboxSubstitute(ulong input)
+        {
+            ulong output = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                ulong val = (input >> (58 - (i * 6))) & 0x3F;
+                output |= (ulong)S[i][val] << (60 - (i * 4));
+            }
+            return output;
+        }
+
+        private static ulong DeltaSwap(ulong a, int delta, ulong mask)
+        {
+            ulong b = (a ^ (a >> delta)) & mask;
+            return a ^ b ^ (b << delta);
+        }
+
+        private static ulong Fp(ulong m)
+        {
+            m = DeltaSwap(m, 24, 0x000000FF000000FFUL);
+            m = DeltaSwap(m, 24, 0x00000000FF00FF00UL);
+            m = DeltaSwap(m, 36, 0x000000000F0F0F0FUL);
+            m = DeltaSwap(m, 18, 0x0000333300003333UL);
+            return DeltaSwap(m, 9, 0x0055005500550055UL);
+        }
+
+        private static ulong Ip(ulong m)
+        {
+            m = DeltaSwap(m, 9, 0x0055005500550055UL);
+            m = DeltaSwap(m, 18, 0x0000333300003333UL);
+            m = DeltaSwap(m, 36, 0x000000000F0F0F0FUL);
+            m = DeltaSwap(m, 24, 0x00000000FF00FF00UL);
+            return DeltaSwap(m, 24, 0x000000FF000000FFUL);
+        }
+
+        private static ulong Expand(ulong block)
+        {
+            ulong b1 = (block << 31) & 0x8000000000000000UL;
+            ulong b2 = (block >> 1) & 0x7C00000000000000UL;
+            ulong b3 = (block >> 3) & 0x03F0000000000000UL;
+            ulong b4 = (block >> 5) & 0x000FC00000000000UL;
+            ulong b5 = (block >> 7) & 0x00003F0000000000UL;
+            ulong b6 = (block >> 9) & 0x000000FC00000000UL;
+            ulong b7 = (block >> 11) & 0x00000003F0000000UL;
+            ulong b8 = (block >> 13) & 0x000000000FC00000UL;
+            ulong b9 = (block >> 15) & 0x00000000003E0000UL;
+            ulong b10 = (block >> 47) & 0x0000000000010000UL;
+            return b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8 | b9 | b10;
+        }
+
+        private static ulong PboxPermute(ulong block)
+        {
+            block = RotL(block, 44);
+            ulong b1 = (block & 0x0000000000200000UL) << 32;
+            ulong b2 = (block & 0x0000000000480000UL) << 13;
+            ulong b3 = (block & 0x0000088000000000UL) << 12;
+            ulong b4 = (block & 0x0000002020120000UL) << 25;
+            ulong b5 = (block & 0x0000000442000000UL) << 14;
+            ulong b6 = (block & 0x0000000001800000UL) << 37;
+            ulong b7 = (block & 0x0000000004000000UL) << 24;
+            ulong b8 = unchecked((block & 0x0000020280015000UL) * 0x0000020080800083UL) & 0x02000A6400000000UL;
+            ulong b9 = unchecked((RotL(block, 29) & 0x01001400000000AAUL) * 0x0000210210008081UL) & 0x0902C01200000000UL;
+            ulong b10 = unchecked((block & 0x0000000910040000UL) * 0x0000000C04000020UL) & 0x8410010000000000UL;
+            return b1 | b2 | b3 | b4 | b5 | b6 | b7 | b8 | b9 | b10;
+        }
+
+        /// <summary>Korangar's test vector: decode(u64::MAX - 123456789) == 12316197016309868543.</summary>
+        public static bool SelfTest()
+        {
+            ulong input = ulong.MaxValue - 123456789UL;
+            return DecodeDesBlock(input) == 12316197016309868543UL;
+        }
+    }
+}

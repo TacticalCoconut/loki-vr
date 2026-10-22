@@ -1,0 +1,332 @@
+//===== Loki wave D (instance) parity test NPCs ================================
+// Test servers only. The parity scenarios of testrig/parity/instance/ drive them:
+// whisper "NPC:InstTest" with a test name (and '#'-separated arguments). The
+// NPCs on 1@gef / 1@gef_in are template NPCs: every "Geffen Magic Tournament"
+// instance copies them (npc_duplicate4instance). Both the module
+// (server/data/overlay, embedded by datagen) and the private rAthena oracle
+// (npc/custom) load this same file.
+//============================================================================
+-	script	InstTest	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	.@n$ = "Geffen Magic Tournament";
+	.@id = $@inst;
+	if (.@t$ == "info") {
+		dispbottom "id " + instance_info(.@n$, IIT_ID);
+		dispbottom "limit " + instance_info(.@n$, IIT_TIME_LIMIT);
+		dispbottom "idle " + instance_info(.@n$, IIT_IDLE_TIMEOUT);
+		dispbottom "map " + instance_info(.@n$, IIT_ENTER_MAP);
+		dispbottom "xy " + instance_info(.@n$, IIT_ENTER_X) + "," + instance_info(.@n$, IIT_ENTER_Y);
+		dispbottom "count " + instance_info(.@n$, IIT_MAPCOUNT);
+		dispbottom "map0 " + instance_info(.@n$, IIT_MAP, 0);
+		dispbottom "map1 " + instance_info(.@n$, IIT_MAP, 1);
+		dispbottom "et " + instance_info("Endless Tower", IIT_MAPCOUNT) + " " + instance_info("Endless Tower", IIT_MAP, 4);
+		dispbottom "orcs " + instance_info("Orc's Memory", IIT_ID) + " " + instance_info("Orc's Memory", IIT_TIME_LIMIT) + " " + instance_info("Orc's Memory", IIT_ENTER_MAP);
+		dispbottom "bad " + instance_info("No Such Instance", IIT_ID);
+		dispbottom "badtype " + instance_info(.@n$, 99);
+		dispbottom "neg [" + instance_info(.@n$, IIT_MAP, -1) + "]";
+		dispbottom "big [" + instance_info(.@n$, IIT_MAP, 300) + "]";
+		dispbottom "str [" + instance_info(.@n$, IIT_MAP, "x") + "]";
+		dispbottom "nomap [" + instance_info(.@n$, IIT_MAP) + "]";
+		end;
+	}
+	if (.@t$ == "create") {
+		set getvariableofnpc(.echo, "InstEcho#1"), 0;
+		.@id = instance_create(.@n$, IM_CHAR);
+		$@inst = .@id;
+		dispbottom "create " + (.@id > 0);
+		dispbottom "again " + instance_create(.@n$, IM_CHAR);
+		dispbottom "unknown " + instance_create("No Such Instance", IM_CHAR);
+		dispbottom "party " + instance_create(.@n$, IM_PARTY);
+		dispbottom "guild " + instance_create(.@n$, IM_GUILD);
+		dispbottom "clan " + instance_create(.@n$, IM_CLAN);
+		dispbottom "charid " + instance_create(.@n$, IM_CHAR, 1);
+		instance_create .@n$, 7;
+		dispbottom "created";
+		end;
+	}
+	if (.@t$ == "none") {
+		// an instance without owner (IM_NONE: owned by this NPC)
+		$@inst2 = instance_create(.@n$, IM_NONE);
+		dispbottom "none " + ($@inst2 - $@inst) + " " + instance_live_info(ILI_MODE, $@inst2) + " " + (instance_live_info(ILI_OWNER, $@inst2) == getnpcid(0));
+		dispbottom "list " + instance_list("1@gef") + " " + (.@instance_list[0] - $@inst) + " " + (.@instance_list[1] - $@inst);
+		dispbottom "listchar " + instance_list("1@gef", IM_CHAR) + " listnone " + instance_list("1@gef", IM_NONE) + " listpty " + instance_list("1@gef", IM_PARTY) + " listp " + instance_list("prontera");
+		dispbottom "inits " + getinstancevar('count, $@inst2);
+		instance_destroy $@inst2;
+		dispbottom "none destroyed " + instance_live_info(ILI_MODE, $@inst2) + " " + ($@inst_destroyed == $@inst2);
+		end;
+	}
+	if (.@t$ == "live") {
+		dispbottom "name " + instance_live_info(ILI_NAME, .@id);
+		dispbottom "mode " + instance_live_info(ILI_MODE, .@id);
+		dispbottom "owner " + (instance_live_info(ILI_OWNER, .@id) == getcharid(0));
+		dispbottom "none " + instance_live_info(ILI_MODE, 9999) + "|" + instance_live_info(ILI_NAME, 9999) + "|";
+		dispbottom "self " + instance_live_info(ILI_MODE);
+		dispbottom "bad " + instance_live_info(7, .@id);
+		end;
+	}
+	if (.@t$ == "mapname") {
+		dispbottom "m " + (instance_mapname("1@gef", .@id) != "") + " " + (instance_mapname("1@gef_in", .@id) != "") + " " + (instance_mapname("1@ge_st", .@id) != "");
+		dispbottom "same " + (instance_mapname("1@gef", .@id) == instance_mapname("1@gef", .@id)) + " diff " + (instance_mapname("1@gef", .@id) != instance_mapname("1@gef_in", .@id));
+		dispbottom "full " + (instance_mapname("1@gef", .@id) == sprintf("0857#%06d", .@id)) + " " + (instance_mapname("1@ge_st", .@id) == sprintf("0863#%06d", .@id)) + " " + getstrlen(instance_mapname("1@gef", .@id));
+		dispbottom "other [" + instance_mapname("prontera", .@id) + "] [" + instance_mapname("nosuchmap", .@id) + "] [" + instance_mapname("1@gef") + "] [" + instance_mapname("1@gef", 9999) + "] [" + instance_mapname("1@gef", 0) + "]";
+		dispbottom "users " + getmapusers(instance_mapname("1@gef", .@id));
+		end;
+	}
+	if (.@t$ == "npcname") {
+		dispbottom "npc " + (instance_npcname("InstEcho#1", .@id) == "dup_" + .@id + "_" + getnpcid(0, "InstEcho#1"));
+		dispbottom "exists " + (getnpcid(0, instance_npcname("InstEcho#1", .@id)) > 0) + " " + (getnpcid(0, instance_npcname("InstEcho#2", .@id)) > 0) + " " + (getnpcid(0, instance_npcname("InstWarpIn", .@id)) > 0);
+		dispbottom "self " + (instance_npcname("InstTest", .@id) == "dup_" + .@id + "_" + getnpcid(0));
+		dispbottom "shared " + getvariableofnpc(.echo, instance_npcname("InstEcho#1", .@id)) + " " + getvariableofnpc(.echo, "InstEcho#1");
+		dispbottom "info " + strnpcinfo(0) + " " + strnpcinfo(3);
+		dispbottom "before error";
+		dispbottom instance_npcname("No Such NPC", .@id);
+		dispbottom "after error";
+		end;
+	}
+	if (.@t$ == "enter") {
+		dispbottom "noparty " + instance_enter(.@n$);
+		dispbottom "wrongname " + instance_enter("Endless Tower", -1, -1, getcharid(0), .@id);
+		dispbottom "noinst " + instance_enter(.@n$, -1, -1, getcharid(0), 9999);
+		dispbottom "unknown " + instance_enter("Nope", -1, -1, getcharid(0), .@id);
+		.@r = instance_enter(.@n$, -1, -1, getcharid(0), .@id);
+		dispbottom "ok " + .@r;
+		end;
+	}
+	if (.@t$ == "enterxy") {
+		dispbottom "xy " + instance_enter(.@n$, 121, 204, getcharid(0), .@id);
+		end;
+	}
+	if (.@t$ == "where") {
+		getmapxy .@m$, .@x, .@y;
+		dispbottom "here " + (.@m$ == instance_mapname("1@gef", .@id)) + " " + (strcharinfo(3) == .@m$) + " " + .@x + "," + .@y + " users " + getmapusers(.@m$);
+		dispbottom "ids " + instance_id() + " " + (instance_id(IM_CHAR) == .@id) + " " + instance_id(IM_PARTY) + " " + instance_id(IM_GUILD) + " " + instance_id(IM_CLAN) + " " + instance_id(0) + " " + instance_id(9);
+		end;
+	}
+	if (.@t$ == "var") {
+		setinstancevar('ivar, 42, .@id);
+		setinstancevar('ivar$, "hello", .@id);
+		dispbottom "get " + getinstancevar('ivar, .@id) + " " + getinstancevar('ivar$, .@id) + " " + getinstancevar('count, .@id);
+		dispbottom "outside " + 'ivar;
+		'ivar = 5;
+		dispbottom "old " + getvariableofinstance('ivar, .@id);
+		dispbottom "before error";
+		dispbottom getinstancevar(.notinst, .@id);
+		dispbottom "after error";
+		end;
+	}
+	if (.@t$ == "check") {
+		dispbottom "party " + instance_check_party(getcharid(1)) + " " + instance_check_party(0, 1, 1, 99);
+		dispbottom "guild " + instance_check_guild(getcharid(2)) + " " + instance_check_guild(9999, 1, 1, 99);
+		dispbottom "clan " + instance_check_clan(1) + " " + instance_check_clan(1, 1, 1, 99) + " " + instance_check_clan(99);
+		dispbottom "before error";
+		dispbottom instance_check_party(0, 13);
+		dispbottom "after error";
+		end;
+	}
+	if (.@t$ == "warpall") {
+		instance_warpall "1@gef_in", 33, 32, .@id;
+		dispbottom "warpall";
+		end;
+	}
+	if (.@t$ == "warpallx") {
+		instance_warpall "prontera", 150, 180, .@id;
+		dispbottom "warpall prontera";
+		instance_warpall "1@ge_st", 50, 50, 9999;
+		dispbottom "warpall bad";
+		end;
+	}
+	if (.@t$ == "announce") {
+		instance_announce .@id, "Hello instance", bc_map;
+		instance_announce .@id, "Colored instance", bc_map, "0x00FF99";
+		instance_announce 9999, "Nobody", bc_map;
+		dispbottom "announced";
+		end;
+	}
+	if (.@t$ == "destroy") {
+		instance_destroy .@id;
+		dispbottom "destroyed " + instance_live_info(ILI_MODE, .@id) + " " + ($@inst_destroyed == .@id);
+		end;
+	}
+	if (.@t$ == "destroy0") {
+		instance_destroy;
+		dispbottom "destroy0";
+		end;
+	}
+	if (.@t$ == "tcreate") {
+		$@tinst = instance_create("Loki Timer Test", IM_CHAR);
+		dispbottom "tcreate " + ($@tinst > 0);
+		end;
+	}
+	if (.@t$ == "tenter") {
+		dispbottom "tenter " + instance_enter("Loki Timer Test", -1, -1, getcharid(0), $@tinst);
+		end;
+	}
+	if (.@t$ == "tlive") {
+		dispbottom "tlive " + instance_live_info(ILI_MODE, $@tinst) + " " + (instance_id(IM_CHAR) == $@tinst) + " " + (instance_id(IM_CHAR) > 0);
+		end;
+	}
+	if (.@t$ == "out") {
+		warp "prontera", 150, 180;
+		end;
+	}
+	if (.@t$ == "party") {
+		party_create "Inst Party " + getcharid(0), getcharid(0), 0, 0; // (without the item arguments rAthena reads stale stack data)
+		dispbottom "party";
+		end;
+	}
+	if (.@t$ == "joinparty") {
+		.@pid = getcharid(1, @whispervar1$);
+		dispbottom "join " + (.@pid > 0) + " " + party_addmember(.@pid, getcharid(0));
+		end;
+	}
+	if (.@t$ == "pcreate") {
+		$@pinst = instance_create(.@n$);
+		dispbottom "pcreate " + ($@pinst > 0) + " " + instance_create(.@n$);
+		end;
+	}
+	if (.@t$ == "penter") {
+		dispbottom "penter " + instance_enter(.@n$);
+		end;
+	}
+	if (.@t$ == "pwhere") {
+		getmapxy .@m$, .@x, .@y;
+		dispbottom "pwhere " + (.@m$ == instance_mapname("1@gef", instance_id(IM_PARTY))) + " " + .@x + "," + .@y + " " + (instance_id(IM_PARTY) == $@pinst) + " " + instance_id(IM_CHAR);
+		end;
+	}
+	if (.@t$ == "pinst") {
+		dispbottom "pinst " + (instance_id(IM_PARTY) > 0) + " " + instance_live_info(ILI_NAME, instance_id(IM_PARTY)) + " " + (instance_live_info(ILI_OWNER, instance_id(IM_PARTY)) == getcharid(1));
+		dispbottom "pcheck " + instance_check_party(getcharid(1), 2, 30, 80) + " " + instance_check_party(getcharid(1), 3) + " " + instance_check_party(getcharid(1), 1, 60);
+		end;
+	}
+	if (.@t$ == "pdestroy") {
+		instance_destroy instance_id(IM_PARTY);
+		dispbottom "pdestroyed";
+		end;
+	}
+	if (.@t$ == "pleave") {
+		dispbottom "pleave " + party_delmember(getcharid(0));
+		end;
+	}
+	if (.@t$ == "pbreak") {
+		dispbottom "pbreak " + party_destroy(getcharid(1));
+		end;
+	}
+	if (.@t$ == "big") {
+		// a large instance (its name in @whispervar1$): created for this character and destroyed at once
+		.@b = instance_create(@whispervar1$, IM_CHAR);
+		dispbottom "big " + (.@b > 0) + " " + getmapusers(instance_mapname(instance_info(@whispervar1$, IIT_ENTER_MAP), .@b));
+		instance_destroy .@b;
+		dispbottom "big gone " + instance_live_info(ILI_MODE, .@b);
+		end;
+	}
+	if (.@t$ == "gcreate") {
+		dispbottom "gcreate " + (instance_create(.@n$, IM_GUILD) > 0) + " " + instance_create(.@n$, IM_GUILD) + " " + instance_check_guild(getcharid(2), 1, 1, 99) + " " + instance_check_guild(getcharid(2), 2);
+		end;
+	}
+	if (.@t$ == "genter") {
+		dispbottom "genter " + instance_enter(.@n$, -1, -1, getcharid(0), instance_id(IM_GUILD));
+		end;
+	}
+	if (.@t$ == "gwhere") {
+		getmapxy .@m$, .@x, .@y;
+		dispbottom "gwhere " + (.@m$ == instance_mapname("1@gef", instance_id(IM_GUILD))) + " " + (instance_live_info(ILI_OWNER, instance_id(IM_GUILD)) == getcharid(2)) + " " + instance_live_info(ILI_MODE, instance_id(IM_GUILD)) + " " + instance_id(IM_CHAR) + " " + instance_id(IM_PARTY);
+		end;
+	}
+	if (.@t$ == "ginst") {
+		dispbottom "ginst " + (instance_id(IM_GUILD) > 0);
+		end;
+	}
+	if (.@t$ == "cjoin") {
+		dispbottom "cjoin " + clan_join(1);
+		end;
+	}
+	if (.@t$ == "ccreate") {
+		dispbottom "ccreate " + (instance_create(.@n$, IM_CLAN) > 0) + " " + instance_create(.@n$, IM_CLAN) + " " + instance_check_clan(1, 1, 1, 99) + " " + instance_check_clan(1, 2);
+		end;
+	}
+	if (.@t$ == "center") {
+		dispbottom "center " + instance_enter(.@n$, -1, -1, getcharid(0), instance_id(IM_CLAN));
+		end;
+	}
+	if (.@t$ == "cleave") {
+		dispbottom "cleave " + clan_leave();
+		end;
+	}
+	if (.@t$ == "cdestroy") {
+		instance_destroy instance_id(IM_CLAN);
+		dispbottom "cdestroyed";
+		end;
+	}
+	if (.@t$ == "cinst") {
+		dispbottom "cinst " + (instance_id(IM_CLAN) > 0) + " " + (instance_live_info(ILI_OWNER, instance_id(IM_CLAN)) == getcharid(5)) + " " + instance_live_info(ILI_MODE, instance_id(IM_CLAN));
+		end;
+	}
+	if (.@t$ == "save") {
+		atcommand "@save";
+		dispbottom "saved";
+		end;
+	}
+	end;
+}
+
+// The template NPCs of "Geffen Magic Tournament" (1@gef, 1@gef_in: no other NPC is there)
+1@gef,120,212,4	script	InstEcho#1	4_M_01,{
+	mes "[Echo]";
+	mes "instance " + (instance_id() == $@inst) + " count " + 'count + " ivar " + 'ivar + " said " + 'said + " echo " + .echo;
+	mes "map " + (strnpcinfo(4) == instance_mapname("1@gef")) + " name " + strnpcinfo(0) + " " + strnpcinfo(2);
+	initnpctimer;
+	close;
+OnInstanceInit:
+	'count = 'count + 1;
+	.echo = .echo + 1;
+	end;
+OnTimer3000:
+	stopnpctimer;
+	'timer = 1;
+	npctalk "timer " + (instance_id() == $@inst);
+	end;
+OnSay:
+	'said = 'said + 1;
+	end;
+OnInstanceDestroy:
+	$@inst_destroyed = instance_id();
+	end;
+}
+
+1@gef,121,206,4	script	InstTouch	4_F_01,1,1,{
+	end;
+OnTouch:
+	dispbottom "touch " + (instance_id() == $@inst);
+	end;
+}
+
+1@gef,117,211,4	script	InstEvents	4_M_04,{
+	end;
+OnPCLoginEvent:
+	end;
+OnInstanceInit:
+	donpcevent instance_npcname("InstEcho#1") + "::OnSay";
+	end;
+}
+
+1@gef,122,212,4	script(DISABLED)	InstHidden	4_M_02,{
+	end;
+}
+
+1@gef,118,212,4	shop	InstShop	4_M_03,501:-1,502:-1
+
+1@gef,130,205,0	warp	InstWarpIn	1,1,1@gef_in,35,35
+1@gef,130,210,0	warp	InstWarpOut	1,1,prontera,150,180
+
+1@gef_in,30,30,4	script	InstEcho#2	4_M_01,{
+	mes "second " + (instance_id() == $@inst) + " " + 'count2;
+	close;
+OnInstanceInit:
+	'count2 = 7;
+	end;
+}
+
+// The stock Orc's Memory entrance (npc/instances/OrcsMemory.txt) on a quiet map for the Orc's Memory scenario (its own
+// map, gef_fild10, has aggressive monsters around it)
+prt_evt_in,44,40,4	duplicate(Dimensional Gorge Piece)	Dimensional Gorge Piece#loki	406

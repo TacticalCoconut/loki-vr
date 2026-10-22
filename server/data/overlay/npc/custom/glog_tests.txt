@@ -1,0 +1,145 @@
+// Wave G (glog agent): NPCs for the log-table parity scenarios (testrig/parity/glog). The log system sends no
+// packets: each scenario clicks these NPCs (one click = one run, no dialog) and the rig then compares the module's
+// nine log tables with the oracle's MySQL log tables. Everything stands on g_room2 (no other NPC, monster or mapflag
+// there); the skill_damage lines are on g_room1-1 (no other use either): a boot-time flag on a map nothing else
+// touches.
+
+// script item commands: pc_additem / pc_delitem with LOG_TYPE_SCRIPT (cards, refine, bound, random options)
+g_room2,96,104,4	script	GLItems	4_M_01,{
+	getitem 501,5;
+	getitem 909,3;
+	delitem 501,2;
+	getitem2 1201,1,1,7,0,4001,0,0,0;
+	getitembound 502,1,1;
+	setarray .@id[0],1,2;
+	setarray .@val[0],50,-10;
+	setarray .@parm[0],0,200;
+	getitem3 1202,1,1,0,0,0,0,0,0,.@id,.@val,.@parm;
+	delitem2 1201,1,1,7,0,4001,0,0,0;
+	end;
+}
+
+// pc_setparam SP_ZENY (log_zeny SCRIPT), SP_CASHPOINTS / SP_KAFRAPOINTS (log_cash SCRIPT), SP_BANK_VAULT (log_zeny BANK)
+g_room2,98,104,4	script	GLZeny	4_M_01,{
+	set Zeny, Zeny + 1234;
+	set Zeny, Zeny - 234;
+	Zeny += 5;
+	set #CASHPOINTS, #CASHPOINTS + 50;
+	set #KAFRAPOINTS, #KAFRAPOINTS + 30;
+	set #CASHPOINTS, #CASHPOINTS - 20;
+	set BankVault, BankVault + 100;
+	set BankVault, BankVault - 40;
+	end;
+}
+
+// logmes: log_npc(sd) with the player attached, log_npc(nd) without, the 255 character cap
+g_room2,100,104,4	script	GLMes	4_M_01,{
+	logmes "glog from player";
+	.@s$ = "";
+	for (.@i = 0; .@i < 30; .@i++)
+		.@s$ += "0123456789";
+	logmes .@s$;
+	logmes "it's \"quoted\" 100% \\ ok";
+	donpcevent "GLMes::OnNpcLog";
+	end;
+OnNpcLog:
+	logmes "glog from npc";
+	end;
+}
+
+// refine / random option script commands on the right hand: successrefitem, downrefitem, setrandomoption, failedrefitem
+g_room2,102,104,4	script	GLEquip	4_M_01,{
+	getitem 1201,1;
+	equip 1201;
+	successrefitem EQI_HAND_R;
+	successrefitem EQI_HAND_R,3;
+	downrefitem EQI_HAND_R,2;
+	setrandomoption(EQI_HAND_R,0,1,25,0);
+	failedrefitem EQI_HAND_R;
+	getitem 1201,1;
+	equip 1201;
+	delequip EQI_HAND_R;
+	end;
+}
+
+// NPC shop (npc_buylist / npc_selllist: LOG_TYPE_NPC) and cash shop NPC (npc_cashshop_buy: LOG_TYPE_NPC)
+g_room2,104,104,4	shop	GLShop	4_M_02,501:10,1201:-1,1750:-1
+g_room2,106,104,4	cashshop	GLCash	4_M_02,501:5,502:10
+
+// buildin_delitem_delete on the storage and the cart (script.cpp:8384 / 8388)
+g_room2,108,104,4	script	GLStore	4_M_01,{
+	storagedelitem 501,2;
+	cartdelitem 501,1;
+	end;
+}
+
+// @commands run by a script (is_atcommand type 0: logged for the attached player), #command with a name
+g_room2,96,106,4	script	GLAt	4_M_01,{
+	atcommand "@item 512 2";
+	charcommand "#item \"" + strcharinfo(0) + "\" 513 1";
+	atcommand "@nosuchcommand 1";
+	end;
+}
+
+// clan chat needs a clan (clan.cpp clan_send_message)
+g_room2,98,106,4	script	GLClan	4_M_01,{
+	if (getcharid(5))
+		clan_leave();
+	else
+		clan_join(1);
+	end;
+}
+
+// a cart for the cart scenarios (pc_setcart needs MC_PUSHCART: the scenario's character has it)
+g_room2,100,106,4	script	GLCart	4_M_01,{
+	setcart 1;
+	end;
+}
+
+// an MVP that dies at the first hit (mob_dead: the MVP exp, the MVP prize, log_mvpdrop)
+g_room2,102,106,4	script	GLMvp	4_M_01,{
+	monster "g_room2",101,100,"--ja--",1086,1,"";
+	setunitdata $@mobid[0],UMOB_HP,10;
+	end;
+}
+
+// getmapflag of the skill_damage flag: the flag itself, the four rates and the caster of the every-skill adjustment
+g_room2,104,106,4	script	GLFlagGet	4_M_01,{
+	setarray .@m$[0],"g_room1-1","g_room1-2","g_room2";
+	for (.@i = 0; .@i < 3; .@i++)
+		dispbottom "sdmg " + .@m$[.@i] + ": " + getmapflag(.@m$[.@i], mf_skill_damage) + " | " + getmapflag(.@m$[.@i], mf_skill_damage, SKILLDMG_PC) + " " + getmapflag(.@m$[.@i], mf_skill_damage, SKILLDMG_MOB) + " " + getmapflag(.@m$[.@i], mf_skill_damage, SKILLDMG_BOSS) + " " + getmapflag(.@m$[.@i], mf_skill_damage, SKILLDMG_OTHER) + " | " + getmapflag(.@m$[.@i], mf_skill_damage, SKILLDMG_CASTER) + " | " + getmapflag(.@m$[.@i], mf_skill_damage, SKILLDMG_MAX);
+	end;
+}
+
+// setmapflag of the skill_damage flag: rAthena writes args.skill_damage.rate[type] and leaves the caster 0, so
+// map_setmapflag_sub refuses ("Skill damage adjustment without casting type") and nothing changes; without both
+// values the command fails ("flag data is missing")
+g_room2,106,106,4	script	GLFlagSet	4_M_01,{
+	setmapflag "g_room2", mf_skill_damage, 50, SKILLDMG_MOB;
+	setmapflag "g_room1-1", mf_skill_damage, 77, SKILLDMG_MOB;
+	setmapflag "g_room1-2", mf_skill_damage, 88, SKILLDMG_PC;
+	setmapflag "g_room2", mf_skill_damage;
+	setmapflag "g_room2", mf_skill_damage, 50;
+	dispbottom "sdmg set done";
+	end;
+}
+
+// removemapflag: damage_adjust = {}, skill_damage.clear()
+g_room2,108,106,4	script	GLFlagDel	4_M_01,{
+	removemapflag "g_room1-2", mf_skill_damage;
+	dispbottom "sdmg removed";
+	end;
+}
+
+// the skill_damage map flag at start-up (npc.cpp npc_parse_mapflag MF_SKILL_DAMAGE): the every-skill adjustment, single
+// skills (a constant, a number, 0 = BL_ALL, the caps, an entry given twice), and the lines rAthena skips
+g_room1-1	mapflag	skill_damage	all,BL_PC,-50,100,200,10
+g_room1-1	mapflag	skill_damage	SM_BASH,BL_PC,0,50,-25,0
+g_room1-1	mapflag	skill_damage	MG_FIREBOLT,3,25,-30
+g_room1-1	mapflag	skill_damage	TF_THROWSTONE,0,999999,-500,300,0
+g_room1-1	mapflag	skill_damage	MG_COLDBOLT,BL_MOB,300,400,0,0
+g_room1-1	mapflag	skill_damage	MG_COLDBOLT,BL_HOM,-40,60,70,0
+g_room1-1	mapflag	skill_damage	NO_SUCH_SKILL,BL_PC,0,50,0,0
+g_room1-1	mapflag	skill_damage	MG_SOULSTRIKE,BL_NOSUCH,0,50,0,0
+g_room1-1	mapflag	skill_damage	MG_NAPALMBEAT,BL_PC
+g_room1-1	mapflag	skill_damage	AL_HEAL,BL_PC,100,100,100,100

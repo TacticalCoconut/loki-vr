@@ -1,0 +1,79 @@
+//===== Loki client wave 4b, w4granny smoke fixture ==========================
+// Test servers only (loaded from npc/scripts_custom.conf of the private rAthena copy "w4granny", index 49).
+// Whisper "NPC:W4Granny" a '#'-separated order (OnWhisperGlobal fills @whispervar0$..9$); positions are relative to the invoker:
+//   mob#<slot>#<dx>#<dy>#<class>#<hp>   a monster "W4G <slot>" at (x+dx, y+dy); its GID in $@w4g[<slot>]; <hp> > 0 sets its HP;
+//                                        it is left inert (UMOB_MODE 0: no MD_CANMOVE / MD_CANATTACK), weak (level, STR, ATK 1)
+//                                        and easy to hit (FLEE 1), so a Novice's blows land and its own do little
+//   mode#<slot>#<mode>                   setunitdata UMOB_MODE
+//   walk#<slot>#<dx>#<dy>                lets it move (MD_CANMOVE) and walks it there (unitwalk)
+//   attack#<slot>                        lets it move and attack (MD_CANMOVE | MD_CANATTACK) and makes it attack the invoker (unitattack)
+//   kill#<slot>                          unitkill
+//   killall                              removes the monsters of the invoker's map (killmonster)
+//   flag#<guild id>                      "W4 GFlag" (GUILD_FLAG 722) takes that guild's emblem (flagemblem)
+// It answers with a message "w4gnpc:<order>:<result>".
+//============================================================================
+-	script	W4Granny	-1,{
+OnWhisperGlobal:
+	.@cmd$ = @whispervar0$;
+	getmapxy(.@map$, .@x, .@y, BL_PC);
+	.@slot = atoi(@whispervar1$);
+	if (.@cmd$ == "mob") {
+		monster .@map$, .@x + atoi(@whispervar2$), .@y + atoi(@whispervar3$), "W4G " + .@slot, atoi(@whispervar4$), 1;
+		$@w4g[.@slot] = $@mobid[0];
+		if (atoi(@whispervar5$) > 0) {
+			setunitdata $@w4g[.@slot], UMOB_MAXHP, atoi(@whispervar5$);
+			setunitdata $@w4g[.@slot], UMOB_HP, atoi(@whispervar5$);
+		}
+		setunitdata $@w4g[.@slot], UMOB_LEVEL, 1;
+		setunitdata $@w4g[.@slot], UMOB_STR, 1;
+		setunitdata $@w4g[.@slot], UMOB_ATKMIN, 1;
+		setunitdata $@w4g[.@slot], UMOB_ATKMAX, 1;
+		setunitdata $@w4g[.@slot], UMOB_FLEE, 1;
+		setunitdata $@w4g[.@slot], UMOB_MODE, 0;
+		message strcharinfo(0), "w4gnpc:mob:" + $@w4g[.@slot];
+		end;
+	}
+	if (.@cmd$ == "mode") {
+		setunitdata $@w4g[.@slot], UMOB_MODE, atoi(@whispervar2$);
+		message strcharinfo(0), "w4gnpc:mode:" + atoi(@whispervar2$);
+		end;
+	}
+	if (.@cmd$ == "walk") {
+		setunitdata $@w4g[.@slot], UMOB_MODE, MD_CANMOVE;
+		unitwalk $@w4g[.@slot], .@x + atoi(@whispervar2$), .@y + atoi(@whispervar3$);
+		message strcharinfo(0), "w4gnpc:walk:" + $@w4g[.@slot];
+		end;
+	}
+	if (.@cmd$ == "attack") {
+		setunitdata $@w4g[.@slot], UMOB_MODE, MD_CANMOVE | MD_CANATTACK;
+		unitattack $@w4g[.@slot], getcharid(3);
+		message strcharinfo(0), "w4gnpc:attack:" + $@w4g[.@slot];
+		end;
+	}
+	if (.@cmd$ == "kill") {
+		unitkill $@w4g[.@slot];
+		message strcharinfo(0), "w4gnpc:kill:" + $@w4g[.@slot];
+		end;
+	}
+	if (.@cmd$ == "killall") {
+		killmonster .@map$, "All";
+		message strcharinfo(0), "w4gnpc:killall:1";
+		end;
+	}
+	if (.@cmd$ == "flag") {
+		$@w4gflag = atoi(@whispervar1$);
+		donpcevent "W4 GFlag#w4g::OnSet";
+		message strcharinfo(0), "w4gnpc:flag:" + $@w4gflag;
+		end;
+	}
+	message strcharinfo(0), "w4gnpc:unknown:" + .@cmd$;
+	end;
+}
+
+// a guild flag near the smoke's spot in Prontera (148, 300); its guild is set by the "flag" order
+prontera,144,298,4	script	W4 GFlag#w4g	GUILD_FLAG,{
+	end;
+OnSet:
+	flagemblem $@w4gflag;
+	end;
+}

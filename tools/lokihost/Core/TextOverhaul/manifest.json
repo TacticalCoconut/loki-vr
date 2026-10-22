@@ -1,0 +1,2594 @@
+{
+ "files": {
+  "conf/motd.txt": {
+   "new_sha256_lf": "e33b7394cab3de38e77aa98a3d182372b7246d959b246de35f12daac87c0a577",
+   "orig_sha256_lf": "2c73a3303bd9ba993d2dba2bba40f04b3e9c1dc5603e6a6e1a630bb3634a2ac7",
+   "reason": "verified: only texts differ (verify_db.py)",
+   "status": "CLEAN"
+  },
+  "conf/msg_conf/map_msg.conf": {
+   "new_sha256_lf": "8ab2c2e0a46575226cb9dd1f7c8a644d7f182f86e2e0380b1515391f224d2774",
+   "orig_sha256_lf": "32df948d785db32581c1acd5441da5b50aa62835917ab96c9cde07c38d159748",
+   "reason": "verified: only texts differ (verify_db.py)",
+   "status": "CLEAN"
+  },
+  "db/mob_chat_db.yml": {
+   "new_sha256_lf": "a84fc51065e3e8dd72057168c77af78662f5c56cc234cdc5d0194c0d7967a9ad",
+   "orig_sha256_lf": "bc1e5a8dc5c200fee4eca9ac55c612c14fa82b4923b6458005dab3736d52cfd0",
+   "reason": "verified: only texts differ (verify_db.py)",
+   "status": "CLEAN"
+  },
+  "npc/airports/airships.txt": {
+   "new_sha256_lf": "69ff3503eec1a24975474dc2cf57392740084232dc6781cf825815066d5ed021",
+   "orig_sha256_lf": "e7ff35ae7bb495e4386aa7457e354cde810df363c6b1a57283a05fa05f402628",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/airports/einbroch.txt": {
+   "new_sha256_lf": "2849b8f6ac69bfe70d4b7453ea7dc0ae2dd4c8ea75401524f4a4e3162c9c797d",
+   "orig_sha256_lf": "99bf6c508b906dc997f4c9f7cf52ea4cbe03a40d8cf0835f5a8a75574530d45e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/airports/hugel.txt": {
+   "new_sha256_lf": "2e5f8a1416d9998592e88e92bdecfcba4e2480183d35455ba2c2e6794324482d",
+   "orig_sha256_lf": "e33f1ff1f70c27ee1a2b6dc4eece9bd8a1a7d6608c953e4369e17934d244a1cb",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/airports/izlude.txt": {
+   "new_sha256_lf": "1908ff3287a1d6e8b5a89e611b09b4fa782245a2faa55ed404ed8f0692a47413",
+   "orig_sha256_lf": "e350fd65a48feea05a2a86ef1332c606d914010c51b1ffe877c5d8d447332bd2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/airports/lighthalzen.txt": {
+   "new_sha256_lf": "2b728b543eda476637fe423d6f04c59bfa3b5cf2a0163616b043eac609968151",
+   "orig_sha256_lf": "cd004a6a36404ed6b0c91d8a58f711c7e50aef871234b3a156893bff1af854e0",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/airports/rachel.txt": {
+   "new_sha256_lf": "e32ca63c360ae64147d21a383b903e96ba32b6d8765c3850333986c717b7f00c",
+   "orig_sha256_lf": "4a73567296ef2bbe0b753befb745327db5a4607bd92eae6621e09cb74b195201",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/airports/yuno.txt": {
+   "new_sha256_lf": "6a8fd90fa4a78071feb3a7998da9e2153784c7a38b760815367ad5b970972c82",
+   "orig_sha256_lf": "83eaf94db4d44cf19ceb7c415fc77e4132c21b4670bfe1ad8dbca3fd6385c2d2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/battleground/flavius/flavius01.txt": {
+   "new_sha256_lf": "fd7d9923477d56f7345769ab318441aafbdc35c0e8f9d3cca5b0b3ac75c1c46f",
+   "orig_sha256_lf": "be2f1e5acad58ee70190f5a1978ec6515e4e99b0f9521c58fbe86861d3ff03d7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/battleground/flavius/flavius02.txt": {
+   "new_sha256_lf": "ed04c38e2be1be96f61533b659ee58699abcb18dbb89f486653ae566009878f2",
+   "orig_sha256_lf": "d57577c98845f3aefff41b4c94db5c6214b8378ad2286648709a75c815c78873",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/battleground/kvm/kvm_item_pay.txt": {
+   "new_sha256_lf": "f06baff87b4210a3e65b32b1288345f9d1de02af9035c343a655469a4ae347ce",
+   "orig_sha256_lf": "387b4d8620ebda73ef481ed3112a5339187ea22babb4dbed137918181806ab26",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/battleground/tierra/tierra01.txt": {
+   "new_sha256_lf": "a9c06e9f318477513c17bc0456fa9b2a4f7ece8b3d483d00579e39d7b5423107",
+   "orig_sha256_lf": "f61b9cfd0aafae9ef1ef6ebd74e67313b8ccda014f1ecdb1c6b30f03d93edb32",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/battleground/tierra/tierra02.txt": {
+   "new_sha256_lf": "77f5125c2527c4412c1649144bc9a2a9cc422ca96e83c35fdde2d1241d9856d0",
+   "orig_sha256_lf": "80880c426b67c674931a29d492227b26f7fa42c252d23cd498c01c696907b843",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/alberta.txt": {
+   "new_sha256_lf": "b6676566a61eed6fcf10f67178a0bbc349a3c67a368e934e09a928744cc45059",
+   "orig_sha256_lf": "0a3cdf765a4ad7d904e4ba006206f442902f95de3f9fcf0bf83eeb67424dede3",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/aldebaran.txt": {
+   "new_sha256_lf": "bc13fb1e110f40f62a857669d323b520250d02f4b55b5130158ff49f4eaf00bb",
+   "orig_sha256_lf": "195f6cb28e4c46c6e2cb071284fba5bc9cd0f1c0684844a769f19ee87ef3cc0c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/amatsu.txt": {
+   "new_sha256_lf": "cde2954af5e28aa04ab19007718e6cc797e6d9bdc74825f041fba87a0159b670",
+   "orig_sha256_lf": "77e4b40f17d51b9bff8ee7a02c152665db628d9849d2a66f36185e931b86aee5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/ayothaya.txt": {
+   "new_sha256_lf": "10f9d7684e7dbd6e2f48322a4f0495d61e2b74c64d6ad009fabc722c9c63a079",
+   "orig_sha256_lf": "2eca3637dc017e0d52108eec7576865a937f05d7dd4e90de185ab886a2c8490d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/brasilis.txt": {
+   "new_sha256_lf": "313355d2121c6791821fe90b96fdd86c9af9543bc85de9c49768e0e4b5c26dc7",
+   "orig_sha256_lf": "0b82c8fd0cc8665d8ef72972a9b7dbd1f7d7643c9aa57aed767e951a64daeb6a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/comodo.txt": {
+   "new_sha256_lf": "a554791fd82841f1bc1735737fa95dec96352dcfb5f22a180e6d280bf2552a2d",
+   "orig_sha256_lf": "0f5d91ddb5ce750b2fc58ef12309a8aa1f1d06c3a8113f4787a454d46c6f8ff7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/einbech.txt": {
+   "new_sha256_lf": "0b389885d82abb640ae2b08ab868b2a9f538fe92288cfa65de71efe432916dec",
+   "orig_sha256_lf": "52150bb2e2de27b7b9edd46264d6db0f046fa7e7aadbf2d1de003bd15b0fb73b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/einbroch.txt": {
+   "new_sha256_lf": "860919236590c6398bf9bd403aefe4ed094fe8af77adb5e02002fc5d5416c2fd",
+   "orig_sha256_lf": "74bbb8c31c1f061c9938482fca75077d78e345a311a0099515d7bf83bb1e1fd2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/geffen.txt": {
+   "new_sha256_lf": "2f63667de22a968e2f2f4532dd16b9887b62101a1442030be9168ab48aa545a2",
+   "orig_sha256_lf": "e29661f7db52ba5c6cbf9743f4fa882a9fc5744ac8b7d233e5562e136511d991",
+   "reason": "accepted: branch merge: a line shown before or after an `if (Sex == SEX_MALE) mes A; else mes B;` was written into both branches (1041-1047, 1060-1064); every path still shows text on every page before the same next / select / close; only mes statements moved",
+   "status": "accept"
+  },
+  "npc/cities/gonryun.txt": {
+   "new_sha256_lf": "afa3b636577ad6479a53e4abefb6bc4b3ad216715665c12a6f01fc63134829e6",
+   "orig_sha256_lf": "b003ad0e9eab55027b8a0290f5bce16906c2adcc72e4b002f05b8fe197f05ebf",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/hugel.txt": {
+   "new_sha256_lf": "3d1755c476fd1aa058ac30846606724bdd6d3feb77efe5e9e950b392ccd1a8b2",
+   "orig_sha256_lf": "00f99e3c40822dfc64980509095a49dc3dc5055c214803d3dc3ab6506efd8def",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/izlude.txt": {
+   "new_sha256_lf": "f4f6ffbd273797d31e5ffb9ababbb75e7a29984f2dd40f2397a61e5c71a0d5f2",
+   "orig_sha256_lf": "6c427646da3c657b948e869b40f8742dcd3d1626f6bf5a55a78cffe97562dc0e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/jawaii.txt": {
+   "new_sha256_lf": "1a4c05f4de9c1f3ae27bf38abc61546c20851b32b1930f325cd558f54cb8d77c",
+   "orig_sha256_lf": "dd02901f8c5f6b952e5a2337bd8f7fbe6baabed322c3dfc38a4dd178a8ce4d74",
+   "reason": "accepted: branch merge (if Sex ... else ...), as geffen; jawaii:1359-1370 keeps its next inside the else branch",
+   "status": "accept"
+  },
+  "npc/cities/lighthalzen.txt": {
+   "new_sha256_lf": "18119c3decbb967518dfec7b5fcf77c610cc101508b95d8e8800daffe198d777",
+   "orig_sha256_lf": "7c7a0fdd6a14ab77d1fa8e357a8d6d551c3c59b5243e67f32364a77032ae6fa1",
+   "reason": "accepted: branch merge: lighthalzen:1549-1559 (the shared lines written into both Sex branches); same pages",
+   "status": "accept"
+  },
+  "npc/cities/louyang.txt": {
+   "new_sha256_lf": "be19bcf3933f59175e895c30ee8e97d8b827b73ceeabb1627ceba80238eab89a",
+   "orig_sha256_lf": "1ed739b84254633d60b3aff85f4c178d67552cf126ef664763d4eaa15f553cd1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/lutie.txt": {
+   "new_sha256_lf": "21fdb030e7abd50f932956c6c35c98801e7a403375f851dff2be5e3bde251eb2",
+   "orig_sha256_lf": "35d17dda569f690f49ed6b61da3499079fed0fc4270189cc8c1a886b9d605045",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/manuk.txt": {
+   "new_sha256_lf": "aed3ccf2dd6529d8002acfefd33c531fcfc0f9bf380a896b68e32dc73fd3335d",
+   "orig_sha256_lf": "c4f180f73043903580ea1168116163c72aa7eabd32583e03ec50b6b03b1959a5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/morocc.txt": {
+   "new_sha256_lf": "06a808187acacea21053791bf9ed8dbf2081028c0d04f4c1a74b05bf3563e846",
+   "orig_sha256_lf": "9ab0cc935401b635b63842ac3bbe9d71643f2e2343c40d19818ebf69c4d9c94f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/moscovia.txt": {
+   "new_sha256_lf": "9f95ef3f882936fc0613780962f0fe25f03776609e8c690789f148696925fbb4",
+   "orig_sha256_lf": "00611f53ec3ff5257d25f083baf6f8a16f29370176c4a50c2a8833b1400ed3b5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/niflheim.txt": {
+   "new_sha256_lf": "0d669b42e1f4a51f91ea6c527f1aed27e05fe13b62c1fdffda205593da3b3bc9",
+   "orig_sha256_lf": "18cbded2217c798bad0c223dfd86f247c1db62e6cdd319bae2d23d6b8a041037",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/payon.txt": {
+   "new_sha256_lf": "9a16f966b4812ccaa9817d2641bc7a35c48e1669734cb1fd5e3c42126328394f",
+   "orig_sha256_lf": "3e60f7277edb5d80d97d9e9f26206afe7904692e383b73929fa5d9222853a706",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/prontera.txt": {
+   "new_sha256_lf": "bf40a1e4c4ecc7d9cec652c0b628513c6bf99718a380e2922ece6db31c876165",
+   "orig_sha256_lf": "742c9d4f321fe0b41a082c3a2098399082ec8c8ae1f47c7b62ba9509f33d7fe2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/rachel.txt": {
+   "new_sha256_lf": "f46577024446a1053d022fb4383a59dea42255b794364eb354a02ef8eb17ccbe",
+   "orig_sha256_lf": "d6a80ba6f013d32c031643503c59fe41aaa18a63f47950eff3f589275eeb997d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/splendide.txt": {
+   "new_sha256_lf": "9eef7ddb6b28da92fcc34058c7dae14205ce3c212510077ea1c2d9041dd070a5",
+   "orig_sha256_lf": "1084bb238c2b72fa9a60e415dc748b3f28d438dd92b0b5987c19251e130c6873",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/umbala.txt": {
+   "new_sha256_lf": "0a3de19b3a90792151683ed5e98f539a7e2ae5c1d3c01344b0fc6f76985f37a8",
+   "orig_sha256_lf": "ad1ab55221f10f4dd9c5769d8e2a60a85385e9de56965c057a49548249b2f690",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/veins.txt": {
+   "new_sha256_lf": "5fb8ee6f9876431b146643e6391418e8314e076dfdf738204321db6e53834c69",
+   "orig_sha256_lf": "5534f0fb39aa024d180c8a31b8966173c0f758e7e1c0bccd76e10af6fccca3b5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/cities/yuno.txt": {
+   "new_sha256_lf": "a1488f258b85673d7d3cd527161324307400ca811e3fbae2b84158f3055637c7",
+   "orig_sha256_lf": "eb0c68d465985cecdbc118f34d769610ec2c888a6727562bb984aec38a6b2c3b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/events/gdevent_aru.txt": {
+   "new_sha256_lf": "a773745c324172f1006afffb3be8941b32c375b28a382a7caa53e550ab2766e0",
+   "orig_sha256_lf": "e64ae6f63dc0def4c74bceead15becb81bcc23a54256acb1633cd4eb9370334a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/events/gdevent_sch.txt": {
+   "new_sha256_lf": "0734211e60ae9f728dcbd6d17ef7d43e207c84d8462a8217ed0720a06c07ee72",
+   "orig_sha256_lf": "dbb55625372b7b9ef44f9d95c6b260a18068a2768916060c278c6c055116411b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/agit_main.txt": {
+   "new_sha256_lf": "efca40f8b53add0c394f75d2a7d2044eb063faa42c05c2e54005633890ade4b5",
+   "orig_sha256_lf": "6c7ed1a8521091c020810af92a7ff17a4ad40c1136f66c39c281d254f84cd1d7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/aldeg_cas01.txt": {
+   "new_sha256_lf": "029e7f15c56128409938270b8aa2bd01253adbe6bcc0c8e7e54e4465380c1e2c",
+   "orig_sha256_lf": "8b34bfa56e425326ebe85173efab78cb5935298ccc840d31f609c4e1f3e21b4f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/aldeg_cas02.txt": {
+   "new_sha256_lf": "298ab95a2a112a416af998b14e3aaf4a324eec8213d91d7afe79ac7ca0626dee",
+   "orig_sha256_lf": "efead71423ef1ee9915d7bd6c893ca4d18e551c278e8cd312c40fe55f6e19f5b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/aldeg_cas03.txt": {
+   "new_sha256_lf": "e1c781db5de32ee16136c04c70bd648106308463cb1f2709187e5febdd921ebb",
+   "orig_sha256_lf": "6d377e3d8e105a8ae4e63823d44c902f5b8fef8038021be76c3c21560ac2e5c1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/aldeg_cas04.txt": {
+   "new_sha256_lf": "de35c3cae5975a5c209742e11f4a758760be09dc5a35c38e428aea9a8dc83af7",
+   "orig_sha256_lf": "94aa83cba6d12ef8b9c28b63fbad07edb7e16c91b44cbdd788648369878d5a04",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/aldeg_cas05.txt": {
+   "new_sha256_lf": "e1cbb759c6ce77f15e4539e70c9cde8f240e454ce10805b1136b7cca782106dc",
+   "orig_sha256_lf": "4a54db18014c89bf5aa8b714f5899869c88834b1182cb462c29559444c28beb7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/gefg_cas01.txt": {
+   "new_sha256_lf": "50192d3eca99494ab6c67f85cc8c74a16956eb5a11933f21ec948e66e1a78042",
+   "orig_sha256_lf": "a53ecf0432db36d1c5e8f983c82b432b22dc4c155340771d048a27cd5c9b27f9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/gefg_cas02.txt": {
+   "new_sha256_lf": "20d887be53f60eeb9c1dbf842e03d6b94be0a5121d03b11eec97a7671026bb37",
+   "orig_sha256_lf": "b6ad7bd605ba10b6e122fdb1d6b07d33294e0065d70dcd5d928c41e462d01f43",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/gefg_cas03.txt": {
+   "new_sha256_lf": "f5ca76da024b4db52c0ecef42897cce32a3723ffd3ac898805c8bb1a20f1b7f8",
+   "orig_sha256_lf": "48a934902c844fb9779b8e066e2671844f3cf9f5d86e69f4384efe11a1ad0734",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/gefg_cas04.txt": {
+   "new_sha256_lf": "6b2c77790ad9c2d7e001408eeafabf8b90602d6d24da7eca647241f64c8dcbf6",
+   "orig_sha256_lf": "c0d978cb43d3b4ee23e8ac5d54c8eae3e3c9daeec32b46f3be15c46a5336db34",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/gefg_cas05.txt": {
+   "new_sha256_lf": "ccbbfba99b2e2c9c82e4f3d319e38d33d57ec1b98961e181f4be345be9bd4f73",
+   "orig_sha256_lf": "9a9d133393e9466fd5f79eb42ff60858ae4cfdfdef399957ff862d7e115f57f9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/payg_cas01.txt": {
+   "new_sha256_lf": "b6a37e769fdb9b01f66ced9fbac1677d248b41f90350507b93c9440d9243b11c",
+   "orig_sha256_lf": "8364cee079f8b85a28fc9afb705bb52669db3037af81f69d825674ae1014eb5b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/payg_cas02.txt": {
+   "new_sha256_lf": "6fbc904fa969cb78152a277aa57134b7e81e67642352c16e23a44fec8ae839bb",
+   "orig_sha256_lf": "51ec2278ac8fd9e3d8a6887e11dcd20892c026ea2f384c11e2f6a91d0e5ebf02",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/payg_cas03.txt": {
+   "new_sha256_lf": "fe12c76735e4a6ed9679a721c13de9a20920ec6c346418111498eff15b0263ba",
+   "orig_sha256_lf": "67fb9474fba223ca2ddfd9eba7d52a9c53a2ad23f0cd436150645b9596cae14e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/payg_cas04.txt": {
+   "new_sha256_lf": "8aefb984e3898f70b8e1b6a0357a9769686e4e168703062122a0079f72edef90",
+   "orig_sha256_lf": "ce4e48f4fea9098d9ffbe32f69aa149aa01707d8209f5528779b1f7b07e9741a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/payg_cas05.txt": {
+   "new_sha256_lf": "fefaa2476730aaad6023abde12ed34c4699e7f6aabd07259fdcd5ea81c9e6c53",
+   "orig_sha256_lf": "5badc45b5329466bf3471cf4e09402c7454cd39746dfeb10bfa7f9961e68f6a8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/prtg_cas01.txt": {
+   "new_sha256_lf": "d94bdd6318cf84fa56b3e7f93b673a7355a123dea3d390a7645f5e69e8eee068",
+   "orig_sha256_lf": "8ee30e2eed86db19e684534805d22ce135c33568443dc86f81c8df553bac9b75",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/prtg_cas02.txt": {
+   "new_sha256_lf": "2e323b0dcbd72012a244931814733fbf7d1cf2219cbf0e3f277af3db77d1964d",
+   "orig_sha256_lf": "206b2a318980596d9ff3f1cb31ff5402bab34009204677f7fdd2f31b43fe85f2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/prtg_cas03.txt": {
+   "new_sha256_lf": "9798d7d26fb5106847a776a52e25b678b724fdf89ac6d285dc30c1510b1a23ca",
+   "orig_sha256_lf": "14d7f691fed4d272a96575b0c695dfad38e689099b9a66ce13d271e0c0e1b3c8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/prtg_cas04.txt": {
+   "new_sha256_lf": "57343100aabb50b263077a754dd659fbbd13c2ac57ac1ac26f7caeb4c64e4549",
+   "orig_sha256_lf": "0c22b72cfa51367ddceb03f8319dfc6c88e8ab263a51c7ca4703124dbdf05087",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild/prtg_cas05.txt": {
+   "new_sha256_lf": "29967a48e9b30f36522ac79861b7e7d0c0f72ad2097b9d7414d9bcbc71bc2edd",
+   "orig_sha256_lf": "1c3ab5a1dd3d7fd45a5d2a052a8c696a2dad65a3ad333b6e374d3d73dcd67b77",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/guild2/agit_main_se.txt": {
+   "new_sha256_lf": "98fd58f6cbee560bdcfd56cb0d9b4ee92f1c024739ef04d2abb1ffa3cbff3a88",
+   "orig_sha256_lf": "c1176adf0a8307f380d5b7ebb4412b1d8484d9848589d8b8c25b5cf035b810e1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/instances/EndlessTower.txt": {
+   "new_sha256_lf": "dc85bca105045b5a4dda3865ffa13fb32a5fa2d2611f196f357db849ed67eeff",
+   "orig_sha256_lf": "33d905a71da9c0b330f04ae4dfeec4e1d18a695f7ebc6d914edeb42871bb651b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/instances/NydhoggsNest.txt": {
+   "new_sha256_lf": "f0568774a20d5a49c9a4f7b43bfbdf76eefedbf16b08b16f26a64f621254626b",
+   "orig_sha256_lf": "dfe98d33fb1b96b65a4030caa172e3064a3ef74da7e5330922beab9eff84b181",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/1-1e/gunslinger.txt": {
+   "new_sha256_lf": "d7c1a004a98500666a9ffc9a23e7e2d12cfd5b3a9c5eb14e8139cf2842892ac0",
+   "orig_sha256_lf": "f5154d3f876c03b4308e14e2a4654f185c23b53ea571e9a55ff1ed9d546b456f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/1-1e/ninja.txt": {
+   "new_sha256_lf": "8967ac333f1e5bf58deecaa6838fbac0c569c9acdb11c4962d42f188edf3259e",
+   "orig_sha256_lf": "98accfe193ea62002f523dd0f39be7116230f68d107ea61ac1c68cd03748dade",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/1-1e/taekwon.txt": {
+   "new_sha256_lf": "f840cae283a560cb90c683f1cad47b10cee9d36b5a2bed76f4c49892431e3b8d",
+   "orig_sha256_lf": "0c37979a6987961718ffc3a7201f7dfd2e172a1780360b349e5555179f9cd3f5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1/assassin.txt": {
+   "new_sha256_lf": "df2e03719efeea3545b247254c10c797492d0fe959f9c8be727c35292619e60f",
+   "orig_sha256_lf": "275ad6793cbf1e3701fde599c99d46bbe3b53c13aaac20fdcf03ee9344767180",
+   "reason": "accepted: the score line (assassin:1058-1059, shown before `if (.@assassin_t > 80)`) is written into both branches; in the else branch after `ASSIN_Q2 = 4;`, on the same page (no pause between), so the player sees the same before the next pause",
+   "status": "accept"
+  },
+  "npc/jobs/2-1/blacksmith.txt": {
+   "new_sha256_lf": "49b410f45e64224d2d98e44eec4120523c2b4f34dfe06ed67a907845b9fee370",
+   "orig_sha256_lf": "8c8d9d2a2bb8284d8c91c748abd2070cc0ee587cac1616142c6c965b13a45079",
+   "reason": "accepted: 89-96: `if (Sex == SEX_FEMALE) { mes A } mes B` became `if (...) mes A+B; else mes B;` (both paths show B, same next); 799-802: the shared closing line ('and don't forget the receipt!') is written into every case of `switch(BSMITH_Q)`, whose value is set from .@items[8] in 9..13 just before it (blacksmith:665-669) and has a case for each (9-13): every path still shows it before close",
+   "status": "accept"
+  },
+  "npc/jobs/2-1/hunter.txt": {
+   "new_sha256_lf": "d5274ecc8082d56a2d4e5bfe3e9149b9e5cbecd77ddcc347ceb89c0d32dc4668",
+   "orig_sha256_lf": "1a3926e3a9525d6172be2eb1739772d61fe628e7181cffc693265a15222094d3",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1/knight.txt": {
+   "new_sha256_lf": "7097bc9e877386ec022f522fb0081ce07e4332fbb64ab3732900e85f544a5eea",
+   "orig_sha256_lf": "71dd83c70fcacd959740fd8801fac6727bd782a5d1e0a85c4a8076bff02417d7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1/priest.txt": {
+   "new_sha256_lf": "033ab7f298ec642ce1d6d01dca393b199a34a1d20ae5fb60d98ae578d7488ef1",
+   "orig_sha256_lf": "25959b5fb89362de966b86dc519e294164080a60dfdd08332ebea000f50c2c51",
+   "reason": "fixed here: the export wrote the line every character reads after the Sex branch (original 211-212 'What brings / you to me?', 584 'May I ask what brings you here?') into the else branch only: a male character lost it. Put back after the branch as the original has it (211-212 joined into one line, the overhaul's style; 584 as it was); then CLEAN (pack version 3, the design's 'only the good parts') ",
+   "status": "fix"
+  },
+  "npc/jobs/2-1/wizard.txt": {
+   "new_sha256_lf": "451a1caa029e614c2c66c8ff157277adf74341a466486cb044b10ce6a3bacbdd",
+   "orig_sha256_lf": "2911aae08e5546eab8fc5b5a4eac2fc98a1d2edcebf7997ba1f0dc175e98d7bc",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1a/AssassinCross.txt": {
+   "new_sha256_lf": "95bfde032daded4d6bcbd55fd67afad51018575aff8bed8ab97084a975fdc9a7",
+   "orig_sha256_lf": "d753615ff11b5e5c41a0693fec909fe2f57ffa17ba78d4eac7e5c599a4b8e1a5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1a/HighPriest.txt": {
+   "new_sha256_lf": "a2d311a9ee5c963fc65622964da6b0d53eb78d680ee8b012a0c4512f38f0890b",
+   "orig_sha256_lf": "954954d024350d33125340c35f60c9ec11e15fc4c512b6408fa76c53a9879b2d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1a/HighWizard.txt": {
+   "new_sha256_lf": "d9de03b3ad6e7b7a7bd94043a5ef79573d3640023019b94b8726b4968b1f8718",
+   "orig_sha256_lf": "661d0c286abacecd0e4f2b70682016d308dd6627c7b8e89061b6d995f79050c2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1a/LordKnight.txt": {
+   "new_sha256_lf": "828c887318d14e35bbe05eb3e80f62bd16c0a2c980d3a60bb7f9e60d17b6ffbc",
+   "orig_sha256_lf": "2cd280fc15613edf8747de463838f9c08decb2da6616553eb89c90557d7a9cf7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1a/Sniper.txt": {
+   "new_sha256_lf": "d6a613f6afd24ccb2d6eac5452f8b423037d87128be9d9047e937112edeed434",
+   "orig_sha256_lf": "3a1375a79e17a5d70a669ebdb2dcaaba917b2323a131ff22e4fd443316dd6d94",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1a/WhiteSmith.txt": {
+   "new_sha256_lf": "2fbd98d4b4aafdb29cee657c57ea6e9bd794719f8ca297b7459d038038314d83",
+   "orig_sha256_lf": "f9641d55176cdc2d4c7cc99706f23b5227d6dd9fde6d404f3853971232d333e7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-1e/StarGladiator.txt": {
+   "new_sha256_lf": "b0628fc99a274941739bb05f5d482958c1670ff2f1db381e9326eed1b580d7df",
+   "orig_sha256_lf": "4e23c6d84130de373f315cd4926833d1f38445bd7e1c00f1db8fa88a4bc78cd0",
+   "reason": "accepted: branch merge (if Sex ... else ...) at StarGladiator:382-386; same pages",
+   "status": "accept"
+  },
+  "npc/jobs/2-2/alchemist.txt": {
+   "new_sha256_lf": "bd25f44d8c3ef79b44ff1cfd3d179dceddd075b24ef4912c8f5c0bf84927bbe4",
+   "orig_sha256_lf": "df67841c5686e5f4cd4c6dbc40e52687bf8dec3f031e742e3d9964b2c0ab618f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2/bard.txt": {
+   "new_sha256_lf": "c504eabeacd3357bcf775ec3f5a48fdc1d6c965035866195898d0bcb00ed6778",
+   "orig_sha256_lf": "35fc62a450ca1ec224b7f866a3d9fda2345a29018f4a5ca9f30d2cdd7ef2e0fc",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2/crusader.txt": {
+   "new_sha256_lf": "61ea9ce7a934c201cbb76b19579c36fbd094cbb2aa6db60a581d1460dafffc4d",
+   "orig_sha256_lf": "eaeaaa9361bf217894a2b48e972303a2c82fe56637bfe6949e01039461a756f1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2/dancer.txt": {
+   "new_sha256_lf": "bbca01699b57bcfde640966952e2565d5518cfb615ffa7c40bf65e360a19e3b1",
+   "orig_sha256_lf": "8041344e655aa974ec31ca9ef421c71db44c6d5d1c1ed8daaed2142ac9fcb96b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2/monk.txt": {
+   "new_sha256_lf": "05b2b4af919c33024ac5dd10d4bbcedae755b299b8b1e29c22fe85bf96582307",
+   "orig_sha256_lf": "dbc3a1dcacacc7199c58ede93a93247ef3bf22464853e5132f037db015ef7351",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2/rogue.txt": {
+   "new_sha256_lf": "98b198282612589c37dc8af0bed9bf5d3b9bec3be9ce1b7cfc5f11f928210c54",
+   "orig_sha256_lf": "63f829884ec3d2fc798aa74fa2ef7c92d6835e0e7ac1aee0e546bbff2de7b675",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2/sage.txt": {
+   "new_sha256_lf": "e22fda37ecb44b105cc1478b9a05ab4032bf3464f8d34401f6df8d814d174754",
+   "orig_sha256_lf": "dadf5cccf0266fc28c82ecaf6a6795892a919c02f25c7412072506ef30d62596",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Champion.txt": {
+   "new_sha256_lf": "00b70c57325d60e267e674dbafbe4932ed3f31f0c4ccae3d835252a82d138664",
+   "orig_sha256_lf": "032ef31599288a07cb5115c250404886b59de5c4b62d25961fad2eb223570f56",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Clown.txt": {
+   "new_sha256_lf": "b07569c6ea36812f30551d712b52b66ab6ba471f64c6cea3cd0d97e883ecaaf1",
+   "orig_sha256_lf": "3885aa6afae775cb0547830025fd7985988aba544be9a784e9601de8d43bf2af",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Creator.txt": {
+   "new_sha256_lf": "96f44e636a1742b4f67c44b89ea1949ac3749b6ba12a2c2dcb1c3ba5cc5cbd28",
+   "orig_sha256_lf": "74821a4794c1a2b611b6d479415d9957643b544598f5dd850c3ac0a3be316da4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Gypsy.txt": {
+   "new_sha256_lf": "54ef48f4eadfbecd0c9f70b96232da09eae1843c616c783499f77ad769af9a1d",
+   "orig_sha256_lf": "1e1f71d127c646d90baa5ea0467eefa066f9eb8e2910d565926403de30eaf6b2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Paladin.txt": {
+   "new_sha256_lf": "8c976cd870d53ef4b607c5f10610a47eb297e9afa1594a1640b0adc53af75fed",
+   "orig_sha256_lf": "9b5e38631e7ad142d6b3a8380ce32ffc93eb9bce367653c45dfa3d9bd5bccbcc",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Professor.txt": {
+   "new_sha256_lf": "4af9834320c6adcf491ed153f8b46962f173c78233414384d0506754eeb4d672",
+   "orig_sha256_lf": "fee56501139ecd643905851e05ce8966def76ece27e230a629fa56031803e4f1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2a/Stalker.txt": {
+   "new_sha256_lf": "ea489922541c2b0ede9fa80d479801a470df1a330c9d69228405687624861f9a",
+   "orig_sha256_lf": "30e4208f2050c1e6d7e831f22b1485cd2fa726b0e5180423948f281b312a0198",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/2-2e/SoulLinker.txt": {
+   "new_sha256_lf": "df3dc5581a2a0b7d5fe969faeed834b719430eacab107ae0fb54fb907ca22c3a",
+   "orig_sha256_lf": "4be19fba1edc982d7638cee728cbb74b3eb355472d43cbd34c5640edb4127d14",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/novice/supernovice.txt": {
+   "new_sha256_lf": "0ef2018180d565e3d4f7cdf0ddf2aad0fa4a4d74541150c74089aca45e57131f",
+   "orig_sha256_lf": "916725d138b2f6adeba45d53f673d1dacc0128ff11bf06a755f17ff753be98c4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/jobs/valkyrie.txt": {
+   "new_sha256_lf": "6efc77e81d8df50f33ed5fc6520f3764a89e3923575f247be807549c404114d9",
+   "orig_sha256_lf": "a151f75c56e45ea6c71886d1062d9c6a4ad5c2ec3bdc276b508f925d34e31953",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/kafras/cool_event_corp.txt": {
+   "new_sha256_lf": "27ce8b67045ec200861a19c48e30066a7f37ff05bce307847229d7078a645dcc",
+   "orig_sha256_lf": "9bff23a685ecde45173d418fa923d2212dd26c6b48891a238985d683011d4c33",
+   "reason": "accepted: branch merge (if checkre(0) ... else ...) at cool_event_corp:108-116; same pages",
+   "status": "accept"
+  },
+  "npc/kafras/dts_warper.txt": {
+   "new_sha256_lf": "18c0b81e94d0f68b9b8b562fd186f387ba73498bcd879ad76f268333bdf17f7c",
+   "orig_sha256_lf": "aea5d73e76a0f48ff442501b5d093da8a4ef514417afc521092ed65653ca0185",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/kafras/functions_kafras.txt": {
+   "new_sha256_lf": "e7bc006e5bcdadeaa8d4367472e6ced394d49142002ffc1b5ea513b390b7cf68",
+   "orig_sha256_lf": "5b8ef716de95d29faf0aabee3220069533ebc30dd2f2a31df70bcababba5af18",
+   "reason": "accepted: consistent rename 'Al De Baran' -> 'Aldebaran' in the teleport menu array @wrpD$ (633, 638, 652) AND in the one comparison that reads it to warp (312). @wrpD$ is a temporary character variable (never saved); every loaded script that writes or reads it is this file (the only other user, npc/events/nguild/nguild_kafras.txt, is commented out in npc/scripts_athena.conf:73 and only writes 'Prontera'). Same warp for the same choice",
+   "status": "accept"
+  },
+  "npc/kafras/kafras.txt": {
+   "new_sha256_lf": "9e1aed50c292e8985a7110735c988f9a1ab3f01dba935a86eadf8ad0cd696a89",
+   "orig_sha256_lf": "279305ca11b3127a91139baa118592264e5c3e89a026bf1d1e25343d96544396",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/advanced_refiner.txt": {
+   "new_sha256_lf": "17ec1e3d61082eeb57b5deb706935d9185ad119f5d8f4393d8549b47a434ff1c",
+   "orig_sha256_lf": "f4150ab282566ee2a433ea6e91ab437f1f392991955c1cbe37efbbf1c1c0553e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/alchemist.txt": {
+   "new_sha256_lf": "1fbf1eec17911e994648c3c97d1f7c63bcd226df104793559d2e7544ae31a9fc",
+   "orig_sha256_lf": "4cdf66f33b0db94ad188148367c0195be4751956f3cd69056d53746ed3a9e5cd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/buying_shops.txt": {
+   "new_sha256_lf": "a159fc20a0516729ff85f56d3662fea1e741675ce99b80c132245c867636daff",
+   "orig_sha256_lf": "7eccd1465d080d588aefa916242ceb4406ee2cf76f8598a0129c6d1c83532460",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/elemental_trader.txt": {
+   "new_sha256_lf": "b1066c74dd80b6f474a163a1e8f8d7b4c89b4c13daa0f53b6e1ec223783c9bae",
+   "orig_sha256_lf": "bde44f86135b07bd018a93ed68e3512b511d757ca5162d6d253d4916ac6b0087",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/gemstone.txt": {
+   "new_sha256_lf": "7ca3e3e7761781403af606a9bd8bf04e81cb6aba75fde919e2eaf3f707b9fd4c",
+   "orig_sha256_lf": "1cc59df3eadb918d16fbb6b4d30b64e5b13bc767c37f9cd3e0fab9993ce283c9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/hair_dyer.txt": {
+   "new_sha256_lf": "a27cc4e89d3875d2db11d3a7ce9ba95d21ad8e854cddf57c8f1e5af0f0166e5e",
+   "orig_sha256_lf": "18b9a55219192497a66e5489d8b71fd6e25fa26f5c3f874a12c32d201184f626",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/hair_style.txt": {
+   "new_sha256_lf": "ad3343d5f234994ee0c616f18d5d7465c4297c4f777e345e7f59f956225d74da",
+   "orig_sha256_lf": "55aed434ee3401394fe52f567fbc8bab24c68cbb43525a8b904d9bced558d847",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/inn.txt": {
+   "new_sha256_lf": "abd338f945f4402c55c552efbe9a8a5e74aa473ad9c7636e7b67b04fe52d6c1e",
+   "orig_sha256_lf": "686a76cbd7003dc858c6a4e75689b9e523d0d7e73c1f2be865a0dd685a91a437",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/kunai_maker.txt": {
+   "new_sha256_lf": "22cfa9987d68284be5263c7ac11f88f48bbab15e205fa9a9ef69504b5c446f2e",
+   "orig_sha256_lf": "bb0ad8d71b2255c4e0a97ab6fdbd6bc2798c85d0292fe308305279fb048866b8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/milk_trader.txt": {
+   "new_sha256_lf": "f1fd4f071e77ba1079d3219ca258412dada4b8df6c95bc850a85a82af067e577",
+   "orig_sha256_lf": "6543bc1498dfe61e04a16aaf68fce17713bffe0cae6f2f2e686951d2cbd0ae93",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/novice_exchange.txt": {
+   "new_sha256_lf": "3eefecf30c464f629f29448eaaa00fa5ae544979f64f7c1863ae958174b80ffe",
+   "orig_sha256_lf": "4e8c9ac39e6af5e215b31bc99e39fa7b1031b6b7f1a5def78229f666234120e8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/quivers.txt": {
+   "new_sha256_lf": "166c611ac2fb0b1d4ae7ab88e0314f1986e7afb9b7ffa781c42c5b10f6938d5a",
+   "orig_sha256_lf": "867f011f6aa778b0c9b445063c9fe8de99fbe4f06689f1383fe03fcceb411a33",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/refine.txt": {
+   "new_sha256_lf": "241b3b109652b64ff5a4053f98a0c81532845a3e92158a5ff5069639b745627f",
+   "orig_sha256_lf": "cdea34a386c2dc4c500a5b9f1d63ae95952ff7b3e045d090bcb2a21d0a5b84ae",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/renters.txt": {
+   "new_sha256_lf": "7fd662d2c7aadcd518b997546fb59f757d65c8ea02be3b93adf6d1ce8e3e6845",
+   "orig_sha256_lf": "2925769d422b963599375280b54b4fad2f8fff1b70948f43902371473f804f27",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/socket_enchant2.txt": {
+   "new_sha256_lf": "1b136f2877877e6f9416b0765456ad3c956a1ae3c6aa6cad5f292d24353cfe70",
+   "orig_sha256_lf": "ace5f8f21d954b0c94e20ace2578591dbdd50b2d3a87458dc67755ba2408ad20",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/merchants/wander_pet_food.txt": {
+   "new_sha256_lf": "4641300eccdb8872a9b7a63977f29d57e321aabfcb7a228dca3030ea278fdff8",
+   "orig_sha256_lf": "3bd27a253d33a9b595011ee9f2ea36f25140260894d7c8af51ccf9c0ca60aa85",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/CashShop_Functions.txt": {
+   "new_sha256_lf": "040b89eddce0daf957f69a252a08da3119eb0a19c3a588bee8c86069378fa235",
+   "orig_sha256_lf": "d6a2e5d6b120cba6d77a1ab5c9389e81ed663f5b99cc30a64a4d2369de6f27c5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/arena/arena_aco.txt": {
+   "new_sha256_lf": "694bf814a828a8b4900d249548c5d2325b7855d7c5cbd42d76d8a8466e45745b",
+   "orig_sha256_lf": "edf06fe4460a0cdf70498b11a750f05540c11e3fb2f6f4437a3966503be2c25d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/arena/arena_point.txt": {
+   "new_sha256_lf": "85ee542bb2d4e64eed0164a2309f63cdace9e8be3d421c0b60efd78b3f6790c4",
+   "orig_sha256_lf": "05a1163f3f7f402118d797116d916101cdefe2d252052e7504074d328faa054f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/arena/arena_room.txt": {
+   "new_sha256_lf": "f9f11b3e24d6d2b1afc56819d32b1319ae422615043819d6034f431e81a775a5",
+   "orig_sha256_lf": "3197242400b247d85c93a320f1cb9db760e129b8760e344ec0c94735909f1e05",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/auction.txt": {
+   "new_sha256_lf": "2f0ebad47ac235e92b9bddc30c569c3347c73f6de2aa5032d86a7d4daad74731",
+   "orig_sha256_lf": "0e8c20205d313bbe437e51562c24b15130e6f5d6be1d986f8d388d8946f702f8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/books.txt": {
+   "new_sha256_lf": "bdb4d0041c646c47083ae6403f381781a0d7a0faf62d4be0c7e2ee75d3711bd9",
+   "orig_sha256_lf": "8c82bdb6a54f76c312df57dd5fb59c8e0d38d687bc8cd6bfcf5b10e75ae5b8b0",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/bulletin_boards.txt": {
+   "new_sha256_lf": "048cf059960709a060cd56aad3dd7df8afa1fc93097b52f34fe99d33ecbefae3",
+   "orig_sha256_lf": "449f82949f9fa090432b70d937e473954e7ddbb33eb4e6f0da91def976983e38",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/comodo_gambling.txt": {
+   "new_sha256_lf": "d7ba602b24b2bdc0f10f617465d8b8aa62ee1b4f2fa7a08fcd727c2295c2f739",
+   "orig_sha256_lf": "e19b065850f66dd9b1f22f087c5a887215da7f0a678adc6806e24f3addabe6ea",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/divorce.txt": {
+   "new_sha256_lf": "93c0cd3236c2c017b4053500ed2403c4c46f6d62376f768a409231a690c8d7a4",
+   "orig_sha256_lf": "767b598ddcb1b012c169324bdc63273ce26b64d6e254c7742415b5e505850a89",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/guildpvp.txt": {
+   "new_sha256_lf": "bae16421329ae1d0e3446b2ba596265c05169b69b620ffa51db513fdfd4a1c04",
+   "orig_sha256_lf": "cadea4744a4bea9181dec04f9f793e3bc74b1e6709b737d87536e2cd81820bdf",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/gympass.txt": {
+   "new_sha256_lf": "8b9422bf1a83f2bb467756dd2740ddfa1e7791c220d543c1a45aa81ca49bfb2a",
+   "orig_sha256_lf": "36dd27403380e7dbd54a32839221866a47157abc0adaef901e97159d47eb7f0b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/hugel_bingo.txt": {
+   "new_sha256_lf": "9b6fa44bda532eaaf5c9f231ddd80213159678d629c170ad0b832f99c44031de",
+   "orig_sha256_lf": "435456347664883648ba5c8f93e0ae689d7e62ca23dc2d543ae524a463441153",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/mail.txt": {
+   "new_sha256_lf": "ab1db9826f83eed3da4b2207ecc333698bcd119f12522d2ca4f439aef570d443",
+   "orig_sha256_lf": "2bd539a3459fcce6bb4091412c365ce0bd2f5fdc28f9d1e0e4a84686c4666889",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/marriage.txt": {
+   "new_sha256_lf": "a358d0f350c5b0024eb4150b4e4f9b8aff75af5d74d894c3cd8c02748b2f6320",
+   "orig_sha256_lf": "d89d49495e6136c1addd3c3b09d05a088788fd9d2f35e9dae45d7d85f494dec5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/mercenary_rent.txt": {
+   "new_sha256_lf": "4e177795f1ec82cbbefbce2520e740423b4bb8f5c1a8775a80ba116f0059042a",
+   "orig_sha256_lf": "f4b74b3bebfd7856e5dc32ba0241d99eaf9bd4f384214eff0a22d1954753ae5b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/monster_museum.txt": {
+   "new_sha256_lf": "946b8a6181dfc3e1817075e28c9ea9461299144cba3e2b98d32ec8120a3517a8",
+   "orig_sha256_lf": "b935a999d0d3bd46424ec3e52c7f7ee119b9b0f9a8dd2741875588a1fc6accb6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/monster_race.txt": {
+   "new_sha256_lf": "56b1a6bae32ca4ba995439ee9905e14fad69968bb5de8ccf2786223ca3876fb6",
+   "orig_sha256_lf": "40aae65de664336fad1aac4571061c8f991f22b3bec131496f45b47b0e8ee206",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/poring_war.txt": {
+   "new_sha256_lf": "e0615c40aac91d712156e0100a81043a1baf3c0b41a59e0ae699b6aa9f33a4f7",
+   "orig_sha256_lf": "3597632bb9da8438cdf3bab379ca05ef3ff1363c7a196082d49f91d9d6ff1019",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/powernpc.txt": {
+   "new_sha256_lf": "71a45e780eca750379dced3d594ebb109c48adaa5b25a4b39b844cead919c5cd",
+   "orig_sha256_lf": "93e96b5deb411c123eb81c69ae0dd78ea25476873b6208f4f5466ec0c64721a4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/pvp.txt": {
+   "new_sha256_lf": "76ef519bf729e4555da69881ad6cea7e671351e14337537a0b8f9f510d3ac5b5",
+   "orig_sha256_lf": "1831e60d304711a6cb7a816f8ca69a1614594654bac79f7560676432ed361bb1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/other/turbo_track.txt": {
+   "new_sha256_lf": "ce7c873c239e3dc34a05138307dddb381cf9c272ac8ccbf0e3b960ee04a9b9f1",
+   "orig_sha256_lf": "d202c8a0a3e7c4ef6a284fbb763d34d22789fa0dbf2d106109fa8dde696bf62c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/bard_quest.txt": {
+   "new_sha256_lf": "2e631aadde7904dedf50a98430fa82547a0fd57d261f051968e081e6f19e7364",
+   "orig_sha256_lf": "bbb3ef9ecec8b2e5ad99658170c23ecaf5f8b13f24e379eb7c4f1dc0feabacdb",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/bunnyband.txt": {
+   "new_sha256_lf": "7fd158447a82a5d32519cf2603463d6b22a3d974d413ab778de492f3f05b5f8b",
+   "orig_sha256_lf": "6ad414d436b6aeebcf3de512ea6c24afcaf67acb009b22824038598ffa1e13d3",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/cooking_quest.txt": {
+   "new_sha256_lf": "e1d7f4be44200f5edeefea20dafc5619da7059139541355f3752e68fc4880c24",
+   "orig_sha256_lf": "664dd988575f84198f654890df958fd38cfe61dfd2df80aef58be9eeb9eea6e6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/counteragent_mixture.txt": {
+   "new_sha256_lf": "07d1f5810d899025ddb1da6fc4b1ddf600a22773d4dd6cbef18d01083a1bf258",
+   "orig_sha256_lf": "6799088bb41e30e516e6690e6e41348423934e478bb7474e978d262e1041cbb7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/doomed_swords.txt": {
+   "new_sha256_lf": "04038d3e85e39bf99e914a79c30a2c28b8cde7c0fb82e88a3427d5e8fb6c6325",
+   "orig_sha256_lf": "256f2405abe8022586fe408ad51cd33565c8542c5664fd70f881a5fe93a0fc2f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/doomed_swords_quest.txt": {
+   "new_sha256_lf": "106ed76965cee4896c0990cdcf1c4183e33184c22ce1469d64b49ffe3241d4c8",
+   "orig_sha256_lf": "c6db70bdf948c51dd9f2c5d84d6412b72890079ee703643a7660aa34f0347b29",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/eye_of_hellion.txt": {
+   "new_sha256_lf": "12af726c3503e509e86438963516c7b23adb6d316a85eea63683d5711d97c175",
+   "orig_sha256_lf": "99c3dbab5fd2dac7bb7bab35905bcbc1e6d0e907e597d20ca52eb8de030eaeb1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/first_class/tu_acolyte.txt": {
+   "new_sha256_lf": "432ee9bc794c59348f0180319804a8adac94b488b5df1e97e536322d410ef997",
+   "orig_sha256_lf": "5e2cd0d3fd3ca6e2081828b125fb13fa35d8779746bb3bee89e9612a69d3d4df",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/first_class/tu_archer.txt": {
+   "new_sha256_lf": "28a2b969eba1e70cfd2a0fc83d3d21c61025ca3702aab45d2866a43dbfc3ed35",
+   "orig_sha256_lf": "40b697bf542cf0c3f188816d9c2ab45cbe667fa0d210f48926b6becd079f0976",
+   "reason": "accepted: branch merge (if checkre(0) ... else ...) at tu_archer:723-727; same pages",
+   "status": "accept"
+  },
+  "npc/quests/first_class/tu_ma_th01.txt": {
+   "new_sha256_lf": "0e50137898004955651e02ca28cb7c72c9f2c56ba23a8b73d4e243b9d589f915",
+   "orig_sha256_lf": "efcd00d98be37a7345ad5ab334728628a300a56bcfb693964de240fea8159570",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/first_class/tu_magician01.txt": {
+   "new_sha256_lf": "4e7b884b19798fc8e71ccbef593f3a859385dd1c7ce3d330dfb0459e3439a5a5",
+   "orig_sha256_lf": "e1e9fb3aa1b7f6f1f3b6cf495fd21d0829102238a10b8ac3a226a59cf7ec6d38",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/first_class/tu_merchant.txt": {
+   "new_sha256_lf": "30dc9ec401d5083212e9a2ddfb13f3eaae6f35685ea0d05a50aef7558e9b9491",
+   "orig_sha256_lf": "11c72a298982567d270e2e780a478602ca74dc1c397d9a8863e749db5ecdea75",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/first_class/tu_sword.txt": {
+   "new_sha256_lf": "4fdbed5411d7f7b324edca938c1229b5f57741100cbc6ebc518efcb154104cee",
+   "orig_sha256_lf": "dd38e3d5a497770ef79ef25b8352913a9f21a19372402a89d013546a8c0724da",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/first_class/tu_thief01.txt": {
+   "new_sha256_lf": "d7b5d1023f7f79b0283304d509f74324f3714e73529d0ad49bfa8d0512a1e0e8",
+   "orig_sha256_lf": "b4795abcd8f9423fbe601f5203e1b0a71b031a62d614da77d51fe634efc791c0",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/guildrelay.txt": {
+   "new_sha256_lf": "0ab2820a1f03508ab24122aba05e25ab88eec0888943480239d8f82999940d16",
+   "orig_sha256_lf": "fbe9ec8246c67006d256975b63e59425ef307ea6a60f6fe8822bcb572435352d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/gunslinger_quests.txt": {
+   "new_sha256_lf": "6a9aef5189ebd0173a48e06d04d22da4a63cb2619f07b0b21c935f65243c5206",
+   "orig_sha256_lf": "3c15bf38ca2e3012ae7d30f9741b0ebdd7a88148844ee4314df37a885881e34f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/juice_maker.txt": {
+   "new_sha256_lf": "f2726de5f1cf639018807043b3877ddd02bc251c7f9a80fd8c2a6fdbf21c4dbe",
+   "orig_sha256_lf": "b4374f8f9799e563a9e3c301d084a7e661b90df0298083f723374277a7b210f4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/kiel_hyre_quest.txt": {
+   "new_sha256_lf": "38a8b063077d944700950b22c2221251040c1defffe6b089ec5bd42d2b28e784",
+   "orig_sha256_lf": "9e30436bcd12a1e7a91f9647367f7baaa6cb0956f16d3e1b512e7b7fd720e9b1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/lvl4_weapon_quest.txt": {
+   "new_sha256_lf": "72f433186e4a56fbc37565f7d24b0aefa280ac5b41bdbbeeae6db84ee7e51b4a",
+   "orig_sha256_lf": "7767b6c2adfe3faaa29f52678f38135fd923bc27ce87410e19ad83ffe5ce1167",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/monstertamers.txt": {
+   "new_sha256_lf": "8fffbe982065ecca4c015da5a5f0ea5defb914ef0f8d537fcd1c40ff307bb764",
+   "orig_sha256_lf": "85c686409806326cccdb68c52bffc04248d76d861a90e2ff5ba5880f8fba31b2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/mrsmile.txt": {
+   "new_sha256_lf": "65b5cb71e6c608cbfb241bcefa221fb45a254300d04c0b791a8cbe341abd1cfc",
+   "orig_sha256_lf": "918d09d07c6f04ed841f51b1f56738de846b9103e20784218522eb3f5d3e573f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/newgears/2004_headgears.txt": {
+   "new_sha256_lf": "f613c2467127ddf6a8a8ba6350fdbdfe77f604d10ef0d2d450046c5c40a622f5",
+   "orig_sha256_lf": "e31729726beeff2c3c4e13c0505fe43d70f8801f5e717aadb52209eaf44b022f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/newgears/2005_headgears.txt": {
+   "new_sha256_lf": "68bb3747ddac0997a2ff5a49dd191b08e6f76fcf5d85a2820d770f9634e05814",
+   "orig_sha256_lf": "6d600a7fc3014c346f7eca2f2ca5b4bf96f1978d06e59cf3188c23379a0e0521",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/newgears/2006_headgears.txt": {
+   "new_sha256_lf": "00dbdbd2834943c215c7a69c094bbdfec858a68b57decc935187657534863a8e",
+   "orig_sha256_lf": "640e0fed481792db2d41a4b74381b73dd3626f265b102c0018b0fa9012ecd5cb",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/newgears/2008_headgears.txt": {
+   "new_sha256_lf": "55eaf9ecbedba68fb937fc1ed0a452eb0edeb169ed07dc0d5c099f5875efa58d",
+   "orig_sha256_lf": "c4d03b273caf283eb9313bbcf44c366e019db37fb62d6f52e6b404e3a444a07b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/ninja_quests.txt": {
+   "new_sha256_lf": "bd088a06d89a061880556ea2953cac301b81824a1a5947ae38374404d3b8a50f",
+   "orig_sha256_lf": "ba850b4581cf56b7fbc74be202b4cd2a8d046484022664c8c17861b093158187",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/obb_quest.txt": {
+   "new_sha256_lf": "ee478c0c542a9c6a254b702de15e6f3987ba33bd12f8a9b748289190b821989a",
+   "orig_sha256_lf": "0e6249f81aeb34cb2a9a7b8536d7296f2afb1d2de9f5087470f444b6530484a5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/okolnir.txt": {
+   "new_sha256_lf": "aca55048e5d722fe69a5e4cdbc061491aa899ca11597a32bdf916fed7a1a033f",
+   "orig_sha256_lf": "1a3ba93769795a54a35217f031722e8213f5f74ced1dca4af3693ae9236aed40",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/partyrelay.txt": {
+   "new_sha256_lf": "8445b787f83e3f2a722ca9f95ab5c3bbff6ffc2f6d4a0b35530b25e5a770c683",
+   "orig_sha256_lf": "dcc6b76fd83f6bc3e8f39004605eec2e421e566bac997f6c15270140e01c2567",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_13_1.txt": {
+   "new_sha256_lf": "68a7852b661802bdfe06805885d0e368f1be66a71e85c4fa8cda9be283500e6a",
+   "orig_sha256_lf": "4626c27f2ecf6b5a98567d7e8dbee66256015b2432e3840c4cf2a121a5a14b6d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_13_2.txt": {
+   "new_sha256_lf": "b39c383cc96f3f30201349a8f1e98ecbec3e5eb42a4af0c0ca4d3f7fdb3ca70a",
+   "orig_sha256_lf": "abce299320aacc0ea3e3b959017e4e152c6800edbd16d4426f6fdcd5417a361e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_airship.txt": {
+   "new_sha256_lf": "c3dc55cac70a2f5c266307f804a6bdae2c37f52aaa02cc14599485548b863a4b",
+   "orig_sha256_lf": "98ecb5c414cbcd9c78b2ecde70fee173f0acffa9e3d1dde9f399dad32c0ae3de",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_alberta.txt": {
+   "new_sha256_lf": "41caa88154440b6ba4b9924765a7219ad6f8ff5fd26cba55df960ec27e0db9b8",
+   "orig_sha256_lf": "d82bc50322013ce0be78687e64d195e0bad23ba52948977c8c9bb11df04173ad",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_amatsu.txt": {
+   "new_sha256_lf": "9bdf8911e735ac7da233c716e6305d564488375c51fbdce0b97d68de6a9a8493",
+   "orig_sha256_lf": "103dcc4d96c1ba00b885c565e418069ef72e7ca5f329f4fab852910f17574af3",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_ayothaya.txt": {
+   "new_sha256_lf": "124996c04607df1717e491bde55f41c3a2cf15fbe37b0f6ea1a7ca92737a9ab1",
+   "orig_sha256_lf": "60fb2a12ebbd3d837cb1da127228faa0f1116bf0d21e4de811c39784c400e158",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_brasilis.txt": {
+   "new_sha256_lf": "29fdc76f7d4ad7792e52c1809d6592e4d15cc03612eecbfbbddb4f47ce63fb7c",
+   "orig_sha256_lf": "06931780096555749a7c6f02e300ec6876f3f16df476128709ebf1b103167192",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_comodo.txt": {
+   "new_sha256_lf": "682c3186381d5970aacea9917bece96b727b18f82e0d586be37edb12b763340b",
+   "orig_sha256_lf": "4b692a4a82f17fa7d573362e6ad74e4f8b6649bdce898cf97ac7f65234ef2f78",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_ein.txt": {
+   "new_sha256_lf": "67719e42c5aae40fb8655526e35684c49e5b916d60bdbd24e6dcbbfa16d62960",
+   "orig_sha256_lf": "0f822ce5a2f16824f7c5572e3f1557eaff161c68a8b689a7c0afb88dfe6f54d5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_geffen.txt": {
+   "new_sha256_lf": "e34c98543c097c3f0f71dba7b478397fe6213375ccde1735dd0f207dfabe83fd",
+   "orig_sha256_lf": "f63b27e2009cd207e5cd3b0488c5cb12bb07f3325d2797a26d8d099f85826fbd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_gonryun.txt": {
+   "new_sha256_lf": "66e9ff14203990e4b6600985f3f7d4b33eb9d8eee85cec3cc68397192b6891cd",
+   "orig_sha256_lf": "37e8ba2f3edfa474e671f07ee7b6636b8f452cdba792c204cf958ab063aed847",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_hugel.txt": {
+   "new_sha256_lf": "3e6396d352a1ea80952a77c3b13ed2d8c8cea4ee74ed52b3a5d9dad1f19d0020",
+   "orig_sha256_lf": "36f325a7115d13962ab1f90b64c593c37d31412dfd84dd20fe63874c6941dbc9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_izlude.txt": {
+   "new_sha256_lf": "8fe0951b610188678eca5b23a09a630b155aa90c2b12931f982afb83a7c87e7e",
+   "orig_sha256_lf": "f9708f4e2aa488c72360dfd3cdbb0bcd4a7d84de1e6bc17c47c1098e1be9734a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_juperos.txt": {
+   "new_sha256_lf": "82d2fd7070e48952c474b01f5ac395396f81aadfab217740e6c72fb678b895a7",
+   "orig_sha256_lf": "d529461d8d11af1ff4293e1a0293f1606265047a5c77e1b7f62e0f339eca445e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_lighthalzen.txt": {
+   "new_sha256_lf": "027509af45267f48520826a45874d3941fab25ad94a21325db04e37b07418d2e",
+   "orig_sha256_lf": "46316f4c067573f31f0e5617d8c233d09721518e065874931adfca72211cd224",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_louyang.txt": {
+   "new_sha256_lf": "ac3f7b2d10def2d98033928133e6dcbb0836b2d25c1bad8374757cbadef883f0",
+   "orig_sha256_lf": "31576e0b1af9db087dc877b7caad5a58ecdb14191e50ad4a7ef1e50cb05fb9a3",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_lutie.txt": {
+   "new_sha256_lf": "cc4b1e2be449fb09a7991512bcc1adb8d12ded46a8275b41671aec861581dd25",
+   "orig_sha256_lf": "c49b5a19e3c28531b1f99bf73b532f7f3b7773479aca9e373ec7134e62e9ac35",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_morocc.txt": {
+   "new_sha256_lf": "c05944099377e353fbd1ab055e545123725c314ec71406fe9ae51867e63abe91",
+   "orig_sha256_lf": "76f1a1fec7915d62127c6e8dcaef75ae2ba81a3ebcc5ee03ce48f462f062eb27",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_moscovia.txt": {
+   "new_sha256_lf": "d37d8e8334265dda76d88354ed9f351809f4ef1ec120fe571562e2aee603b038",
+   "orig_sha256_lf": "e4735a93517d74e013294f447d3e5920b6b60677a5f77eff9fd7862702c9cd66",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_nameless.txt": {
+   "new_sha256_lf": "9feac5fafddb9c0c5bcc9782bfedec722b9010c6a99a5f0ea00934874187e1ef",
+   "orig_sha256_lf": "309f374f7ed2d88ce39a017c074860a0882e11f088c688c3b582140d222ca2d6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_niflheim.txt": {
+   "new_sha256_lf": "09b52b4013b1143bc0dedb94af083a5bc6205598d3868f6c3880d4e155fe0990",
+   "orig_sha256_lf": "645d37ac1ec43f097f7bd3ca80ef2d7b7894fea9b4784390778063854ede0ff4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_payon.txt": {
+   "new_sha256_lf": "e33c9c3c3ad910cb29c3e6ff98e7d23c51c4cbe55952eabf1642d9281eff9e13",
+   "orig_sha256_lf": "a1e44b7588f8417ff943c3e9ffcd718aa5967066831302191ba76042994b3327",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_prontera.txt": {
+   "new_sha256_lf": "09bfaa4d183a1a49c51a27c69180432e5731c6c54389a9f1f340468d4f9468bf",
+   "orig_sha256_lf": "1803d26cf22ffe8f142d98480500eb039b2ede401ce54a954c3e80c883464b74",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_rachel.txt": {
+   "new_sha256_lf": "24af5871f795951575b4b27b0e646fb116562c617ef9f49981fcf0638d33f99c",
+   "orig_sha256_lf": "da04e2a615ea8c8175bf6ff2cb9939436fadb9989d73d160e847f11ea529a9b8",
+   "reason": "accepted: the answer check `if (.@input$ == \"Varmunt\")` also accepts \"Varmundt\" (the name the rewritten dialog now uses). Both branches (quests_rachel:5470-5489, joined again at 5490) only show text and continue to the same statement; nothing is set or given in either: the check is cosmetic. Flagged",
+   "status": "accept"
+  },
+  "npc/quests/quests_umbala.txt": {
+   "new_sha256_lf": "260f2cd4d25ba19897728d4dc7d01ea0159f3fffd106b2e6224a377459502031",
+   "orig_sha256_lf": "0c9fb3142d4bce69c4a6eb88f9412318da3f04f5a9ad67a81ad5166aff562534",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/quests_yuno.txt": {
+   "new_sha256_lf": "fcb5fe803059b0fa7dbc68c8510dc413f6d30a51d74bccbe5f941d0f592275fe",
+   "orig_sha256_lf": "00870c0e67b712deaf331ed48e1f93903554038b29d6e4e15af1f2a7f682f281",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/seals/brisingamen_seal.txt": {
+   "new_sha256_lf": "8a652683cb96bcabccd73c57ed53efcac377e6fc86748decc8dc1745b7f3741b",
+   "orig_sha256_lf": "2244773b857e63eb547bf0ec0a89890fbb487e87c968b3fad09a31989909bafb",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/seals/god_weapon_creation.txt": {
+   "new_sha256_lf": "61562fb0a26d8d1029d03c2d4121a0048dddb6abf33b0f6c3e024f27c988ff28",
+   "orig_sha256_lf": "59d7260cb52c4eeb6124294b7832a688d7d3a5ba81b955902cbb0880924cc11f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/seals/megingard_seal.txt": {
+   "new_sha256_lf": "fcb3508df88ced80fe8159901291c70a6f043c1fc24dfabf2ad43a16e953a2b6",
+   "orig_sha256_lf": "c10ea38b894595adfa112aa8a654cbe2c9e667be912267be6a4a0f71b8e01b4c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/seals/mjolnir_seal.txt": {
+   "new_sha256_lf": "548cad13d144184ad7182b422883aad2d1864f3cfd2d7c0425acbee09c6e4dff",
+   "orig_sha256_lf": "fca9dfe0c480cb40ab4e22f1ecafd1a9b58b142230d4ef31f6bde47104b0bf3d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/seals/sleipnir_seal.txt": {
+   "new_sha256_lf": "23fb2d5ae97a0f932de3212b7173e354c4534462031b2812d84544b64804255f",
+   "orig_sha256_lf": "46f7852a4a9a959699ffe6bfe8e54b26b4997dfcaff656c43033cef5e12fda21",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/acolyte_skills.txt": {
+   "new_sha256_lf": "6d9b3e268a8491ef5aee1f09a489bc92bbce86badf249aad4eb6d5a3b4f6d979",
+   "orig_sha256_lf": "47df756e4240d4b490d9c443a095b52148d24798d7d7247d89a8e958b7ca9d19",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/alchemist_skills.txt": {
+   "new_sha256_lf": "968f7294e0459a9f52cf592f9412f42e2574dbb6740ad47112cd062addea6d90",
+   "orig_sha256_lf": "4a967adb4960b0b4133e90e6479721deefbcbe4bfee9c9d1fcc3c9ed511fc4bb",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/archer_skills.txt": {
+   "new_sha256_lf": "2e07bcf351315a7cc3ca5f7f4dc8ca9a4ea7213992237ab155ac43de8da7f6dc",
+   "orig_sha256_lf": "d7f9e748aed14ea2994c0f5778e4448f9991136f30553f7b9ba535d6720db77a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/assassin_skills.txt": {
+   "new_sha256_lf": "4c098863d65f705159344c37f0ef5c502679151ca1c4cc2b76bf574fcfae733d",
+   "orig_sha256_lf": "55f5a671b26527cbbfdd894e9d68187b7da65698e0379388e338ccecf5fca9cd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/bard_skills.txt": {
+   "new_sha256_lf": "2bbc77edca7e2dd5114daa2fb504beaa43da516d975f85b619ff4e9c7df1b200",
+   "orig_sha256_lf": "d668e4f1ebb4642e51e54d238a2539bbd5539dad291b10e186bd8237f10977b2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/blacksmith_skills.txt": {
+   "new_sha256_lf": "d8306ddb6b62645b91ec6f4488960e19a2377fed7624c969c95abb6f031f79c8",
+   "orig_sha256_lf": "6b205bd68f48c1454df506c49a5ceb814dbf0929f496fd376d937878446b63b3",
+   "reason": "accepted: branch merges (if Upper == 1 ... else ...) at blacksmith_skills:522-527 and 605-611; same pages",
+   "status": "accept"
+  },
+  "npc/quests/skills/crusader_skills.txt": {
+   "new_sha256_lf": "cfa76fbf07bc4510fa3cf04cccb1db8ebd1806fb7ac2cc24c7de93c22fe298c0",
+   "orig_sha256_lf": "1817e6ee776870113729e8abb8e26264199e3011a7344eb883268688b9e442ad",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/dancer_skills.txt": {
+   "new_sha256_lf": "4973bea18f2cd1b34567337f5159be2bfad25d5cc94c49d31321800422a0554e",
+   "orig_sha256_lf": "64b185b8cb18cadfe6ae5b421d02dbe28037fd94bf76dea004592b99dfcd869d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/hunter_skills.txt": {
+   "new_sha256_lf": "84baa01ce0fd8bfbba6aa32734fbf78e5133e7fb860d00fc9a5dc282246107be",
+   "orig_sha256_lf": "947886dd62122834046c84531c6e21f06fe2d8c62724dc5762451066c1a15efd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/knight_skills.txt": {
+   "new_sha256_lf": "8617b56f9ceb27fb802efed475e1a588777aee2e556f910c14d4dbb5509430ce",
+   "orig_sha256_lf": "bb58e84c3fe125e401057374832777977ae99a93a118bd226b46df751aae8416",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/mage_skills.txt": {
+   "new_sha256_lf": "6e8040f1757229e219fbc4a418a55a27ccb662722e1a5aa77b791ce5a5f9dbc2",
+   "orig_sha256_lf": "934545766706d026599cba2c6b4ff391b55b9b0248f05fe284e62475b458280d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/merchant_skills.txt": {
+   "new_sha256_lf": "dcf2808c5278205cd1b35f5b4286c603a5ad9589a261e48a9d35ac0c52445fdd",
+   "orig_sha256_lf": "a5ba97b03c734a2420f0b010ec601c22dbc01a9c9541dd5090bfea93ab9d49fa",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/monk_skills.txt": {
+   "new_sha256_lf": "610fe6362625d048bcbf4a5c3bb63574eeaf54eccf4dbb5d591dd0e9914623c1",
+   "orig_sha256_lf": "d190c4b166d7502a881e61abbf0370f045034f1cdb1cfd8c40be9dce1291eb48",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/novice_skills.txt": {
+   "new_sha256_lf": "ec1e084b9eab029b76eea479c4949ce90d4d2bcda3256b0a5c3b3a4e0a231820",
+   "orig_sha256_lf": "47466b3a125ce5b32b00cafe531123ffbed626a1386c70e69952e48ae99da70a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/priest_skills.txt": {
+   "new_sha256_lf": "823d7c46f250845bfde417a6d06c169e70c9707cfcc0f083213fe75e2a655a4d",
+   "orig_sha256_lf": "b56cb93d6bacd0da4238ef1539322a46ef85ba3407bcfe63e55a0c18b6a2d155",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/rogue_skills.txt": {
+   "new_sha256_lf": "db0510e90f13f16476cdd1c7950eeb0ec7f9ce7592a038a20dfc78833ea2bfcb",
+   "orig_sha256_lf": "19f4fe8ea93c01d632f88762e60ead6955990d20abcd7e02f2e56c091d3b4d76",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/sage_skills.txt": {
+   "new_sha256_lf": "6be55f6246a40d47a8a7b2405ac9e078789d93360e26107cffb012779dde0c4d",
+   "orig_sha256_lf": "f7590d50d2a162fa37da63792355520cef76303526eca06535b7da3403dcf354",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/swordman_skills.txt": {
+   "new_sha256_lf": "c7fbd6341cbd92ad9ffb1f099972157803f01994509a8ccf2ab2270d1da03f44",
+   "orig_sha256_lf": "8fb6aea65aaac26ed20fe2991fc04bf8749482a754eaecaa9298ff2fa180b2e8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/thief_skills.txt": {
+   "new_sha256_lf": "b007e63334dea131cd0d2a5124f735755a68d0da0e8923862f841d44922052bd",
+   "orig_sha256_lf": "103a15f1efaf6fa859dbd60240cba83d9c75dd8f7011cd1e114995acab496892",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/skills/wizard_skills.txt": {
+   "new_sha256_lf": "adae330235cc300e90e18da20c8efbfc8b67eeaa2962bd5e6a1549bd13e999fd",
+   "orig_sha256_lf": "004d22a1a68adf17695a0c1b35a55141ba7007fb1c9197484fe2208036f91a7b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/thana_quest.txt": {
+   "new_sha256_lf": "b7e510b3db48f5e7a3fc58c061418e5b07a18b877b3a19c1da8e01b042e9cb5d",
+   "orig_sha256_lf": "623753dc6e1ed34ce36d6afcd60bd0796c6139b91c298bc1f8a05a3b8dddbaea",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/quests/the_sign_quest.txt": {
+   "new_sha256_lf": "74ae4f3f7e2bdbb5a45c6052b81607879ac3ccbeec3f90e9243bffbc459ae1fa",
+   "orig_sha256_lf": "9ff3a7866c42447722aa1a324913bf18555d1c3fc14a7b82dc4913e9fdb968d6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/comodo.txt": {
+   "new_sha256_lf": "cf2bfef73132890112ddd33fdd8b782b12e96d2915aa66d19f52f79dd3f3f123",
+   "orig_sha256_lf": "e7e0685054a4f685dfa54f5d2a2b7913c366abe5752fd83688558858b786a49b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/dewata.txt": {
+   "new_sha256_lf": "131f7aa389f32f80cef22f2c0531074849d2a5206f5ffd163f48a21bf277d8aa",
+   "orig_sha256_lf": "e73a2d5c8cd827f6bf7563ec6dadbe45a60d8503e094e95398821e167fda6c36",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/dicastes.txt": {
+   "new_sha256_lf": "de60332d7cf60427e58e54ca1bb700b0e553870c7b21db1f0ba6b7dc4093c849",
+   "orig_sha256_lf": "d2d89cd82584eb8b0fa33fe99c34fb7754d98d6e0c49d3fa7cd539251571735c",
+   "reason": "accepted: a second `close;` right after `close;` (dicastes:655-656) was removed: unreachable (close sets the script state to CLOSE or END, rA script.cpp:4994-5021)",
+   "status": "accept"
+  },
+  "npc/re/cities/eclage.txt": {
+   "new_sha256_lf": "d8286199d73fc5b53376fdaade5d62c50b32839c854a3d0750d72711fbfdf292",
+   "orig_sha256_lf": "12a6e3a2ae6fbadc0221973459d72dd21a53636f640b8e9fa83980e284eb7143",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/izlude.txt": {
+   "new_sha256_lf": "e069b18ae7297fec2c125b6f5302841e186baedfb8b3876337f2d54d17fadf80",
+   "orig_sha256_lf": "1a743af7f3d0547a5b1b618f3d21bbcbf1ebf49038feccb07c8aee633543d50c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/malangdo.txt": {
+   "new_sha256_lf": "7bdeb2aead35c62460ca06f2b16b5024ec5e8dfa04a8015a3bb45c60c7c8538f",
+   "orig_sha256_lf": "957da08bded7fa2ee8d59ddadd0b43337383378b29a3efab757517f8e903834b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/malaya.txt": {
+   "new_sha256_lf": "c73a60a1d07771e5096e8d6c1a0a22f81ed133d64a3a6bb9b8793be6a9c34df9",
+   "orig_sha256_lf": "62491b748ed3e2b0f5d158b9073358bde789738f692fb56c1705ec66c35cc1a8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/cities/mora.txt": {
+   "new_sha256_lf": "580e92d5e3bfa28830013afe0afeec07b45b9a1f6d99ecc1b9e096dec4c84ab6",
+   "orig_sha256_lf": "065bda1ee983799eb347dd068342f47109e4c9494aaf73e6102165e0202dfc05",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/custom/lasagna/lasagna_npcs.txt": {
+   "new_sha256_lf": "419db844869e5288576f5c65012979c5f5e93bb6f20920a12e3237ff8afd7048",
+   "orig_sha256_lf": "08b913d1bad3f2889c87c046d39fca81c0a77d00fb70ddfab241fdc3d9006311",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_alberta.txt": {
+   "new_sha256_lf": "79bbd2b080ca59dd6e88acdcbc4045d1e0026f8383296be489e7c282a5bc167b",
+   "orig_sha256_lf": "861a19d192056879348ce8d48f8f9f45d99e2cf8783ee066b7a308ebdfaf7fb5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_aldebaran.txt": {
+   "new_sha256_lf": "7aff52c9e683f1c524d05d7e6e7391e115bc4cbccaba0d1be39692ada508f310",
+   "orig_sha256_lf": "3fd6f2d2e8a66b31b15e7c84c298ba7e383d9927f5862d8ef8b46990eb9e754c",
+   "reason": "accepted: F_Navi(\"[Al De Baran Guide]\") with one argument only shows it: npc/re/guides/navigation.txt:28-34 (`mes getarg(0);`), returns nothing; the verifier keeps F_Navi's argument exact only because another call of F_Navi with NO argument compares its number result (guides_niflheim:23)",
+   "status": "accept"
+  },
+  "npc/re/guides/guides_amatsu.txt": {
+   "new_sha256_lf": "9e97d5107220c12abeed6daa690a2eaa58437323d05a6816a2ce9e5fe721f965",
+   "orig_sha256_lf": "3da5ecdecde5ed24b61e6412a88bc15ba04519a07f08de59e81942486436eb37",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_ayothaya.txt": {
+   "new_sha256_lf": "276cb3951995f333224284737ea464190dfeaa1b543ea4079e3060756a29912e",
+   "orig_sha256_lf": "2081500870c4612d26d7e038e7d2d88ad1a0c7024cfc7bd492be1b8569c10d13",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_brasilis.txt": {
+   "new_sha256_lf": "7d475f9060a616896ffdcb09e7997054579defa47c344673d233cccfa99207aa",
+   "orig_sha256_lf": "a814a87a5af721d30116b293b46a2b891f1c68d48465ce5a077cfacadab62ccd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_comodo.txt": {
+   "new_sha256_lf": "521a7a6294213f8320753fe2175f1eff32452b8843d8ac91a8ea19308769d267",
+   "orig_sha256_lf": "c53722b455969592933f59256c47784a078e2a2cf6551d85dad09449fe060b19",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_dewata.txt": {
+   "new_sha256_lf": "9630f28a8cec88d01b4e39007c06ef1472353aac19b46c55fb76d1b2e3cb04d3",
+   "orig_sha256_lf": "65eec31e9c648169b6abe0969e297e6cc108083f52ac68d20143e921239e93f6",
+   "reason": "accepted: F_Navi(name, \"map,x,y\", color) returns the name inside a NAVI link or colored (navigation.txt:35-41); here passed to `callsub L_Mark` whose getarg(0) is only shown (guides_dewata:76-82)",
+   "status": "accept"
+  },
+  "npc/re/guides/guides_dicastes.txt": {
+   "new_sha256_lf": "9e7fb53e71b728da4cfcfc7bee55ec49d0c0328f35c23e6603354c4f563b2eda",
+   "orig_sha256_lf": "fcc1bb2043075bea266d43195b094ae6d1a0739b0b760e09ed541b8db7a28349",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_eclage.txt": {
+   "new_sha256_lf": "d8e4292490524e8367f5e76d64cbddf61a9dc250579418ccb78aed5c31f0b2c0",
+   "orig_sha256_lf": "5dd082230be41d373ea506e119a3a717ecea55adcaf33679d80a71df70cfdb90",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_einbroch.txt": {
+   "new_sha256_lf": "4e1ee648fb81b15352bad65e8e03d8ccba79481174014d657e47cde27ad97e44",
+   "orig_sha256_lf": "da10b91a4996b1b64c0aa5bee890c80a3d2d45dadd00a41cacb7ebedc1f315a9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_geffen.txt": {
+   "new_sha256_lf": "b024f5dc85c5aee89296aefba2b91891f0fc7344d44ca4429b74d2a999ff7318",
+   "orig_sha256_lf": "47f1bfa838d2515467fb93721d00a6225255510489b5a6bc3701f9cc0d5b27f1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_gonryun.txt": {
+   "new_sha256_lf": "cf5d86986e9d3e06808b0b26266f5563d23ce1f503f5b254931789038c791c33",
+   "orig_sha256_lf": "44d71a964d1200e991eccef223cec0eb389edb410c63138f7632785ce8bfa0ba",
+   "reason": "accepted: as guides_dewata: F_Navi's name -> L_Mark -> mes only",
+   "status": "accept"
+  },
+  "npc/re/guides/guides_hugel.txt": {
+   "new_sha256_lf": "98119da5ef1d6cf9523118bb85d47d248b16accfde4e1786b227dcf6bd2bb0f9",
+   "orig_sha256_lf": "7121e3d82ed92128cb6de9bfe8f1ca93e0d8fcec9549fc2ee44ebd8220537384",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_izlude.txt": {
+   "new_sha256_lf": "f588d2d9ff6104dddca246f765dc33d4386064c21c493ea808c7e7d176c61e1e",
+   "orig_sha256_lf": "428d4fafbea5d1232c61420cefc9dcc200f9d666f47fc4b138af0da3d24df547",
+   "reason": "accepted: L_Mark (guides_izlude:185-194): `if (getarg(1,0))` only chose between two layouts of the same mes text; the rewrite shows one layout. getarg has no side effect; same page, same return",
+   "status": "accept"
+  },
+  "npc/re/guides/guides_juno.txt": {
+   "new_sha256_lf": "7c2e6e72d1bc88d18935acb196b6f5b3535e572fccefeda9b0f984c8f8f7b603",
+   "orig_sha256_lf": "e0b367eb06fff770fe2ddff100392fe1e9543fb68eac8314fc2586e28664916b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_lighthalzen.txt": {
+   "new_sha256_lf": "90a0a3b5083dad035fcc4354b5bd80dfca3d8b3a72adfbd47f0e7ba59b2685f6",
+   "orig_sha256_lf": "1b6e9cfc72e7ea7a168cad89cdf42c919f07e533c5f0a6bfb685b388b5570ce6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_louyang.txt": {
+   "new_sha256_lf": "bb139c75cfddd71fdb875ae2d19ed9ad2d2d922dce02a8cd5674adb51e163360",
+   "orig_sha256_lf": "ebba0048eacb2a6eec04e7ee1bcd6b66137de96534f75e9050f049d1af65e1e2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_lutie.txt": {
+   "new_sha256_lf": "fd89f6f284905175c9e7112d9bb2f7cb8e52481a7babb0a9a8aeddebbfc941aa",
+   "orig_sha256_lf": "33a769226ab6b772a1998ddc042a134b7c504b1dffec542643b33c45d8a80cb9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_malangdo.txt": {
+   "new_sha256_lf": "835d53c4d6c1c0555d4b8a9a94d458106fd946941a46ba06d0580c6946cc896c",
+   "orig_sha256_lf": "2da4441de0e8ebe72db844f48c14e89dae5227f4eda939a993dee9909b87f196",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_malaya.txt": {
+   "new_sha256_lf": "2e020a35adb018748435fcff16dae1deff78454b6caa3bab45c305593f2b4251",
+   "orig_sha256_lf": "e37ef0fdbe2e2ad9f207d38e659ee91bacbdf0e6447185ee32241d7cc265b718",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_mora.txt": {
+   "new_sha256_lf": "205b54a4bafd360a5d6adbf08a88a291390272859416da22ae3849daf22f459c",
+   "orig_sha256_lf": "eb21efbc170be7c56d4ef3c562cd0f150e2ce615b450e3d681750e57d103e2ff",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_morroc.txt": {
+   "new_sha256_lf": "b16bd4e9d1a91f3fd9820876b0e2249b8a64030d99fb5ed23a0d1be54714ca6f",
+   "orig_sha256_lf": "0fa76c274e7ab44d78fc4292570298174dd2134588b6038faf3e6907ef1be4ea",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_moscovia.txt": {
+   "new_sha256_lf": "f2a304600cb7cd09a7200ef3c9ed7fda5d0a4fa55936189f7359bba2be821666",
+   "orig_sha256_lf": "f0308eccf448c724edbdb55426964bf64b604e0cbc0dbd7190586a9c258c896d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_niflheim.txt": {
+   "new_sha256_lf": "9312b14aa9e6280e395710ca8ddb612d434899277484367454b549f6d171298e",
+   "orig_sha256_lf": "35586ea46c30bbed1d857702c78e0f7082e59e29f40911615d5f0867428ff312",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_payon.txt": {
+   "new_sha256_lf": "bc5f0346ba591c58348c4674ea36864f0104a3ab76e7d259efe2c0c3a42747ba",
+   "orig_sha256_lf": "68be25fb9e64276e1b6a2ada6d6002da76912aa829f12f9367d2ec12d1ef8c4e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_prontera.txt": {
+   "new_sha256_lf": "2e96d71b1e9daa2f2d53135c219553e0c655c10e2b379c09d3142e5abf0167e9",
+   "orig_sha256_lf": "504cb544236a22472f43737f703b06a908030ab036ef338499fd92d97e31f26e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_rachel.txt": {
+   "new_sha256_lf": "8f75652c90bba334239972c27097d1828f480097fef046d96254bb1732cee559",
+   "orig_sha256_lf": "9739c4d3e18b4edce38a7af917991de1f28108405b0db95ed63482712d363c1f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_rockridge.txt": {
+   "new_sha256_lf": "7d7051f583b5e631b3d020f3994cc070f1afca7d38c5a72652e28af8f80c2a98",
+   "orig_sha256_lf": "a3d61549e03c6e3cfa485da53d5cbd6942ff9c37ae9aec5d1cab186c61936c15",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_umbala.txt": {
+   "new_sha256_lf": "71025801b7bfbaa92f4c03fdc1b9b7eaf1e59c721e3704e6cda484daf55a32ae",
+   "orig_sha256_lf": "59ba7233d866877980fd80496d7dc61c5d3c29c5b710958713113f095ee38cff",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_veins.txt": {
+   "new_sha256_lf": "27eb4c6e532128d0d216283f725bf15f8831ec3f099164e830fbc984d9be12c5",
+   "orig_sha256_lf": "63b35b22fd36bf5390cc3361ddba2feb8192d8c46b445683e6d9cef0ef3e272c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/guides_woe_te.txt": {
+   "new_sha256_lf": "f00dad3e154d806cc57a6ea1759cecd5d459983366223861f04f714650c89c36",
+   "orig_sha256_lf": "f1a5e9ea65ff97a963c287d6e7ca16be134ef67e1f75d94fbb2338814cae788a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guides/navigation.txt": {
+   "new_sha256_lf": "748d47b523e8b2c51791c65a222c4787434adb1d1abc64b955fe1441ea75114e",
+   "orig_sha256_lf": "a167dd0a1ef721f0a1c795458fc17fc8d1e7880c70a3442069f3b1fc85a657a5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/guild3/agit_main_te.txt": {
+   "new_sha256_lf": "d3c8c504d5484000d62e1efe5bb10b8213150ef2024f78da3741ec273c786e7f",
+   "orig_sha256_lf": "915a309a8518916a21776a97eeda94690814ca34dc0409595cedbef8aab12add",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/AirshipAssault.txt": {
+   "new_sha256_lf": "ffd27126d509aa5c024e50355eb6aadcc57e336ce320150931723ea886361094",
+   "orig_sha256_lf": "77b9dbe7a7264f218d0986a3f9fd274ba61e4e58cbb6de1bdff907c9a4c6128f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/BangungotHospital.txt": {
+   "new_sha256_lf": "b95fb16e3c171797edae5ca6c63ce19f6bef3e58a6e359ee3bf54d7d13c260dc",
+   "orig_sha256_lf": "a761286f8a0db31486eb85445f6360459a74f02369296e2a487cd4b4ec2c773e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/BuwayaCave.txt": {
+   "new_sha256_lf": "84ff6b4853523b6768a94a03e5cc98f2242c6230c1f71e82703ad21071dde43e",
+   "orig_sha256_lf": "c03b0a5d5c377ef4c8b90fb9c0f8b4869c30cf82a3847ee2d107f82cadbce499",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/DevilTower.txt": {
+   "new_sha256_lf": "97a409b125fe46876c754c834ca0552cc3deafb70e112a3cf6cb995d839dc258",
+   "orig_sha256_lf": "fb4c067f40b06e870d4d732ac097648aa63f5fb203cc5577fecd74aa9ab540bd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/EclageInterior.txt": {
+   "new_sha256_lf": "5ea6c50b7a31cba6bc993d2f9c832afc5b081342399987815198eaa840729180",
+   "orig_sha256_lf": "7e9859d571fa2b49022b6c5e21b5e405eea949c779d86ee31d4faafbb953bf15",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/EddaHalfMoonInTheDaylight.txt": {
+   "new_sha256_lf": "490258d2072abaf960dae0cc7909dd57a995881d4210c84e1f0db1199b016dc4",
+   "orig_sha256_lf": "b60c648e8895f867b99e2f3e080edbf80f31ddc1ac277c2e91fc209a73aab79e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/FacewormsNest.txt": {
+   "new_sha256_lf": "b31f31d340dcf7c887500f1ce97789769cecaff4a33f86600b20e373689db649",
+   "orig_sha256_lf": "90c52eccff34784b5a0ce39114c2721493dce3e6db622dc460a5dbf629c9c255",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/GhostPalace.txt": {
+   "new_sha256_lf": "f449c4726bb3bea3c73b6bfd7194f0105d2d49897b3ac23e9a229614ab1de564",
+   "orig_sha256_lf": "48f66be687fa03affcc704185ba347969d1bc2f0f5ba06ac29211838fd5df6a7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/HazyForest.txt": {
+   "new_sha256_lf": "0c68e03186491d41f2366e69bd6050fe02f2ee8776db89530655c64592531c4f",
+   "orig_sha256_lf": "8fd8aed4d0d5071c97d3d596814233150756e13e89a237e72f6e43d9a40b3d9f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/HiddenGarden.txt": {
+   "new_sha256_lf": "1c54467b7dafbbd45b739b9ca106ac4bad9fa564a1626029f1b9757210902436",
+   "orig_sha256_lf": "c6f0acf9de9f3a26a4eb168ce619c41deb25ecac5ed25e32d9bb433e191c9b42",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/InfiniteSpace.txt": {
+   "new_sha256_lf": "816b1b39511c7a25e613e584ac775787ea424f352b4fe838359de14632970f8d",
+   "orig_sha256_lf": "fcd3a0c820095b955a43f12bd5acb8d28b49c88fa138e6f60ab6ff4ece3feacc",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/IsleOfBios.txt": {
+   "new_sha256_lf": "d55cc092b3736172a8043a7dc87273be356f01da2a0437da578e738a2518a774",
+   "orig_sha256_lf": "aec8cfb262f4d25b1e21985abd39d36335c0dc4d3a54319260ed4c935585d914",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/MalangdoCulvert.txt": {
+   "new_sha256_lf": "89e3611718e92b7d0bd94dd0bebdfc806b199d2a75850a3c0c9911f8d18167d6",
+   "orig_sha256_lf": "f02c7994f206e7fce534357668c25ab595b6e63d4d2f4ec9a0ef221fdb1bbb5f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/MorseCave.txt": {
+   "new_sha256_lf": "7643ba78886dd05c621a906e2ab0156c57148eca578ec38a716438f06c7e7a18",
+   "orig_sha256_lf": "26728459b77b96fe9279826b3ba141d5a4010bceec79bdf8a117f955b0b70d2c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/NightmarishJitterbug.txt": {
+   "new_sha256_lf": "e83c40931af584102a43d64afe4c652a8e3ebcbb3539bc46e81091dba3d1965e",
+   "orig_sha256_lf": "3cff7aeee0845d7d2c7b709522e21831a114e0cc25c547f04f4298530794a8ea",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/OctopusCave.txt": {
+   "new_sha256_lf": "c061e9b09bdc28ee5641bf0ef27b1d69af6305a30ee0d757217eb5fccf3158cf",
+   "orig_sha256_lf": "99a8f172058668540914726227a900e339f48c853b0d25740fe35ff7ef973fb2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/OldGlastHeim.txt": {
+   "new_sha256_lf": "76c39b21fce4e40ba6bc4ddbac5135823e8dbeb79199b674334bdecde008e639",
+   "orig_sha256_lf": "b4dff1951e4efe4faaaba6fe537616ac80134bb1610d86bce13343da9cc68fab",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/OsOccupation.txt": {
+   "new_sha256_lf": "6c134693b16725a4dcde7df9743de4a5b5e201742850a9aa55bc365a491def1c",
+   "orig_sha256_lf": "343cd2c74230798cfbe95bcd47e8cb0b1203e307f7a866de98f7615b52e49619",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/RitualOfBlessing.txt": {
+   "new_sha256_lf": "89ab86405d9c46be2a17679bf2e731b4fcb4050b36b64546993218a9336d6134",
+   "orig_sha256_lf": "113a6bdf0df3c75593aa35909c90fbd6dc1340e562bb03d387d5678d5059811f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/RoomOfConsciousness.txt": {
+   "new_sha256_lf": "6c88922d768704cae5b8eae9ea3762f7b2455a18539c798a07290bd3e50c245b",
+   "orig_sha256_lf": "072d59ad64d4c648baa22a52ec8536ba2328570663eb01db8c79c553219065ed",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/SarahAndFenrir.txt": {
+   "new_sha256_lf": "46858e59bc231f6ceb3d60d0c744dddbc5f09f8c5b4043aebdc585a5b9447c1b",
+   "orig_sha256_lf": "9f622aea2961caab6a0310871eb3e63c4e9967dbd326669023be410d12b5193d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/SealedOs.txt": {
+   "new_sha256_lf": "7a8504694e2983efea92e6ef61254a7ffdc9969cb9dce5e6949f6edae1630720",
+   "orig_sha256_lf": "7b9b85a5eba0e61af966e5ca314e51fbf25c38f3f47ab953fc95aae8a8ae1532",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/SkyFortress.txt": {
+   "new_sha256_lf": "7e55b8d75edf4d93f6b4b9538f3fde118bc0fd4828aeaa7a320c6b440ba3394e",
+   "orig_sha256_lf": "590da007036d503824e0960b0ce47126260632e0a6bf4d4818b947d918e1ac27",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/TempleOfDemonGod.txt": {
+   "new_sha256_lf": "f5be97032c41e30579519d31c63b458e046b59f4e6e2be048ae23b6718a38f45",
+   "orig_sha256_lf": "2183905230cc561e507a6739bc3937d294e966cbbf5bf3f9f16a14451e9b4165",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/ThorGunsuBase.txt": {
+   "new_sha256_lf": "f6535f13a3c2f35dac0a4a87270fa4e92b00c3fd0009c0a37200ec1c64c11c54",
+   "orig_sha256_lf": "63694c42d082edb5220d558067fb768056404ff03a3360521c68e188700d964d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/WaterGarden.txt": {
+   "new_sha256_lf": "f352826da32abc3e76320fcff82944ad38af18da4ab366eb3b3e58cce1b46ec3",
+   "orig_sha256_lf": "022a796a366e50127230f85e5a80a3792dc9dc77d133000aa3e0a3fafb73e8bf",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/instances/WernerLaboratoryCentralRoom.txt": {
+   "new_sha256_lf": "19e806f48415376f72cf6bbc7b53d16a3986588e7e6c7fb5ab2ee8ea85ca378b",
+   "orig_sha256_lf": "c024fe231d7c8365095a0bbb393afde6a4a29d738f791b9bdf028484dd85d5f1",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/1-1/acolyte.txt": {
+   "new_sha256_lf": "da7945fc03956da3d3a1cf79a70dbc3e5d8b07c7607b9723712b51caa7cef023",
+   "orig_sha256_lf": "08813ffa2ab3f6743cacd1260a9e51171e5e3d5fb328d666214071d54ce9a87a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/1-1/archer.txt": {
+   "new_sha256_lf": "55051dae20b665d670f805b42eb33f42a3e580c588f1d96f433a2c1bb2ea7ebc",
+   "orig_sha256_lf": "f24b7fa99005d495ab5c01e00acd4faeaca455b5fb3e233e1c9331a74f30ea90",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/1-1/mage.txt": {
+   "new_sha256_lf": "31f43d448dca4ff3df240394ad5779333f67e19032ab4c755206386e216e4aa8",
+   "orig_sha256_lf": "d5a4cdf742fbf9500462a9857811a607e0b651861ca6a10edb6eba05c233ebd8",
+   "reason": "accepted: the line 'for a pretty girl like you' (mage:112, shown to everyone) became `if (Sex == SEX_MALE) mes A; else mes B;`: reads Sex only, both branches one mes, same page",
+   "status": "accept"
+  },
+  "npc/re/jobs/1-1/merchant.txt": {
+   "new_sha256_lf": "4283657b9bd046d3acec66f2871f05faa5f24f0b64bafd9dd70a9c48ca91128d",
+   "orig_sha256_lf": "094fbf1e6940c3159043dc3fe0cef47771450b85607166a1e743e6832ecd3525",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/1-1/swordman.txt": {
+   "new_sha256_lf": "b93af49303599d7451dafc421ba66861b30db57173ac4d5da7c283ad74713357",
+   "orig_sha256_lf": "80c458417c628f45375d19e6011d2357170ab39065ccebae82b23684b469e8b4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/1-1/thief.txt": {
+   "new_sha256_lf": "842fc00682349d71c3cd7751d700456334a0d314f7fba0e1a9571ed0b51b49a7",
+   "orig_sha256_lf": "a11cad6727f1f4846aa138c20502a5f3d58a6b14b6203c3149dc199e0aa414b7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/2e/kagerou_oboro.txt": {
+   "new_sha256_lf": "c17bf3911002cfda1c64478a2350ca5bd7fbf88ac55dd2d5034fff2c19ed5b7f",
+   "orig_sha256_lf": "2006e1aad2dbee7b4a6b4729611c7838fc1fc276995117adf61f40f086b2809f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/2e/rebellion.txt": {
+   "new_sha256_lf": "c37770d1fb3e239e0bcaa096efed6b79cf4af18a030727dc74d6f68d8ae98865",
+   "orig_sha256_lf": "3d7c5388ae496613bb0bdc6f0ccd2509b49da852f20feb0b1b8dbb124d6a24af",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-1/archbishop.txt": {
+   "new_sha256_lf": "ca39285629cfa0994148d19fb9b43e313d468b48f0e684f68fc19409779e99e0",
+   "orig_sha256_lf": "35612ba88aefc55c2aa3553cf2ad6c49a7356cc39a1814f99f40b67c8e1e4770",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-1/guillotine_cross.txt": {
+   "new_sha256_lf": "aa5e9adebf8087ec72235f2dd7b6843043ab95cf5c2ee5803b3d7d7e9a60eebd",
+   "orig_sha256_lf": "3cfa8b2c6c18b233cf189d95fa46a45b651441674804e9a8d0e512724eaf6af9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-1/mechanic.txt": {
+   "new_sha256_lf": "3b2069070db909ef9aac686e6fc821e0043684293021589603b40a0a172afc58",
+   "orig_sha256_lf": "41befb6031dff16466f7d055f99b2ae2922b074cd705073672671ed3186112df",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-1/ranger.txt": {
+   "new_sha256_lf": "57666b71f0bbd445e9d4ce703e02a2168688166f81c99a74e5a8bf44459f5b39",
+   "orig_sha256_lf": "9cd193a7d68e1ccf64838126ad5e40236fdd0b84f0edac0c2c7a973b9d880cfe",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-1/rune_knight.txt": {
+   "new_sha256_lf": "ff0a6c05e75691a4348c0fdb592766e825d9dd8e65ab2f9f04bf94dcbe2771d0",
+   "orig_sha256_lf": "3c225f175852fefe4cc4aef739a910480c59f284d835516fe04d5a53220eb166",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-1/warlock.txt": {
+   "new_sha256_lf": "46ddbfc3bd4903f91d1e4b620631f19ead7247e8a53a5732db560f992cf76d59",
+   "orig_sha256_lf": "8eaaf9ead66408086c117435200fde755f0ecaf51001eb77435fc86901d08891",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/genetic.txt": {
+   "new_sha256_lf": "7197b092fd4da021bf5357a3834ca09799f203a077ea0cce768b9c1c069839be",
+   "orig_sha256_lf": "ba19b3dfe85fc4c0da50484c039912f4467842a9fb0282562d941b3e377845ab",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/minstrel.txt": {
+   "new_sha256_lf": "0635f63b07659b35f0704fe6c20212790d9f2bef208d6b823cf9514830c3cb41",
+   "orig_sha256_lf": "52dff71479bcf8fb9d065f73ca3b962b5c0e1d45872b2e08ff7d4722d8ef4202",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/royal_guard.txt": {
+   "new_sha256_lf": "307557563c04169f945776f9b66d635496fee2bc95b71f38dd601af0901e7beb",
+   "orig_sha256_lf": "441372073c96852247a61398fe8350eb234974dbb0d9d1ffd0a3321e9f5c7282",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/shadow_chaser.txt": {
+   "new_sha256_lf": "d005193674b0f687ff887e8300da445ee1661e368eda196b38200469fee7f9f0",
+   "orig_sha256_lf": "6133002a98b8179b61728a37daaeb5250442ccdf8f0afa414761bd0b0e81d94b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/sorcerer.txt": {
+   "new_sha256_lf": "f21ddafac2e19027cad7230386a89d6fd7464d28c01c878624e3383615d7cffe",
+   "orig_sha256_lf": "981f8df22dc446a9c087dcd66000cc865b0448bbab8ae205130c827431b3972a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/sura.txt": {
+   "new_sha256_lf": "5e7f3367904f62e58edb0a9379edb92d596394ca8607975a822f9d5b471c9a5d",
+   "orig_sha256_lf": "a9f5d379b8c30a033e64b39184bc337597c55fcfa3f33f9fa0efca73b88a2f4f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/3-2/wanderer.txt": {
+   "new_sha256_lf": "2ed34d317dcb76a7a20dc75bb499be295c1be88221b8f5defd044b412c8b6cce",
+   "orig_sha256_lf": "5fc6564a95ddebb321ed37c71fd3273f0b53e7d051e7815527ef89661f7115d5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/doram/spirit_handler.txt": {
+   "new_sha256_lf": "899b0fabdedf5ebb13e915d5a2236f9bfa39e9fed512c842ee0f223ec7f593ba",
+   "orig_sha256_lf": "6d1dd34163acc3c9686eda672930925defc7de74f6ae1da4f4cb1518957a7410",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/novice/academy.txt": {
+   "new_sha256_lf": "306a63955e66a2ec0cd06a03fd111e3e286616281e79f4b4443d6750c75e154d",
+   "orig_sha256_lf": "b2ab5f7de7e1c36e4f58b8447a80d4cb089e8bf45aeade59953c6a70004f27fd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/novice/novice.txt": {
+   "new_sha256_lf": "288a221f00d1cc0aa6bf6ab6fbb8fc1a4a49e9ef12bbd513ab1308b51a603f0f",
+   "orig_sha256_lf": "bcec167f2ed868ed539b7b7631b262952a0cdacb90e0bdf1786e2831faf53a9e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/novice/supernovice_ex.txt": {
+   "new_sha256_lf": "670cfad1db3afd03cc438cb2c07a184028508b0583812829c51e29fdb4dd2bf1",
+   "orig_sha256_lf": "86387a32bc401fbbdc0e72adbb5bb059b10f69e4c3aa9d901e4cfe4b641238a3",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/jobs/repair.txt": {
+   "new_sha256_lf": "98a5a115bd02f194180e82e641345dfc9ae4555c2fb63e23f7d80cb7bd4b18bf",
+   "orig_sha256_lf": "aa817ef855bfdc2809202e74dd5255071218360a28ef37b479ac50aba7ad773e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/kafras/Kafra_Teleportation_Services.txt": {
+   "new_sha256_lf": "ab8d07e6143c2a20cb1f0bc52173d2e3758b07a39ec802d2af5e5d6b61feb0cb",
+   "orig_sha256_lf": "038d79cebb4487dd662229e3f30b6a3c2f1fc4226646a606498af92de9d72629",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/kafras/Zonda_Teleportation_Services.txt": {
+   "new_sha256_lf": "857bbd67aef40dc3253cee7f9f5b31a2be97148bd0e399ce8688e94afe4e6ef8",
+   "orig_sha256_lf": "9e1c4da8bf43cca2eb4537c3579f9db7f1ce42a6e109108cfd9c4dbd36cb0a75",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/kafras/kafras.txt": {
+   "new_sha256_lf": "8f1ba4d25e4f6bc28e54e69780caafa5cad5d2c2e07072a99328ce2b563f9273",
+   "orig_sha256_lf": "28664fba39afcbd2ce30b447c4a9062942cb2fa9acceef8fc329c5eea5beb441",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/Emperium_Seller.txt": {
+   "new_sha256_lf": "e643ce307c89aa01ac8f15de762e28a71fef42eb8a057a342883365f93c27215",
+   "orig_sha256_lf": "0673459be93fb51e62864ee80b276887a2aa5c521bd7fddb706277435eba834c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/Extended_Stylist.txt": {
+   "new_sha256_lf": "dd2ba2e5c3242c92d46150c1fdb6232b9f796a1050153652d7d6aa30069ecdf8",
+   "orig_sha256_lf": "26d64e98082d5d472be5ab2173d4020191c978da4f4a2bdae5f1afe9862b55af",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/HorrorToyFactory_merchants.txt": {
+   "new_sha256_lf": "7f1c2b2cf5dc525c0bd457619d3348577832596d928839a06b13e5ee10065e15",
+   "orig_sha256_lf": "245cd60311f8557ec87006bbd6ca0144589193a2e41903335de3288d527f1543",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/Slot_Move_Card_Sales.txt": {
+   "new_sha256_lf": "cfe2cc76225e9d595381f5d98edb38dbf6774f409df797a56e13d24909a86a49",
+   "orig_sha256_lf": "8adfcdc222c4158d82f02bbc51c1ba487b969085bff96342163cba74f88268db",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/advanced_refiner.txt": {
+   "new_sha256_lf": "85511ab452ddd229cea3b2008a08ff6416bcb8c60569201988bdfc11ab6b70fb",
+   "orig_sha256_lf": "fa69c3238aae981f12959cf89a1c69976943ac05c335451edad77d95d121427b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/ammo_boxes.txt": {
+   "new_sha256_lf": "1fc6766d64b9a5213b79f56daa33ef00bb69013a8a443be8e49f510a3b5416da",
+   "orig_sha256_lf": "fe70a762613bf7fd21195d7e34fcb0d573305a14590cbadedb2ff60714e78a22",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/bio4_reward.txt": {
+   "new_sha256_lf": "99feefb237142f54eaffa2d6062db5b389e8295d624c4c0774888c4e7ea553da",
+   "orig_sha256_lf": "14fa4a8858043d7aadf89aea424ead3513de2ef3f6620f7e178a9b59dcd2d970",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/cashmall.txt": {
+   "new_sha256_lf": "ac91ed2349b475d53a224fd98d276d7fbc7bb25f079db45527dd4d061c1e2e53",
+   "orig_sha256_lf": "5a379929ff816045a4eddb98d7130f7afde7c909410d381cea6e4793aa64ff11",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/catalog.txt": {
+   "new_sha256_lf": "5fe9465461d21a9792f2b994741265581acbca26df6dad3ffb283399ff9af9ee",
+   "orig_sha256_lf": "e11f68d0032387cfd0b4be55d96d380b329f467d26d89ea6849eaff0939fce8d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/coin_exchange.txt": {
+   "new_sha256_lf": "1e5107500dd8d35dbefbab67b9ffada427e477aa97bd328a3e70768ff72802b4",
+   "orig_sha256_lf": "3e58b67c419bfd8a1f537108750ceb82faa44abd3439183c4e31648c04b5e12a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/diamond.txt": {
+   "new_sha256_lf": "b7d8e8610558bdf08e6a389eeb5e13a80a9a970d71c8469764f7a17795faf71f",
+   "orig_sha256_lf": "5d3e9af0d5ec03ab56567da8ed77084c812feaf9e420cffbdf46e4690f01df0b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/eden_market.txt": {
+   "new_sha256_lf": "58b2aa26587e982f2bc01c5d7db703c173f4241971cd9e15f7b80c7a8b694b90",
+   "orig_sha256_lf": "73b5b6f5cf324b53027029cba50815bd74ae0a2170f584f8801ecdc40282804c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/enchan_edda_half_moon.txt": {
+   "new_sha256_lf": "1f509e0982bc6bef41d02d2a79029a2e1a8d13a97440f11c31f15599e0653a07",
+   "orig_sha256_lf": "60fbe44c8855114b06df604fd54c0cda3c0ce8982b377c058f027a69944017f8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/enchan_mal.txt": {
+   "new_sha256_lf": "63b7838e3ccd414d2adc24fe31bfcec8843f31040f7a173d7c4405f661eb66ef",
+   "orig_sha256_lf": "a5f413e71b063e5933cfc79be210f96ddc402c904d6aeb9c1f9a187f7c94e42f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/enchan_rockridge.txt": {
+   "new_sha256_lf": "de159c2db0ef14c6f8ec5e5c3dd89725232680a217b612c0b6f2f78fca06b7dc",
+   "orig_sha256_lf": "f79715396270256cf15cb6cb6343e6c60215850d6f446035993b501f08557067",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/enchan_sage_legacy_17_2.txt": {
+   "new_sha256_lf": "2da76c3264b676cf470950f64bb03f315d7482325d18de99d3374c2eab69a463",
+   "orig_sha256_lf": "5c9b15c16149e4337fc07cb39ca1ffc076663456f9eaa4b234fdaf906ca93572",
+   "reason": "repaired (1 token(s) back to the original bytes): the NPC header's name 'Child Manager <CP949 bytes A9 AC>#ep172_pet' (line 225) was re-encoded to UTF-8 (C3 9F): a header must stay byte for byte; the original bytes are put back ENGLISH: the NPC name 'Child Manager <CP949 A9 AC = \u00df, meant as beta>' becomes 'Child Manager Beta' (the name the rewritten dialog uses); its unique part #ep172_pet is referenced nowhere else in rAthena's npc/ files (grep), its script reads no name.",
+   "status": "repair"
+  },
+  "npc/re/merchants/enchan_verus.txt": {
+   "new_sha256_lf": "0c2ba96f6797678d9ec3cca05b634f9c8c62d7e5fa135a5902a687e693ed271a",
+   "orig_sha256_lf": "cafc0e3074668c852d0855fa61c5c598576fce0fb9da8c8f13d9055c8287d0b9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/flute.txt": {
+   "new_sha256_lf": "b7f7598f10a828c24b1e8fe7416aa032ce08d1ed52f5af41353e6921e004b8bb",
+   "orig_sha256_lf": "bed4b6bdb81ff07d7f1f250236a45fe3db711c8d255a4a4a7ff4451808c9970d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/gld_mission_exchange.txt": {
+   "new_sha256_lf": "517212259cf510166732905f7f2b3ff7bd500303c4d79db2f1cd3e4378bb28e7",
+   "orig_sha256_lf": "09627adce37b5190a95587534fd821cb141f170b9a9c8a085d92f603428cdecf",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/hd_refiner.txt": {
+   "new_sha256_lf": "3bbd1cdb57543e6dfe5ba6c0ff2d0b8881ac6dca85832175241cd98689d48d77",
+   "orig_sha256_lf": "7b170054f11e0812b0128d63b853c8a0d79e0c377e560a6c36669e15e9b701e0",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/malangdo_costume.txt": {
+   "new_sha256_lf": "07453b6dff189eb9ea2ad9d93a0cc8e9a0dbff2393c88ad49729bc0908ee5534",
+   "orig_sha256_lf": "84e8a8da8a4005029f4a5d48e4ac4e9ced3cb8da613b6b755ef860b7ee204b56",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/moro_cav_exchange.txt": {
+   "new_sha256_lf": "b0110ba6e4ddcc0d1364f55c89ac57b515cdc5d5a43e58694d375ca0d35a86e1",
+   "orig_sha256_lf": "60562b7eeb60dfe9054513a7140dc497baef0ad17449788cb02455df2519707f",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/mysterious_cookie_shop.txt": {
+   "new_sha256_lf": "1cf2500341fd0071c8656943dd6ed050ec87c2eb4cad9aca5fd8f8a974eb86af",
+   "orig_sha256_lf": "1112f383bc16afcd3db4c6d6233327d1317d4f1d965eda6b52c150da0fed1a74",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/nightmare_biolab.txt": {
+   "new_sha256_lf": "3b71fc209ca4f0ad5451f3c3b81de71f30ce716ebd2a286a1ed214a2659fa837",
+   "orig_sha256_lf": "e78cc4896bf081430122e856102e65219432acc9e27bcb6cbc3cae02f28c74e4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/refine.txt": {
+   "new_sha256_lf": "e74941bf685377f4ebba18d3ba28fa5073a03a9dfe82cff38f359d8694f15763",
+   "orig_sha256_lf": "02057a191117edebbd0916f944ab9331ca6e4b20c18329b73af05c0cc0953ac5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/renters.txt": {
+   "new_sha256_lf": "2a14cf30bfaa82a914fe4bbd21557a768009521a09b572969751302bb03d25ef",
+   "orig_sha256_lf": "5c6c44caff4cff9d19b8867d7bf4741dd587596368a22c54e0a4e26ea862865b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/merchants/shadow_refiner.txt": {
+   "new_sha256_lf": "dbba7b89485c16581a68e0a7b6b1238c80d5aa3f9c6fd5094fa8c938b57aabef",
+   "orig_sha256_lf": "7c4e87a792db683dcc96727a3819bd24f3036c19f8f93422e37d46d0df5060c4",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/TrainingZone123.txt": {
+   "new_sha256_lf": "7c8ccfc913a4249fa04309301065560390a464ea970e05dc2ed7ab317e7d8e49",
+   "orig_sha256_lf": "67c1808868f52c850db02e210fc2e291427ba3d4c45b0de309add3dae4189cdd",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/adven_boards.txt": {
+   "new_sha256_lf": "10428fbdd5fcfcd7ca05a6933be045aa0fe4c4228ebff54708f5d1839ba9681c",
+   "orig_sha256_lf": "d968dd04bbfe1fac5afb8bc25a7ea2c871e675e40ac76078e5c92caf177e0d01",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/bulletin_boards.txt": {
+   "new_sha256_lf": "5a3bff774d674c6814d3557411d4802b955a902dfac246bb606c1ce877066509",
+   "orig_sha256_lf": "c117ae8889c05ff953b9e1c8fe75feffb3bf12aea820ec8c8a4bb39d3c5f0b58",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/clans.txt": {
+   "new_sha256_lf": "a1b92759969fce7b5e5b3b9bc5c811fbca5ab2d44a5fbe0ba827dedc3d7be342",
+   "orig_sha256_lf": "2850704413a122ed85c964cfce98fdfa160989c49ed79fabebd9ddbf537d1337",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/dimensional_gap.txt": {
+   "new_sha256_lf": "46066783a6885f167beea03e95fd587a7922f39f2b4e97404e809edd977a58ad",
+   "orig_sha256_lf": "e2d8b6eac6e9389b472be0b7dd031fc41d33fe5e5b79938bd8784f7ada71b571",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/kachua_key.txt": {
+   "new_sha256_lf": "25d7004a19933030e202821d480842e752554bf3c3a48587a864ccf4cb4fd238",
+   "orig_sha256_lf": "8f1c509c5f0df6d1602669feb4ba5234c4fadd07996cb8b032dbf2d210d1ef32",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/other/resetskill.txt": {
+   "new_sha256_lf": "a0b7da0e59009393ffb049a9dcc9f6302b0ac7b16f4c78c53023c95bd57888c3",
+   "orig_sha256_lf": "f5083828364dc52d4246d5d26f303dc0262ac9bc4cfb3ac3f57728adf73f6eb6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/HelpMeShorty.txt": {
+   "new_sha256_lf": "e6905bd9cdeb7f01f47b6a9e97f67938a35481990a5adaa094947f1def361491",
+   "orig_sha256_lf": "0d01111ddc8683fd2d7f49bdeb85738c9c8a3954acc40c22784d51a3f843502e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/26-40.txt": {
+   "new_sha256_lf": "126f6890e65b8de84b77a2587dd4159b555857f5ae4c5398ad6e80bdd6974194",
+   "orig_sha256_lf": "b267fde4499d022a11b9476e16c30114c1dfd33caa299900d1542636a2a5c9ff",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/56-70.txt": {
+   "new_sha256_lf": "366648093160d4f2184073df173a67323ebe798136c968beb44166d362b28046",
+   "orig_sha256_lf": "8cb54f18465e65dd203f08da415632e3495450f3e7ab32da6ab1be0e4a99bc5a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/86-90.txt": {
+   "new_sha256_lf": "1c3c12f529ef842cb1a46beb5f45aa95322cf6878774cef36d84e3af2d70b552",
+   "orig_sha256_lf": "2769a0ee8590393b004ab57fc37d8898335c9ebffae3e1febf5542ea6e5808d0",
+   "reason": "repaired (13 token(s) back to the original bytes): 13 cutin file names (Korean, CP949) passed to L_Quest (getarg(3) -> cutin, eden/86-90:153-192) were re-encoded to UTF-8: the client would find no image; the original bytes are put back",
+   "status": "repair"
+  },
+  "npc/re/quests/eden/91-99.txt": {
+   "new_sha256_lf": "6e096275dc825c0750418534a060ec34825900822adf85a084fa65542cd08a1d",
+   "orig_sha256_lf": "022caa03fe97dc3c1c5cb67c6d6435decca40fd5cbd64a327fd930067d3c0032",
+   "reason": "repaired (16 token(s) back to the original bytes): 16 cutin file names, as eden/86-90",
+   "status": "repair"
+  },
+  "npc/re/quests/eden/eden_100_111.txt": {
+   "new_sha256_lf": "bf82cba4a7cf228034af6a9cad29a26cb20206d7aa8497a6124aafdb48ee6222",
+   "orig_sha256_lf": "b0ba5c87a48eb397cea4e6a519f51404cccdb42f1deed29fdcef1af0feacbedc",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/eden_111_120.txt": {
+   "new_sha256_lf": "5f8ba8dc9fe204421f8e176f0eff97167eb9230cff92f26840412ba566f79296",
+   "orig_sha256_lf": "e34225d5dbe2b440adab269ea840c4c5bff130ab728eccb2cbfa5e540d8e2be7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/eden_121_130.txt": {
+   "new_sha256_lf": "ee613be04ea5bfadbf81f162baf1b173e4c7600404ba5c8a595a23554ef12fd8",
+   "orig_sha256_lf": "44cd898e37fa94b066e2872f43078b453a4d8debf39246fa7f9315c311aaae3d",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/eden_131_140.txt": {
+   "new_sha256_lf": "91d9222c7ccc76c46938e88fc917ef648c4d360418dab8f601385cf3baaaf1b5",
+   "orig_sha256_lf": "827ff8d75223dfb8f5c36e440459a6811e018ea507075b93971c8791fb4435a9",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/eden_quests.txt": {
+   "new_sha256_lf": "6bec6fd4943f957bd31357a32723e7b92696f588a8d4b090b1a6bb2b486ad247",
+   "orig_sha256_lf": "aec1fe4b932856963c293f6085425b4e89656c414a7afb390c4eb21c63a04192",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/eden_service.txt": {
+   "new_sha256_lf": "4e6dd85f2082cfce6469af07d70facdd9c3a0717cf871aa2b99a92df40e337e4",
+   "orig_sha256_lf": "2027609b6b06de2b6b88002127e26c966043dc0d1cec84aaaab8bc01f0a29917",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/eden/eden_tutorial.txt": {
+   "new_sha256_lf": "edfd60e97653b2c947cba57620527d1e599496225032b33018a559424248f69e",
+   "orig_sha256_lf": "f8ebb207b3d5de5adb5974bb72a5f4e20a45acdad34a4733900ce4d61629fd80",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/garden_of_time.txt": {
+   "new_sha256_lf": "af6c66b20eb6eab66e00d39d48b7aedfe5da7db5c5155cedf84ec0e7d7f0381f",
+   "orig_sha256_lf": "4c0257cd6a9e41582b916dbd58eba35a8314dba51cefc38fe20db3ccaf701153",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/homun_s.txt": {
+   "new_sha256_lf": "c6d8340da6f34597489b51793e80b098ef48f84872f1564e7546798cef4399c9",
+   "orig_sha256_lf": "18d4cbc255e6a3ce3646649ec97ddc5f3d2bf23e72d532a57194e18ba42fa840",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/juno_monster_society.txt": {
+   "new_sha256_lf": "9917c3880d54a83d917ed878fddf75fc6809507cc6ffb8b25842b7bb6d8c3a50",
+   "orig_sha256_lf": "de9ccaa518024e648e019fa6772a1046a8791ff1c137b21da876c526dbd3ef6b",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/magic_books.txt": {
+   "new_sha256_lf": "76a17b78b6901bc2dd4ce9a18cd05993e839ae596fd7b92973e8a487f474a84b",
+   "orig_sha256_lf": "cffc1931a36e4501b68fb916536d80c9a129beff3c2e0940afbb633111ec61f8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/newgears/2010_headgears.txt": {
+   "new_sha256_lf": "e1d44d157a20b4d724f6006ecb323ab8df87881cda35c655ff93f82722847ca2",
+   "orig_sha256_lf": "9dd1c203da9865712c7e38cfe88718d17cb61ccbbd3eece9ddeda69884e126b2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/newgears/2012_headgears.txt": {
+   "new_sha256_lf": "c383f5585658fd608e73a050f5217d75f1671ac04bcebf2c58d4c3a9536f89f2",
+   "orig_sha256_lf": "07a67b1e626db6fee90feb30b4014b09be5c016cf3bbe1a6717804c1c31d6cf6",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/ninja_quests.txt": {
+   "new_sha256_lf": "c173f05b599916a4af5d5cebd7f01b674fe0d91b6f40fa65ba697f10e921ecdd",
+   "orig_sha256_lf": "64c1d00719ee8217644beea0856339de73d6e3911cec2ccdbdaeebff2f1d2230",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/pile_bunker.txt": {
+   "new_sha256_lf": "231a08c920691f85fa5917abd63b755db5c9eec237ec3d636640d76a0e687b1f",
+   "orig_sha256_lf": "bfce77ea416d82a5e50e5f5768d799830eed7596a97caf1c69bc75951ca241d2",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_14_3_bis.txt": {
+   "new_sha256_lf": "a3bae22161c5f5f81a94f840725987b85a81a5aa9a25cd3e230221a96d6063ed",
+   "orig_sha256_lf": "5d5ff306139e4758c9d53923a32c7417ed64bb6740cf6e6486e421acb2649b8a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_15_1.txt": {
+   "new_sha256_lf": "274ec0cddc905411eea8313281f23d882882dac8af643a41bc9a327c92de2844",
+   "orig_sha256_lf": "432d8caadcfdb3d7975fe9e2d525b96cca8a1a1b41f2fb9676ebfef493a95ac5",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_15_2.txt": {
+   "new_sha256_lf": "2650e49d87ad66dc90b78d10ef98869b13f023c03ac09f5e800bba4adc99f33f",
+   "orig_sha256_lf": "9f7e30ec0e7bfcaaeef0b737a5f62ba9dd1c1080eb700fa8a3d217df1c1fb45a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_16_1.txt": {
+   "new_sha256_lf": "e9c9230c40c7cd7d572835808df19f4c40e12bc5be3a64d5e8919655b331a827",
+   "orig_sha256_lf": "4b6b5a930b682b4741a5bb24ce1fc20fb42a4635687f2dfc3777affa9fbdb130",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_16_2.txt": {
+   "new_sha256_lf": "7eb496dcc352dc3cb88ed712f036845cfe8c086b019968e0dd4bc67978127b03",
+   "orig_sha256_lf": "be4076c12a6fac33b1fcffb19fa7c18777f64f36c8ba2d5198671e5eb35928ad",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_17_1.txt": {
+   "new_sha256_lf": "64d6977d1f952875829b066dc7b969d9da0702b50fdb4189b94d330c7f2efe7c",
+   "orig_sha256_lf": "6303be137ec2893db75b88862d4695ad0247859a71a38738f2c7822808fd04c8",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_17_2.txt": {
+   "new_sha256_lf": "2a96dabfc1bb1796a77f1a81ff51532a34964649b5acbb047a875072bb2c651e",
+   "orig_sha256_lf": "04059cca206f6a8a63c2578916dc03f726359e52172138482125c5fc5ad26be1",
+   "reason": "repaired (9 token(s) back to the original bytes): 5 NPC headers and 4 references to them (npctalk / enable names, e.g. 'Mansion Manager <CP949>#ep172_fountain') were re-encoded to UTF-8; the original bytes are put back ENGLISH (the orchestrator's decision of 2026-10-15 under the design's rule): the five NPC names with CP949 Greek letters spelled in English, the display part only (before '#'): Mansion Manager Alpha (lines 655, 8371), Mansion Manager Beta (8217, 8384), Cleaning Robot Omega (7758), the names the rewritten dialog already uses. Without '::' the full name is also the NPC's unique name, so its four references are renamed with it (cloakoffnpcself / cloakonnpcself at 8050, 8076, 8264, 8306: every reference in all of rAthena's npc/ files, by grep of the unique parts #172nw01 #ba_pw01_02Q #ep172_fountain #ep172_libent #ep172_balib); the robot's own script names itself with strnpcinfo(0) (8010, 8025: follows the rename); nothing compares a display name. Names stay within NPC_NAME_LENGTH 50 (mmo.hpp:157), the shown part within NAME_LENGTH 24 (mmo.hpp:154).",
+   "status": "repair"
+  },
+  "npc/re/quests/quests_18.txt": {
+   "new_sha256_lf": "957fc06c385ea2b272f710b8867e5c44b52096ba071257c0f18ab5874078cc78",
+   "orig_sha256_lf": "b054ed23d67171770a98d9f83e0568773cfd410aee301950e53ea6a1dd44381c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_dewata.txt": {
+   "new_sha256_lf": "e0716462da932910f92d1696a170a1a7a57e39f55dc47da9a5f4abbdc19545cd",
+   "orig_sha256_lf": "f1376444489bbccc653dd9609215cde2b7faf53dd31cfd4605d39145d916c2aa",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_dicastes.txt": {
+   "new_sha256_lf": "53a48b8882f8b3d64dee64bf4c5f563ef2efa608cc27f620d57aed6880c9b06d",
+   "orig_sha256_lf": "639917b9993513ebb484dbc494e350e42371cce6f9733675e838bd74f529ac47",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_eclage.txt": {
+   "new_sha256_lf": "7fcc4e3578b180fd041f6224fe10262b5656ca97a8b6847cddd3021d8e2af3ce",
+   "orig_sha256_lf": "e078df7bfdbf341b36f1c6bd38372dc55a9b6edb9d2ddffdccca554aae9c304e",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_exp_175.txt": {
+   "new_sha256_lf": "f7ceb2702f71a36c326ea6a4ac8f5cb2a0eda931a04fd8094d800ee35af54a3b",
+   "orig_sha256_lf": "bd6fa40d55d468ee07b5430fdc8a6e955399a57411c3c83acc185e06f9d93880",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_illusion_dungeons.txt": {
+   "new_sha256_lf": "beb0ff25fc0da0f7af98de346f2439dfdedba93c79eaacb20ee4cb42500d46f3",
+   "orig_sha256_lf": "9b8531559d6bf6c6e6edc5dc2528f3204479e335c2ed7b0e8d747e8ac1bf309a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_malangdo.txt": {
+   "new_sha256_lf": "d5760d7a5546e7ed10662587a7dde19cd0f4918da0f671f658ce0e3a9e285e66",
+   "orig_sha256_lf": "bc9bb291600b20fcf9be7827de67068d110aceadcdb8c7fd6752037e732d498a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_malaya.txt": {
+   "new_sha256_lf": "b99b078450db9f4ef81c389ebf0c78282464b3fd4922efcec4f0ba92e9622b46",
+   "orig_sha256_lf": "de4fb3b783d88d8ca30870dbabef94b018c4732584d3ac6f2b907e4fbe29131a",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_mora.txt": {
+   "new_sha256_lf": "c9d91d6ef3feace9a061c2d4fad6fda1301d41e429a8bc0a9485a1ed389ba8f5",
+   "orig_sha256_lf": "54f0bf8bb39e355f9f15af7bd8aca033d621f26ee043928bbc43e8fc5560f941",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/quests_rockridge.txt": {
+   "new_sha256_lf": "f76f934aa71b549729cfad6f08e9343c8a93ec936cfbb8c8c4dfea73263e9f2d",
+   "orig_sha256_lf": "88771d1ed4929eba4eadca21108f722ac9b0230d389906f07e7d4b16337a5ed0",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/seals/brisingamen_seal.txt": {
+   "new_sha256_lf": "ea92600370f57521e61b9a5659c045f9191eaa7c43245275f0fc01ff682ba753",
+   "orig_sha256_lf": "d6f1759a46b9882a8c30dbd757491a198a8cf8c2ae0ca2b75712f3aa32ef88f7",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/skills/merchant_skills.txt": {
+   "new_sha256_lf": "36a812476bc1866e531b0236b16f866e50a32213dc6a65250de1adf3fb4ebea1",
+   "orig_sha256_lf": "eebc30b07497ffaab99ef77b15d148d16065745162e49ff18ac80a57cd834f8c",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/woe_te/te_goditem_alde1.txt": {
+   "new_sha256_lf": "7c575ce36b731611868b43c129ec88fa1690511544a7b987eafa1634877949c6",
+   "orig_sha256_lf": "36d840fb4b19b42f7c6221186eab304edcd0933ea2d98ed837977435567b0dcf",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/quests/woe_te/te_goditem_prt01.txt": {
+   "new_sha256_lf": "fefe7372ab6aad6f39beab8c5deb7371f8e49adc5807a436b6a70d34d5865d61",
+   "orig_sha256_lf": "b241d0377a8d763841e7b04884154a38565d3fea19611dd2c26e4bf3169818cb",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/warps/cities/dicastes.txt": {
+   "new_sha256_lf": "575e13f8e3e8d265bf0d227149e99098d185f745dd1232e0f5d663f0542be8cb",
+   "orig_sha256_lf": "52e4e050ae66f579880c4f2b7b358aaa3508401760a336a8b2e87200dbe97404",
+   "reason": "English: ENGLISH (the orchestrator's decision of 2026-10-15 under the design's rule; rAthena's ORIGINAL file, not in the export): the Sapha cipher a character without the Ring of the Wise King (2782) reads at the El Dicastes elevators and stair (dicastes.txt:37, 47, 51, 55) was written in CP949 math symbols; each symbol is spelled with its English (Unicode) name: \u2287 Superset, \u222a Union, \u221d Proportional, \u220f Pi, \u2220 Angle, \u2235 Because, \u222b Integral, \u2282 Subset, \u2208 Element, \u220b Contains, \uffe2 Not, \u2227 And, \u223d Reversed Tilde, \u2203 Exists, \u2211 Sigma, \u222e Contour Integral, \u222c Double Integral; the cipher's word breaks become ' / '. The same options in the same order: the script uses only the INDEX chosen (select(.@m$) - 1 picks .@xy, dicastes.txt:58-59; the first select's result is not used at all, :36-38); verified CLEAN (menu structure identical).",
+   "status": "english"
+  },
+  "npc/re/warps/cities/izlude.txt": {
+   "new_sha256_lf": "01d723e6fd9e58eb501dc9f6c55c193205f570f589b5ffe766d4131577504351",
+   "orig_sha256_lf": "61b4a35aea0f974121f161e4810032e1d3d1b5b2ce951b12a3a8c7af23343505",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  },
+  "npc/re/warps/other/TrainingZone123.txt": {
+   "new_sha256_lf": "ef1b25bd4d8b7a48d4d3db4f00d868570bd26ca0ca5de0591844d7dcbeb68a56",
+   "orig_sha256_lf": "2c2040b61b66c8055e7c4da432e06b746495524ac0121142091a601e5e219df9",
+   "reason": "verified, with a text fix: ENGLISH / ASCII (design note 2026-10-15, everything in English): the export wrote the menu marker \u25b6 (18 options) as UTF-8 bytes E2 96 B6, which the game shows as '\u00e2\u0080\u0093\u00b6' (Loki and the official client read cp1252 / CP949; the original CP949 A2 BA showed as '\u00a2\u00ba'); it becomes '> '. Text only: verified CLEAN after the change",
+   "status": "text_fix"
+  },
+  "npc/warps/dungeons/mosk_dun.txt": {
+   "new_sha256_lf": "a37830990dccef9f08436ed48bad1b19bee0464706919e4c2291a37a8bb32d65",
+   "orig_sha256_lf": "d272eaf11d9817bad210d928cd5ce81c118966da9c9239a5d3793666a7ca3762",
+   "reason": "verified: only player-facing text differs",
+   "status": "CLEAN"
+  }
+ },
+ "left_out": {
+  "db/re/quest_db.yml": "quarantined: NOT VALID YAML: line 3584 `Title: Training Course: 'Conquer the Desert!' - Start` (a plain scalar with ': '). rAthena e985006's own parser does read it (copy 233, 2026-10-15: 'Done reading 4821 entries', no warning), but a stricter YAML reader refuses it, and quest titles are never shown to players (quest.cpp:59-65 only stores them; the client shows its own quest texts): nothing is lost by keeping the original",
+  "npc/battleground/bg_common.txt": "identical to the original",
+  "npc/battleground/flavius/flavius_enter.txt": "identical to the original",
+  "npc/battleground/kvm/kvm01.txt": "identical to the original",
+  "npc/battleground/kvm/kvm02.txt": "identical to the original",
+  "npc/battleground/kvm/kvm03.txt": "identical to the original",
+  "npc/battleground/kvm/kvm_enter.txt": "identical to the original",
+  "npc/battleground/tierra/tierra_enter.txt": "identical to the original",
+  "npc/events/god_se_festival.txt": "identical to the original",
+  "npc/guild/agit_controller.txt": "identical to the original",
+  "npc/guild2/agit_start_se.txt": "identical to the original",
+  "npc/guild2/arug_cas01.txt": "identical to the original",
+  "npc/guild2/arug_cas02.txt": "identical to the original",
+  "npc/guild2/arug_cas03.txt": "identical to the original",
+  "npc/guild2/arug_cas04.txt": "identical to the original",
+  "npc/guild2/arug_cas05.txt": "identical to the original",
+  "npc/guild2/guild_flags.txt": "identical to the original",
+  "npc/guild2/schg_cas01.txt": "identical to the original",
+  "npc/guild2/schg_cas02.txt": "identical to the original",
+  "npc/guild2/schg_cas03.txt": "identical to the original",
+  "npc/guild2/schg_cas04.txt": "identical to the original",
+  "npc/guild2/schg_cas05.txt": "identical to the original",
+  "npc/instances/OrcsMemory.txt": "identical to the original",
+  "npc/instances/SealedShrine.txt": "identical to the original",
+  "npc/merchants/cashheadgear_dye.txt": "identical to the original",
+  "npc/merchants/coin_exchange.txt": "identical to the original",
+  "npc/merchants/dye_maker.txt": "identical to the original",
+  "npc/merchants/enchan_arm.txt": "identical to the original",
+  "npc/merchants/old_pharmacist.txt": "identical to the original",
+  "npc/merchants/shops.txt": "identical to the original",
+  "npc/merchants/socket_enchant.txt": "identical to the original",
+  "npc/other/Global_Functions.txt": "identical to the original",
+  "npc/other/arena/arena_lvl50.txt": "identical to the original",
+  "npc/other/arena/arena_lvl60.txt": "identical to the original",
+  "npc/other/arena/arena_lvl70.txt": "identical to the original",
+  "npc/other/arena/arena_lvl80.txt": "identical to the original",
+  "npc/other/arena/arena_party.txt": "identical to the original",
+  "npc/other/fortune.txt": "identical to the original",
+  "npc/other/gm_npcs.txt": "identical to the original",
+  "npc/quests/mage_solution.txt": "identical to the original",
+  "npc/quests/quests_aldebaran.txt": "identical to the original",
+  "npc/quests/quests_veins.txt": "quarantined: LOGIC CHANGED: the rewrite adds `|| .@input$ == \"Down with the Rune-Midgarts Kingdom!\"` to the answer check of FOUR other passphrases (quests_veins:6727, 6749, 6769, 6789), so the wrong phrase passes each of them, and changes the last answer (6810) to the new spelling. The original stays",
+  "npc/quests/seals/god_global.txt": "identical to the original",
+  "npc/quests/seals/seal_status.txt": "identical to the original",
+  "npc/re/airports/izlude.txt": "identical to the original",
+  "npc/re/battleground/bg_common.txt": "identical to the original",
+  "npc/re/cities/alberta.txt": "identical to the original",
+  "npc/re/cities/jawaii.txt": "identical to the original",
+  "npc/re/cities/lutie.txt": "identical to the original",
+  "npc/re/cities/prontera.txt": "identical to the original",
+  "npc/re/cities/yuno.txt": "identical to the original",
+  "npc/re/custom/lasagna/lasa_dun.txt": "identical to the original",
+  "npc/re/custom/lasagna/lasa_fild.txt": "identical to the original",
+  "npc/re/guild/invest_main.txt": "identical to the original",
+  "npc/re/guild/invest_npc.txt": "identical to the original",
+  "npc/re/guild/mission_main.txt": "identical to the original",
+  "npc/re/guild/mission_npc.txt": "identical to the original",
+  "npc/re/guild3/agit_start_te.txt": "identical to the original",
+  "npc/re/guild3/te_aldecas1.txt": "identical to the original",
+  "npc/re/guild3/te_aldecas2.txt": "identical to the original",
+  "npc/re/guild3/te_aldecas3.txt": "identical to the original",
+  "npc/re/guild3/te_aldecas4.txt": "identical to the original",
+  "npc/re/guild3/te_aldecas5.txt": "identical to the original",
+  "npc/re/guild3/te_prtcas01.txt": "identical to the original",
+  "npc/re/guild3/te_prtcas02.txt": "identical to the original",
+  "npc/re/guild3/te_prtcas03.txt": "identical to the original",
+  "npc/re/guild3/te_prtcas04.txt": "identical to the original",
+  "npc/re/guild3/te_prtcas05.txt": "identical to the original",
+  "npc/re/instances/BakonawaLake.txt": "identical to the original",
+  "npc/re/instances/CentralLaboratory.txt": "identical to the original",
+  "npc/re/instances/CharlestonCrisis.txt": "identical to the original",
+  "npc/re/instances/CorOperation.txt": "identical to the original",
+  "npc/re/instances/DeepForest.txt": "identical to the original",
+  "npc/re/instances/FridayDungeon.txt": "identical to the original",
+  "npc/re/instances/HeartHunterWarBase.txt": "identical to the original",
+  "npc/re/instances/HorrorToyFactory.txt": "identical to the original",
+  "npc/re/instances/LastRoom.txt": "identical to the original",
+  "npc/re/instances/LostFarm.txt": "identical to the original",
+  "npc/re/instances/MazeofOz.txt": "identical to the original",
+  "npc/re/instances/PoringVillage.txt": "identical to the original",
+  "npc/re/instances/Regenschirm.txt": "identical to the original",
+  "npc/re/instances/SaraMemory.txt": "identical to the original",
+  "npc/re/instances/TwilightGarden.txt": "identical to the original",
+  "npc/re/instances/VillaofDeception.txt": "identical to the original",
+  "npc/re/instances/VillaofHighPriest.txt": "identical to the original",
+  "npc/re/instances/WeekendDungeon.txt": "identical to the original",
+  "npc/re/instances/WolfchevLaboratory.txt": "identical to the original",
+  "npc/re/instances/Wolves.txt": "identical to the original",
+  "npc/re/jobs/1-1e/taekwon.txt": "identical to the original",
+  "npc/re/jobs/2-2/crusader.txt": "identical to the original",
+  "npc/re/kafras/cool_event_corp.txt": "identical to the original",
+  "npc/re/merchants/3rd_trader.txt": "identical to the original",
+  "npc/re/merchants/Dealer_Update.txt": "identical to the original",
+  "npc/re/merchants/Extended_Ammunition.txt": "identical to the original",
+  "npc/re/merchants/Gemstone_Bagger.txt": "identical to the original",
+  "npc/re/merchants/InfiniteSpace_merchants.txt": "identical to the original",
+  "npc/re/merchants/OldGlastHeim_merchants.txt": "identical to the original",
+  "npc/re/merchants/alchemist.txt": "identical to the original",
+  "npc/re/merchants/card_separation.txt": "identical to the original",
+  "npc/re/merchants/clothing_buff_removal.txt": "identical to the original",
+  "npc/re/merchants/enchan_illusion_17_1.txt": "identical to the original",
+  "npc/re/merchants/enchan_illusion_dungeons.txt": "identical to the original",
+  "npc/re/merchants/enchan_ko.txt": "identical to the original",
+  "npc/re/merchants/enchan_mora.txt": "identical to the original",
+  "npc/re/merchants/enchan_upg.txt": "identical to the original",
+  "npc/re/merchants/enchantgrade.txt": "identical to the original",
+  "npc/re/merchants/ghost_palace_exchange.txt": "identical to the original",
+  "npc/re/merchants/guild_warehouse.txt": "identical to the original",
+  "npc/re/merchants/new_insurance.txt": "identical to the original",
+  "npc/re/merchants/novice_vending_machine.txt": "identical to the original",
+  "npc/re/merchants/pet_groomer.txt": "identical to the original",
+  "npc/re/merchants/pet_trader.txt": "identical to the original",
+  "npc/re/merchants/quests_exp_175.txt": "identical to the original",
+  "npc/re/merchants/quivers.txt": "identical to the original",
+  "npc/re/merchants/rgsr_in.txt": "identical to the original",
+  "npc/re/merchants/shops.txt": "identical to the original",
+  "npc/re/merchants/socket_enchant2.txt": "identical to the original",
+  "npc/re/merchants/te_merchant.txt": "identical to the original",
+  "npc/re/mobs/dungeons/anthell.txt": "identical to the original",
+  "npc/re/mobs/dungeons/beach_dun.txt": "identical to the original",
+  "npc/re/mobs/dungeons/for_dun.txt": "identical to the original",
+  "npc/re/mobs/dungeons/lhz_dun_n.txt": "identical to the original",
+  "npc/re/mobs/dungeons/pay_dun.txt": "identical to the original",
+  "npc/re/mobs/dungeons/tur_dun.txt": "identical to the original",
+  "npc/re/other/CashShop_Functions.txt": "identical to the original",
+  "npc/re/other/Global_Functions.txt": "identical to the original",
+  "npc/re/other/achievements.txt": "identical to the original",
+  "npc/re/other/global_npcs.txt": "identical to the original",
+  "npc/re/other/item_merge.txt": "identical to the original",
+  "npc/re/other/mail.txt": "identical to the original",
+  "npc/re/other/mercenary_rent.txt": "identical to the original",
+  "npc/re/other/pvp.txt": "identical to the original",
+  "npc/re/other/stone_change.txt": "identical to the original",
+  "npc/re/other/turbo_track.txt": "identical to the original",
+  "npc/re/quests/cooking_quest.txt": "identical to the original",
+  "npc/re/quests/eden/11-25.txt": "identical to the original",
+  "npc/re/quests/eden/41-55.txt": "identical to the original",
+  "npc/re/quests/eden/71-85.txt": "identical to the original",
+  "npc/re/quests/eden/eden_common.txt": "identical to the original",
+  "npc/re/quests/first_class/tu_archer.txt": "identical to the original",
+  "npc/re/quests/illusion_investigation.txt": "identical to the original",
+  "npc/re/quests/monstertamers.txt": "identical to the original",
+  "npc/re/quests/mrsmile.txt": "identical to the original",
+  "npc/re/quests/quest_payon.txt": "identical to the original",
+  "npc/re/quests/quests_13_1.txt": "identical to the original",
+  "npc/re/quests/quests_14_3.txt": "identical to the original",
+  "npc/re/quests/quests_aldebaran.txt": "identical to the original",
+  "npc/re/quests/quests_dungeons_200.txt": "identical to the original",
+  "npc/re/quests/quests_glastheim.txt": "identical to the original",
+  "npc/re/quests/quests_izlude.txt": "identical to the original",
+  "npc/re/quests/quests_lighthalzen.txt": "identical to the original",
+  "npc/re/quests/quests_morocc.txt": "identical to the original",
+  "npc/re/quests/quests_nameless.txt": "identical to the original",
+  "npc/re/quests/quests_niflheim.txt": "identical to the original",
+  "npc/re/quests/quests_veins.txt": "identical to the original",
+  "npc/re/quests/seals/megingard_seal.txt": "identical to the original",
+  "npc/re/quests/skills/swordman_skills.txt": "identical to the original",
+  "npc/re/quests/the_sign_quest.txt": "identical to the original",
+  "npc/re/quests/woe_te/te_mission_alde.txt": "identical to the original",
+  "npc/re/quests/woe_te/te_mission_main.txt": "identical to the original",
+  "npc/re/quests/woe_te/te_mission_prt.txt": "identical to the original",
+  "npc/re/warps/cities/einbech.txt": "identical to the original",
+  "npc/re/warps/cities/einbroch.txt": "identical to the original",
+  "npc/re/warps/cities/malaya.txt": "identical to the original",
+  "npc/re/warps/cities/prontera.txt": "identical to the original",
+  "npc/re/warps/dungeons/amicitia.txt": "identical to the original",
+  "npc/re/warps/dungeons/ein_dun.txt": "identical to the original",
+  "npc/re/warps/dungeons/iz_dun.txt": "identical to the original",
+  "npc/re/warps/dungeons/mag_dun.txt": "identical to the original",
+  "npc/re/warps/dungeons/nif_dun.txt": "identical to the original",
+  "npc/re/warps/fields/bif_fild.txt": "identical to the original",
+  "npc/re/warps/guildcastles.txt": "identical to the original",
+  "npc/re/warps/other/ba_2whs.txt": "identical to the original",
+  "npc/re/warps/other/ba_maison.txt": "identical to the original",
+  "npc/re/warps/other/ba_pw.txt": "identical to the original",
+  "npc/re/warps/other/dimensional_gap.txt": "identical to the original",
+  "npc/re/warps/other/verus.txt": "identical to the original",
+  "npc/warps/dungeons/lhz_dun.txt": "identical to the original",
+  "npc/warps/fields/abyss_warper.txt": "identical to the original",
+  "npc/warps/other/arena.txt": "identical to the original"
+ },
+ "source": "rAthena e985006 + the text overhaul export (snapshot textpack-20261015-1600)",
+ "version": 3
+}

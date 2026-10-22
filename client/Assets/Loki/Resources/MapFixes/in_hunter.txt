@@ -1,0 +1,7 @@
+# Architect's fix file for in_hunter (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds in_hunter
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 14 model faces on 2 models
+architect-fix	1	in_hunter	gnd:583486:7696c3546ac9559b	gat:800014:64fe987cba654afe
+R	rsw:141806:3f62aa2250a3490d
+M	132	3199:73b63196ad26465b	0	20-21,26-27,32-35,38-41	under+behind
+M	133	2035:f728e99217e0469e	0	2-3	behind

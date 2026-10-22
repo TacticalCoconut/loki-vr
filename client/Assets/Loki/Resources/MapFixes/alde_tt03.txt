@@ -1,0 +1,2652 @@
+# Architect's fix file for alde_tt03 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds alde_tt03
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 746 ground walls drawn from both sides, 1474 turned to face the other side, 0 floors drawn, 320 holes filled; 27 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 2025 model faces on 103 models
+architect-fix	1	alde_tt03	gnd:4586782:32e97fdff13845f7	gat:3200014:3e6d897fa9c0a409
+W	117	1	E	both	inner
+W	150	1	N	flip	ledge
+W	151	1	N	flip	ledge
+W	152	1	N	flip	ledge
+W	153	1	N	flip	ledge
+W	154	1	N	flip	ledge
+W	155	1	N	flip	ledge
+W	156	1	N	flip	ledge
+W	157	1	N	flip	ledge
+W	158	1	N	flip	ledge
+W	159	1	N	flip	ledge
+W	160	1	N	flip	ledge
+W	161	1	N	flip	ledge
+W	162	1	N	flip	ledge
+W	163	1	N	flip	ledge
+W	164	1	N	flip	ledge
+W	165	1	N	flip	ledge
+W	166	1	N	flip	ledge
+W	167	1	N	flip	ledge
+W	168	1	N	flip	ledge
+W	169	1	N	flip	ledge
+W	170	1	N	flip	ledge
+W	171	1	N	flip	ledge
+W	172	1	N	flip	ledge
+W	173	1	N	flip	ledge
+W	174	1	N	flip	ledge
+W	175	1	N	flip	ledge
+W	176	1	N	flip	ledge
+W	177	1	N	flip	ledge
+W	178	1	N	flip	ledge
+W	179	1	N	flip	ledge
+W	180	1	N	flip	ledge
+W	181	1	N	flip	ledge
+W	182	1	N	flip	ledge
+W	184	1	N	flip	ledge
+W	185	1	N	flip	ledge
+W	186	1	N	flip	ledge
+W	187	1	N	flip	ledge
+W	188	1	N	flip	ledge
+W	189	1	N	flip	ledge
+W	190	1	N	flip	ledge
+W	191	1	N	flip	ledge
+W	192	1	N	flip	ledge
+W	193	1	N	flip	ledge
+W	194	1	N	flip	ledge
+W	195	1	N	flip	ledge
+W	63	2	E	both	ledge
+W	115	2	N	both	inner
+W	116	2	N	both	inner
+W	117	2	N	both	inner
+W	149	2	E	flip	ledge
+W	183	2	E	flip	ledge
+W	63	3	E	both	ledge
+W	146	3	N	flip	ledge
+W	147	3	N	flip	ledge
+W	148	3	N	flip	ledge
+W	149	3	N	flip	ledge
+W	149	3	E	flip	ledge
+W	152	3	N	flip	step
+W	153	3	N	flip	step
+W	154	3	N	flip	step
+W	155	3	E	flip	step
+W	159	3	N	flip	step
+W	160	3	N	flip	step
+W	163	3	N	flip	step
+W	164	3	N	flip	step
+W	165	3	N	flip	step
+W	166	3	N	flip	step
+W	167	3	N	flip	step
+W	168	3	N	flip	step
+W	169	3	N	flip	step
+W	170	3	N	flip	step
+W	171	3	N	flip	step
+W	172	3	N	flip	step
+W	173	3	N	flip	step
+W	174	3	N	flip	step
+W	175	3	N	flip	step
+W	177	3	N	flip	step
+W	178	3	N	flip	step
+W	179	3	N	flip	step
+W	180	3	N	flip	step
+W	181	3	N	flip	step
+W	181	3	E	flip	step
+W	183	3	E	flip	ledge
+W	186	3	N	flip	step
+W	187	3	N	flip	step
+W	188	3	N	flip	step
+W	189	3	N	flip	step
+W	190	3	N	flip	step
+W	191	3	N	flip	step
+W	192	3	N	flip	step
+W	193	3	N	flip	step
+W	194	3	E	flip	step
+W	196	3	N	flip	ledge
+W	197	3	N	flip	ledge
+W	63	4	E	both	ledge
+W	70	4	N	both	inner
+W	70	4	E	both	inner
+W	113	4	E	both	step
+W	114	4	N	both	inner
+W	145	4	E	flip	ledge
+W	151	4	E	flip	step
+W	155	4	E	flip	step
+W	158	4	E	flip	step
+W	162	4	E	flip	step
+W	176	4	E	flip	step
+W	183	4	E	flip	ledge
+W	185	4	E	flip	step
+W	194	4	E	flip	step
+W	63	5	E	both	ledge
+W	145	5	N	flip	ledge
+W	145	5	E	flip	ledge
+W	148	5	N	flip	step
+W	149	5	N	flip	step
+W	150	5	N	flip	step
+W	151	5	N	flip	step
+W	151	5	E	flip	step
+W	153	5	N	flip	ledge
+W	153	5	E	flip	ledge
+W	155	5	E	flip	step
+W	158	5	N	flip	step
+W	159	5	N	flip	step
+W	160	5	N	flip	step
+W	161	5	N	flip	step
+W	162	5	N	flip	step
+W	163	5	N	flip	step
+W	165	5	N	flip	step
+W	166	5	N	flip	step
+W	168	5	N	flip	step
+W	169	5	N	flip	step
+W	170	5	N	flip	step
+W	171	5	E	flip	step
+W	175	5	N	flip	step
+W	176	5	N	flip	step
+W	177	5	N	flip	step
+W	178	5	E	flip	step
+W	181	5	N	flip	ledge
+W	182	5	N	flip	ledge
+W	183	5	N	flip	ledge
+W	183	5	E	flip	ledge
+W	185	5	E	flip	step
+W	192	5	E	flip	step
+W	196	5	E	flip	step
+W	63	6	E	both	ledge
+W	144	6	E	flip	ledge
+W	147	6	E	flip	step
+W	155	6	E	flip	step
+W	164	6	E	flip	step
+W	167	6	E	flip	step
+W	171	6	E	flip	step
+W	174	6	E	flip	step
+W	178	6	E	flip	step
+W	180	6	E	flip	ledge
+W	185	6	E	flip	step
+W	189	6	N	flip	step
+W	190	6	N	flip	step
+W	191	6	N	flip	step
+W	192	6	N	flip	step
+W	194	6	N	flip	step
+W	196	6	E	flip	step
+W	63	7	E	both	ledge
+W	144	7	E	flip	ledge
+W	147	7	N	flip	step
+W	148	7	N	flip	step
+W	149	7	N	flip	step
+W	150	7	N	flip	step
+W	151	7	N	flip	step
+W	152	7	N	flip	step
+W	154	7	N	flip	step
+W	155	7	N	flip	step
+W	156	7	N	flip	step
+W	157	7	N	flip	step
+W	158	7	N	flip	step
+W	159	7	N	flip	step
+W	160	7	N	flip	step
+W	161	7	N	flip	step
+W	162	7	N	flip	step
+W	163	7	N	flip	step
+W	164	7	N	flip	step
+W	165	7	N	flip	step
+W	166	7	N	flip	step
+W	167	7	N	flip	step
+W	167	7	E	flip	step
+W	169	7	N	flip	ledge
+W	169	7	E	flip	ledge
+W	171	7	E	flip	step
+W	174	7	E	flip	step
+W	176	7	E	flip	ledge
+W	178	7	E	flip	step
+W	180	7	E	flip	ledge
+W	183	7	N	flip	step
+W	184	7	N	flip	step
+W	186	7	N	flip	step
+W	187	7	N	flip	step
+W	188	7	N	flip	step
+W	188	7	E	flip	step
+W	193	7	E	flip	step
+W	195	7	N	flip	step
+W	196	7	N	flip	step
+W	196	7	E	flip	step
+W	63	8	E	both	ledge
+W	70	8	N	both	inner
+W	70	8	E	both	inner
+W	144	8	E	flip	ledge
+W	146	8	E	flip	step
+W	153	8	E	flip	step
+W	171	8	E	flip	step
+W	174	8	E	flip	step
+W	176	8	E	flip	ledge
+W	178	8	E	flip	step
+W	180	8	E	flip	ledge
+W	182	8	E	flip	step
+W	185	8	E	flip	step
+W	190	8	E	flip	ledge
+W	193	8	N	flip	step
+W	193	8	E	flip	step
+W	63	9	E	both	ledge
+W	113	9	E	both	step
+W	114	9	N	both	inner
+W	144	9	E	flip	ledge
+W	146	9	E	flip	step
+W	148	9	N	flip	ledge
+W	149	9	N	flip	ledge
+W	149	9	E	flip	ledge
+W	152	9	N	flip	step
+W	153	9	N	flip	step
+W	154	9	N	flip	step
+W	155	9	N	flip	step
+W	156	9	N	flip	step
+W	157	9	N	flip	step
+W	158	9	N	flip	step
+W	159	9	N	flip	step
+W	160	9	E	flip	step
+W	164	9	N	flip	ledge
+W	165	9	N	flip	ledge
+W	166	9	N	flip	ledge
+W	166	9	E	flip	ledge
+W	169	9	N	flip	step
+W	170	9	N	flip	step
+W	171	9	N	flip	step
+W	171	9	E	flip	step
+W	174	9	E	flip	step
+W	176	9	N	flip	ledge
+W	176	9	E	flip	ledge
+W	178	9	N	flip	step
+W	178	9	E	flip	step
+W	180	9	N	flip	ledge
+W	180	9	E	flip	ledge
+W	182	9	E	flip	step
+W	185	9	E	flip	step
+W	187	9	N	flip	ledge
+W	188	9	N	flip	ledge
+W	189	9	N	flip	ledge
+W	190	9	N	flip	ledge
+W	190	9	E	flip	ledge
+W	192	9	E	flip	step
+W	63	10	E	both	ledge
+W	144	10	E	flip	ledge
+W	146	10	E	flip	step
+W	151	10	E	flip	step
+W	160	10	E	flip	step
+W	163	10	E	flip	ledge
+W	168	10	E	flip	step
+W	174	10	E	flip	step
+W	182	10	E	flip	step
+W	185	10	E	flip	step
+W	192	10	E	flip	step
+W	63	11	E	both	ledge
+W	113	11	E	both	step
+W	114	11	N	both	inner
+W	144	11	E	flip	ledge
+W	147	11	N	flip	step
+W	148	11	N	flip	step
+W	149	11	N	flip	step
+W	150	11	N	flip	step
+W	151	11	E	flip	step
+W	158	11	E	flip	ledge
+W	160	11	E	flip	step
+W	163	11	E	flip	ledge
+W	166	11	N	flip	step
+W	167	11	N	flip	step
+W	168	11	N	flip	step
+W	168	11	E	flip	step
+W	172	11	E	flip	ledge
+W	174	11	N	flip	step
+W	175	11	N	flip	step
+W	176	11	N	flip	step
+W	177	11	N	flip	step
+W	178	11	N	flip	step
+W	179	11	N	flip	step
+W	180	11	N	flip	step
+W	181	11	N	flip	step
+W	182	11	N	flip	step
+W	182	11	E	flip	step
+W	185	11	N	flip	step
+W	186	11	N	flip	step
+W	187	11	N	flip	step
+W	188	11	N	flip	step
+W	190	11	N	flip	step
+W	191	11	N	flip	step
+W	192	11	N	flip	step
+W	192	11	E	flip	step
+W	63	12	E	both	ledge
+W	70	12	N	both	inner
+W	70	12	E	both	inner
+W	144	12	E	flip	ledge
+W	146	12	E	flip	step
+W	151	12	E	flip	step
+W	153	12	N	flip	ledge
+W	154	12	N	flip	ledge
+W	155	12	N	flip	ledge
+W	156	12	N	flip	ledge
+W	157	12	N	flip	ledge
+W	158	12	E	flip	ledge
+W	160	12	E	flip	step
+W	163	12	E	flip	ledge
+W	165	12	E	flip	step
+W	170	12	N	flip	ledge
+W	171	12	N	flip	ledge
+W	172	12	N	flip	ledge
+W	172	12	E	flip	ledge
+W	189	12	E	flip	step
+W	63	13	E	both	ledge
+W	64	13	N	both	step
+W	65	13	N	flip	step
+W	66	13	N	flip	step
+W	67	13	N	flip	step
+W	68	13	N	flip	step
+W	69	13	N	flip	step
+W	115	13	N	both	step
+W	116	13	N	both	step
+W	117	13	N	both	step
+W	144	13	E	flip	ledge
+W	146	13	E	flip	step
+W	151	13	E	flip	step
+W	158	13	E	flip	ledge
+W	160	13	E	flip	step
+W	162	13	N	flip	ledge
+W	163	13	N	flip	ledge
+W	163	13	E	flip	ledge
+W	165	13	E	flip	step
+W	189	13	E	flip	step
+W	63	14	E	flip	ledge
+W	144	14	E	flip	ledge
+W	146	14	N	flip	step
+W	147	14	N	flip	step
+W	148	14	N	flip	step
+W	149	14	E	flip	step
+W	151	14	N	flip	step
+W	152	14	N	flip	step
+W	153	14	N	flip	step
+W	154	14	N	flip	step
+W	155	14	N	flip	step
+W	156	14	E	flip	step
+W	158	14	E	flip	ledge
+W	160	14	E	flip	step
+W	165	14	E	flip	step
+W	169	14	N	flip	step
+W	170	14	N	flip	step
+W	171	14	N	flip	step
+W	172	14	N	flip	step
+W	173	14	N	flip	step
+W	174	14	N	flip	step
+W	176	14	N	flip	step
+W	177	14	N	flip	step
+W	178	14	N	flip	step
+W	179	14	N	flip	step
+W	180	14	N	flip	step
+W	181	14	N	flip	step
+W	182	14	N	flip	step
+W	183	14	N	flip	step
+W	184	14	N	flip	step
+W	185	14	N	flip	step
+W	186	14	E	flip	step
+W	189	14	N	flip	step
+W	190	14	N	flip	step
+W	191	14	N	flip	step
+W	192	14	N	flip	step
+W	192	14	E	flip	step
+W	64	15	N	both	inner
+W	65	15	N	both	inner
+W	66	15	N	both	inner
+W	67	15	N	both	inner
+W	68	15	N	both	inner
+W	69	15	N	both	inner
+W	115	15	N	both	inner
+W	116	15	N	both	inner
+W	117	15	N	both	inner
+W	117	15	E	both	inner
+W	144	15	E	flip	ledge
+W	149	15	E	flip	step
+W	156	15	E	flip	step
+W	158	15	E	flip	ledge
+W	160	15	N	flip	step
+W	161	15	N	flip	step
+W	162	15	N	flip	step
+W	163	15	N	flip	step
+W	164	15	N	flip	step
+W	165	15	N	flip	step
+W	166	15	N	flip	step
+W	167	15	N	flip	step
+W	168	15	E	flip	step
+W	175	15	E	flip	step
+W	186	15	E	flip	step
+W	188	15	E	flip	step
+W	145	16	E	flip	ledge
+W	149	16	E	flip	step
+W	154	16	E	flip	ledge
+W	156	16	E	flip	step
+W	158	16	N	flip	ledge
+W	158	16	E	flip	ledge
+W	168	16	E	flip	step
+W	171	16	E	flip	ledge
+W	175	16	E	flip	step
+W	177	16	N	flip	ledge
+W	178	16	N	flip	ledge
+W	179	16	N	flip	ledge
+W	180	16	N	flip	ledge
+W	181	16	N	flip	ledge
+W	182	16	N	flip	ledge
+W	183	16	N	flip	ledge
+W	184	16	N	flip	ledge
+W	184	16	E	flip	ledge
+W	186	16	N	flip	step
+W	187	16	N	flip	step
+W	188	16	N	flip	step
+W	190	16	E	flip	step
+W	192	16	E	flip	step
+W	145	17	E	flip	ledge
+W	148	17	N	flip	step
+W	149	17	N	flip	step
+W	149	17	E	flip	step
+W	154	17	E	flip	ledge
+W	156	17	E	flip	step
+W	166	17	E	flip	ledge
+W	168	17	E	flip	step
+W	170	17	N	flip	ledge
+W	171	17	N	flip	ledge
+W	171	17	E	flip	ledge
+W	174	17	N	flip	step
+W	175	17	N	flip	step
+W	175	17	E	flip	step
+W	190	17	E	flip	step
+W	192	17	E	flip	step
+W	145	18	E	flip	ledge
+W	147	18	E	flip	step
+W	151	18	N	flip	ledge
+W	152	18	N	flip	ledge
+W	153	18	N	flip	ledge
+W	154	18	N	flip	ledge
+W	154	18	E	flip	ledge
+W	156	18	N	flip	step
+W	158	18	N	flip	step
+W	159	18	N	flip	step
+W	160	18	N	flip	step
+W	161	18	N	flip	step
+W	162	18	N	flip	step
+W	163	18	N	flip	step
+W	164	18	E	flip	step
+W	166	18	E	flip	ledge
+W	168	18	E	flip	step
+W	173	18	E	flip	step
+W	179	18	N	flip	step
+W	180	18	N	flip	step
+W	181	18	N	flip	step
+W	182	18	N	flip	step
+W	183	18	N	flip	step
+W	184	18	N	flip	step
+W	185	18	N	flip	step
+W	186	18	N	flip	step
+W	187	18	E	flip	step
+W	189	18	N	flip	step
+W	190	18	E	flip	step
+W	192	18	E	flip	step
+W	145	19	E	flip	ledge
+W	147	19	E	flip	step
+W	149	19	E	flip	ledge
+W	157	19	E	flip	step
+W	164	19	E	flip	step
+W	166	19	E	flip	ledge
+W	169	19	N	flip	step
+W	170	19	N	flip	step
+W	171	19	E	flip	step
+W	173	19	E	flip	step
+W	175	19	N	flip	ledge
+W	176	19	N	flip	ledge
+W	176	19	E	flip	ledge
+W	178	19	E	flip	step
+W	187	19	E	flip	step
+W	190	19	E	flip	step
+W	192	19	E	flip	step
+W	145	20	E	flip	ledge
+W	147	20	E	flip	step
+W	149	20	E	flip	ledge
+W	152	20	N	flip	step
+W	153	20	N	flip	step
+W	154	20	N	flip	step
+W	155	20	N	flip	step
+W	156	20	N	flip	step
+W	157	20	N	flip	step
+W	157	20	E	flip	step
+W	162	20	E	flip	ledge
+W	164	20	E	flip	step
+W	166	20	E	flip	ledge
+W	168	20	E	flip	step
+W	171	20	E	flip	step
+W	173	20	E	flip	step
+W	178	20	E	flip	step
+W	185	20	E	flip	ledge
+W	187	20	E	flip	step
+W	190	20	N	flip	step
+W	192	20	E	flip	step
+W	145	21	E	flip	ledge
+W	147	21	E	flip	step
+W	149	21	E	flip	ledge
+W	151	21	E	flip	step
+W	159	21	N	flip	ledge
+W	160	21	N	flip	ledge
+W	161	21	N	flip	ledge
+W	162	21	N	flip	ledge
+W	162	21	E	flip	ledge
+W	164	21	E	flip	step
+W	166	21	E	flip	ledge
+W	168	21	E	flip	step
+W	173	21	E	flip	step
+W	176	21	N	flip	step
+W	177	21	N	flip	step
+W	178	21	N	flip	step
+W	179	21	N	flip	step
+W	180	21	N	flip	step
+W	181	21	N	flip	step
+W	182	21	N	flip	step
+W	182	21	E	flip	step
+W	184	21	N	flip	ledge
+W	185	21	N	flip	ledge
+W	185	21	E	flip	ledge
+W	187	21	E	flip	step
+W	192	21	E	flip	step
+W	145	22	E	flip	ledge
+W	147	22	E	flip	step
+W	149	22	N	flip	ledge
+W	149	22	E	flip	ledge
+W	151	22	E	flip	step
+W	164	22	E	flip	step
+W	166	22	E	flip	ledge
+W	168	22	E	flip	step
+W	172	22	N	flip	step
+W	173	22	E	flip	step
+W	175	22	E	flip	step
+W	187	22	E	flip	step
+W	189	22	E	flip	ledge
+W	191	22	N	flip	step
+W	192	22	E	flip	step
+W	145	23	E	flip	ledge
+W	147	23	E	flip	step
+W	151	23	E	flip	step
+W	155	23	N	flip	step
+W	156	23	N	flip	step
+W	157	23	N	flip	step
+W	158	23	N	flip	step
+W	159	23	N	flip	step
+W	160	23	N	flip	step
+W	161	23	N	flip	step
+W	161	23	E	flip	step
+W	164	23	E	flip	step
+W	166	23	E	flip	ledge
+W	168	23	E	flip	step
+W	171	23	E	flip	step
+W	173	23	E	flip	step
+W	175	23	E	flip	step
+W	182	23	E	flip	ledge
+W	185	23	N	flip	step
+W	186	23	N	flip	step
+W	187	23	E	flip	step
+W	189	23	E	flip	ledge
+W	192	23	E	flip	step
+W	145	24	E	flip	ledge
+W	147	24	N	flip	step
+W	148	24	N	flip	step
+W	149	24	N	flip	step
+W	151	24	N	flip	step
+W	151	24	E	flip	step
+W	154	24	E	flip	step
+W	164	24	E	flip	step
+W	166	24	E	flip	ledge
+W	168	24	E	flip	step
+W	171	24	E	flip	step
+W	173	24	E	flip	step
+W	175	24	N	flip	step
+W	176	24	N	flip	step
+W	177	24	N	flip	step
+W	178	24	N	flip	step
+W	179	24	N	flip	step
+W	180	24	E	flip	step
+W	182	24	E	flip	ledge
+W	184	24	E	flip	step
+W	187	24	E	flip	step
+W	189	24	N	flip	ledge
+W	190	24	N	flip	ledge
+W	190	24	E	flip	ledge
+W	192	24	E	flip	step
+W	145	25	E	flip	ledge
+W	150	25	E	flip	step
+W	154	25	E	flip	step
+W	156	25	N	flip	ledge
+W	157	25	N	flip	ledge
+W	158	25	N	flip	ledge
+W	159	25	N	flip	ledge
+W	160	25	N	flip	ledge
+W	161	25	N	flip	ledge
+W	162	25	E	flip	ledge
+W	164	25	E	flip	step
+W	166	25	N	flip	ledge
+W	166	25	E	flip	ledge
+W	168	25	E	flip	step
+W	171	25	N	flip	step
+W	171	25	E	flip	step
+W	173	25	E	flip	step
+W	180	25	E	flip	step
+W	182	25	E	flip	ledge
+W	184	25	E	flip	step
+W	187	25	E	flip	step
+W	192	25	E	flip	step
+W	148	26	E	flip	ledge
+W	150	26	E	flip	step
+W	154	26	E	flip	step
+W	162	26	E	flip	ledge
+W	164	26	E	flip	step
+W	166	26	N	both	inner
+W	168	26	E	flip	step
+W	173	26	N	flip	step
+W	173	26	E	flip	step
+W	176	26	N	flip	step
+W	179	26	N	flip	step
+W	180	26	N	flip	step
+W	180	26	E	flip	step
+W	182	26	N	flip	ledge
+W	182	26	E	flip	ledge
+W	184	26	E	flip	step
+W	188	26	N	flip	step
+W	189	26	E	flip	step
+W	192	26	N	flip	step
+W	192	26	E	flip	step
+W	148	27	E	flip	ledge
+W	151	27	N	flip	step
+W	152	27	N	flip	step
+W	153	27	N	flip	step
+W	154	27	N	flip	step
+W	155	27	N	flip	step
+W	156	27	N	flip	step
+W	158	27	N	flip	step
+W	159	27	N	flip	step
+W	160	27	N	flip	step
+W	160	27	E	flip	step
+W	162	27	E	flip	ledge
+W	165	27	N	flip	step
+W	166	27	N	flip	step
+W	167	27	N	flip	step
+W	168	27	N	flip	step
+W	168	27	E	flip	step
+W	171	27	E	flip	ledge
+W	175	27	E	flip	step
+W	178	27	E	flip	step
+W	184	27	E	flip	step
+W	187	27	E	flip	step
+W	189	27	E	flip	step
+W	191	27	E	flip	step
+W	148	28	E	flip	ledge
+W	150	28	E	flip	step
+W	157	28	E	flip	step
+W	162	28	N	flip	ledge
+W	162	28	E	flip	ledge
+W	164	28	E	flip	step
+W	170	28	N	flip	ledge
+W	171	28	N	flip	ledge
+W	171	28	E	flip	ledge
+W	174	28	N	flip	step
+W	175	28	N	flip	step
+W	175	28	E	flip	step
+W	177	28	N	flip	step
+W	178	28	N	flip	step
+W	179	28	N	flip	step
+W	180	28	N	flip	step
+W	181	28	E	flip	step
+W	184	28	E	flip	step
+W	187	28	E	flip	step
+W	189	28	E	flip	step
+W	191	28	E	flip	step
+W	146	29	N	flip	ledge
+W	147	29	N	flip	ledge
+W	148	29	N	flip	ledge
+W	148	29	E	flip	ledge
+W	150	29	E	flip	step
+W	154	29	E	flip	ledge
+W	157	29	E	flip	step
+W	164	29	E	flip	step
+W	166	29	E	flip	ledge
+W	173	29	E	flip	step
+W	181	29	E	flip	step
+W	184	29	E	flip	step
+W	187	29	E	flip	step
+W	189	29	N	flip	step
+W	189	29	E	flip	step
+W	191	29	N	flip	step
+W	192	29	E	flip	step
+W	145	30	E	flip	ledge
+W	150	30	E	flip	step
+W	152	30	N	flip	ledge
+W	153	30	N	flip	ledge
+W	154	30	E	flip	ledge
+W	158	30	N	flip	step
+W	159	30	N	flip	step
+W	160	30	N	flip	step
+W	161	30	N	flip	step
+W	162	30	N	flip	step
+W	163	30	N	flip	step
+W	164	30	E	flip	step
+W	166	30	E	flip	ledge
+W	169	30	N	flip	step
+W	170	30	N	flip	step
+W	171	30	N	flip	step
+W	172	30	N	flip	step
+W	173	30	N	flip	step
+W	174	30	N	flip	step
+W	176	30	N	flip	step
+W	177	30	N	flip	step
+W	178	30	N	flip	step
+W	179	30	N	flip	step
+W	179	30	E	flip	step
+W	181	30	E	flip	step
+W	184	30	E	flip	step
+W	187	30	E	flip	step
+W	192	30	E	flip	step
+W	145	31	E	flip	ledge
+W	148	31	N	flip	step
+W	149	31	N	flip	step
+W	150	31	E	flip	step
+W	154	31	E	flip	ledge
+W	157	31	E	flip	step
+W	164	31	E	flip	step
+W	166	31	N	flip	ledge
+W	166	31	E	flip	ledge
+W	168	31	E	flip	step
+W	175	31	E	flip	step
+W	181	31	E	flip	step
+W	184	31	E	flip	step
+W	189	31	E	flip	step
+W	192	31	E	flip	step
+W	145	32	E	flip	ledge
+W	147	32	E	flip	step
+W	150	32	N	flip	step
+W	151	32	N	flip	step
+W	152	32	N	flip	step
+W	152	32	E	flip	step
+W	154	32	E	flip	ledge
+W	157	32	E	flip	step
+W	159	32	N	flip	ledge
+W	160	32	N	flip	ledge
+W	161	32	N	flip	ledge
+W	162	32	N	flip	ledge
+W	162	32	E	flip	ledge
+W	164	32	E	flip	step
+W	168	32	N	flip	step
+W	169	32	N	flip	step
+W	170	32	N	flip	step
+W	171	32	N	flip	step
+W	172	32	E	flip	step
+W	175	32	E	flip	step
+W	177	32	N	flip	ledge
+W	178	32	N	flip	ledge
+W	178	32	E	flip	ledge
+W	181	32	N	flip	step
+W	182	32	N	flip	step
+W	183	32	N	flip	step
+W	185	32	N	flip	step
+W	186	32	N	flip	step
+W	187	32	N	flip	step
+W	188	32	N	flip	step
+W	189	32	E	flip	step
+W	192	32	E	flip	step
+W	145	33	E	flip	ledge
+W	147	33	E	flip	step
+W	154	33	E	flip	ledge
+W	156	33	N	flip	step
+W	157	33	E	flip	step
+W	164	33	N	flip	step
+W	165	33	N	flip	step
+W	166	33	E	flip	step
+W	172	33	E	flip	step
+W	175	33	E	flip	step
+W	180	33	E	flip	step
+W	184	33	E	flip	step
+W	189	33	E	flip	step
+W	192	33	N	flip	step
+W	192	33	E	flip	step
+W	145	34	E	flip	ledge
+W	147	34	E	flip	step
+W	150	34	N	flip	ledge
+W	151	34	N	flip	ledge
+W	152	34	N	flip	ledge
+W	153	34	N	flip	ledge
+W	154	34	E	flip	ledge
+W	158	34	N	flip	step
+W	159	34	N	flip	step
+W	160	34	N	flip	step
+W	161	34	N	flip	step
+W	161	34	E	flip	step
+W	167	34	N	flip	step
+W	168	34	N	flip	step
+W	169	34	N	flip	step
+W	170	34	N	flip	step
+W	171	34	N	flip	step
+W	172	34	N	flip	step
+W	172	34	E	flip	step
+W	175	34	E	flip	step
+W	178	34	N	flip	step
+W	179	34	N	flip	step
+W	180	34	E	flip	step
+W	182	34	E	flip	ledge
+W	184	34	E	flip	step
+W	187	34	E	flip	step
+W	189	34	E	flip	step
+W	191	34	E	flip	step
+W	145	35	E	flip	ledge
+W	148	35	E	flip	step
+W	154	35	N	flip	ledge
+W	155	35	E	flip	ledge
+W	157	35	E	flip	step
+W	164	35	E	flip	ledge
+W	166	35	E	flip	step
+W	175	35	E	flip	step
+W	177	35	E	flip	step
+W	180	35	E	flip	step
+W	182	35	N	flip	ledge
+W	182	35	E	flip	ledge
+W	184	35	E	flip	step
+W	187	35	E	flip	step
+W	189	35	E	flip	step
+W	191	35	N	flip	step
+W	192	35	E	flip	step
+W	145	36	E	flip	ledge
+W	148	36	N	flip	step
+W	149	36	N	flip	step
+W	150	36	N	flip	step
+W	151	36	N	flip	step
+W	152	36	E	flip	step
+W	155	36	E	flip	ledge
+W	157	36	E	flip	step
+W	159	36	N	flip	ledge
+W	160	36	N	flip	ledge
+W	161	36	N	flip	ledge
+W	162	36	N	flip	ledge
+W	163	36	N	flip	ledge
+W	164	36	E	flip	ledge
+W	166	36	E	flip	step
+W	168	36	E	flip	step
+W	175	36	E	flip	step
+W	177	36	E	flip	step
+W	180	36	E	flip	step
+W	184	36	E	flip	step
+W	187	36	N	flip	step
+W	188	36	N	flip	step
+W	189	36	N	flip	step
+W	189	36	E	flip	step
+W	192	36	E	flip	step
+W	145	37	E	flip	ledge
+W	147	37	E	flip	step
+W	152	37	N	flip	step
+W	153	37	E	flip	step
+W	155	37	E	flip	ledge
+W	157	37	E	flip	step
+W	164	37	E	flip	ledge
+W	166	37	E	flip	step
+W	168	37	E	flip	step
+W	171	37	N	flip	step
+W	172	37	E	flip	step
+W	175	37	E	flip	step
+W	177	37	E	flip	step
+W	180	37	N	flip	step
+W	181	37	N	flip	step
+W	182	37	E	flip	step
+W	184	37	E	flip	step
+W	192	37	E	flip	step
+W	145	38	E	flip	ledge
+W	147	38	E	flip	step
+W	149	38	E	flip	step
+W	153	38	E	flip	step
+W	155	38	E	flip	ledge
+W	157	38	E	flip	step
+W	161	38	N	flip	step
+W	162	38	N	flip	step
+W	162	38	E	flip	step
+W	164	38	E	flip	ledge
+W	166	38	E	flip	step
+W	168	38	E	flip	step
+W	170	38	E	flip	step
+W	172	38	E	flip	step
+W	175	38	E	flip	step
+W	177	38	E	flip	step
+W	182	38	E	flip	step
+W	184	38	E	flip	step
+W	192	38	E	flip	step
+W	145	39	E	flip	ledge
+W	147	39	N	flip	step
+W	148	39	N	flip	step
+W	150	39	N	flip	step
+W	151	39	N	flip	step
+W	152	39	N	flip	step
+W	153	39	E	flip	step
+W	155	39	E	flip	ledge
+W	157	39	E	flip	step
+W	160	39	E	flip	step
+W	164	39	E	flip	ledge
+W	166	39	E	flip	step
+W	168	39	E	flip	step
+W	170	39	E	flip	step
+W	172	39	E	flip	step
+W	175	39	E	flip	step
+W	177	39	E	flip	step
+W	180	39	E	flip	ledge
+W	182	39	E	flip	step
+W	184	39	N	flip	step
+W	185	39	E	flip	step
+W	189	39	N	flip	step
+W	190	39	N	flip	step
+W	191	39	N	flip	step
+W	192	39	E	flip	step
+W	145	40	E	flip	ledge
+W	149	40	E	flip	step
+W	153	40	E	flip	step
+W	155	40	E	flip	ledge
+W	157	40	E	flip	step
+W	160	40	E	flip	step
+W	164	40	E	flip	ledge
+W	166	40	E	flip	step
+W	168	40	E	flip	step
+W	170	40	E	flip	step
+W	172	40	E	flip	step
+W	175	40	E	flip	step
+W	177	40	E	flip	step
+W	179	40	N	flip	ledge
+W	180	40	N	flip	ledge
+W	180	40	E	flip	ledge
+W	182	40	E	flip	step
+W	185	40	E	flip	step
+W	188	40	E	flip	step
+W	192	40	E	flip	step
+W	143	41	N	flip	ledge
+W	144	41	N	flip	ledge
+W	145	41	N	flip	ledge
+W	146	41	N	flip	ledge
+W	147	41	E	flip	ledge
+W	149	41	E	flip	step
+W	151	41	E	flip	ledge
+W	153	41	N	flip	step
+W	153	41	E	flip	step
+W	155	41	E	flip	ledge
+W	157	41	E	flip	step
+W	160	41	E	flip	step
+W	162	41	N	flip	ledge
+W	163	41	N	flip	ledge
+W	164	41	N	flip	ledge
+W	164	41	E	flip	ledge
+W	166	41	E	flip	step
+W	168	41	E	flip	step
+W	170	41	E	flip	step
+W	172	41	E	flip	step
+W	175	41	E	flip	step
+W	177	41	E	flip	step
+W	182	41	E	flip	step
+W	185	41	E	flip	step
+W	188	41	E	flip	step
+W	190	41	N	flip	ledge
+W	190	41	E	flip	ledge
+W	192	41	E	flip	step
+W	194	41	N	flip	ledge
+W	142	42	E	flip	ledge
+W	147	42	N	flip	ledge
+W	147	42	E	flip	ledge
+W	149	42	E	flip	step
+W	151	42	N	flip	ledge
+W	151	42	E	flip	ledge
+W	155	42	E	flip	ledge
+W	157	42	E	flip	step
+W	160	42	E	flip	step
+W	166	42	E	flip	step
+W	168	42	E	flip	step
+W	170	42	E	flip	step
+W	172	42	E	flip	step
+W	175	42	E	flip	step
+W	177	42	E	flip	step
+W	181	42	N	flip	step
+W	182	42	E	flip	step
+W	185	42	N	flip	step
+W	186	42	N	flip	step
+W	187	42	N	flip	step
+W	188	42	E	flip	step
+W	192	42	E	flip	step
+W	142	43	E	flip	ledge
+W	145	43	E	flip	step
+W	149	43	E	flip	step
+W	155	43	E	flip	ledge
+W	157	43	E	flip	step
+W	160	43	N	flip	step
+W	161	43	N	flip	step
+W	162	43	N	flip	step
+W	163	43	N	flip	step
+W	164	43	N	flip	step
+W	165	43	N	flip	step
+W	166	43	N	flip	step
+W	166	43	E	flip	step
+W	168	43	E	flip	step
+W	170	43	E	flip	step
+W	172	43	E	flip	step
+W	175	43	N	flip	step
+W	176	43	N	flip	step
+W	177	43	N	flip	step
+W	177	43	E	flip	step
+W	180	43	E	flip	step
+W	182	43	E	flip	step
+W	188	43	N	flip	step
+W	189	43	N	flip	step
+W	190	43	E	flip	step
+W	192	43	N	flip	step
+W	193	43	E	flip	step
+W	142	44	E	flip	ledge
+W	146	44	N	flip	step
+W	147	44	N	flip	step
+W	148	44	N	flip	step
+W	149	44	N	flip	step
+W	150	44	N	flip	step
+W	152	44	N	flip	step
+W	153	44	N	flip	step
+W	153	44	E	flip	step
+W	155	44	E	flip	ledge
+W	157	44	E	flip	step
+W	168	44	E	flip	step
+W	170	44	E	flip	step
+W	172	44	E	flip	step
+W	180	44	E	flip	step
+W	182	44	E	flip	step
+W	184	44	N	flip	ledge
+W	185	44	N	flip	ledge
+W	186	44	N	flip	ledge
+W	186	44	E	flip	ledge
+W	190	44	E	flip	step
+W	193	44	E	flip	step
+W	73	45	E	both	ledge
+W	142	45	E	flip	ledge
+W	144	45	N	flip	step
+W	145	45	N	flip	step
+W	145	45	E	flip	step
+W	151	45	E	flip	step
+W	155	45	E	flip	ledge
+W	158	45	N	flip	step
+W	159	45	N	flip	step
+W	160	45	N	flip	step
+W	161	45	N	flip	step
+W	162	45	N	flip	step
+W	163	45	N	flip	step
+W	164	45	N	flip	step
+W	165	45	N	flip	step
+W	166	45	N	flip	step
+W	167	45	N	flip	step
+W	168	45	N	flip	step
+W	168	45	E	flip	step
+W	170	45	E	flip	step
+W	172	45	E	flip	step
+W	178	45	E	flip	ledge
+W	180	45	E	flip	step
+W	182	45	E	flip	step
+W	190	45	N	flip	step
+W	191	45	N	flip	step
+W	192	45	N	flip	step
+W	193	45	N	flip	step
+W	193	45	E	flip	step
+W	73	46	E	both	ledge
+W	142	46	E	flip	ledge
+W	149	46	E	flip	ledge
+W	151	46	E	flip	step
+W	155	46	E	flip	ledge
+W	157	46	E	flip	step
+W	170	46	E	flip	step
+W	172	46	E	flip	step
+W	174	46	N	flip	ledge
+W	175	46	N	flip	ledge
+W	176	46	N	flip	ledge
+W	177	46	N	flip	ledge
+W	178	46	N	flip	ledge
+W	178	46	E	flip	ledge
+W	180	46	E	flip	step
+W	182	46	N	flip	step
+W	183	46	N	flip	step
+W	184	46	N	flip	step
+W	185	46	N	flip	step
+W	186	46	N	flip	step
+W	187	46	E	flip	step
+W	73	47	E	both	ledge
+W	149	47	E	flip	ledge
+W	151	47	E	flip	step
+W	153	47	N	flip	ledge
+W	154	47	N	flip	ledge
+W	155	47	N	flip	ledge
+W	155	47	E	flip	ledge
+W	157	47	N	flip	step
+W	158	47	N	flip	step
+W	159	47	N	flip	step
+W	160	47	N	flip	step
+W	163	47	N	flip	step
+W	164	47	N	flip	step
+W	165	47	N	flip	step
+W	166	47	N	flip	step
+W	167	47	N	flip	step
+W	168	47	N	flip	step
+W	169	47	N	flip	step
+W	170	47	N	flip	step
+W	170	47	E	flip	step
+W	172	47	E	flip	step
+W	180	47	E	flip	step
+W	187	47	E	flip	step
+W	73	48	E	both	ledge
+W	149	48	E	flip	ledge
+W	151	48	E	flip	step
+W	162	48	E	flip	step
+W	172	48	N	flip	step
+W	173	48	N	flip	step
+W	174	48	N	flip	step
+W	175	48	N	flip	step
+W	176	48	N	flip	step
+W	177	48	N	flip	step
+W	178	48	N	flip	step
+W	179	48	N	flip	step
+W	180	48	N	flip	step
+W	180	48	E	flip	step
+W	185	48	E	flip	ledge
+W	187	48	E	flip	step
+W	73	49	E	flip	ledge
+W	149	49	E	flip	ledge
+W	151	49	N	flip	step
+W	152	49	N	flip	step
+W	153	49	N	flip	step
+W	154	49	N	flip	step
+W	155	49	N	flip	step
+W	156	49	N	flip	step
+W	157	49	N	flip	step
+W	158	49	N	flip	step
+W	159	49	N	flip	step
+W	160	49	N	flip	step
+W	161	49	N	flip	step
+W	162	49	N	flip	step
+W	162	49	E	flip	step
+W	170	49	E	flip	ledge
+W	185	49	E	flip	ledge
+W	187	49	N	flip	step
+W	187	49	E	flip	step
+W	73	50	E	flip	ledge
+W	149	50	E	flip	ledge
+W	185	50	E	flip	ledge
+W	73	51	E	flip	ledge
+W	73	52	E	flip	ledge
+W	73	53	E	flip	ledge
+W	73	54	E	flip	ledge
+W	73	55	E	flip	ledge
+W	73	56	E	flip	ledge
+W	74	56	N	both	step
+W	75	56	N	flip	step
+W	76	56	N	flip	step
+W	77	56	N	flip	step
+W	78	56	N	flip	step
+W	79	56	N	flip	step
+W	80	56	N	flip	step
+W	81	56	N	flip	step
+W	82	56	N	flip	step
+W	83	56	N	flip	step
+W	84	56	N	flip	step
+W	85	56	N	flip	step
+W	86	56	N	flip	step
+W	87	56	N	flip	step
+W	88	56	N	flip	step
+W	89	56	N	flip	step
+W	90	56	N	flip	step
+W	91	56	N	flip	step
+W	92	56	N	flip	step
+W	93	56	N	flip	step
+W	94	56	N	flip	step
+W	95	56	N	flip	step
+W	96	56	N	flip	step
+W	97	56	N	flip	step
+W	98	56	N	flip	step
+W	99	56	N	flip	step
+W	100	56	N	flip	step
+W	101	56	N	flip	step
+W	102	56	N	flip	step
+W	103	56	N	flip	step
+W	104	56	N	flip	step
+W	105	56	N	flip	step
+W	106	56	N	flip	step
+W	107	56	N	flip	step
+W	108	56	N	flip	step
+W	109	56	N	flip	step
+W	110	56	N	flip	step
+W	111	56	N	flip	step
+W	112	56	N	flip	step
+W	113	56	N	flip	step
+W	73	57	E	flip	ledge
+W	2	94	N	flip	ledge
+W	3	94	N	flip	ledge
+W	4	94	N	flip	ledge
+W	5	94	N	flip	ledge
+W	6	94	N	flip	ledge
+W	7	94	N	flip	ledge
+W	8	94	N	flip	ledge
+W	9	94	N	flip	ledge
+W	10	94	N	flip	ledge
+W	11	94	N	flip	ledge
+W	12	94	N	flip	ledge
+W	13	94	N	flip	ledge
+W	14	94	N	flip	ledge
+W	15	94	N	flip	ledge
+W	16	94	N	flip	ledge
+W	17	94	N	flip	ledge
+W	18	94	N	flip	ledge
+W	19	94	N	flip	ledge
+W	20	94	N	flip	ledge
+W	21	94	N	flip	ledge
+W	22	94	N	flip	ledge
+W	23	94	N	flip	ledge
+W	24	94	N	flip	ledge
+W	25	94	N	flip	ledge
+W	26	94	N	flip	ledge
+W	27	94	N	flip	ledge
+W	28	94	N	flip	ledge
+W	29	94	N	flip	ledge
+W	30	94	N	flip	ledge
+W	31	94	N	flip	ledge
+W	32	94	N	flip	ledge
+W	33	94	N	flip	ledge
+W	34	94	N	flip	ledge
+W	35	94	N	flip	ledge
+W	36	94	N	flip	ledge
+W	163	94	N	flip	ledge
+W	164	94	N	flip	ledge
+W	165	94	N	flip	ledge
+W	166	94	N	flip	ledge
+W	167	94	N	flip	ledge
+W	168	94	N	flip	ledge
+W	169	94	N	flip	ledge
+W	170	94	N	flip	ledge
+W	171	94	N	flip	ledge
+W	172	94	N	flip	ledge
+W	173	94	N	flip	ledge
+W	174	94	N	flip	ledge
+W	175	94	N	flip	ledge
+W	176	94	N	flip	ledge
+W	177	94	N	flip	ledge
+W	178	94	N	flip	ledge
+W	179	94	N	flip	ledge
+W	180	94	N	flip	ledge
+W	181	94	N	flip	ledge
+W	182	94	N	flip	ledge
+W	183	94	N	flip	ledge
+W	184	94	N	flip	ledge
+W	185	94	N	flip	ledge
+W	186	94	N	flip	ledge
+W	187	94	N	flip	ledge
+W	188	94	N	flip	ledge
+W	189	94	N	flip	ledge
+W	190	94	N	flip	ledge
+W	191	94	N	flip	ledge
+W	192	94	N	flip	ledge
+W	193	94	N	flip	ledge
+W	194	94	N	flip	ledge
+W	195	94	N	flip	ledge
+W	196	94	N	flip	ledge
+W	197	94	N	flip	ledge
+W	1	95	E	flip	ledge
+W	162	95	E	flip	ledge
+W	1	96	E	flip	ledge
+W	162	96	E	flip	ledge
+W	1	97	E	flip	ledge
+W	162	97	E	flip	ledge
+W	1	98	E	flip	ledge
+W	162	98	E	flip	ledge
+W	1	99	E	flip	ledge
+W	162	99	E	flip	ledge
+W	1	100	E	flip	ledge
+W	162	100	E	flip	ledge
+W	1	101	E	flip	ledge
+W	162	101	E	flip	ledge
+W	1	102	E	flip	ledge
+W	162	102	E	flip	ledge
+W	1	103	E	flip	ledge
+W	162	103	E	flip	ledge
+W	1	104	E	flip	ledge
+W	162	104	E	flip	ledge
+W	1	105	E	flip	ledge
+W	162	105	E	flip	ledge
+W	1	106	E	flip	ledge
+W	162	106	E	flip	ledge
+W	10	134	N	both	ledge
+W	11	134	N	both	ledge
+W	12	134	N	flip	ledge
+W	18	134	N	both	ledge
+W	19	134	N	both	ledge
+W	20	134	N	both	ledge
+W	40	134	N	both	ledge
+W	41	134	N	both	ledge
+W	42	134	N	flip	ledge
+W	48	134	N	both	ledge
+W	49	134	N	both	ledge
+W	50	134	N	both	ledge
+W	145	134	N	both	ledge
+W	146	134	N	both	ledge
+W	147	134	N	flip	ledge
+W	153	134	N	both	ledge
+W	154	134	N	both	ledge
+W	155	134	N	both	ledge
+W	175	134	N	both	ledge
+W	176	134	N	both	ledge
+W	177	134	N	flip	ledge
+W	183	134	N	both	ledge
+W	184	134	N	both	ledge
+W	185	134	N	both	ledge
+W	20	135	E	both	inner
+W	50	135	E	both	inner
+W	55	135	N	both	ledge
+W	56	135	N	both	ledge
+W	57	135	N	both	ledge
+W	58	135	N	both	ledge
+W	59	135	N	both	ledge
+W	155	135	E	both	inner
+W	185	135	E	both	inner
+W	190	135	N	both	ledge
+W	191	135	N	both	ledge
+W	192	135	N	both	ledge
+W	193	135	N	both	ledge
+W	194	135	N	both	ledge
+W	7	136	N	flip	ledge
+W	13	136	E	both	inner
+W	15	136	N	both	ledge
+W	18	136	N	both	inner
+W	20	136	N	both	inner
+W	21	136	E	both	inner
+W	23	136	N	both	ledge
+W	32	136	N	flip	ledge
+W	38	136	E	both	ledge
+W	43	136	E	both	inner
+W	45	136	N	both	ledge
+W	48	136	N	both	inner
+W	50	136	N	both	inner
+W	51	136	E	both	inner
+W	53	136	N	both	ledge
+W	56	136	N	both	inner
+W	58	136	N	both	inner
+W	142	136	N	flip	ledge
+W	148	136	E	both	inner
+W	150	136	N	both	ledge
+W	153	136	N	both	inner
+W	155	136	N	both	inner
+W	156	136	E	both	inner
+W	158	136	N	both	ledge
+W	167	136	N	flip	ledge
+W	173	136	E	both	ledge
+W	178	136	E	both	inner
+W	180	136	N	both	ledge
+W	183	136	N	both	inner
+W	185	136	N	both	inner
+W	186	136	E	both	inner
+W	188	136	N	both	ledge
+W	191	136	N	both	inner
+W	193	136	N	both	inner
+W	6	137	E	flip	ledge
+W	9	137	E	both	inner
+W	13	137	E	both	inner
+W	15	137	N	both	inner
+W	15	137	E	both	inner
+W	17	137	E	both	inner
+W	21	137	E	both	inner
+W	23	137	N	both	inner
+W	28	137	N	flip	ledge
+W	31	137	E	flip	ledge
+W	36	137	N	flip	ledge
+W	38	137	E	both	ledge
+W	43	137	E	both	inner
+W	45	137	N	both	inner
+W	45	137	E	both	inner
+W	47	137	E	both	inner
+W	51	137	E	both	inner
+W	53	137	N	both	inner
+W	53	137	E	both	inner
+W	55	137	E	both	inner
+W	141	137	E	flip	ledge
+W	144	137	E	both	inner
+W	148	137	E	both	inner
+W	150	137	N	both	inner
+W	150	137	E	both	inner
+W	152	137	E	both	inner
+W	156	137	E	both	inner
+W	158	137	N	both	inner
+W	163	137	N	flip	ledge
+W	166	137	E	flip	ledge
+W	171	137	N	flip	ledge
+W	173	137	E	both	ledge
+W	178	137	E	both	inner
+W	180	137	N	both	inner
+W	180	137	E	both	inner
+W	182	137	E	both	inner
+W	186	137	E	both	inner
+W	188	137	N	both	inner
+W	188	137	E	both	inner
+W	190	137	E	both	inner
+W	9	138	E	both	inner
+W	11	138	N	both	ledge
+W	13	138	E	both	inner
+W	17	138	E	both	inner
+W	19	138	N	both	ledge
+W	21	138	E	both	inner
+W	27	138	E	flip	ledge
+W	35	138	E	flip	ledge
+W	38	138	E	flip	ledge
+W	41	138	N	both	ledge
+W	43	138	E	both	inner
+W	47	138	E	both	inner
+W	49	138	N	both	ledge
+W	51	138	E	both	inner
+W	55	138	E	both	inner
+W	57	138	N	both	ledge
+W	144	138	E	both	inner
+W	146	138	N	both	ledge
+W	148	138	E	both	inner
+W	152	138	E	both	inner
+W	154	138	N	both	ledge
+W	156	138	E	both	inner
+W	162	138	E	flip	ledge
+W	170	138	E	flip	ledge
+W	173	138	E	flip	ledge
+W	176	138	N	both	ledge
+W	178	138	E	both	inner
+W	182	138	E	both	inner
+W	184	138	N	both	ledge
+W	186	138	E	both	inner
+W	190	138	E	both	inner
+W	192	138	N	both	ledge
+W	6	139	E	both	ledge
+W	7	139	N	both	inner
+W	7	139	E	both	inner
+W	9	139	E	both	inner
+W	11	139	N	both	inner
+W	11	139	E	both	inner
+W	13	139	E	both	inner
+W	15	139	N	both	inner
+W	15	139	E	both	inner
+W	17	139	E	both	inner
+W	19	139	N	both	inner
+W	19	139	E	both	inner
+W	21	139	E	both	inner
+W	23	139	N	both	inner
+W	30	139	N	flip	ledge
+W	31	139	N	both	ledge
+W	32	139	N	flip	ledge
+W	33	139	N	flip	ledge
+W	34	139	N	both	ledge
+W	38	139	E	flip	ledge
+W	39	139	E	both	inner
+W	41	139	N	both	inner
+W	41	139	E	both	inner
+W	43	139	E	both	inner
+W	45	139	N	both	inner
+W	45	139	E	both	inner
+W	47	139	E	both	inner
+W	49	139	N	both	inner
+W	49	139	E	both	inner
+W	51	139	E	both	inner
+W	53	139	N	both	inner
+W	53	139	E	both	inner
+W	55	139	E	both	inner
+W	57	139	N	both	inner
+W	57	139	E	both	inner
+W	89	139	N	flip	ledge
+W	90	139	N	flip	ledge
+W	91	139	N	flip	ledge
+W	92	139	N	flip	ledge
+W	93	139	N	flip	ledge
+W	94	139	N	flip	ledge
+W	95	139	N	flip	ledge
+W	96	139	N	flip	ledge
+W	97	139	N	flip	ledge
+W	98	139	N	flip	ledge
+W	99	139	N	flip	ledge
+W	100	139	N	flip	ledge
+W	101	139	N	flip	ledge
+W	102	139	N	flip	ledge
+W	103	139	N	flip	ledge
+W	104	139	N	flip	ledge
+W	105	139	N	flip	ledge
+W	106	139	N	flip	ledge
+W	107	139	N	flip	ledge
+W	108	139	N	flip	ledge
+W	109	139	N	flip	ledge
+W	110	139	N	flip	ledge
+W	141	139	E	both	ledge
+W	142	139	N	both	inner
+W	142	139	E	both	inner
+W	144	139	E	both	inner
+W	146	139	N	both	inner
+W	146	139	E	both	inner
+W	148	139	E	both	inner
+W	150	139	N	both	inner
+W	150	139	E	both	inner
+W	152	139	E	both	inner
+W	154	139	N	both	inner
+W	154	139	E	both	inner
+W	156	139	E	both	inner
+W	158	139	N	both	inner
+W	165	139	N	flip	ledge
+W	166	139	N	both	ledge
+W	167	139	N	flip	ledge
+W	168	139	N	flip	ledge
+W	169	139	N	both	ledge
+W	173	139	E	flip	ledge
+W	174	139	E	both	inner
+W	176	139	N	both	inner
+W	176	139	E	both	inner
+W	178	139	E	both	inner
+W	180	139	N	both	inner
+W	180	139	E	both	inner
+W	182	139	E	both	inner
+W	184	139	N	both	inner
+W	184	139	E	both	inner
+W	186	139	E	both	inner
+W	188	139	N	both	inner
+W	188	139	E	both	inner
+W	190	139	E	both	inner
+W	192	139	N	both	inner
+W	192	139	E	both	inner
+W	9	140	E	both	inner
+W	13	140	E	both	inner
+W	17	140	E	both	inner
+W	21	140	E	both	inner
+W	26	140	N	flip	ledge
+W	28	140	N	both	ledge
+W	28	140	E	both	ledge
+W	36	140	N	flip	ledge
+W	38	140	E	flip	ledge
+W	39	140	E	both	inner
+W	43	140	E	both	inner
+W	47	140	E	both	inner
+W	51	140	E	both	inner
+W	55	140	E	both	inner
+W	88	140	E	flip	ledge
+W	144	140	E	both	inner
+W	148	140	E	both	inner
+W	152	140	E	both	inner
+W	156	140	E	both	inner
+W	161	140	N	flip	ledge
+W	163	140	N	both	ledge
+W	163	140	E	both	ledge
+W	171	140	N	flip	ledge
+W	173	140	E	flip	ledge
+W	174	140	E	both	inner
+W	178	140	E	both	inner
+W	182	140	E	both	inner
+W	186	140	E	both	inner
+W	190	140	E	both	inner
+W	6	141	E	both	ledge
+W	7	141	E	both	inner
+W	9	141	E	both	inner
+W	11	141	E	both	inner
+W	13	141	E	both	inner
+W	15	141	E	both	inner
+W	17	141	E	both	inner
+W	19	141	E	both	inner
+W	21	141	E	both	inner
+W	25	141	E	flip	ledge
+W	38	141	E	flip	ledge
+W	39	141	E	both	inner
+W	41	141	E	both	inner
+W	43	141	E	both	inner
+W	45	141	E	both	inner
+W	47	141	E	both	inner
+W	49	141	E	both	inner
+W	51	141	E	both	inner
+W	53	141	E	both	inner
+W	55	141	E	both	inner
+W	57	141	E	both	inner
+W	88	141	E	flip	ledge
+W	141	141	E	both	ledge
+W	142	141	E	both	inner
+W	144	141	E	both	inner
+W	146	141	E	both	inner
+W	148	141	E	both	inner
+W	150	141	E	both	inner
+W	152	141	E	both	inner
+W	154	141	E	both	inner
+W	156	141	E	both	inner
+W	160	141	E	flip	ledge
+W	173	141	E	flip	ledge
+W	174	141	E	both	inner
+W	176	141	E	both	inner
+W	178	141	E	both	inner
+W	180	141	E	both	inner
+W	182	141	E	both	inner
+W	184	141	E	both	inner
+W	186	141	E	both	inner
+W	188	141	E	both	inner
+W	190	141	E	both	inner
+W	192	141	E	both	inner
+W	9	142	E	both	inner
+W	13	142	E	both	inner
+W	17	142	E	both	inner
+W	21	142	E	both	inner
+W	38	142	E	flip	ledge
+W	39	142	E	both	inner
+W	43	142	E	both	inner
+W	47	142	E	both	inner
+W	51	142	E	both	inner
+W	55	142	E	both	inner
+W	88	142	E	flip	ledge
+W	144	142	E	both	inner
+W	148	142	E	both	inner
+W	152	142	E	both	inner
+W	156	142	E	both	inner
+W	173	142	E	flip	ledge
+W	174	142	E	both	inner
+W	178	142	E	both	inner
+W	182	142	E	both	inner
+W	186	142	E	both	inner
+W	190	142	E	both	inner
+W	2	143	N	flip	ledge
+W	3	143	N	flip	ledge
+W	4	143	N	flip	ledge
+W	5	143	N	both	ledge
+W	8	143	E	both	inner
+W	9	143	E	both	step
+W	12	143	E	both	inner
+W	13	143	E	both	step
+W	16	143	E	both	inner
+W	17	143	E	both	step
+W	20	143	E	both	inner
+W	21	143	E	both	step
+W	24	143	E	both	inner
+W	25	143	N	both	ledge
+W	26	143	N	both	ledge
+W	27	143	N	flip	ledge
+W	37	143	N	flip	ledge
+W	39	143	E	both	step
+W	42	143	E	both	inner
+W	43	143	E	both	step
+W	46	143	E	both	inner
+W	47	143	E	both	step
+W	50	143	E	both	inner
+W	51	143	E	both	step
+W	54	143	E	both	inner
+W	55	143	E	both	step
+W	58	143	E	both	inner
+W	59	143	E	both	inner
+W	61	143	N	both	ledge
+W	62	143	N	flip	ledge
+W	88	143	E	flip	ledge
+W	89	143	N	flip	step
+W	90	143	N	flip	step
+W	91	143	N	flip	step
+W	92	143	N	flip	step
+W	93	143	N	flip	step
+W	94	143	N	flip	step
+W	95	143	N	flip	step
+W	96	143	N	flip	step
+W	97	143	N	flip	step
+W	98	143	N	flip	step
+W	99	143	N	flip	step
+W	100	143	N	flip	step
+W	101	143	N	flip	step
+W	102	143	N	flip	step
+W	103	143	N	flip	step
+W	104	143	N	flip	step
+W	105	143	N	flip	step
+W	106	143	N	flip	step
+W	137	143	N	flip	ledge
+W	138	143	N	flip	ledge
+W	139	143	N	flip	ledge
+W	140	143	N	both	ledge
+W	143	143	E	both	inner
+W	144	143	E	both	step
+W	147	143	E	both	inner
+W	148	143	E	both	step
+W	151	143	E	both	inner
+W	152	143	E	both	step
+W	155	143	E	both	inner
+W	156	143	E	both	step
+W	159	143	E	both	inner
+W	160	143	N	both	ledge
+W	161	143	N	both	ledge
+W	162	143	N	flip	ledge
+W	172	143	N	flip	ledge
+W	174	143	E	both	step
+W	177	143	E	both	inner
+W	178	143	E	both	step
+W	181	143	E	both	inner
+W	182	143	E	both	step
+W	185	143	E	both	inner
+W	186	143	E	both	step
+W	189	143	E	both	inner
+W	190	143	E	both	step
+W	193	143	E	both	inner
+W	194	143	E	both	inner
+W	196	143	N	both	ledge
+W	197	143	N	flip	ledge
+W	1	144	E	flip	ledge
+W	4	144	N	both	inner
+W	5	144	E	both	step
+W	8	144	E	both	inner
+W	9	144	E	both	step
+W	12	144	E	both	inner
+W	13	144	E	both	step
+W	16	144	E	both	inner
+W	17	144	E	both	step
+W	20	144	E	both	inner
+W	21	144	E	both	step
+W	24	144	E	both	inner
+W	26	144	N	both	inner
+W	39	144	E	both	step
+W	42	144	E	both	inner
+W	43	144	E	both	step
+W	46	144	E	both	inner
+W	47	144	E	both	step
+W	50	144	E	both	inner
+W	51	144	E	both	step
+W	54	144	E	both	inner
+W	55	144	E	both	step
+W	58	144	E	both	inner
+W	88	144	E	flip	ledge
+W	136	144	E	flip	ledge
+W	139	144	N	both	inner
+W	140	144	E	both	step
+W	143	144	E	both	inner
+W	144	144	E	both	step
+W	147	144	E	both	inner
+W	148	144	E	both	step
+W	151	144	E	both	inner
+W	152	144	E	both	step
+W	155	144	E	both	inner
+W	156	144	E	both	step
+W	159	144	E	both	inner
+W	161	144	N	both	inner
+W	174	144	E	both	step
+W	177	144	E	both	inner
+W	178	144	E	both	step
+W	181	144	E	both	inner
+W	182	144	E	both	step
+W	185	144	E	both	inner
+W	186	144	E	both	step
+W	189	144	E	both	inner
+W	190	144	E	both	step
+W	193	144	E	both	inner
+W	5	145	E	both	step
+W	6	145	N	both	inner
+W	7	145	N	both	inner
+W	8	145	N	both	inner
+W	9	145	E	both	step
+W	10	145	N	both	inner
+W	11	145	N	both	inner
+W	12	145	N	both	inner
+W	12	145	E	both	inner
+W	13	145	E	both	step
+W	14	145	N	both	inner
+W	15	145	N	both	inner
+W	16	145	N	both	inner
+W	16	145	E	both	inner
+W	17	145	E	both	step
+W	18	145	N	both	inner
+W	19	145	N	both	inner
+W	20	145	N	both	inner
+W	20	145	E	both	inner
+W	21	145	E	flip	step
+W	22	145	N	both	inner
+W	23	145	N	both	inner
+W	24	145	N	both	inner
+W	24	145	E	both	inner
+W	25	145	E	both	inner
+W	40	145	N	both	inner
+W	41	145	N	both	inner
+W	42	145	N	both	inner
+W	42	145	E	both	inner
+W	43	145	E	both	step
+W	44	145	N	both	inner
+W	45	145	N	both	inner
+W	46	145	N	both	inner
+W	46	145	E	both	inner
+W	47	145	E	both	step
+W	48	145	N	both	inner
+W	49	145	N	both	inner
+W	50	145	N	both	inner
+W	50	145	E	both	inner
+W	51	145	E	both	step
+W	52	145	N	both	inner
+W	53	145	N	both	inner
+W	54	145	N	both	inner
+W	54	145	E	both	inner
+W	55	145	E	both	step
+W	56	145	N	both	inner
+W	57	145	N	both	inner
+W	58	145	N	both	inner
+W	58	145	E	both	inner
+W	88	145	E	flip	ledge
+W	140	145	E	both	step
+W	141	145	N	both	inner
+W	142	145	N	both	inner
+W	143	145	N	both	inner
+W	144	145	E	both	step
+W	145	145	N	both	inner
+W	146	145	N	both	inner
+W	147	145	N	both	inner
+W	147	145	E	both	inner
+W	148	145	E	both	step
+W	149	145	N	both	inner
+W	150	145	N	both	inner
+W	151	145	N	both	inner
+W	151	145	E	both	inner
+W	152	145	E	both	step
+W	153	145	N	both	inner
+W	154	145	N	both	inner
+W	155	145	N	both	inner
+W	155	145	E	both	inner
+W	156	145	E	flip	step
+W	157	145	N	both	inner
+W	158	145	N	both	inner
+W	159	145	N	both	inner
+W	159	145	E	both	inner
+W	160	145	E	both	inner
+W	175	145	N	both	inner
+W	176	145	N	both	inner
+W	177	145	N	both	inner
+W	177	145	E	both	inner
+W	178	145	E	both	step
+W	179	145	N	both	inner
+W	180	145	N	both	inner
+W	181	145	N	both	inner
+W	181	145	E	both	inner
+W	182	145	E	both	step
+W	183	145	N	both	inner
+W	184	145	N	both	inner
+W	185	145	N	both	inner
+W	185	145	E	both	inner
+W	186	145	E	both	step
+W	187	145	N	both	inner
+W	188	145	N	both	inner
+W	189	145	N	both	inner
+W	189	145	E	both	inner
+W	190	145	E	both	step
+W	191	145	N	both	inner
+W	192	145	N	both	inner
+W	193	145	N	both	inner
+W	193	145	E	both	inner
+W	4	146	E	both	ledge
+W	5	146	E	both	inner
+W	7	146	N	both	ledge
+W	9	146	E	both	inner
+W	11	146	N	both	ledge
+W	13	146	E	both	inner
+W	15	146	N	both	ledge
+W	17	146	E	both	inner
+W	19	146	N	both	ledge
+W	21	146	E	both	inner
+W	23	146	N	both	ledge
+W	27	146	E	flip	ledge
+W	38	146	N	both	ledge
+W	41	146	N	flip	ledge
+W	43	146	E	both	inner
+W	45	146	N	both	ledge
+W	47	146	E	both	inner
+W	49	146	N	both	ledge
+W	51	146	E	both	inner
+W	53	146	N	both	ledge
+W	55	146	E	both	inner
+W	57	146	N	both	ledge
+W	88	146	E	flip	ledge
+W	139	146	E	both	ledge
+W	140	146	E	both	inner
+W	142	146	N	both	ledge
+W	144	146	E	both	inner
+W	146	146	N	both	ledge
+W	148	146	E	both	inner
+W	150	146	N	both	ledge
+W	152	146	E	both	inner
+W	154	146	N	both	ledge
+W	156	146	E	both	inner
+W	158	146	N	both	ledge
+W	162	146	E	flip	ledge
+W	173	146	N	both	ledge
+W	176	146	N	flip	ledge
+W	178	146	E	both	inner
+W	180	146	N	both	ledge
+W	182	146	E	both	inner
+W	184	146	N	both	ledge
+W	186	146	E	both	inner
+W	188	146	N	both	ledge
+W	190	146	E	both	inner
+W	192	146	N	both	ledge
+W	4	147	E	both	ledge
+W	7	147	N	both	inner
+W	7	147	E	both	inner
+W	9	147	E	both	inner
+W	11	147	N	both	inner
+W	11	147	E	both	inner
+W	13	147	E	both	inner
+W	15	147	N	both	inner
+W	15	147	E	both	inner
+W	17	147	E	both	inner
+W	19	147	N	both	inner
+W	19	147	E	both	inner
+W	21	147	E	both	inner
+W	23	147	N	both	inner
+W	23	147	E	both	inner
+W	27	147	E	flip	ledge
+W	40	147	E	flip	ledge
+W	43	147	E	both	inner
+W	45	147	N	both	inner
+W	45	147	E	both	inner
+W	47	147	E	both	inner
+W	49	147	N	both	inner
+W	49	147	E	both	inner
+W	51	147	E	both	inner
+W	53	147	N	both	inner
+W	53	147	E	both	inner
+W	55	147	E	both	inner
+W	57	147	N	both	inner
+W	88	147	E	flip	ledge
+W	139	147	E	both	ledge
+W	142	147	N	both	inner
+W	142	147	E	both	inner
+W	144	147	E	both	inner
+W	146	147	N	both	inner
+W	146	147	E	both	inner
+W	148	147	E	both	inner
+W	150	147	N	both	inner
+W	150	147	E	both	inner
+W	152	147	E	both	inner
+W	154	147	N	both	inner
+W	154	147	E	both	inner
+W	156	147	E	both	inner
+W	158	147	N	both	inner
+W	158	147	E	both	inner
+W	162	147	E	flip	ledge
+W	175	147	E	flip	ledge
+W	178	147	E	both	inner
+W	180	147	N	both	inner
+W	180	147	E	both	inner
+W	182	147	E	both	inner
+W	184	147	N	both	inner
+W	184	147	E	both	inner
+W	186	147	E	both	inner
+W	188	147	N	both	inner
+W	188	147	E	both	inner
+W	190	147	E	both	inner
+W	192	147	N	both	inner
+W	4	148	E	both	ledge
+W	9	148	E	both	inner
+W	13	148	E	both	inner
+W	17	148	E	both	inner
+W	21	148	E	both	inner
+W	28	148	E	flip	ledge
+W	43	148	E	both	inner
+W	47	148	E	both	inner
+W	51	148	E	both	inner
+W	55	148	E	both	inner
+W	88	148	E	flip	ledge
+W	139	148	E	both	ledge
+W	144	148	E	both	inner
+W	148	148	E	both	inner
+W	152	148	E	both	inner
+W	156	148	E	both	inner
+W	163	148	E	flip	ledge
+W	178	148	E	both	inner
+W	182	148	E	both	inner
+W	186	148	E	both	inner
+W	190	148	E	both	inner
+W	4	149	E	flip	ledge
+W	7	149	E	both	inner
+W	9	149	E	both	inner
+W	11	149	N	both	inner
+W	11	149	E	both	inner
+W	13	149	E	both	inner
+W	15	149	E	both	inner
+W	17	149	E	both	inner
+W	19	149	N	both	inner
+W	19	149	E	both	inner
+W	21	149	E	both	inner
+W	23	149	E	both	inner
+W	28	149	N	flip	ledge
+W	36	149	N	flip	ledge
+W	40	149	E	both	ledge
+W	41	149	N	both	inner
+W	41	149	E	both	inner
+W	43	149	E	both	inner
+W	45	149	E	both	inner
+W	47	149	E	both	inner
+W	49	149	N	both	inner
+W	49	149	E	both	inner
+W	51	149	E	both	inner
+W	53	149	E	both	inner
+W	55	149	E	both	inner
+W	57	149	N	both	inner
+W	139	149	E	flip	ledge
+W	142	149	E	both	inner
+W	144	149	E	both	inner
+W	146	149	N	both	inner
+W	146	149	E	both	inner
+W	148	149	E	both	inner
+W	150	149	E	both	inner
+W	152	149	E	both	inner
+W	154	149	N	both	inner
+W	154	149	E	both	inner
+W	156	149	E	both	inner
+W	158	149	E	both	inner
+W	163	149	N	flip	ledge
+W	171	149	N	flip	ledge
+W	175	149	E	both	ledge
+W	176	149	N	both	inner
+W	176	149	E	both	inner
+W	178	149	E	both	inner
+W	180	149	E	both	inner
+W	182	149	E	both	inner
+W	184	149	N	both	inner
+W	184	149	E	both	inner
+W	186	149	E	both	inner
+W	188	149	E	both	inner
+W	190	149	E	both	inner
+W	192	149	N	both	inner
+W	4	150	E	flip	ledge
+W	9	150	E	both	inner
+W	13	150	E	both	inner
+W	17	150	E	both	inner
+W	21	150	E	both	inner
+W	27	150	E	flip	ledge
+W	32	150	N	flip	ledge
+W	35	150	E	flip	ledge
+W	43	150	E	both	inner
+W	47	150	E	both	inner
+W	51	150	E	both	inner
+W	55	150	E	both	inner
+W	139	150	E	flip	ledge
+W	144	150	E	both	inner
+W	148	150	E	both	inner
+W	152	150	E	both	inner
+W	156	150	E	both	inner
+W	162	150	E	flip	ledge
+W	167	150	N	flip	ledge
+W	170	150	E	flip	ledge
+W	178	150	E	both	inner
+W	182	150	E	both	inner
+W	186	150	E	both	inner
+W	190	150	E	both	inner
+W	4	151	E	flip	ledge
+W	7	151	N	both	ledge
+W	9	151	E	both	inner
+W	11	151	E	both	inner
+W	13	151	E	both	inner
+W	15	151	N	both	ledge
+W	17	151	E	both	inner
+W	19	151	E	both	inner
+W	21	151	E	both	inner
+W	23	151	N	both	ledge
+W	31	151	E	flip	ledge
+W	40	151	E	both	ledge
+W	41	151	E	both	inner
+W	43	151	E	both	inner
+W	45	151	N	both	ledge
+W	47	151	E	both	inner
+W	49	151	E	both	inner
+W	51	151	E	both	inner
+W	53	151	N	both	ledge
+W	55	151	E	both	inner
+W	139	151	E	flip	ledge
+W	142	151	N	both	ledge
+W	144	151	E	both	inner
+W	146	151	E	both	inner
+W	148	151	E	both	inner
+W	150	151	N	both	ledge
+W	152	151	E	both	inner
+W	154	151	E	both	inner
+W	156	151	E	both	inner
+W	158	151	N	both	ledge
+W	166	151	E	flip	ledge
+W	175	151	E	both	ledge
+W	176	151	E	both	inner
+W	178	151	E	both	inner
+W	180	151	N	both	ledge
+W	182	151	E	both	inner
+W	184	151	E	both	inner
+W	186	151	E	both	inner
+W	188	151	N	both	ledge
+W	190	151	E	both	inner
+W	4	152	E	both	ledge
+W	5	152	N	both	inner
+W	9	152	N	both	inner
+W	9	152	E	both	inner
+W	13	152	N	both	inner
+W	17	152	N	both	inner
+W	17	152	E	both	inner
+W	21	152	N	both	inner
+W	25	152	N	both	inner
+W	43	152	N	both	inner
+W	47	152	N	both	inner
+W	47	152	E	both	inner
+W	51	152	N	both	inner
+W	55	152	N	both	inner
+W	55	152	E	both	inner
+W	139	152	E	both	ledge
+W	140	152	N	both	inner
+W	144	152	N	both	inner
+W	144	152	E	both	inner
+W	148	152	N	both	inner
+W	152	152	N	both	inner
+W	152	152	E	both	inner
+W	156	152	N	both	inner
+W	160	152	N	both	inner
+W	178	152	N	both	inner
+W	182	152	N	both	inner
+W	182	152	E	both	inner
+W	186	152	N	both	inner
+W	190	152	N	both	inner
+W	190	152	E	both	inner
+W	8	153	E	both	inner
+W	16	153	E	both	inner
+W	24	153	E	both	inner
+W	46	153	E	both	inner
+W	54	153	E	both	inner
+W	143	153	E	both	inner
+W	151	153	E	both	inner
+W	159	153	E	both	inner
+W	181	153	E	both	inner
+W	189	153	E	both	inner
+W	20	174	N	flip	ledge
+W	21	174	N	flip	ledge
+W	22	174	N	flip	ledge
+W	23	174	N	flip	ledge
+W	58	174	N	flip	ledge
+W	59	174	N	flip	ledge
+W	60	174	N	flip	ledge
+W	61	174	N	flip	ledge
+W	96	174	N	flip	ledge
+W	97	174	N	flip	ledge
+W	98	174	N	flip	ledge
+W	99	174	N	flip	ledge
+W	134	174	N	flip	ledge
+W	135	174	N	flip	ledge
+W	136	174	N	flip	ledge
+W	137	174	N	flip	ledge
+W	172	174	N	flip	ledge
+W	173	174	N	flip	ledge
+W	174	174	N	flip	ledge
+W	175	174	N	flip	ledge
+W	19	175	E	flip	ledge
+W	57	175	E	flip	ledge
+W	95	175	E	flip	ledge
+W	133	175	E	flip	ledge
+W	171	175	E	flip	ledge
+W	19	176	E	flip	ledge
+W	57	176	E	flip	ledge
+W	95	176	E	flip	ledge
+W	133	176	E	flip	ledge
+W	171	176	E	flip	ledge
+W	19	177	E	flip	ledge
+W	57	177	E	flip	ledge
+W	95	177	E	flip	ledge
+W	133	177	E	flip	ledge
+W	171	177	E	flip	ledge
+W	19	178	E	flip	ledge
+W	57	178	E	flip	ledge
+W	95	178	E	flip	ledge
+W	133	178	E	flip	ledge
+W	171	178	E	flip	ledge
+W	1	194	N	flip	ledge
+W	2	194	N	flip	ledge
+W	3	194	N	flip	ledge
+W	4	194	N	flip	ledge
+W	39	194	N	flip	ledge
+W	40	194	N	flip	ledge
+W	41	194	N	flip	ledge
+W	42	194	N	flip	ledge
+W	77	194	N	flip	ledge
+W	78	194	N	flip	ledge
+W	79	194	N	flip	ledge
+W	80	194	N	flip	ledge
+W	115	194	N	flip	ledge
+W	116	194	N	flip	ledge
+W	117	194	N	flip	ledge
+W	118	194	N	flip	ledge
+W	153	194	N	flip	ledge
+W	154	194	N	flip	ledge
+W	155	194	N	flip	ledge
+W	156	194	N	flip	ledge
+W	191	194	N	flip	ledge
+W	192	194	N	flip	ledge
+W	193	194	N	flip	ledge
+W	194	194	N	flip	ledge
+W	0	195	E	flip	ledge
+W	38	195	E	flip	ledge
+W	76	195	E	flip	ledge
+W	114	195	E	flip	ledge
+W	152	195	E	flip	ledge
+W	190	195	E	flip	ledge
+W	0	196	E	flip	ledge
+W	38	196	E	flip	ledge
+W	76	196	E	flip	ledge
+W	114	196	E	flip	ledge
+W	152	196	E	flip	ledge
+W	190	196	E	flip	ledge
+W	0	197	E	flip	ledge
+W	38	197	E	flip	ledge
+W	76	197	E	flip	ledge
+W	114	197	E	flip	ledge
+W	152	197	E	flip	ledge
+W	190	197	E	flip	ledge
+W	0	198	E	flip	ledge
+W	38	198	E	flip	ledge
+W	76	198	E	flip	ledge
+W	114	198	E	flip	ledge
+W	152	198	E	flip	ledge
+W	190	198	E	flip	ledge
+F	10	137	-0	hole
+F	11	137	-0	hole
+F	12	137	-0	hole
+F	18	137	-0	hole
+F	19	137	-0	hole
+F	20	137	-0	hole
+F	40	137	-0	hole
+F	41	137	-0	hole
+F	42	137	-0	hole
+F	48	137	-0	hole
+F	49	137	-0	hole
+F	50	137	-0	hole
+F	56	137	-0	hole
+F	57	137	-0	hole
+F	58	137	-0	hole
+F	145	137	-0	hole
+F	146	137	-0	hole
+F	147	137	-0	hole
+F	153	137	-0	hole
+F	154	137	-0	hole
+F	155	137	-0	hole
+F	175	137	-0	hole
+F	176	137	-0	hole
+F	177	137	-0	hole
+F	183	137	-0	hole
+F	184	137	-0	hole
+F	185	137	-0	hole
+F	191	137	-0	hole
+F	192	137	-0	hole
+F	193	137	-0	hole
+F	10	138	-0	hole
+F	11	138	-0	hole
+F	12	138	-0	hole
+F	18	138	-0	hole
+F	19	138	-0	hole
+F	20	138	-0	hole
+F	40	138	-0	hole
+F	41	138	-0	hole
+F	42	138	-0	hole
+F	48	138	-0	hole
+F	49	138	-0	hole
+F	50	138	-0	hole
+F	56	138	-0	hole
+F	57	138	-0	hole
+F	58	138	-0	hole
+F	145	138	-0	hole
+F	146	138	-0	hole
+F	147	138	-0	hole
+F	153	138	-0	hole
+F	154	138	-0	hole
+F	155	138	-0	hole
+F	175	138	-0	hole
+F	176	138	-0	hole
+F	177	138	-0	hole
+F	183	138	-0	hole
+F	184	138	-0	hole
+F	185	138	-0	hole
+F	191	138	-0	hole
+F	192	138	-0	hole
+F	193	138	-0	hole
+F	10	139	-0	hole
+F	12	139	-0	hole
+F	18	139	-0	hole
+F	20	139	-0	hole
+F	40	139	-0	hole
+F	42	139	-0	hole
+F	48	139	-0	hole
+F	50	139	-0	hole
+F	56	139	-0	hole
+F	58	139	-0	hole
+F	145	139	-0	hole
+F	147	139	-0	hole
+F	153	139	-0	hole
+F	155	139	-0	hole
+F	175	139	-0	hole
+F	177	139	-0	hole
+F	183	139	-0	hole
+F	185	139	-0	hole
+F	191	139	-0	hole
+F	193	139	-0	hole
+F	10	140	-0	hole
+F	11	140	-0	hole
+F	12	140	-0	hole
+F	18	140	-0	hole
+F	19	140	-0	hole
+F	20	140	-0	hole
+F	40	140	-0	hole
+F	41	140	-0	hole
+F	42	140	-0	hole
+F	48	140	-0	hole
+F	49	140	-0	hole
+F	50	140	-0	hole
+F	56	140	-0	hole
+F	57	140	-0	hole
+F	58	140	-0	hole
+F	145	140	-0	hole
+F	146	140	-0	hole
+F	147	140	-0	hole
+F	153	140	-0	hole
+F	154	140	-0	hole
+F	155	140	-0	hole
+F	175	140	-0	hole
+F	176	140	-0	hole
+F	177	140	-0	hole
+F	183	140	-0	hole
+F	184	140	-0	hole
+F	185	140	-0	hole
+F	191	140	-0	hole
+F	192	140	-0	hole
+F	193	140	-0	hole
+F	10	141	-0	hole
+F	12	141	-0	hole
+F	18	141	-0	hole
+F	20	141	-0	hole
+F	40	141	-0	hole
+F	42	141	-0	hole
+F	48	141	-0	hole
+F	50	141	-0	hole
+F	56	141	-0	hole
+F	58	141	-0	hole
+F	145	141	-0	hole
+F	147	141	-0	hole
+F	153	141	-0	hole
+F	155	141	-0	hole
+F	175	141	-0	hole
+F	177	141	-0	hole
+F	183	141	-0	hole
+F	185	141	-0	hole
+F	191	141	-0	hole
+F	193	141	-0	hole
+F	10	142	-0	hole
+F	11	142	-0	hole
+F	12	142	-0	hole
+F	18	142	-0	hole
+F	19	142	-0	hole
+F	20	142	-0	hole
+F	40	142	-0	hole
+F	41	142	-0	hole
+F	42	142	-0	hole
+F	48	142	-0	hole
+F	49	142	-0	hole
+F	50	142	-0	hole
+F	56	142	-0	hole
+F	57	142	-0	hole
+F	58	142	-0	hole
+F	145	142	-0	hole
+F	146	142	-0	hole
+F	147	142	-0	hole
+F	153	142	-0	hole
+F	154	142	-0	hole
+F	155	142	-0	hole
+F	175	142	-0	hole
+F	176	142	-0	hole
+F	177	142	-0	hole
+F	183	142	-0	hole
+F	184	142	-0	hole
+F	185	142	-0	hole
+F	191	142	-0	hole
+F	192	142	-0	hole
+F	193	142	-0	hole
+F	6	146	-0	hole
+F	7	146	-0	hole
+F	8	146	-0	hole
+F	14	146	-0	hole
+F	15	146	-0	hole
+F	16	146	-0	hole
+F	22	146	-0	hole
+F	23	146	-0	hole
+F	24	146	-0	hole
+F	44	146	-0	hole
+F	45	146	-0	hole
+F	46	146	-0	hole
+F	52	146	-0	hole
+F	53	146	-0	hole
+F	54	146	-0	hole
+F	141	146	-0	hole
+F	142	146	-0	hole
+F	143	146	-0	hole
+F	149	146	-0	hole
+F	150	146	-0	hole
+F	151	146	-0	hole
+F	157	146	-0	hole
+F	158	146	-0	hole
+F	159	146	-0	hole
+F	179	146	-0	hole
+F	180	146	-0	hole
+F	181	146	-0	hole
+F	187	146	-0	hole
+F	188	146	-0	hole
+F	189	146	-0	hole
+F	6	147	-0	hole
+F	8	147	-0	hole
+F	14	147	-0	hole
+F	16	147	-0	hole
+F	22	147	-0	hole
+F	24	147	-0	hole
+F	44	147	-0	hole
+F	46	147	-0	hole
+F	52	147	-0	hole
+F	54	147	-0	hole
+F	141	147	-0	hole
+F	143	147	-0	hole
+F	149	147	-0	hole
+F	151	147	-0	hole
+F	157	147	-0	hole
+F	159	147	-0	hole
+F	179	147	-0	hole
+F	181	147	-0	hole
+F	187	147	-0	hole
+F	189	147	-0	hole
+F	6	148	-0	hole
+F	7	148	-0	hole
+F	8	148	-0	hole
+F	14	148	-0	hole
+F	15	148	-0	hole
+F	16	148	-0	hole
+F	22	148	-0	hole
+F	23	148	-0	hole
+F	24	148	-0	hole
+F	44	148	-0	hole
+F	45	148	-0	hole
+F	46	148	-0	hole
+F	52	148	-0	hole
+F	53	148	-0	hole
+F	54	148	-0	hole
+F	141	148	-0	hole
+F	142	148	-0	hole
+F	143	148	-0	hole
+F	149	148	-0	hole
+F	150	148	-0	hole
+F	151	148	-0	hole
+F	157	148	-0	hole
+F	158	148	-0	hole
+F	159	148	-0	hole
+F	179	148	-0	hole
+F	180	148	-0	hole
+F	181	148	-0	hole
+F	187	148	-0	hole
+F	188	148	-0	hole
+F	189	148	-0	hole
+F	6	149	-0	hole
+F	8	149	-0	hole
+F	14	149	-0	hole
+F	16	149	-0	hole
+F	22	149	-0	hole
+F	24	149	-0	hole
+F	44	149	-0	hole
+F	46	149	-0	hole
+F	52	149	-0	hole
+F	54	149	-0	hole
+F	141	149	-0	hole
+F	143	149	-0	hole
+F	149	149	-0	hole
+F	151	149	-0	hole
+F	157	149	-0	hole
+F	159	149	-0	hole
+F	179	149	-0	hole
+F	181	149	-0	hole
+F	187	149	-0	hole
+F	189	149	-0	hole
+F	6	150	-0	hole
+F	7	150	-0	hole
+F	8	150	-0	hole
+F	14	150	-0	hole
+F	15	150	-0	hole
+F	16	150	-0	hole
+F	22	150	-0	hole
+F	23	150	-0	hole
+F	24	150	-0	hole
+F	44	150	-0	hole
+F	45	150	-0	hole
+F	46	150	-0	hole
+F	52	150	-0	hole
+F	53	150	-0	hole
+F	54	150	-0	hole
+F	141	150	-0	hole
+F	142	150	-0	hole
+F	143	150	-0	hole
+F	149	150	-0	hole
+F	150	150	-0	hole
+F	151	150	-0	hole
+F	157	150	-0	hole
+F	158	150	-0	hole
+F	159	150	-0	hole
+F	179	150	-0	hole
+F	180	150	-0	hole
+F	181	150	-0	hole
+F	187	150	-0	hole
+F	188	150	-0	hole
+F	189	150	-0	hole
+F	6	151	-0	hole
+F	7	151	-0	hole
+F	8	151	-0	hole
+F	14	151	-0	hole
+F	15	151	-0	hole
+F	16	151	-0	hole
+F	22	151	-0	hole
+F	23	151	-0	hole
+F	24	151	-0	hole
+F	44	151	-0	hole
+F	45	151	-0	hole
+F	46	151	-0	hole
+F	52	151	-0	hole
+F	53	151	-0	hole
+F	54	151	-0	hole
+F	141	151	-0	hole
+F	142	151	-0	hole
+F	143	151	-0	hole
+F	149	151	-0	hole
+F	150	151	-0	hole
+F	151	151	-0	hole
+F	157	151	-0	hole
+F	158	151	-0	hole
+F	159	151	-0	hole
+F	179	151	-0	hole
+F	180	151	-0	hole
+F	181	151	-0	hole
+F	187	151	-0	hole
+F	188	151	-0	hole
+F	189	151	-0	hole
+R	rsw:217210:5576c42afc1418d6
+M	2	1471:db34e0aabc47c54c	0	11,20	behind
+M	41	1471:db34e0aabc47c54c	0	8,14-15,18-19,22-23	behind
+M	92	2079:bc326bd24c38722f	0	4-7,14-23,26-35	under+behind
+M	96	3199:73b63196ad26465b	0	0-1,20-43	behind
+M	104	3199:73b63196ad26465b	0	20-35,39	under+behind
+M	106	3199:73b63196ad26465b	0	20-21,26-29,32-35,38-41	behind
+M	107	3199:73b63196ad26465b	0	20-43	under+behind
+M	110	2079:bc326bd24c38722f	0	12-35	under+behind
+M	120	6467:9566c25c6fa74937	0	0-4,14-19,24-29,34-37,40-41,45-48,55-63,65-72,74-76,79-97	behind
+M	125	2079:bc326bd24c38722f	0	0-3,8-15,20-27,32-35	under+behind
+M	129	3199:73b63196ad26465b	0	20-43	under+behind
+M	136	3583:613ee579aad3252d	0	0-8,10-17,20-45,50	behind
+M	139	3199:73b63196ad26465b	0	4-5,20-43	behind
+M	140	3199:73b63196ad26465b	0	20-43	behind
+M	141	3199:73b63196ad26465b	0	20-43	under+behind
+M	142	3199:73b63196ad26465b	0	20,22-43	behind
+M	158	3199:73b63196ad26465b	0	20-23,26-43	behind
+M	159	3199:73b63196ad26465b	0	20-21,26-27,32-35,38-41	under+behind
+M	160	3199:73b63196ad26465b	0	4-7,20-29,32-35,39	under+behind
+M	162	3199:73b63196ad26465b	0	20-43	behind
+M	163	3199:73b63196ad26465b	0	20-25,28-43	behind
+M	164	3199:73b63196ad26465b	0	20-43	behind
+M	172	1471:db34e0aabc47c54c	0	9,14-15,18-19,22	behind
+M	186	3199:73b63196ad26465b	0	20-43	behind
+M	187	2079:bc326bd24c38722f	0	2-9,12-35	under+behind
+M	208	6467:9566c25c6fa74937	0	0-4,14-19,24-29,34-37,40-41,45-48,55-63,65-72,74-76,79-97	behind
+M	209	2079:bc326bd24c38722f	0	12-35	behind
+M	210	2079:bc326bd24c38722f	0	12-35	behind
+M	216	3199:73b63196ad26465b	0	0-1,10-11,20-43	behind
+M	217	3199:73b63196ad26465b	0	20-43	behind
+M	225	6467:9566c25c6fa74937	0	14-19,24-29,34-37,40-41,45-48,55-63,65-72,74,76,79-97	behind
+M	228	6467:9566c25c6fa74937	0	0-4,14-19,24-29,34-37,40-41,45-48,55-63,65-72,74-76,79-84,86-97	behind
+M	239	3199:73b63196ad26465b	0	20-43	behind
+M	240	3199:73b63196ad26465b	0	20-25,28-43	under+behind
+M	241	3199:73b63196ad26465b	0	20-43	behind
+M	242	2079:bc326bd24c38722f	0	12-35	behind
+M	254	2079:bc326bd24c38722f	0	12-35	behind
+M	255	3199:73b63196ad26465b	0	20-43	behind
+M	257	3199:73b63196ad26465b	0	20-43	behind
+M	258	3199:73b63196ad26465b	0	20-43	behind
+M	262	3199:73b63196ad26465b	0	20-31,34-37,40-43	under+behind
+M	263	3199:73b63196ad26465b	0	20-43	behind
+M	264	3199:73b63196ad26465b	0	20-43	behind
+M	265	3199:73b63196ad26465b	0	20-43	behind
+M	286	2079:bc326bd24c38722f	0	12-35	behind
+M	287	2079:bc326bd24c38722f	0	12-35	behind
+M	291	3199:73b63196ad26465b	0	20-43	behind
+M	292	3199:73b63196ad26465b	0	20-43	behind
+M	293	3199:73b63196ad26465b	0	24-43	behind
+M	294	3199:73b63196ad26465b	0	20-43	behind
+M	320	2079:bc326bd24c38722f	0	12-35	behind
+M	323	6467:9566c25c6fa74937	0	0-4,14-19,24-29,34-37,40-41,45-48,55-63,65-72,74-76,79-97	behind
+M	324	3583:613ee579aad3252d	0	0-8,10-17,20-45,50	behind
+M	325	3583:613ee579aad3252d	0	0-8,10-17,20-43,45,50	behind
+M	328	3199:73b63196ad26465b	0	0-1,20-43	behind
+M	329	3199:73b63196ad26465b	0	20-43	under+behind
+M	354	3199:73b63196ad26465b	0	20-43	behind
+M	355	3199:73b63196ad26465b	0	4-5,20-43	behind
+M	356	3199:73b63196ad26465b	0	20-23,26-43	behind
+M	369	3199:73b63196ad26465b	0	20-43	behind
+M	370	3199:73b63196ad26465b	0	22-25,28-31,34-37,40-43	under+behind
+M	371	3199:73b63196ad26465b	0	20-43	behind
+M	372	3199:73b63196ad26465b	0	0-1,20-43	behind
+M	375	3199:73b63196ad26465b	0	20-43	behind
+M	382	3199:73b63196ad26465b	0	0-1,20-43	behind
+M	432	1543:cd11f81109fa49fb	0	10-13	behind
+M	433	1543:30bfb5f60fe3f976	0	10-13,18-19	under+behind
+M	434	1543:99259abef86578c3	0	8-11,14-15	under+behind
+M	435	1743:dff1d01e4dedcfdc	0	0-17,22-25	under+behind
+M	437	1543:cd11f81109fa49fb	0	16-19	behind
+M	438	1543:30bfb5f60fe3f976	0	8-11,14-19	under
+M	439	1543:99259abef86578c3	0	8-19	under
+M	441	1543:30bfb5f60fe3f976	0	8-9,12-13,18-19	under+behind
+M	442	1543:99259abef86578c3	0	12-13,16-19	under+behind
+M	443	1543:30bfb5f60fe3f976	0	8-13,18-19	under
+M	444	1543:cd11f81109fa49fb	0	10-15	under
+M	445	1543:99259abef86578c3	0	8-10,12-13,15-19	under
+M	446	1543:99259abef86578c3	0	10-13,16-19	under
+M	447	1543:99259abef86578c3	0	8-19	under
+M	448	1543:30bfb5f60fe3f976	0	8-11,16-17	under+behind
+M	449	1743:dff1d01e4dedcfdc	0	0-17	under
+M	450	1543:cd11f81109fa49fb	0	12-13	under
+M	451	1543:30bfb5f60fe3f976	0	8-9,12-17	under+behind
+M	452	1543:99259abef86578c3	0	10-11	under
+M	453	1543:30bfb5f60fe3f976	0	8-13	under
+M	454	1543:30bfb5f60fe3f976	0	8-13,18-19	under
+M	455	1543:30bfb5f60fe3f976	0	8-17	under
+M	456	1543:30bfb5f60fe3f976	0	10-15,18-19	under
+M	457	1543:cd11f81109fa49fb	0	8-9,18-19	behind
+M	458	1543:30bfb5f60fe3f976	0	8-13,15,19	under
+M	459	1543:30bfb5f60fe3f976	0	8-9,12-13,18-19	under
+M	460	1543:99259abef86578c3	0	8-11,14-19	under
+M	461	1543:99259abef86578c3	0	8-15,18-19	under
+M	462	1543:99259abef86578c3	0	8,10-11,14-15	under
+M	463	1543:99259abef86578c3	0	8-19	under
+M	464	1543:99259abef86578c3	0	8-19	under
+M	465	1543:cd11f81109fa49fb	0	10-11,14-15	under+behind
+M	466	1543:30bfb5f60fe3f976	0	10-15,18-19	under
+M	467	1543:cd11f81109fa49fb	0	4-5,10-11,14-17	under+behind
+M	468	1543:cd11f81109fa49fb	0	16-17	under
+M	469	1543:cd11f81109fa49fb	0	10-15,18-19	under
+M	470	1543:cd11f81109fa49fb	0	8-11	under
+M	472	1543:cd11f81109fa49fb	0	8-9,12-15	under

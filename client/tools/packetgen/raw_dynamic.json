@@ -1,0 +1,6 @@
+{
+ "_comment": "Variable-length packets built with WFIFOW(fd,2)=len / WFIFOSET(fd,len) and never registered, so neither the struct dumps nor raw_sizes.json see them. 0x0ac2 ZC_ACK_MAIL_LIST3: rAthena clif.cpp:16105-16255 (research/windows9_packets.md gotcha 1). A sweep of every WFIFOW(fd,0)/WBUFW(buf,0)/cmd = 0x.... literal in src/map/*.cpp found no other id missing from MapLengths.",
+ "ids": {
+  "0x0ac2": -1
+ }
+}

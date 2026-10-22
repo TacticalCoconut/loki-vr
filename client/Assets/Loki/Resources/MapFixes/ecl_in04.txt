@@ -1,0 +1,8 @@
+# Architect's fix file for ecl_in04 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ecl_in04
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 16 model faces on 3 models
+architect-fix	1	ecl_in04	gnd:3425326:b4102bc7910d42bb	gat:1800014:4fc9dc107ef65827
+R	rsw:149610:733e122239a5bc11
+M	286	823:5a2c3a5950ae3980	0	0-1	behind
+M	307	4159:35884ed2286d2d11	0	40-43,46-47	under
+M	317	24491:7fddb2b8b5477c40	1	150-151,164-167,178-179	behind

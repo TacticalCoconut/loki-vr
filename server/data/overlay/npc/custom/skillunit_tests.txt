@@ -1,0 +1,31 @@
+//===== Loki wave D (skillunit) parity test NPC ==============================
+// Test servers only. The parity scenarios of testrig/parity/skillunit/ whisper
+// "NPC:SUTest" with a test name and '#'-separated arguments. The NPC stands
+// (invisible, sprite -1) on guild_room, a 400x400 walkable map without NPCs,
+// monsters or map flags: the warpportal command places the Warp Portal on the
+// map of the NPC that runs it. Both the module (server/data/overlay, embedded by
+// datagen) and the private rAthena oracle (npc/custom) load this same file.
+//============================================================================
+guild_room,200,200,0	script	SUTest	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	if (.@t$ == "w") {
+		// w#<x>#<y>#<target map>#<target x>#<target y>: a level 4 Warp Portal of this NPC (opens after 2 s)
+		warpportal atoi(@whispervar1$), atoi(@whispervar2$), @whispervar3$, atoi(@whispervar4$), atoi(@whispervar5$);
+		dispbottom "warpportal " + @whispervar1$ + "," + @whispervar2$;
+		end;
+	}
+	if (.@t$ == "basic") {
+		// Basic Skill (NV_BASIC, id 1) 9 until logout (chat rooms need level 4)
+		skill 1, 9;
+		dispbottom "basic " + getskilllv(1);
+		end;
+	}
+	if (.@t$ == "pos") {
+		getmapxy(.@m$, .@x, .@y, BL_PC);
+		dispbottom "at " + .@m$ + " " + .@x + "," + .@y;
+		end;
+	}
+	dispbottom "SUTest: unknown test " + .@t$;
+	end;
+}

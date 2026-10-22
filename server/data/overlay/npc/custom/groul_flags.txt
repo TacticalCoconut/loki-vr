@@ -1,0 +1,5 @@
+// groul_flags.txt - map flags set by a file loaded on a running server (the groul parity rig; not in
+// scripts_custom.conf). No NPC and no monster: @unloadnpcfile finds nothing to unload, and the flags stay.
+
+guild_vs1-1	mapflag	nobranch
+guild_vs1-1	mapflag	pvp

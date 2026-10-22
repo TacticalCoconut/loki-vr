@@ -1,0 +1,162 @@
+//===== wave 28 (wcxp): the Codex bounty smoke's helper NPC (client/tools/online/smokes.sh "wcxp"; test copies only) =====
+//= GM level 99 only (every test account is one on the test copies: conf/import/groups.yml). Embedded in the module like the other
+//= test NPCs (server/data/overlay/npc/custom, NOT in scripts_custom.conf: loaded only by a GM's @loadnpc); never in Loki Host.
+//= It reads and writes LokiCodex's CHARACTER variables (loki_codex.txt's header: LOKI_CXF packed 2 bits per creature, LOKI_CXE,
+//= LOKI_CXB packed 2 bits per bracket, LOKI_CXK, the watch list LOKI_CXV / _CXU / _CXVN / _CXVB, the scan clocks @cxt ...).
+//= @wcxpreset            the caller's every bounty, bracket, watch and scan clock cleared
+//= @wcxpbracket <b> <id> every member of bracket <b> CLAIMED except the name of creature <id> (its same-name group: no bounty), and
+//=                       that bracket open again: the claim of <id> completes it
+//= @wcxpunpay <b>        bracket <b> open again (no bonus)
+//= @wcxpset <id> <state> creature <id>'s state (0 none, 1 open, 2 completed with amount 1, 3 claimed); its scan clock cleared
+//= @wcxpbset <b> <state> bracket <b>'s state (0, 1 with bonus 1, 2)
+//= @wcxpevent <id>       one monster <id> spawned beside the caller WITH its own event label (as quests and events spawn theirs: rAthena
+//=                       then runs that label instead of OnNPCKillEvent, mob.cpp:3591-3604)
+//= @wcxpparty <name>     a party "wcxp<the caller's char id>" led by the caller (the first call creates it: the char-server
+//=                       answers later), and the online character <name> (no spaces) in it (a second call)
+//= @wcxpstate            a few of the caller's values, as a dispbottom line (the log)
+//= OnNPCKillEvent        a line for the log: each kill the server credits the caller with
+-	script	WcxpHelper	-1,{
+OnInit:
+	bindatcmd "wcxpreset", strnpcinfo(3) + "::OnReset", 99, 99;
+	bindatcmd "wcxpbracket", strnpcinfo(3) + "::OnBracket", 99, 99;
+	bindatcmd "wcxpunpay", strnpcinfo(3) + "::OnUnpay", 99, 99;
+	bindatcmd "wcxpset", strnpcinfo(3) + "::OnSet", 99, 99;
+	bindatcmd "wcxpbset", strnpcinfo(3) + "::OnBSet", 99, 99;
+	bindatcmd "wcxpevent", strnpcinfo(3) + "::OnEventSpawn", 99, 99;
+	bindatcmd "wcxpparty", strnpcinfo(3) + "::OnParty", 99, 99;
+	bindatcmd "wcxpstate", strnpcinfo(3) + "::OnState", 99, 99;
+	end;
+
+// creature getarg(0)'s state set to getarg(1) (LOKI_CXF, 2 bits per creature)
+S_Set:
+	.@m = getarg(0);
+	.@w = .@m / 31;
+	.@s = (.@m % 31) * 2;
+	.@o = LOKI_CXF[.@w];
+	LOKI_CXF[.@w] = .@o - (((.@o >> .@s) & 3) << .@s) + (getarg(1) << .@s);
+	return;
+
+S_BSet:
+	.@s = getarg(0) * 2;
+	.@o = LOKI_CXB;
+	LOKI_CXB = .@o - (((.@o >> .@s) & 3) << .@s) + (getarg(1) << .@s);
+	return;
+
+OnReset:
+	freeloop(1);
+	for (.@w = 0; .@w <= 65535 / 31; .@w++) {
+		if (LOKI_CXF[.@w])
+			LOKI_CXF[.@w] = 0;
+	}
+	.@n = getvariableofnpc(.idn, "LokiCodex");
+	for (.@i = 0; .@i < .@n; .@i++) {
+		.@m = getvariableofnpc(.ids[.@i], "LokiCodex");
+		if (LOKI_CXE[.@m])
+			LOKI_CXE[.@m] = 0;
+		if (@cxt[.@m]) {
+			@cxt[.@m] = 0;
+			@cxu[.@m] = 0;
+			@cxh[.@m] = 0;
+			@cxx[.@m] = 0;
+			@cxl[.@m] = 0;
+		}
+	}
+	LOKI_CXB = 0;
+	for (.@b = 1; .@b <= 30; .@b++) {
+		if (LOKI_CXK[.@b])
+			LOKI_CXK[.@b] = 0;
+	}
+	for (.@i = 0; .@i < 16; .@i++) {
+		LOKI_CXV[.@i] = 0;
+		LOKI_CXU[.@i] = 0;
+	}
+	LOKI_CXVN = 0;
+	LOKI_CXVB = 0;
+	dispbottom "wcxp: reset";
+	end;
+OnBracket:
+	.@b = atoi(.@atcmd_parameters$[0]);
+	.@keep = atoi(.@atcmd_parameters$[1]);
+	.@kg = getvariableofnpc(.bg[.@keep], "LokiCodex");
+	.@s = getvariableofnpc(.bs[.@b], "LokiCodex");
+	.@e = getvariableofnpc(.be[.@b], "LokiCodex");
+	freeloop(1);
+	.@c = 0;
+	for (.@i = .@s; .@i < .@e; .@i++) {
+		.@m = getvariableofnpc(.bi[.@i], "LokiCodex");
+		LOKI_CXE[.@m] = 0;
+		if (getvariableofnpc(.bg[.@m], "LokiCodex") == .@kg) {
+			callsub S_Set, .@m, 0;
+			continue;
+		}
+		callsub S_Set, .@m, 3;
+		.@c++;
+	}
+	callsub S_BSet, .@b, 0;
+	LOKI_CXK[.@b] = 0;
+	dispbottom "wcxp: bracket " + .@b + ": " + .@c + " claimed, group " + .@kg + " cleared";
+	end;
+OnUnpay:
+	.@b = atoi(.@atcmd_parameters$[0]);
+	callsub S_BSet, .@b, 0;
+	LOKI_CXK[.@b] = 0;
+	dispbottom "wcxp: bracket " + .@b + " cleared";
+	end;
+OnSet:
+	.@m = atoi(.@atcmd_parameters$[0]);
+	.@v = atoi(.@atcmd_parameters$[1]);
+	callsub S_Set, .@m, .@v;
+	LOKI_CXE[.@m] = 0;
+	if (.@v == 2)
+		LOKI_CXE[.@m] = 1000;
+	@cxt[.@m] = 0;
+	@cxu[.@m] = 0;
+	@cxh[.@m] = 0;
+	@cxx[.@m] = 0;
+	@cxl[.@m] = 0;
+	dispbottom "wcxp: " + .@m + " state " + .@v;
+	end;
+OnBSet:
+	.@b = atoi(.@atcmd_parameters$[0]);
+	.@v = atoi(.@atcmd_parameters$[1]);
+	callsub S_BSet, .@b, .@v;
+	LOKI_CXK[.@b] = (.@v == 1);
+	dispbottom "wcxp: bracket " + .@b + " state " + .@v;
+	end;
+OnEventSpawn:
+	.@m = atoi(.@atcmd_parameters$[0]);
+	getmapxy(.@map$, .@x, .@y, BL_PC);
+	monster .@map$, .@x + 1, .@y, "--ja--", .@m, 1, strnpcinfo(3) + "::OnEventMob";
+	dispbottom "wcxp: event monster " + .@m + " spawned (label OnEventMob)";
+	end;
+OnEventMob:
+	dispbottom "wcxp: event label ran for " + killedrid + " (" + killedgid + ")";
+	end;
+OnParty:
+	.@other = getcharid(0, .@atcmd_parameters$[0]);
+	.@pid = getcharid(1);
+	if (.@pid < 1) {
+		party_create("wcxp" + getcharid(0), getcharid(0));
+		.@pid = getcharid(1);
+	}
+	.@ok = party_addmember(.@pid, .@other);
+	dispbottom "wcxp: party " + .@pid + " add " + .@other + ": " + .@ok;
+	end;
+OnNPCKillEvent:
+	// (the smoke's log: what LokiCodex's own OnNPCKillEvent sees for this kill)
+	dispbottom "wcxp: kill " + killedrid + " dead " + isdead() + " next " + NextBaseExp + " level " + BaseLevel;
+	end;
+OnState:
+	.@s$ = "";
+	for (.@b = 1; .@b <= 3; .@b++)
+		.@s$ = .@s$ + " B" + .@b + "=" + ((LOKI_CXB >> (.@b * 2)) & 3) + "/" + LOKI_CXK[.@b];
+	.@s$ = .@s$ + " watch " + LOKI_CXVN + " clock1002 " + (@cxt[1002] > 0) + " lost1089 " + @cxl[1089];
+	.@f$ = "";
+	setarray .@k[0], 1002, 1009, 1063, 1089, 1725;
+	for (.@i = 0; .@i < 5; .@i++) {
+		.@m = .@k[.@i];
+		.@f$ = .@f$ + " " + .@m + "=" + ((LOKI_CXF[.@m / 31] >> ((.@m % 31) * 2)) & 3) + "/" + (LOKI_CXE[.@m] / 1000);
+	}
+	dispbottom "wcxp:" + .@f$ + .@s$ + " Zeny " + Zeny + " char " + getcharid(0) + " party " + getcharid(1);
+	end;
+}

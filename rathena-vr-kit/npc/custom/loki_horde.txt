@@ -1,0 +1,15 @@
+// Loki VR — Co-op Horde Mode EXP Reward Distributor
+// Grants pending Base/Job EXP earned in Horde Mode runs from `loki_horde_reward`.
+-	script	LokiHordeReward	-1,{
+OnPCLoginEvent:
+OnPCBaseLvUpEvent:
+	while (1) {
+		.@n = query_sql("SELECT `id`, `base_pct`, `job_pct` FROM `loki_horde_reward` WHERE `account_id` = " + getcharid(3) + " ORDER BY `id` LIMIT 1", .@id, .@bp, .@jp);
+		if (.@n < 1) end;
+		if ( query_sql("DELETE FROM `loki_horde_reward` WHERE `id` = " + .@id) < 1 ) end;
+		.@b = (NextBaseExp * .@bp) / 1000;
+		.@j = (NextJobExp  * .@jp) / 1000;
+		if (.@b > 0 || .@j > 0) getexp .@b, .@j;
+	}
+	end;
+}

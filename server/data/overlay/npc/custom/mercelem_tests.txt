@@ -1,0 +1,104 @@
+//===== Loki wave E (mercelem) parity test NPC ================================
+// Test servers only. The parity scenarios of testrig/parity/mercelem/ whisper
+// "NPC:MeSc" with a command and '#'-separated numeric arguments. Both the
+// module (server/data/overlay, embedded by datagen) and the private rAthena
+// oracle (npc/custom) load this same file.
+//   mc#class#time          mercenary_create (contract time in ms)
+//   md#type                mercenary_delete of the attached player (type 0..3)
+//   mh#hp#sp               mercenary_heal
+//   ms#type#tick#val1      mercenary_sc_start
+//   mi                     getmercinfo 0..5, 7, 8 (6, the time left, as whole minutes), the calls and faith of
+//                          the three guilds
+//   mcl#guild#value        mercenary_set_calls
+//   mf#guild#value         mercenary_set_faith
+//   mu                     getunitdata of the mercenary (a few fields)
+//   ms2#type#value         setunitdata of the mercenary
+//   mxy                    getmapxy of the mercenary (BL_MER)
+//   ei                     geteleminfo 0..2, getmapxy of the elemental (BL_ELEM)
+//   eu                     getunitdata of the elemental (a few fields)
+//   es#type#value          setunitdata of the elemental
+//============================================================================
+-	script	MeSc	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	.@a = atoi(@whispervar1$);
+	.@b = atoi(@whispervar2$);
+	.@c = atoi(@whispervar3$);
+	if (.@t$ == "mc") {
+		mercenary_create .@a, .@b;
+		end;
+	}
+	if (.@t$ == "md") {
+		mercenary_delete getcharid(0), .@a;
+		end;
+	}
+	if (.@t$ == "mh") {
+		mercenary_heal .@a, .@b;
+		end;
+	}
+	if (.@t$ == "ms") {
+		mercenary_sc_start .@a, .@b, .@c;
+		end;
+	}
+	if (.@t$ == "mi") {
+		dispbottom "merc " + getmercinfo(0) + " " + getmercinfo(1) + " " + getmercinfo(2) + " " + getmercinfo(3) + " " + getmercinfo(4) + " " + getmercinfo(5) + " " + (getmercinfo(6) / 60000) + " " + getmercinfo(7) + " " + (getmercinfo(8) > 0);
+		dispbottom "calls " + mercenary_get_calls(0) + " " + mercenary_get_calls(1) + " " + mercenary_get_calls(2) + " faith " + mercenary_get_faith(0) + " " + mercenary_get_faith(1) + " " + mercenary_get_faith(2);
+		end;
+	}
+	if (.@t$ == "mcl") {
+		mercenary_set_calls .@a, .@b;
+		end;
+	}
+	if (.@t$ == "mf") {
+		mercenary_set_faith .@a, .@b;
+		end;
+	}
+	if (.@t$ == "mu") {
+		.@id = getmercinfo(8);
+		if (.@id == 0) {
+			dispbottom "no mercenary";
+			end;
+		}
+		getunitdata .@id, .@d;
+		dispbottom "mu " + .@d[UMER_SIZE] + " " + .@d[UMER_HP] + " " + .@d[UMER_MAXHP] + " " + .@d[UMER_KILLCOUNT] + " " + .@d[UMER_SPEED] + " " + .@d[UMER_STR] + " " + .@d[UMER_ATKRANGE] + " " + .@d[UMER_ATKMIN] + " " + .@d[UMER_ATKMAX] + " " + .@d[UMER_MATKMIN] + " " + .@d[UMER_DEF] + " " + .@d[UMER_HIT] + " " + .@d[UMER_FLEE] + " " + .@d[UMER_CRIT] + " " + .@d[UMER_AMOTION] + " " + .@d[UMER_ADELAY];
+		end;
+	}
+	if (.@t$ == "ms2") {
+		.@id = getmercinfo(8);
+		if (.@id)
+			setunitdata .@id, .@a, .@b;
+		end;
+	}
+	if (.@t$ == "mxy") {
+		if (getmapxy(.@m$, .@x, .@y, BL_MER) == 0)
+			dispbottom "mxy " + .@m$ + " " + .@x + " " + .@y;
+		else
+			dispbottom "mxy none";
+		end;
+	}
+	if (.@t$ == "ei") {
+		dispbottom "ele " + geteleminfo(ELEMINFO_ID) + " " + (geteleminfo(ELEMINFO_GAMEID) > 0) + " " + geteleminfo(ELEMINFO_CLASS);
+		if (getmapxy(.@m$, .@x, .@y, BL_ELEM) == 0)
+			dispbottom "exy " + .@m$ + " " + .@x + " " + .@y;
+		else
+			dispbottom "exy none";
+		end;
+	}
+	if (.@t$ == "eu") {
+		.@id = geteleminfo(ELEMINFO_GAMEID);
+		if (.@id == 0) {
+			dispbottom "no elemental";
+			end;
+		}
+		getunitdata .@id, .@d;
+		dispbottom "eu " + .@d[UELE_SIZE] + " " + .@d[UELE_HP] + " " + .@d[UELE_MAXHP] + " " + .@d[UELE_SP] + " " + .@d[UELE_MAXSP] + " " + .@d[UELE_MODE] + " " + .@d[UELE_STR] + " " + .@d[UELE_ATKMIN] + " " + .@d[UELE_ATKMAX] + " " + .@d[UELE_MATKMIN] + " " + .@d[UELE_DEF] + " " + .@d[UELE_MDEF] + " " + .@d[UELE_HIT] + " " + .@d[UELE_FLEE] + " " + .@d[UELE_AMOTION];
+		end;
+	}
+	if (.@t$ == "es") {
+		.@id = geteleminfo(ELEMINFO_GAMEID);
+		if (.@id)
+			setunitdata .@id, .@a, .@b;
+		end;
+	}
+	end;
+}

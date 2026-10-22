@@ -1,0 +1,1030 @@
+{
+ "source": "roBrowserLegacy src/DB/Items/WeaponHitSoundTable.js, DB/Jobs/JobHitSoundTable.js, DB/Items/WeaponSoundTable.js (tools/combat/rb_combat_tables.mjs + build_combat_data.py)",
+ "weaponHit": {
+  "0": [
+   "_hit_fist1.wav",
+   "_hit_fist2.wav",
+   "_hit_fist3.wav",
+   "_hit_fist4.wav"
+  ],
+  "1": [
+   "_hit_sword.wav"
+  ],
+  "2": [
+   "_hit_sword.wav"
+  ],
+  "3": [
+   "_hit_sword.wav"
+  ],
+  "4": [
+   "_hit_spear.wav"
+  ],
+  "5": [
+   "_hit_spear.wav"
+  ],
+  "6": [
+   "_hit_axe.wav"
+  ],
+  "7": [
+   "_hit_axe.wav"
+  ],
+  "8": [
+   "_hit_mace.wav"
+  ],
+  "9": [
+   "_hit_mace.wav"
+  ],
+  "10": [
+   "_hit_rod.wav"
+  ],
+  "11": [
+   "_hit_arrow.wav"
+  ],
+  "12": [
+   "_HIT_FIST2.wav"
+  ],
+  "13": [
+   "_hit_mace.wav"
+  ],
+  "14": [
+   "_hit_mace.wav"
+  ],
+  "15": [
+   "_hit_mace.wav"
+  ],
+  "16": [
+   "_hit_mace.wav"
+  ],
+  "17": [
+   "_hit_\u00b1\u00c7\u00c3\u00d1.wav"
+  ],
+  "18": [
+   "_hit_\u00b6\u00f3\u00c0\u00cc\u00c7\u00c3.wav"
+  ],
+  "19": [
+   "_hit_\u00b0\u00b3\u00c6\u00b2\u00b8\u00b5\u00c7\u00d1\u00b9\u00df.wav"
+  ],
+  "20": [
+   "_hit_\u00bc\u00a6\u00b0\u00c7.wav"
+  ],
+  "21": [
+   "_hit_\u00b1\u00d7\u00b7\u00b9\u00b3\u00d7\u00c0\u00cc\u00b5\u00e5\u00b7\u00b1\u00c3\u00c4.wav"
+  ],
+  "22": [
+   "_hit_mace.wav"
+  ],
+  "23": [
+   "_hit_rod.wav"
+  ],
+  "24": [
+   "_hit_fist4.wav"
+  ],
+  "25": [
+   "_hit_sword.wav"
+  ],
+  "26": [
+   "_hit_sword.wav"
+  ],
+  "27": [
+   "_hit_axe.wav"
+  ],
+  "28": [
+   "_hit_sword.wav"
+  ],
+  "29": [
+   "_hit_sword.wav"
+  ],
+  "30": [
+   "_hit_sword.wav"
+  ],
+  "103": [
+   "_hit_mace.wav"
+  ]
+ },
+ "jobHit": {
+  "0": [
+   "player_clothes.wav"
+  ],
+  "1": [
+   "player_metal.wav"
+  ],
+  "2": [
+   "player_clothes.wav"
+  ],
+  "3": [
+   "player_wooden_male.wav"
+  ],
+  "4": [
+   "player_clothes.wav"
+  ],
+  "5": [
+   "player_clothes.wav"
+  ],
+  "6": [
+   "player_wooden_male.wav"
+  ],
+  "7": [
+   "player_metal.wav"
+  ],
+  "8": [
+   "player_clothes.wav"
+  ],
+  "9": [
+   "player_clothes.wav"
+  ],
+  "10": [
+   "player_clothes.wav"
+  ],
+  "11": [
+   "player_wooden_male.wav"
+  ],
+  "12": [
+   "player_wooden_male.wav"
+  ],
+  "13": [
+   "player_metal.wav"
+  ],
+  "14": [
+   "player_metal.wav"
+  ],
+  "15": [
+   "player_metal.wav"
+  ],
+  "16": [
+   "player_clothes.wav"
+  ],
+  "17": [
+   "player_wooden_male.wav"
+  ],
+  "18": [
+   "player_clothes.wav"
+  ],
+  "19": [
+   "player_wooden_male.wav"
+  ],
+  "20": [
+   "player_wooden_male.wav"
+  ],
+  "21": [
+   "player_metal.wav"
+  ],
+  "22": [
+   "player_clothes.wav"
+  ],
+  "23": [
+   "player_clothes.wav"
+  ],
+  "24": [
+   "player_wooden_male.wav"
+  ],
+  "25": [
+   "player_wooden_male.wav"
+  ],
+  "26": [
+   "player_clothes.wav"
+  ],
+  "27": [
+   "player_clothes.wav"
+  ],
+  "4001": [
+   "player_clothes.wav"
+  ],
+  "4002": [
+   "player_metal.wav"
+  ],
+  "4003": [
+   "player_clothes.wav"
+  ],
+  "4004": [
+   "player_wooden_male.wav"
+  ],
+  "4005": [
+   "player_clothes.wav"
+  ],
+  "4006": [
+   "player_clothes.wav"
+  ],
+  "4007": [
+   "player_wooden_male.wav"
+  ],
+  "4008": [
+   "player_metal.wav"
+  ],
+  "4009": [
+   "player_clothes.wav"
+  ],
+  "4010": [
+   "player_clothes.wav"
+  ],
+  "4011": [
+   "player_clothes.wav"
+  ],
+  "4012": [
+   "player_wooden_male.wav"
+  ],
+  "4013": [
+   "player_wooden_male.wav"
+  ],
+  "4014": [
+   "player_metal.wav"
+  ],
+  "4015": [
+   "player_metal.wav"
+  ],
+  "4016": [
+   "player_metal.wav"
+  ],
+  "4017": [
+   "player_clothes.wav"
+  ],
+  "4018": [
+   "player_wooden_male.wav"
+  ],
+  "4019": [
+   "player_clothes.wav"
+  ],
+  "4020": [
+   "player_wooden_male.wav"
+  ],
+  "4021": [
+   "player_wooden_male.wav"
+  ],
+  "4022": [
+   "player_metal.wav"
+  ],
+  "4023": [
+   "player_clothes.wav"
+  ],
+  "4024": [
+   "player_metal.wav"
+  ],
+  "4025": [
+   "player_clothes.wav"
+  ],
+  "4026": [
+   "player_wooden_male.wav"
+  ],
+  "4027": [
+   "player_clothes.wav"
+  ],
+  "4028": [
+   "player_clothes.wav"
+  ],
+  "4029": [
+   "player_wooden_male.wav"
+  ],
+  "4030": [
+   "player_metal.wav"
+  ],
+  "4031": [
+   "player_clothes.wav"
+  ],
+  "4032": [
+   "player_clothes.wav"
+  ],
+  "4033": [
+   "player_clothes.wav"
+  ],
+  "4034": [
+   "player_wooden_male.wav"
+  ],
+  "4035": [
+   "player_wooden_male.wav"
+  ],
+  "4036": [
+   "player_metal.wav"
+  ],
+  "4037": [
+   "player_metal.wav"
+  ],
+  "4038": [
+   "player_metal.wav"
+  ],
+  "4039": [
+   "player_clothes.wav"
+  ],
+  "4040": [
+   "player_wooden_male.wav"
+  ],
+  "4041": [
+   "player_clothes.wav"
+  ],
+  "4042": [
+   "player_wooden_male.wav"
+  ],
+  "4043": [
+   "player_wooden_male.wav"
+  ],
+  "4044": [
+   "player_metal.wav"
+  ],
+  "4046": [
+   "player_wooden_male.wav"
+  ],
+  "4047": [
+   "player_metal.wav"
+  ],
+  "4048": [
+   "player_metal.wav"
+  ],
+  "4049": [
+   "player_clothes.wav"
+  ],
+  "4054": [
+   "player_metal.wav"
+  ],
+  "4055": [
+   "player_clothes.wav"
+  ],
+  "4056": [
+   "player_wooden_male.wav"
+  ],
+  "4057": [
+   "player_clothes.wav"
+  ],
+  "4058": [
+   "player_clothes.wav"
+  ],
+  "4059": [
+   "player_wooden_male.wav"
+  ],
+  "4060": [
+   "player_metal.wav"
+  ],
+  "4061": [
+   "player_clothes.wav"
+  ],
+  "4062": [
+   "player_wooden_male.wav"
+  ],
+  "4063": [
+   "player_clothes.wav"
+  ],
+  "4064": [
+   "player_clothes.wav"
+  ],
+  "4065": [
+   "player_wooden_male.wav"
+  ],
+  "4066": [
+   "player_metal.wav"
+  ],
+  "4067": [
+   "player_clothes.wav"
+  ],
+  "4068": [
+   "player_wooden_male.wav"
+  ],
+  "4069": [
+   "player_wooden_male.wav"
+  ],
+  "4070": [
+   "player_metal.wav"
+  ],
+  "4071": [
+   "player_clothes.wav"
+  ],
+  "4072": [
+   "player_wooden_male.wav"
+  ],
+  "4073": [
+   "player_metal.wav"
+  ],
+  "4074": [
+   "player_clothes.wav"
+  ],
+  "4075": [
+   "player_wooden_male.wav"
+  ],
+  "4076": [
+   "player_wooden_male.wav"
+  ],
+  "4077": [
+   "player_metal.wav"
+  ],
+  "4078": [
+   "player_clothes.wav"
+  ],
+  "4079": [
+   "player_wooden_male.wav"
+  ],
+  "4080": [
+   "player_metal.wav"
+  ],
+  "4081": [
+   "player_metal.wav"
+  ],
+  "4082": [
+   "player_metal.wav"
+  ],
+  "4083": [
+   "player_metal.wav"
+  ],
+  "4084": [
+   "player_wooden_male.wav"
+  ],
+  "4085": [
+   "player_wooden_male.wav"
+  ],
+  "4086": [
+   "player_clothes.wav"
+  ],
+  "4087": [
+   "player_clothes.wav"
+  ],
+  "4096": [
+   "player_metal.wav"
+  ],
+  "4097": [
+   "player_clothes.wav"
+  ],
+  "4098": [
+   "player_wooden_male.wav"
+  ],
+  "4099": [
+   "player_clothes.wav"
+  ],
+  "4100": [
+   "player_clothes.wav"
+  ],
+  "4101": [
+   "player_wooden_male.wav"
+  ],
+  "4102": [
+   "player_metal.wav"
+  ],
+  "4103": [
+   "player_clothes.wav"
+  ],
+  "4104": [
+   "player_wooden_male.wav"
+  ],
+  "4105": [
+   "player_wooden_male.wav"
+  ],
+  "4106": [
+   "player_metal.wav"
+  ],
+  "4107": [
+   "player_clothes.wav"
+  ],
+  "4108": [
+   "player_wooden_male.wav"
+  ],
+  "4109": [
+   "player_metal.wav"
+  ],
+  "4110": [
+   "player_metal.wav"
+  ],
+  "4111": [
+   "player_wooden_male.wav"
+  ],
+  "4112": [
+   "player_clothes.wav"
+  ],
+  "4114": [
+   "player_wooden_male.wav"
+  ],
+  "4115": [
+   "player_wooden_male.wav"
+  ],
+  "4116": [
+   "player_metal.wav"
+  ],
+  "4117": [
+   "player_clothes.wav"
+  ],
+  "4118": [
+   "player_clothes.wav"
+  ],
+  "4119": [
+   "player_clothes.wav"
+  ],
+  "4120": [
+   "player_clothes.wav"
+  ],
+  "4121": [
+   "player_clothes.wav"
+  ],
+  "4122": [
+   "player_wooden_male.wav"
+  ],
+  "4123": [
+   "player_metal.wav"
+  ],
+  "4124": [
+   "player_clothes.wav"
+  ],
+  "4125": [
+   "player_metal.wav"
+  ],
+  "4126": [
+   "player_clothes.wav"
+  ],
+  "4127": [
+   "player_metal.wav"
+  ],
+  "4128": [
+   "player_clothes.wav"
+  ],
+  "4129": [
+   "player_clothes.wav"
+  ],
+  "4130": [
+   "player_clothes.wav"
+  ],
+  "4131": [
+   "player_clothes.wav"
+  ],
+  "4132": [
+   "player_clothes.wav"
+  ],
+  "4133": [
+   "player_clothes.wav"
+  ],
+  "4134": [
+   "player_clothes.wav"
+  ],
+  "4135": [
+   "player_clothes.wav"
+  ],
+  "4136": [
+   "player_clothes.wav"
+  ],
+  "4137": [
+   "player_clothes.wav"
+  ],
+  "4138": [
+   "player_clothes.wav"
+  ],
+  "4139": [
+   "player_metal.wav"
+  ],
+  "4140": [
+   "player_wooden_male.wav"
+  ],
+  "4141": [
+   "player_wooden_male.wav"
+  ],
+  "4142": [
+   "player_wooden_male.wav"
+  ],
+  "4143": [
+   "player_wooden_male.wav"
+  ],
+  "4144": [
+   "player_wooden_male.wav"
+  ],
+  "4145": [
+   "player_wooden_male.wav"
+  ],
+  "4146": [
+   "player_wooden_male.wav"
+  ],
+  "4147": [
+   "player_wooden_male.wav"
+  ],
+  "4148": [
+   "player_wooden_male.wav"
+  ],
+  "4149": [
+   "player_wooden_male.wav"
+  ],
+  "4150": [
+   "player_wooden_male.wav"
+  ],
+  "4151": [
+   "player_wooden_male.wav"
+  ],
+  "4152": [
+   "player_wooden_male.wav"
+  ],
+  "4153": [
+   "player_wooden_male.wav"
+  ],
+  "4154": [
+   "player_wooden_male.wav"
+  ],
+  "4155": [
+   "player_wooden_male.wav"
+  ],
+  "4156": [
+   "player_clothes.wav"
+  ],
+  "4157": [
+   "player_clothes.wav"
+  ],
+  "4158": [
+   "player_clothes.wav"
+  ],
+  "4159": [
+   "player_metal.wav"
+  ],
+  "4160": [
+   "player_clothes.wav"
+  ],
+  "4161": [
+   "player_wooden_male.wav"
+  ],
+  "4162": [
+   "player_clothes.wav"
+  ],
+  "4163": [
+   "player_clothes.wav"
+  ],
+  "4164": [
+   "player_wooden_male.wav"
+  ],
+  "4165": [
+   "player_wooden_male.wav"
+  ],
+  "4166": [
+   "player_metal.wav"
+  ],
+  "4167": [
+   "player_clothes.wav"
+  ],
+  "4168": [
+   "player_wooden_male.wav"
+  ],
+  "4169": [
+   "player_clothes.wav"
+  ],
+  "4170": [
+   "player_wooden_male.wav"
+  ],
+  "4171": [
+   "player_wooden_male.wav"
+  ],
+  "4172": [
+   "player_clothes.wav"
+  ],
+  "4173": [
+   "player_clothes.wav"
+  ],
+  "4174": [
+   "player_clothes.wav"
+  ],
+  "4175": [
+   "player_wooden_male.wav"
+  ],
+  "4176": [
+   "player_clothes.wav"
+  ],
+  "4177": [
+   "player_wooden_male.wav"
+  ],
+  "4178": [
+   "player_wooden_male.wav"
+  ],
+  "4179": [
+   "player_metal.wav"
+  ],
+  "4180": [
+   "player_clothes.wav"
+  ],
+  "4181": [
+   "player_wooden_male.wav"
+  ],
+  "4182": [
+   "player_wooden_male.wav"
+  ],
+  "4183": [
+   "player_clothes.wav"
+  ],
+  "4184": [
+   "player_metal.wav"
+  ],
+  "4185": [
+   "player_clothes.wav"
+  ],
+  "4186": [
+   "player_wooden_male.wav"
+  ],
+  "4187": [
+   "player_clothes.wav"
+  ],
+  "4188": [
+   "player_clothes.wav"
+  ],
+  "4189": [
+   "player_wooden_male.wav"
+  ],
+  "4190": [
+   "player_clothes.wav"
+  ],
+  "4192": [
+   "player_clothes.wav"
+  ],
+  "4193": [
+   "player_clothes.wav"
+  ],
+  "4194": [
+   "player_clothes.wav"
+  ],
+  "4195": [
+   "player_clothes.wav"
+  ],
+  "4196": [
+   "player_clothes.wav"
+  ],
+  "4197": [
+   "player_clothes.wav"
+  ],
+  "4198": [
+   "player_wooden_male.wav"
+  ],
+  "4199": [
+   "player_metal.wav"
+  ],
+  "4200": [
+   "player_metal.wav"
+  ],
+  "4201": [
+   "player_metal.wav"
+  ],
+  "4202": [
+   "player_metal.wav"
+  ],
+  "4203": [
+   "player_metal.wav"
+  ],
+  "4204": [
+   "player_metal.wav"
+  ],
+  "4205": [
+   "player_clothes.wav"
+  ],
+  "4206": [
+   "player_wooden_male.wav"
+  ],
+  "4207": [
+   "player_metal.wav"
+  ],
+  "4208": [
+   "player_metal.wav"
+  ],
+  "4209": [
+   "player_metal.wav"
+  ],
+  "4210": [
+   "player_metal.wav"
+  ],
+  "4211": [
+   "player_wooden_male.wav"
+  ],
+  "4212": [
+   "player_wooden_male.wav"
+  ],
+  "4213": [
+   "player_wooden_male.wav"
+  ],
+  "4214": [
+   "player_wooden_male.wav"
+  ],
+  "4215": [
+   "player_clothes.wav"
+  ],
+  "4216": [
+   "player_clothes.wav"
+  ],
+  "4218": [
+   "player_clothes.wav"
+  ],
+  "4220": [
+   "player_clothes.wav"
+  ],
+  "4230": [
+   "player_wooden_male.wav"
+  ],
+  "4231": [
+   "player_wooden_male.wav"
+  ],
+  "4232": [
+   "player_wooden_male.wav"
+  ],
+  "4233": [
+   "player_wooden_male.wav"
+  ],
+  "4234": [
+   "player_metal.wav"
+  ],
+  "4235": [
+   "player_clothes.wav"
+  ],
+  "4236": [
+   "player_wooden_male.wav"
+  ],
+  "4237": [
+   "player_clothes.wav"
+  ],
+  "4239": [
+   "player_metal.wav"
+  ],
+  "4240": [
+   "player_metal.wav"
+  ],
+  "4241": [
+   "player_metal.wav"
+  ],
+  "4242": [
+   "player_metal.wav"
+  ],
+  "4243": [
+   "player_metal.wav"
+  ],
+  "4244": [
+   "player_metal.wav"
+  ],
+  "4252": [
+   "player_metal.wav"
+  ],
+  "4253": [
+   "player_clothes.wav"
+  ],
+  "4254": [
+   "player_wooden_male.wav"
+  ],
+  "4255": [
+   "player_clothes.wav"
+  ],
+  "4256": [
+   "player_clothes.wav"
+  ],
+  "4257": [
+   "player_wooden_male.wav"
+  ],
+  "4258": [
+   "player_metal.wav"
+  ],
+  "4259": [
+   "player_clothes.wav"
+  ],
+  "4260": [
+   "player_wooden_male.wav"
+  ],
+  "4261": [
+   "player_clothes.wav"
+  ],
+  "4262": [
+   "player_metal.wav"
+  ],
+  "4263": [
+   "player_wooden_male.wav"
+  ],
+  "4264": [
+   "player_wooden_male.wav"
+  ],
+  "4278": [
+   "player_wooden_male.wav"
+  ],
+  "4279": [
+   "player_clothes.wav"
+  ],
+  "4280": [
+   "player_metal.wav"
+  ],
+  "4281": [
+   "player_metal.wav"
+  ],
+  "4332": [
+   "player_metal.wav"
+  ],
+  "4333": [
+   "player_clothes.wav"
+  ],
+  "4334": [
+   "player_wooden_male.wav"
+  ],
+  "4335": [
+   "player_clothes.wav"
+  ],
+  "4337": [
+   "player_wooden_male.wav"
+  ],
+  "4338": [
+   "player_metal.wav"
+  ],
+  "4339": [
+   "player_clothes.wav"
+  ],
+  "4340": [
+   "player_wooden_male.wav"
+  ],
+  "4341": [
+   "player_clothes.wav"
+  ],
+  "4342": [
+   "player_metal.wav"
+  ],
+  "4343": [
+   "player_wooden_male.wav"
+  ],
+  "4344": [
+   "player_wooden_male.wav"
+  ],
+  "4345": [
+   "player_metal.wav"
+  ],
+  "4346": [
+   "player_wooden_male.wav"
+  ],
+  "4347": [
+   "player_clothes.wav"
+  ],
+  "4348": [
+   "player_metal.wav"
+  ]
+ },
+ "weaponSwing": {
+  "0": [
+   "attack_fist.wav"
+  ],
+  "1": [
+   "attack_short_sword.wav",
+   "attack_short_sword_.wav"
+  ],
+  "2": [
+   "attack_sword.wav"
+  ],
+  "3": [
+   "attack_twohand_sword.wav"
+  ],
+  "4": [
+   "attack_spear.wav"
+  ],
+  "5": [
+   "attack_spear.wav"
+  ],
+  "6": [
+   "attack_axe.wav"
+  ],
+  "7": [
+   "attack_axe.wav"
+  ],
+  "8": [
+   "attack_mace.wav"
+  ],
+  "9": [
+   "attack_mace.wav"
+  ],
+  "10": [
+   "attack_rod.wav"
+  ],
+  "11": [
+   "attack_bow1.wav",
+   "attack_bow2.wav"
+  ],
+  "12": [
+   "attack_fist.wav"
+  ],
+  "13": [
+   "attack_mace.wav"
+  ],
+  "14": [
+   "attack_whip.wav"
+  ],
+  "15": [
+   "attack_book.wav"
+  ],
+  "16": [
+   "attack_katar.wav"
+  ],
+  "17": [],
+  "18": [],
+  "19": [],
+  "20": [],
+  "21": [],
+  "22": [
+   "attack_sword.wav"
+  ],
+  "23": [
+   "attack_rod.wav"
+  ],
+  "24": [
+   "attack_fist.wav"
+  ],
+  "25": [
+   "attack_mace.wav"
+  ],
+  "26": [
+   "attack_mace.wav"
+  ],
+  "27": [
+   "attack_mace.wav"
+  ],
+  "28": [
+   "attack_mace.wav"
+  ],
+  "29": [
+   "attack_mace.wav"
+  ],
+  "30": [
+   "attack_mace.wav"
+  ],
+  "103": [
+   "attack_fist.wav"
+  ]
+ }
+}

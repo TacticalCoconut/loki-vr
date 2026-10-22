@@ -1,0 +1,339 @@
+//! skills/npc/skill_factory_npc.cpp: SkillFactoryNpc::create and the npc family's classes (rAthena e985006), one
+//! file per rAthena file. The monster skills (NPC_*) that mobskill_use casts: the class files are ported by skillcore
+//! (wave D); an arm answering None is a class not ported yet (the pipeline then takes rAthena's no-impl path).
+
+use super::{SkillImpl, SkillImplRecursiveDamageSplash, StatusSkillImpl, WeaponSkillImpl};
+use crate::db::skills::*;
+
+pub mod acidbreath;
+pub mod agilityup;
+pub mod antimagic;
+pub mod attributechange;
+pub mod bleeding;
+pub mod bleeding2;
+pub mod blindattack;
+pub mod breakarmor;
+pub mod breakhelm;
+pub mod breakshield;
+pub mod caneofevileye;
+pub mod changelocation;
+pub mod comet2;
+pub mod criticalwounds;
+pub mod crossofdarkness;
+pub mod curseattack;
+pub mod dancingblade;
+pub mod darkblessing;
+pub mod darkbreath;
+pub mod darknessbreath;
+pub mod darknessjupitel;
+pub mod darkpiercing;
+pub mod deadlycurse;
+pub mod deadlycurse2;
+pub mod deathsummon;
+pub mod decreaseallstats;
+pub mod demonshockattack;
+pub mod dragonfear;
+pub mod earthattributeattack;
+pub mod earthattributechange;
+pub mod earthquake;
+pub mod emotion;
+pub mod emotionon;
+pub mod energydrain;
+pub mod evilland;
+pub mod expulsion;
+pub mod fireattributeattack;
+pub mod fireattributechange;
+pub mod firebreath;
+pub mod firestorm;
+pub mod flamecross;
+pub mod followersummons;
+pub mod fullheal;
+pub mod ghostattributeattack;
+pub mod ghostattributechange;
+pub mod grandcrossofdarkness;
+pub mod grounddrive;
+pub mod hallucination;
+pub mod hellburning;
+pub mod helldignity;
+pub mod hellpower;
+pub mod hellsjudgement;
+pub mod hellsjudgement2;
+pub mod holyattributeattack;
+pub mod holyattributechange;
+pub mod icebreath;
+pub mod icebreath2;
+pub mod icemine;
+pub mod increasedgravity;
+pub mod invincibleoff;
+pub mod invisible;
+pub mod jackfrost2;
+pub mod leash;
+pub mod lexaeterna2;
+pub mod lick;
+pub mod metamorphosis;
+pub mod milleniumshield2;
+pub mod monstersummons;
+pub mod multistageattack;
+pub mod npcarrowstorm;
+pub mod npccloudkill;
+pub mod npccoluceoheal;
+pub mod npccursedcircle;
+pub mod npcdragonbreath;
+pub mod npcelectricwalk;
+pub mod npcfatalmenace;
+pub mod npcfirewalk;
+pub mod npchowlingofmandragora;
+pub mod npcignitionbreak;
+pub mod npcmagmaeruption;
+pub mod npcphantomthrust;
+pub mod npcpoisonbuster;
+pub mod npcpsychicwave;
+pub mod npcrayofgenesis;
+pub mod npcrun;
+pub mod npcsuicide;
+pub mod npcvenomimpress;
+pub mod petrifyattack;
+pub mod piercingattack;
+pub mod poisonattack;
+pub mod poisonattributeattack;
+pub mod poisonattributechange;
+pub mod powerup;
+pub mod propertyimmune;
+pub mod provocation;
+pub mod pulsestrike;
+pub mod pulsestrike2;
+pub mod rainofmeteor;
+pub mod randomattack;
+pub mod randommove;
+pub mod rebirth;
+pub mod recallslaves;
+pub mod revenge;
+pub mod reverberation2;
+pub mod shadowattributeattack;
+pub mod shadowattributechange;
+pub mod siegemode;
+pub mod silenceattack;
+pub mod sleepattack;
+pub mod slowcast;
+pub mod smoking;
+pub mod soulstrikeofdarkness;
+pub mod speedup;
+pub mod spiritdestruction;
+pub mod splashattack;
+pub mod stoneskin;
+pub mod stop;
+pub mod stormgust2;
+pub mod stunattack;
+pub mod suckingblood;
+pub mod suicidebombing;
+pub mod talk;
+pub mod thunderbreath;
+pub mod transformation;
+pub mod undeadattributechange;
+pub mod undeadelementattack;
+pub mod vampiregift;
+pub mod venomfog;
+pub mod waterattributeattack;
+pub mod waterattributechange;
+pub mod widebleeding;
+pub mod widebleeding2;
+pub mod wideconfusion;
+pub mod wideconfusion2;
+pub mod widecriticalwounds;
+pub mod widecurse;
+pub mod widecurse2;
+pub mod widefreeze;
+pub mod widefreeze2;
+pub mod wideleash;
+pub mod widepetrify;
+pub mod widepetrify2;
+pub mod widesight;
+pub mod widesilence;
+pub mod widesilence2;
+pub mod widesleep;
+pub mod widesleep2;
+pub mod widesouldrain;
+pub mod widestun;
+pub mod widestun2;
+pub mod widesuck;
+pub mod wideweb;
+pub mod windattributeattack;
+pub mod windattributechange;
+
+/// SkillFactoryNpc::create.
+pub fn create(skill_id: u16) -> Option<Box<dyn SkillImpl>> {
+    match skill_id {
+        NPC_ACIDBREATH => Some(Box::new(acidbreath::SkillAcidBreath)),
+        NPC_AGIUP => Some(Box::new(agilityup::SkillAgilityUp)),
+        NPC_ALLHEAL => Some(Box::new(fullheal::SkillFullHeal)),
+        NPC_ALL_STAT_DOWN => Some(Box::new(decreaseallstats::SkillDecreaseAllStats)),
+        NPC_ANTIMAGIC => Some(Box::new(antimagic::SkillAntiMagic)),
+        NPC_ARMORBRAKE => Some(Box::new(breakarmor::SkillBreakArmor)),
+        NPC_ARROWSTORM => Some(Box::new(npcarrowstorm::SkillNpcArrowStorm)),
+        NPC_ATTRICHANGE => Some(Box::new(attributechange::SkillAttributeChange)),
+        NPC_BARRIER => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_BLEEDING => Some(Box::new(bleeding::SkillBleeding)),
+        NPC_BLEEDING2 => Some(Box::new(bleeding2::SkillBleeding2)),
+        NPC_BLINDATTACK => Some(Box::new(blindattack::SkillBlindAttack)),
+        NPC_BLOODDRAIN => Some(Box::new(suckingblood::SkillSuckingBlood)),
+        NPC_CALLSLAVE => Some(Box::new(recallslaves::SkillRecallSlaves)),
+        NPC_CANE_OF_EVIL_EYE => Some(Box::new(caneofevileye::SkillCaneOfEvilEye)),
+        NPC_CHANGEDARKNESS => Some(Box::new(shadowattributechange::SkillShadowAttributeChange)),
+        NPC_CHANGEFIRE => Some(Box::new(fireattributechange::SkillFireAttributeChange)),
+        NPC_CHANGEGROUND => Some(Box::new(earthattributechange::SkillEarthAttributeChange)),
+        NPC_CHANGEHOLY => Some(Box::new(holyattributechange::SkillHolyAttributeChange)),
+        NPC_CHANGEPOISON => Some(Box::new(poisonattributechange::SkillPoisonAttributeChange)),
+        NPC_CHANGETELEKINESIS => Some(Box::new(ghostattributechange::SkillGhostAttributeChange)),
+        NPC_CHANGEUNDEAD => Some(Box::new(undeadattributechange::SkillUndeadAttributeChange)),
+        NPC_CHANGEWATER => Some(Box::new(waterattributechange::SkillWaterAttributeChange)),
+        NPC_CHANGEWIND => Some(Box::new(windattributechange::SkillWindAttributeChange)),
+        NPC_CHEAL => Some(Box::new(npccoluceoheal::SkillNpcColuceoHeal)),
+        NPC_CLOUD_KILL => Some(Box::new(npccloudkill::SkillNpcCloudKill)),
+        NPC_COMBOATTACK => Some(Box::new(multistageattack::SkillMultiStageAttack)),
+        NPC_COMET => Some(Box::new(comet2::SkillComet2)),
+        NPC_CRITICALSLASH => Some(Box::new(WeaponSkillImpl { id: skill_id })),
+        NPC_CRITICALWOUND => Some(Box::new(criticalwounds::SkillCriticalWounds)),
+        NPC_CURSEATTACK => Some(Box::new(curseattack::SkillCurseAttack)),
+        NPC_DAMAGE_HEAL => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_DANCINGBLADE => Some(Box::new(dancingblade::SkillDancingBlade)),
+        NPC_DARKBLESSING => Some(Box::new(darkblessing::SkillDarkBlessing)),
+        NPC_DARKBREATH => Some(Box::new(darkbreath::SkillDarkBreath)),
+        NPC_DARKCROSS => Some(Box::new(crossofdarkness::SkillCrossOfDarkness)),
+        NPC_DARKNESSATTACK => Some(Box::new(shadowattributeattack::SkillShadowAttributeAttack)),
+        NPC_DARKNESSBREATH => Some(Box::new(darknessbreath::SkillDarknessBreath)),
+        NPC_DARKPIERCING => Some(Box::new(darkpiercing::SkillDarkPiercing)),
+        NPC_DARKSTRIKE => Some(Box::new(soulstrikeofdarkness::SkillSoulStrikeOfDarkness)),
+        NPC_DARKTHUNDER => Some(Box::new(darknessjupitel::SkillDarknessJupitel)),
+        NPC_DEADLYCURSE => Some(Box::new(deadlycurse::SkillDeadlyCurse)),
+        NPC_DEADLYCURSE2 => Some(Box::new(deadlycurse2::SkillDeadlyCurse2)),
+        NPC_DEATHSUMMON => Some(Box::new(deathsummon::SkillDeathSummon)),
+        NPC_DEFENDER => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_DRAGONBREATH => Some(Box::new(npcdragonbreath::SkillNpcDragonBreath)),
+        NPC_DRAGONFEAR => Some(Box::new(dragonfear::SkillDragonFear)),
+        NPC_EARTHQUAKE => Some(Box::new(earthquake::SkillEarthquake)),
+        NPC_ELECTRICWALK => Some(Box::new(npcelectricwalk::SkillNpcElectricWalk)),
+        NPC_EMOTION => Some(Box::new(emotion::SkillEmotion)),
+        NPC_EMOTION_ON => Some(Box::new(emotionon::SkillEmotionOn)),
+        NPC_ENERGYDRAIN => Some(Box::new(energydrain::SkillEnergyDrain)),
+        NPC_EVILLAND => Some(Box::new(evilland::SkillEvilLand)),
+        NPC_EXPULSION => Some(Box::new(expulsion::SkillExpulsion)),
+        NPC_FATALMENACE => Some(Box::new(npcfatalmenace::SkillNpcFatalMenace)),
+        NPC_FIREATTACK => Some(Box::new(fireattributeattack::SkillFireAttributeAttack)),
+        NPC_FIREBREATH => Some(Box::new(firebreath::SkillFireBreath)),
+        NPC_FIRESTORM => Some(Box::new(firestorm::SkillFireStorm)),
+        NPC_FIREWALK => Some(Box::new(npcfirewalk::SkillNpcFireWalk)),
+        NPC_FLAMECROSS => Some(Box::new(flamecross::SkillFlameCross)),
+        NPC_GRADUAL_GRAVITY => Some(Box::new(increasedgravity::SkillIncreasedGravity)),
+        NPC_GRANDDARKNESS => Some(Box::new(grandcrossofdarkness::SkillGrandCrossOfDarkness)),
+        NPC_GROUNDATTACK => Some(Box::new(earthattributeattack::SkillEarthAttributeAttack)),
+        NPC_GROUNDDRIVE => Some(Box::new(grounddrive::SkillGroundDrive)),
+        NPC_GUIDEDATTACK => Some(Box::new(WeaponSkillImpl { id: skill_id })),
+        NPC_HALLUCINATION => Some(Box::new(hallucination::SkillHallucination)),
+        NPC_HALLUCINATIONWALK => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_HELLBURNING => Some(Box::new(hellburning::SkillHellBurning)),
+        NPC_HELLJUDGEMENT => Some(Box::new(hellsjudgement::SkillHellsJudgement)),
+        NPC_HELLJUDGEMENT2 => Some(Box::new(hellsjudgement2::SkillHellsJudgement2)),
+        NPC_HELLPOWER => Some(Box::new(hellpower::SkillHellPower)),
+        NPC_HELMBRAKE => Some(Box::new(breakhelm::SkillBreakHelm)),
+        NPC_HOLYATTACK => Some(Box::new(holyattributeattack::SkillHolyAttributeAttack)),
+        NPC_ICEBREATH => Some(Box::new(icebreath::SkillIceBreath)),
+        NPC_ICEBREATH2 => Some(Box::new(icebreath2::SkillIceBreath2)),
+        NPC_ICEMINE => Some(Box::new(icemine::SkillIceMine)),
+        NPC_IGNITIONBREAK => Some(Box::new(npcignitionbreak::SkillNpcIgnitionBreak)),
+        NPC_IMMUNE_PROPERTY => Some(Box::new(propertyimmune::SkillPropertyImmune)),
+        NPC_INVINCIBLE => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_INVINCIBLEOFF => Some(Box::new(invincibleoff::SkillInvincibleOff)),
+        NPC_INVISIBLE => Some(Box::new(invisible::SkillInvisible)),
+        NPC_JACKFROST => Some(Box::new(jackfrost2::SkillJackFrost2)),
+        NPC_KEEPING => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_KILLING_AURA => Some(Box::new(SkillImplRecursiveDamageSplash { id: skill_id })),
+        NPC_LEASH => Some(Box::new(leash::SkillLeash)),
+        NPC_LEX_AETERNA => Some(Box::new(lexaeterna2::SkillLexAeterna2)),
+        NPC_LICK => Some(Box::new(lick::SkillLick)),
+        NPC_MAGICALATTACK => Some(Box::new(demonshockattack::SkillDemonShockAttack)),
+        NPC_MAGICMIRROR => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_MAGMA_ERUPTION => Some(Box::new(npcmagmaeruption::SkillNpcMagmaEruption)),
+        NPC_MANDRAGORA => Some(Box::new(npchowlingofmandragora::SkillNpcHowlingOfMandragora)),
+        NPC_MAXPAIN => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_MAXPAIN_ATK => Some(Box::new(SkillImplRecursiveDamageSplash { id: skill_id })),
+        NPC_MENTALBREAKER => Some(Box::new(spiritdestruction::SkillSpiritDestruction)),
+        NPC_METAMORPHOSIS => Some(Box::new(metamorphosis::SkillMetamorphosis)),
+        NPC_MILLENNIUMSHIELD => Some(Box::new(milleniumshield2::SkillMilleniumShield2)),
+        NPC_MOVE_COORDINATE => Some(Box::new(changelocation::SkillChangeLocation)),
+        NPC_PETRIFYATTACK => Some(Box::new(petrifyattack::SkillPetrifyAttack)),
+        NPC_PHANTOMTHRUST => Some(Box::new(npcphantomthrust::SkillNpcPhantomThrust)),
+        NPC_PIERCINGATT => Some(Box::new(piercingattack::SkillPiercingAttack)),
+        NPC_POISON => Some(Box::new(poisonattack::SkillPoisonAttack)),
+        NPC_POISONATTACK => Some(Box::new(poisonattributeattack::SkillPoisonAttributeAttack)),
+        NPC_POISON_BUSTER => Some(Box::new(npcpoisonbuster::SkillNpcPoisonBuster)),
+        NPC_POWERUP => Some(Box::new(powerup::SkillPowerUp)),
+        NPC_PROVOCATION => Some(Box::new(provocation::SkillProvocation)),
+        NPC_PSYCHIC_WAVE => Some(Box::new(npcpsychicwave::SkillNpcPsychicWave)),
+        NPC_PULSESTRIKE => Some(Box::new(pulsestrike::SkillPulseStrike)),
+        NPC_PULSESTRIKE2 => Some(Box::new(pulsestrike2::SkillPulseStrike2)),
+        NPC_RAINOFMETEOR => Some(Box::new(rainofmeteor::SkillRainOfMeteor)),
+        NPC_RANDOMATTACK => Some(Box::new(randomattack::SkillRandomAttack)),
+        NPC_RANDOMMOVE => Some(Box::new(randommove::SkillRandomMove)),
+        NPC_RANGEATTACK => Some(Box::new(WeaponSkillImpl { id: skill_id })),
+        NPC_RAYOFGENESIS => Some(Box::new(npcrayofgenesis::SkillNpcRayOfGenesis)),
+        NPC_REBIRTH => Some(Box::new(rebirth::SkillRebirth)),
+        NPC_RELIEVE_OFF => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_RELIEVE_ON => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_REVENGE => Some(Box::new(revenge::SkillRevenge)),
+        NPC_REVERBERATION => Some(Box::new(reverberation2::SkillReverberation2)),
+        NPC_REVERBERATION_ATK => Some(Box::new(reverberation2::SkillReverberationAttack)),
+        NPC_RUN => Some(Box::new(npcrun::SkillNpcRun)),
+        NPC_SELFDESTRUCTION => Some(Box::new(suicidebombing::SkillSuicideBombing)),
+        NPC_SHIELDBRAKE => Some(Box::new(breakshield::SkillBreakShield)),
+        NPC_SIEGEMODE => Some(Box::new(siegemode::SkillSiegeMode)),
+        NPC_SILENCEATTACK => Some(Box::new(silenceattack::SkillSilenceAttack)),
+        NPC_SLEEPATTACK => Some(Box::new(sleepattack::SkillSleepAttack)),
+        NPC_SLOWCAST => Some(Box::new(slowcast::SkillSlowCast)),
+        NPC_SMOKING => Some(Box::new(smoking::SkillSmoking)),
+        NPC_SPEEDUP => Some(Box::new(speedup::SkillSpeedUp)),
+        NPC_SPLASHATTACK => Some(Box::new(splashattack::SkillSplashAttack)),
+        NPC_SR_CURSEDCIRCLE => Some(Box::new(npccursedcircle::SkillNpcCursedCircle)),
+        NPC_STONESKIN => Some(Box::new(stoneskin::SkillStoneSkin)),
+        NPC_STOP => Some(Box::new(stop::SkillStop)),
+        NPC_STORMGUST2 => Some(Box::new(stormgust2::SkillStormGust2)),
+        NPC_STUNATTACK => Some(Box::new(stunattack::SkillStunAttack)),
+        NPC_SUICIDE => Some(Box::new(npcsuicide::SkillNpcSuicide)),
+        NPC_SUMMONMONSTER => Some(Box::new(monstersummons::SkillMonsterSummons)),
+        NPC_SUMMONSLAVE => Some(Box::new(followersummons::SkillFollowerSummons)),
+        NPC_TALK => Some(Box::new(talk::SkillTalk)),
+        NPC_TELEKINESISATTACK => Some(Box::new(ghostattributeattack::SkillGhostAttributeAttack)),
+        NPC_THUNDERBREATH => Some(Box::new(thunderbreath::SkillThunderBreath)),
+        NPC_TRANSFORMATION => Some(Box::new(transformation::SkillTransformation)),
+        NPC_UNDEADATTACK => Some(Box::new(undeadelementattack::SkillUndeadElementAttack)),
+        NPC_VAMPIRE_GIFT => Some(Box::new(vampiregift::SkillVampireGift)),
+        NPC_VENOMFOG => Some(Box::new(venomfog::SkillVenomFog)),
+        NPC_VENOMIMPRESS => Some(Box::new(npcvenomimpress::SkillNpcVenomImpress)),
+        NPC_WATERATTACK => Some(Box::new(waterattributeattack::SkillWaterAttributeAttack)),
+        NPC_WEAPONBRAKER => Some(Box::new(StatusSkillImpl::new(skill_id))),
+        NPC_WIDEBLEEDING => Some(Box::new(widebleeding::SkillWideBleeding)),
+        NPC_WIDEBLEEDING2 => Some(Box::new(widebleeding2::SkillWideBleeding2)),
+        NPC_WIDECONFUSE => Some(Box::new(wideconfusion::SkillWideConfusion)),
+        NPC_WIDECONFUSE2 => Some(Box::new(wideconfusion2::SkillWideConfusion2)),
+        NPC_WIDECRITICALWOUND => Some(Box::new(widecriticalwounds::SkillWideCriticalWounds)),
+        NPC_WIDECURSE => Some(Box::new(widecurse::SkillWideCurse)),
+        NPC_WIDECURSE2 => Some(Box::new(widecurse2::SkillWideCurse2)),
+        NPC_WIDEFREEZE => Some(Box::new(widefreeze::SkillWideFreeze)),
+        NPC_WIDEFREEZE2 => Some(Box::new(widefreeze2::SkillWideFreeze2)),
+        NPC_WIDEHELLDIGNITY => Some(Box::new(helldignity::SkillHellDignity)),
+        NPC_WIDELEASH => Some(Box::new(wideleash::SkillWideLeash)),
+        NPC_WIDESIGHT => Some(Box::new(widesight::SkillWideSight)),
+        NPC_WIDESILENCE => Some(Box::new(widesilence::SkillWideSilence)),
+        NPC_WIDESILENCE2 => Some(Box::new(widesilence2::SkillWideSilence2)),
+        NPC_WIDESLEEP => Some(Box::new(widesleep::SkillWideSleep)),
+        NPC_WIDESLEEP2 => Some(Box::new(widesleep2::SkillWideSleep2)),
+        NPC_WIDESOULDRAIN => Some(Box::new(widesouldrain::SkillWideSoulDrain)),
+        NPC_WIDESTONE => Some(Box::new(widepetrify::SkillWidePetrify)),
+        NPC_WIDESTONE2 => Some(Box::new(widepetrify2::SkillWidePetrify2)),
+        NPC_WIDESTUN => Some(Box::new(widestun::SkillWideStun)),
+        NPC_WIDESTUN2 => Some(Box::new(widestun2::SkillWideStun2)),
+        NPC_WIDESUCK => Some(Box::new(widesuck::SkillWideSuck)),
+        NPC_WIDEWEB => Some(Box::new(wideweb::SkillWideWeb)),
+        NPC_WINDATTACK => Some(Box::new(windattributeattack::SkillWindAttributeAttack)),
+        _ => None,
+    }
+}

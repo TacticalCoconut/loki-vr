@@ -1,0 +1,21 @@
+//===== Loki VR smoke-test helper ============================================
+// Whisper "NPC:LokiSmoke" to trigger server-opened windows for the client's
+// smoke tests (test servers only; loaded from scripts_custom.conf):
+//   grant   - ALL_BUYING_STORE 1 (as the Bulk Buyer Shop License quest does)
+//   enchant - the item_enchant window with table 1 (as Torus does)
+//   reform  - the item_reform window for IDTest_Special (100000)
+//============================================================================
+-	script	LokiSmoke	-1,{
+OnWhisperGlobal:
+	if (@whispervar0$ == "enchant") {
+		item_enchant 1;
+		end;
+	}
+	if (@whispervar0$ == "reform") {
+		item_reform 100000;
+		end;
+	}
+	skill "ALL_BUYING_STORE",1,SKILL_PERM_GRANT;
+	message strcharinfo(0),"[LokiSmoke] ALL_BUYING_STORE granted.";
+	end;
+}

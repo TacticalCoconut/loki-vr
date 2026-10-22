@@ -1,0 +1,92 @@
+//! skills/merchant/acidifiedzonefire.cpp: class SkillAcidifiedZoneFire : public SkillImplRecursiveDamageSplash (BO_ACIDIFIED_ZONE_FIRE); class
+//! SkillActifiedZoneFireAttack : public WeaponSkillImpl (BO_ACIDIFIED_ZONE_FIRE_ATK, the hits of the zone's unit).
+
+use crate::battle::calc::Damage;
+use crate::db::skills::*;
+use crate::map::BL_PC;
+use crate::skill::clif::clif_skill_nodamage;
+use crate::skills::{RecursiveDamageSplash, SkillImpl};
+use crate::unit::{self, Unit};
+use crate::world::{Ctx, Tick};
+use crate::skills::novice::{re_lvl_dmod, sce};
+use crate::status::consts::SC_RESEARCHREPORT;
+use crate::status::defs::{RC_FORMLESS, RC_PLANT};
+use crate::status::status_get_status_data;
+
+/// SkillAcidifiedZoneFire::SkillAcidifiedZoneFire() : SkillImplRecursiveDamageSplash(BO_ACIDIFIED_ZONE_FIRE).
+pub struct SkillAcidifiedZoneFire;
+
+impl SkillImpl for SkillAcidifiedZoneFire {
+    fn skill_id(&self) -> u16 {
+        BO_ACIDIFIED_ZONE_FIRE
+    }
+
+    /// SkillImplRecursiveDamageSplash::castendDamageId (inherited).
+    fn castend_damage_id(&self, c: &Ctx, src: &Unit, target: &Unit, skill_lv: u16, tick: Tick, flag: &mut i32) {
+        crate::skills::splash_castend_damage_id(self, c, src, target, skill_lv, tick, flag);
+    }
+
+    /// calculateSkillRatio (every BO_ACIDIFIED_ZONE_* is the same: "All BO_ACIDIFIED_ZONE_* deal the same damage?
+    /// [Rytech]"): 400% per level + POW x 5; under SC_RESEARCHREPORT x1.5, and x1.5 again on formless / plant
+    /// targets; RE_LVL_DMOD(100).
+    fn calculate_skill_ratio(&self, c: &Ctx, _wd: &Damage, src: &Unit, target: &Unit, skill_lv: u16, skillratio: &mut i32, _mflag: i32) {
+        acidified_zone_ratio(c, src, target, skill_lv, skillratio);
+    }
+
+    /// castendPos2: the zone unit; flag |= 1 so the ammo is not consumed now (deleted with the group).
+    fn castend_pos2(&self, c: &Ctx, src: &Unit, x: i16, y: i16, skill_lv: u16, _tick: Tick, flag: &mut i32) {
+        *flag |= 1; //Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
+        crate::skill::iface::skill_unitsetting(c, src, self.skill_id(), skill_lv, x, y, 0);
+    }
+}
+
+impl RecursiveDamageSplash for SkillAcidifiedZoneFire {
+    /// splashSearch: the skill packet on the target; on a player a single-cell zone on its cell (skill_castend_pos2,
+    /// flag 0); then the parent's search.
+    fn splash_search(&self, c: &Ctx, src: &Unit, target: &Unit, skill_lv: u16, tick: Tick, flag: i32) {
+        let id = self.skill_id();
+        clif_skill_nodamage(c, Some(src), target, id, skill_lv as i32, true);
+        if target.kind == BL_PC {
+            // Place single cell AoE if hitting a player.
+            crate::skill::castend::skill_castend_pos2(c, src, target.x, target.y, id, skill_lv, tick, 0);
+        }
+        let s = unit::get(c, src.id).unwrap_or_else(|| src.clone());
+        let t = unit::get(c, target.id).unwrap_or_else(|| target.clone());
+        crate::skills::splash_search_default(self, c, &s, &t, skill_lv, tick, flag);
+    }
+}
+
+/// SkillActifiedZoneFireAttack::SkillActifiedZoneFireAttack() : WeaponSkillImpl(BO_ACIDIFIED_ZONE_FIRE_ATK).
+pub struct SkillActifiedZoneFireAttack;
+
+impl SkillImpl for SkillActifiedZoneFireAttack {
+    fn skill_id(&self) -> u16 {
+        BO_ACIDIFIED_ZONE_FIRE_ATK
+    }
+
+    /// WeaponSkillImpl::castendDamageId (inherited).
+    fn castend_damage_id(&self, c: &Ctx, src: &Unit, target: &Unit, skill_lv: u16, tick: Tick, flag: &mut i32) {
+        crate::skills::weapon_castend_damage_id(c, self.skill_id(), src, target, skill_lv, tick, *flag);
+    }
+
+    /// calculateSkillRatio (every BO_ACIDIFIED_ZONE_* is the same: "All BO_ACIDIFIED_ZONE_* deal the same damage?
+    /// [Rytech]"): 400% per level + POW x 5; under SC_RESEARCHREPORT x1.5, and x1.5 again on formless / plant
+    /// targets; RE_LVL_DMOD(100).
+    fn calculate_skill_ratio(&self, c: &Ctx, _wd: &Damage, src: &Unit, target: &Unit, skill_lv: u16, skillratio: &mut i32, _mflag: i32) {
+        acidified_zone_ratio(c, src, target, skill_lv, skillratio);
+    }
+}
+
+/// The calculateSkillRatio body every acidifiedzone*.cpp class repeats (fire / ground / water / wind and their _ATK).
+pub(crate) fn acidified_zone_ratio(c: &Ctx, src: &Unit, target: &Unit, skill_lv: u16, skillratio: &mut i32) {
+    let sstatus = status_get_status_data(c, src);
+    let tstatus = status_get_status_data(c, target);
+    *skillratio += -100 + 400 * skill_lv as i32 + 5 * sstatus.pow as i32;
+    if sce(c, src, SC_RESEARCHREPORT).is_some() {
+        *skillratio += *skillratio * 50 / 100;
+        if tstatus.race as i32 == RC_FORMLESS || tstatus.race as i32 == RC_PLANT {
+            *skillratio += *skillratio * 50 / 100;
+        }
+    }
+    re_lvl_dmod(c, src, skillratio, 100);
+}

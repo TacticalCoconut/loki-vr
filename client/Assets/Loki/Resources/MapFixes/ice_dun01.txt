@@ -1,0 +1,39 @@
+# Architect's fix file for ice_dun01 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ice_dun01
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 576 model faces on 34 models
+architect-fix	1	ice_dun01	gnd:5465982:9f2967655bcf4367	gat:1800014:40194d9f20f288d0
+R	rsw:229030:598c59b050aa14a4
+M	4	2803:a488b9b419f1d375	0	12-29	under+behind
+M	6	2803:a488b9b419f1d375	0	12-29	under+behind
+M	138	2803:a488b9b419f1d375	0	12-29	under+behind
+M	139	2803:a488b9b419f1d375	0	12-29	under+behind
+M	140	2803:a488b9b419f1d375	0	12-29	under+behind
+M	141	2803:a488b9b419f1d375	0	12-21,24-29	under+behind
+M	142	2803:a488b9b419f1d375	0	12-29	under+behind
+M	143	2803:a488b9b419f1d375	0	12-29	under+behind
+M	144	2803:a488b9b419f1d375	0	12-29	under+behind
+M	145	2803:a488b9b419f1d375	0	12-29	under+behind
+M	146	2803:a488b9b419f1d375	0	12-29	under+behind
+M	147	2803:a488b9b419f1d375	0	12-15,18-29	under+behind
+M	148	2803:a488b9b419f1d375	0	12-29	under+behind
+M	149	2803:a488b9b419f1d375	0	12-29	under+behind
+M	150	2803:a488b9b419f1d375	0	12-17,20-29	under+behind
+M	151	2803:a488b9b419f1d375	0	12-29	under+behind
+M	152	2803:a488b9b419f1d375	0	12-17,20-29	under+behind
+M	153	2803:a488b9b419f1d375	0	12-29	under+behind
+M	154	2803:a488b9b419f1d375	0	12-29	under+behind
+M	155	2803:a488b9b419f1d375	0	12-29	under+behind
+M	156	2803:a488b9b419f1d375	0	12-29	under+behind
+M	157	2803:a488b9b419f1d375	0	12-29	under+behind
+M	158	2803:a488b9b419f1d375	0	12-29	under+behind
+M	159	2803:a488b9b419f1d375	0	12-29	under+behind
+M	160	2803:a488b9b419f1d375	0	12-29	under+behind
+M	161	2803:a488b9b419f1d375	0	12-29	under+behind
+M	162	2803:a488b9b419f1d375	0	12-29	under+behind
+M	163	2803:a488b9b419f1d375	0	12-29	under+behind
+M	164	2803:a488b9b419f1d375	0	12-29	under+behind
+M	165	2803:a488b9b419f1d375	0	12-29	under+behind
+M	166	2803:a488b9b419f1d375	0	12-29	under+behind
+M	403	10863:9ef68a70b5548d66	0	144,149-150,155-156,161	behind
+M	405	10863:9ef68a70b5548d66	0	144,149-152,155-156,159,161,167	behind
+M	415	10863:9ef68a70b5548d66	0	144,149-152,155-156,159,161,167	behind

@@ -1,0 +1,42 @@
+//! skills/taekwon/estin.cpp: class SkillEstin : public SkillImpl (SL_STIN).
+
+use crate::battle::calc::Damage;
+use crate::battle::BF_MAGIC;
+use crate::skill::attack::skill_attack;
+use crate::db::skills::*;
+use crate::map::{BL_MOB, BL_PC};
+use crate::skill::clif::skill_fail;
+use crate::skills::taekwon::allow_es_magic_pc;
+use crate::status::consts::*;
+use crate::status::defs::*;
+use crate::status::sc;
+use crate::unit::Unit;
+use crate::world::{Ctx, Tick};
+use crate::skills::SkillImpl;
+
+pub struct SkillEstin;
+
+impl SkillImpl for SkillEstin {
+    fn skill_id(&self) -> u16 {
+        SL_STIN
+    }
+
+    /// SkillEstin::calculateSkillRatio.
+    fn calculate_skill_ratio(&self, c: &Ctx, _wd: &Damage, src: &Unit, target: &Unit, skill_lv: u16, base_skillratio: &mut i32, _mflag: i32) {
+        let _ = src;
+        let tstatus = crate::status::status_get_status_data(c, target);
+        // Target size must be small (0) for full damage
+        *base_skillratio += if tstatus.size as i32 != SZ_SMALL { -99 } else { 10 * skill_lv as i32 };
+    }
+
+    /// SkillEstin::castendDamageId.
+    fn castend_damage_id(&self, c: &Ctx, src: &Unit, target: &Unit, skill_lv: u16, tick: Tick, flag: &mut i32) {
+        let id = self.skill_id();
+        if src.kind == BL_PC && !allow_es_magic_pc() && target.kind != BL_MOB {
+            sc::status_change_start(c, Some(src), src, SC_STUN, 10000, skill_lv as i32, 0, 0, 0, 500, SCSTART_NOTICKDEF | SCSTART_NORATEDEF, 0);
+            skill_fail(c, src, id);
+            return;
+        }
+        skill_attack(c, BF_MAGIC, src, src, target, id, skill_lv, tick, *flag);
+    }
+}

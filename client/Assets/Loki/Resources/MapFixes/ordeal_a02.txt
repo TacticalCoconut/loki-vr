@@ -1,0 +1,75 @@
+# Architect's fix file for ordeal_a02 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ordeal_a02
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 0 ground walls drawn from both sides, 32 turned to face the other side, 32 floors drawn, 0 holes filled; 9 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 27 model faces on 2 models
+architect-fix	1	ordeal_a02	gnd:6810830:e4273f3d6d90a48f	gat:1897294:9bc7abff6b27a29a
+W	73	71	N	flip	step
+W	74	71	N	flip	step
+W	75	71	N	flip	step
+W	76	71	N	flip	step
+W	77	71	N	flip	step
+W	78	71	N	flip	step
+W	79	71	N	flip	step
+W	80	71	N	flip	step
+W	71	73	E	flip	step
+W	80	73	E	flip	step
+W	71	74	E	flip	step
+W	80	74	E	flip	step
+W	71	75	E	flip	step
+W	80	75	E	flip	step
+W	71	76	E	flip	step
+W	80	76	E	flip	step
+W	71	77	E	flip	step
+W	80	77	E	flip	step
+W	71	78	E	flip	step
+W	80	78	E	flip	step
+W	71	79	E	flip	step
+W	80	79	E	flip	step
+W	71	80	E	flip	step
+W	73	80	N	flip	step
+W	74	80	N	flip	step
+W	75	80	N	flip	step
+W	76	80	N	flip	step
+W	77	80	N	flip	step
+W	78	80	N	flip	step
+W	79	80	N	flip	step
+W	80	80	N	flip	step
+W	80	80	E	flip	step
+T	32	12	draw	walkable
+T	33	12	draw	walkable
+T	32	13	draw	walkable
+T	33	13	draw	walkable
+T	100	64	draw	walkable
+T	101	64	draw	walkable
+T	144	64	draw	walkable
+T	145	64	draw	walkable
+T	100	65	draw	walkable
+T	101	65	draw	walkable
+T	144	65	draw	walkable
+T	145	65	draw	walkable
+T	52	76	draw	walkable
+T	53	76	draw	walkable
+T	52	77	draw	walkable
+T	53	77	draw	walkable
+T	64	96	draw	walkable
+T	65	96	draw	walkable
+T	88	96	draw	walkable
+T	89	96	draw	walkable
+T	64	97	draw	walkable
+T	65	97	draw	walkable
+T	88	97	draw	walkable
+T	89	97	draw	walkable
+T	36	132	draw	walkable
+T	37	132	draw	walkable
+T	36	133	draw	walkable
+T	37	133	draw	walkable
+T	120	140	draw	walkable
+T	121	140	draw	walkable
+T	120	141	draw	walkable
+T	121	141	draw	walkable
+R	rsw:89682:977da6997051bc68
+M	14	991:d64acecb02d2f0d2	0	2-9,11-14	under
+M	15	991:d64acecb02d2f0d2	0	0-14	under

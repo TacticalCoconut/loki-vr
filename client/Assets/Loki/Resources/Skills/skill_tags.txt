@@ -1,0 +1,1699 @@
+# Client wave 22 (w22data), point 64: what each skill is good at. Made by client/tools/w22/build_skill_tags.py from rAthena (e985006):
+# db/re/skill_db.yml, skill_tree.yml, status.yml and src/map (skills/**, battle.cpp, status.cpp). Do not edit: change the rules and rebuild.
+# Read by Game/SkillTags.cs. Loki's own data: skill ids, rAthena's skill constants (for reading the table) and Loki's tag ids.
+#
+# T rows: a tag.    T <tab> id <tab> name
+# S rows: a skill.  S <tab> id <tab> rAthena constant <tab> kind <tab> tag ids, the most characteristic first <tab> why (one per tag)
+#
+# KIND (what the tree's hover diorama plays), the first that fits:
+#   Passive     no TargetType                       Trap      Flags IsTrap / TargetType Trap
+#   Summon      its class spawns a unit             Movement  no damage, its class moves the user (or a knockback on the user)
+#   GroundArea  TargetType Ground                   Heal      no damage, its class gives HP or revives
+#   SelfArea    TargetType Self that attacks, a song / ensemble / chorus, or an area with a bad status
+#   Buff        TargetType Self / Support, no damage, with a status      Debuff  TargetType Attack, no damage, with a status
+#   Bolt        a Magic attack on one target        Projectile  a Weapon / Misc attack with a bow / gun / instrument / whip, ammunition or range >= 4
+#   MeleeHit    the other attacks                   Other     nothing above
+# TAGS, each with its weight (the three heaviest are kept; "All-Rounder" takes the third place when the tags span three of the
+# families damage / control / protect / move / boost):
+#   Area Damage 85        an attack (no NoDamage flag, Type Weapon / Magic / Misc) with a Splash flag, a SplashArea or a multi-cell unit
+#   Single Target Burst 80  an attack on one target that is gated: cast + fixed cast + max(after-cast delay, cooldown) >= 2000 ms at the
+#                         last level, or 5 or more hits, or it costs spirit spheres / HP rate / AP
+#   Sustained 65          an attack on one target that is not gated (under 2000 ms); 40 for an area attack without a unit under 2000 ms;
+#                         a passive that adds damage to every hit (the lines that ask for its level)
+#   DoT 85 / 60           it gives a status that takes HP again and again (status.cpp status_change_timer; status.yml Opt2 Poison /
+#                         Dpoison / Bleeding, Opt1 Burning), or a damaging enemy unit that stays 8 s or more
+#   Area CC / Single Target CC 88-86 / 70-55   it gives an enemy a status that stops moving / casting / attacking (status.yml States,
+#                         Opt1) or slows (a Debuff with CalcFlags Speed), on an area / on one target; 45: a knockback of 2 cells or more
+#   Debuff 72 / 50        another bad status on an enemy (status.yml Flags Debuff, Opt2), or any status given by a no-damage skill aimed at an enemy
+#   Heal 95-88            its class (or its unit) gives HP, revives, or its status gives HP over time
+#   Shield 90             its status stops or absorbs whole hits (battle.cpp battle_status_block_damage)
+#   Evasion 83 / 62       its status hides the user (status.yml Options Hide / Cloak / ChaseWalk / Invisible) or is a chance to avoid a hit
+#                         (battle_status_block_damage's dodges), or raises Flee
+#   Elemental Resist 82   its status raises an elemental resistance (status.cpp subele, status.yml bSubEle) or changes the armour's
+#                         element (CalcFlags Def_Ele), or is an elemental immunity
+#   Survivability 78      its status cuts the damage taken (battle.cpp battle_calc_damage) or changes Def / Mdef / MaxHp / Regen / Res / Mres
+#   Mobility 84 / 60      its class moves the user (unit_movepos, pc_setpos, a warp), a warp unit, or its status changes the speed
+#   Buff 70 / 55          its status changes an attack stat (CalcFlags Batk / Watk / Matk / Aspd / Cri / Hit / a base stat ...), or any other
+#                         good status
+#   Sure Hit 50           an attack that cannot miss or be reduced: DamageFlags IgnoreFlee (not Magic) / IgnoreDefense, Type Misc, or its
+#                         class raises its hit rate; a passive that raises Hit
+#   Support 75-45         works on allies (TargetType Support, PartyOnly / GuildOnly, a party call in its class, a friendly unit, a
+#                         song); removes bad statuses; gives SP
+#   Specialist 40         needs a state (Requires State: a shield, a mount, a cart ...), a status (Requires Status) or a weapon type
+#                         that under half of its job's own attack skills share; an ensemble (needs a partner); a mastery for one weapon / race
+#   Utility 30            none of the above (trade, crafting, looking, storing ...)
+#   All-Rounder 35        see above
+T	1	AreaDamage
+T	2	AreaCC
+T	3	SingleTargetBurst
+T	4	DoT
+T	5	Sustained
+T	6	SureHit
+T	7	AllRounder
+T	8	Specialist
+T	9	Heal
+T	10	Shield
+T	11	Survivability
+T	12	ElementalResist
+T	13	Mobility
+T	14	Evasion
+T	15	Buff
+T	16	Debuff
+T	17	Support
+T	18	Utility
+T	19	SingleTargetCC
+S	1	NV_BASIC	Passive	18	Utility: no stat or damage line asks for its level
+S	2	SM_SWORD	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2338); Specialist: for one weapon type or race (battle.cpp:2338)
+S	3	SM_TWOHAND	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2344); Specialist: for one weapon type or race (battle.cpp:2344)
+S	4	SM_RECOVERY	Passive	11	Survivability: more HP recovery (status.cpp:5304)
+S	5	SM_BASH	MeleeHit	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun); SureHit: hit bonus
+S	6	SM_PROVOKE	Debuff	16	Debuff: weakens (Provoke)
+S	7	SM_MAGNUM	SelfArea	1,15,7	AreaDamage: area damage (splash 2); Buff: a status on yourself or an ally (Sub_Weaponproperty); AllRounder: does boost + control + damage
+S	8	SM_ENDURE	Buff	11	Survivability: raises Mdef (Endure)
+S	9	MG_SRECOVERY	Passive	18	Utility: more SP recovery (status.cpp:5310)
+S	10	MG_SIGHT	Buff	18	Utility: shows hidden enemies (Sight)
+S	11	MG_NAPALMBEAT	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 1000 ms
+S	12	MG_SAFETYWALL	GroundArea	10,17	Shield: stops hits (Safetywall); Support: works on allies
+S	13	MG_SOULSTRIKE	Bolt	3	SingleTargetBurst: one target, 5 hits
+S	14	MG_COLDBOLT	Bolt	3	SingleTargetBurst: one target, cast+wait 5800 ms
+S	15	MG_FROSTDIVER	Bolt	19,5	SingleTargetCC: stops (Freeze), a 200 % hit; Sustained: one target, cast+wait 1300 ms
+S	16	MG_STONECURSE	Debuff	19	SingleTargetCC: stops (Stonewait)
+S	17	MG_FIREBALL	Bolt	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 1700 ms
+S	18	MG_FIREWALL	GroundArea	1,2	AreaDamage: area damage (unit area); AreaCC: knockback 2
+S	19	MG_FIREBOLT	Bolt	3	SingleTargetBurst: one target, cast+wait 5800 ms
+S	20	MG_LIGHTNINGBOLT	Bolt	3	SingleTargetBurst: one target, cast+wait 5800 ms
+S	21	MG_THUNDERSTORM	GroundArea	1	AreaDamage: area damage (unit area)
+S	22	AL_DP	Passive	11	Survivability: raises MaxHP / defence (battle.cpp:4817)
+S	23	AL_DEMONBANE	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2291); Specialist: for one weapon type or race (battle.cpp:2291)
+S	24	AL_RUWACH	SelfArea	18,1,5	Utility: shows hidden enemies (Ruwach); AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms
+S	25	AL_PNEUMA	GroundArea	10,17	Shield: stops hits (Pneuma); Support: works on allies
+S	26	AL_TELEPORT	Movement	13	Mobility: moves you
+S	27	AL_WARP	GroundArea	13	Mobility: moves you
+S	28	AL_HEAL	Heal	9,17	Heal: gives HP; Support: works on allies
+S	29	AL_INCAGI	Buff	15,13,17	Buff: raises Agi/Aspd (Increaseagi); Mobility: faster (Increaseagi); Support: works on allies
+S	30	AL_DECAGI	Debuff	19	SingleTargetCC: slows (Decreaseagi)
+S	31	AL_HOLYWATER	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Water
+S	32	AL_CRUCIS	SelfArea	16	Debuff: weakens (Signumcrucis)
+S	33	AL_ANGELUS	Buff	11,17	Survivability: raises Def2/MaxHp (Angelus); Support: works on allies
+S	34	AL_BLESSING	Buff	15,17	Buff: raises Dex/Hit/Int/Str (Blessing); Support: works on allies
+S	35	AL_CURE	Other	17	Support: removes Silence/Blind/Confusion
+S	36	MC_INCCARRY	Passive	18	Utility: weight / prices / crafting (status.cpp:3678)
+S	37	MC_DISCOUNT	Passive	18	Utility: weight / prices / crafting (pc.cpp:5692)
+S	38	MC_OVERCHARGE	Passive	18	Utility: weight / prices / crafting (pc.cpp:5711)
+S	39	MC_PUSHCART	Passive	18	Utility: read: lets you rent a cart; its one stat line only cuts the cart's slowdown (status.cpp:8210)
+S	40	MC_IDENTIFY	Other	18	Utility: no damage, status, heal or move in the data
+S	41	MC_VENDING	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Cart
+S	42	MC_MAMMONITE	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	43	AC_OWL	Passive	15	Buff: raises a stat (status.cpp:4283)
+S	44	AC_VULTURE	Passive	6	SureHit: raises the hit rate (battle.cpp:3289)
+S	45	AC_CONCENTRATION	Buff	15	Buff: raises Agi/Dex (Concentrate)
+S	46	AC_DOUBLE	Projectile	5	Sustained: one target, cast+wait 100 ms
+S	47	AC_SHOWER	GroundArea	1,2,5	AreaDamage: area damage (splash 2); AreaCC: knockback 2; Sustained: cast+wait 100 ms
+S	48	TF_DOUBLE	Passive	5,6,8	Sustained: read: a second hit on a normal attack (battle.cpp:4311); SureHit: read: raises the hit rate (battle.cpp:3298); Specialist: read: with a dagger (battle.cpp:4311)
+S	49	TF_MISS	Passive	14,13	Evasion: read: raises Flee (status.cpp:4517); Mobility: read: an Assassin walks faster (status.cpp:8155)
+S	50	TF_STEAL	Other	18	Utility: no damage, status, heal or move in the data
+S	51	TF_HIDING	Buff	14	Evasion: hidden (Hiding)
+S	52	TF_POISON	MeleeHit	5,4	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Poison)
+S	53	TF_DETOXIFY	Other	17	Support: removes Poison/Dpoison
+S	54	ALL_RESURRECTION	Heal	9,17	Heal: revives; Support: works on allies
+S	55	KN_SPEARMASTERY	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2349); Specialist: for one weapon type or race (battle.cpp:2349)
+S	56	KN_PIERCE	MeleeHit	5,6,8	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus; Specialist: only with 1hSpear/2hSpear
+S	57	KN_BRANDISHSPEAR	MeleeHit	1,2,5	AreaDamage: area damage (splash 2); AreaCC: knockback 2; Sustained: cast+wait 1350 ms
+S	58	KN_SPEARSTAB	Projectile	5,19,8	Sustained: one target, cast+wait 0 ms; SingleTargetCC: knockback 6; Specialist: only with 1hSpear/2hSpear
+S	59	KN_SPEARBOOMERANG	Projectile	5,8	Sustained: one target, cast+wait 1000 ms; Specialist: only with 1hSpear/2hSpear
+S	60	KN_TWOHANDQUICKEN	Buff	15	Buff: raises Aspd/Cri/Hit (Twohandquicken)
+S	61	KN_AUTOCOUNTER	Buff	5,15,6	Sustained: one target, cast+wait 0 ms; Buff: a status on yourself or an ally (Autocounter); SureHit: hit bonus
+S	62	KN_BOWLINGBASH	MeleeHit	1,2,5	AreaDamage: area damage (splash 2); AreaCC: knockback 5; Sustained: cast+wait 1350 ms
+S	63	KN_RIDING	Passive	13,18	Mobility: read: lets you ride; a rider walks faster (status.cpp:8052); Utility: read: more weight while riding (status.cpp:3680)
+S	64	KN_CAVALIERMASTERY	Passive	5	Sustained: attack speed (status.cpp:2395)
+S	65	PR_MACEMASTERY	Passive	5,8	Sustained: attack speed / critical (status.cpp:4531); Specialist: for one weapon type / race / element (status.cpp:4531)
+S	66	PR_IMPOSITIO	Buff	15,17	Buff: raises Matk/Watk (Impositio); Support: works on allies
+S	67	PR_SUFFRAGIUM	Buff	15,17	Buff: a status on yourself or an ally (Suffragium); Support: works on allies
+S	68	PR_ASPERSIO	Buff	15,17	Buff: raises Atk_Ele (Aspersio); Support: works on allies
+S	69	PR_BENEDICTIO	GroundArea	12,1,17	ElementalResist: read: the allies around get a holy armour, the undead and demons around are hit (skills/acolyte/bssacramenti.cpp:15-24); AreaDamage: as the first; Support: as the first
+S	70	PR_SANCTUARY	GroundArea	9,17	Heal: a unit that gives HP (Sanctuary); Support: works on allies
+S	71	PR_SLOWPOISON	Buff	15,17	Buff: a status on yourself or an ally (Slowpoison); Support: works on allies
+S	72	PR_STRECOVERY	Buff	17	Support: removes Stone/Freeze/Stun
+S	73	PR_KYRIE	Buff	10,17	Shield: stops hits (Kyrie); Support: works on allies
+S	74	PR_MAGNIFICAT	Buff	15,17	Buff: more SP recovery (Magnificat); Support: works on allies
+S	75	PR_GLORIA	Buff	15,17	Buff: raises Luk (Gloria); Support: works on allies
+S	76	PR_LEXDIVINA	Debuff	19	SingleTargetCC: stops (Silence)
+S	77	PR_TURNUNDEAD	Bolt	3,6	SingleTargetBurst: one target, cast+wait 4000 ms; SureHit: IgnoreDefense
+S	78	PR_LEXAETERNA	Debuff	16	Debuff: a status on an enemy (Aeterna)
+S	79	PR_MAGNUS	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 13 s
+S	80	WZ_FIREPILLAR	GroundArea	1,6	AreaDamage: area damage (splash 2); SureHit: IgnoreDefense
+S	81	WZ_SIGHTRASHER	SelfArea	1,2,8	AreaDamage: area damage (splash 7); AreaCC: knockback 5; Specialist: needs Sight
+S	83	WZ_METEOR	GroundArea	1,2	AreaDamage: area damage (splash 3); AreaCC: stops (Stun)
+S	84	WZ_JUPITEL	Bolt	3,19	SingleTargetBurst: one target, cast+wait 4300 ms; SingleTargetCC: knockback 7
+S	85	WZ_VERMILION	GroundArea	1,16	AreaDamage: area damage (unit area); Debuff: weakens (Blind)
+S	86	WZ_WATERBALL	Bolt	3,8	SingleTargetBurst: one target, cast+wait 4000 ms; Specialist: needs Water
+S	87	WZ_ICEWALL	GroundArea	2	AreaCC: read: its cells become walls nobody walks through (skill.cpp:11736 CELL_ICEWALL, unit.cpp:585)
+S	88	WZ_FROSTNOVA	SelfArea	1,2,5	AreaDamage: area damage (splash 3); AreaCC: stops (Freeze); Sustained: cast+wait 680 ms
+S	89	WZ_STORMGUST	GroundArea	1,2	AreaDamage: area damage (unit area); AreaCC: stops (Freeze)
+S	90	WZ_EARTHSPIKE	Bolt	3	SingleTargetBurst: one target, cast+wait 5800 ms
+S	91	WZ_HEAVENDRIVE	GroundArea	1	AreaDamage: area damage (unit area)
+S	92	WZ_QUAGMIRE	GroundArea	2	AreaCC: slows (Quagmire)
+S	93	WZ_ESTIMATION	Other	18	Utility: no damage, status, heal or move in the data
+S	94	BS_IRON	Passive	18	Utility: no stat or damage line asks for its level
+S	95	BS_STEEL	Passive	18	Utility: no stat or damage line asks for its level
+S	96	BS_ENCHANTEDSTONE	Passive	18	Utility: no stat or damage line asks for its level
+S	97	BS_ORIDEOCON	Passive	18	Utility: weight / prices / crafting (skill.cpp:13214)
+S	98	BS_DAGGER	Passive	18	Utility: no stat or damage line asks for its level
+S	99	BS_SWORD	Passive	18	Utility: no stat or damage line asks for its level
+S	100	BS_TWOHANDSWORD	Passive	18	Utility: no stat or damage line asks for its level
+S	101	BS_AXE	Passive	18	Utility: no stat or damage line asks for its level
+S	102	BS_MACE	Passive	18	Utility: no stat or damage line asks for its level
+S	103	BS_KNUCKLE	Passive	18	Utility: no stat or damage line asks for its level
+S	104	BS_SPEAR	Passive	18	Utility: no stat or damage line asks for its level
+S	105	BS_HILTBINDING	Passive	5,15	Sustained: more damage on its attacks (battle.cpp:3814); Buff: raises a stat (status.cpp:4279)
+S	106	BS_FINDINGORE	Passive	18	Utility: no stat or damage line asks for its level
+S	107	BS_WEAPONRESEARCH	Passive	6,5,8	SureHit: raises the hit rate (battle.cpp:3304); Sustained: mastery damage on every hit (battle.cpp:2310); Specialist: for one weapon type or race (battle.cpp:2310)
+S	108	BS_REPAIRWEAPON	Other	17	Support: works on allies
+S	109	BS_SKINTEMPER	Passive	12	ElementalResist: elemental resistance (status.cpp:4679)
+S	110	BS_HAMMERFALL	GroundArea	2	AreaCC: stops (Stun)
+S	111	BS_ADRENALINE	Buff	15,17	Buff: raises Aspd/Hit (Adrenaline); Support: works on allies
+S	112	BS_WEAPONPERFECT	Buff	15,17	Buff: a status on yourself or an ally (Weaponperfection); Support: works on allies
+S	113	BS_OVERTHRUST	Buff	15,17	Buff: a status on yourself or an ally (Overthrust); Support: works on allies
+S	114	BS_MAXIMIZE	Buff	5,15	Sustained: read: every hit does the weapon's top damage (battle.cpp:2481-2482); the yml only shows that it stops SP recovery; Buff: as the first
+S	115	HT_SKIDTRAP	Trap	19	SingleTargetCC: knockback 10
+S	116	HT_LANDMINE	Trap	5,19,6	Sustained: one target, cast+wait 1800 ms; SingleTargetCC: stops (Stun); SureHit: IgnoreFlee
+S	117	HT_ANKLESNARE	Trap	19	SingleTargetCC: stops (Ankle)
+S	118	HT_SHOCKWAVE	Trap	16	Debuff: takes SP
+S	119	HT_SANDMAN	Trap	2	AreaCC: stops (Sleep)
+S	120	HT_FLASHER	Trap	16	Debuff: weakens (Blind)
+S	121	HT_FREEZINGTRAP	Trap	1,2,6	AreaDamage: area damage (splash 1); AreaCC: stops (Freeze); SureHit: IgnoreFlee
+S	122	HT_BLASTMINE	Trap	1,6	AreaDamage: area damage (splash 1); SureHit: IgnoreFlee
+S	123	HT_CLAYMORETRAP	Trap	1,6	AreaDamage: area damage (splash 2); SureHit: IgnoreFlee
+S	124	HT_REMOVETRAP	Other	18	Utility: no damage, status, heal or move in the data
+S	125	HT_TALKIEBOX	Trap	18	Utility: no damage, status, heal or move in the data
+S	126	HT_BEASTBANE	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2302); Specialist: for one weapon type or race (battle.cpp:2302)
+S	127	HT_FALCON	Passive	18	Utility: no stat or damage line asks for its level
+S	128	HT_STEELCROW	Passive	5	Sustained: raises the damage of one skill (wildwalk.cpp:23)
+S	129	HT_BLITZBEAT	Projectile	1,6,8	AreaDamage: area damage (splash 1); SureHit: IgnoreFlee; Specialist: needs Falcon
+S	130	HT_DETECTING	GroundArea	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Falcon
+S	131	HT_SPRINGTRAP	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Falcon
+S	132	AS_RIGHT	Passive	5	Sustained: more damage on its attacks (battle.cpp:5045)
+S	133	AS_LEFT	Passive	5	Sustained: more damage on its attacks (battle.cpp:5058)
+S	134	AS_KATAR	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2394); Specialist: for one weapon type or race (battle.cpp:2394)
+S	135	AS_CLOAKING	Buff	14,15	Evasion: hidden (Cloaking); Buff: raises Cri (Cloaking)
+S	136	AS_SONICBLOW	MeleeHit	3,19,6	SingleTargetBurst: one target, 8 hits; SingleTargetCC: stops (Stun); SureHit: hit bonus
+S	137	AS_GRIMTOOTH	Projectile	1,2,5	AreaDamage: area damage (splash 1); AreaCC: slows (Quagmire); Sustained: cast+wait 0 ms
+S	138	AS_ENCHANTPOISON	Buff	15,17	Buff: raises Atk_Ele (Encpoison); Support: works on allies
+S	139	AS_POISONREACT	Buff	5,15	Sustained: one target, cast+wait 0 ms; Buff: a status on yourself or an ally (Poisonreact)
+S	140	AS_VENOMDUST	GroundArea	4	DoT: damage over time (Poison)
+S	141	AS_SPLASHER	MeleeHit	1,4,6	AreaDamage: area damage (splash 2); DoT: damage over time (Poison); SureHit: IgnoreFlee
+S	142	NV_FIRSTAID	Heal	9	Heal: gives HP
+S	143	NV_TRICKDEAD	Buff	14	Evasion: read: a normal attack cannot be aimed at who plays dead (status.cpp:2219)
+S	144	SM_MOVINGRECOVERY	Passive	11	Survivability: raises defence (status.cpp:4653)
+S	145	SM_FATALBLOW	Passive	19	SingleTargetCC: read: Bash from level 6 can stun (skills/swordman/bash.cpp:26-29)
+S	146	SM_AUTOBERSERK	Buff	15	Buff: a status on yourself or an ally (Autoberserk)
+S	147	AC_MAKINGARROW	Other	18	Utility: no damage, status, heal or move in the data
+S	148	AC_CHARGEARROW	Projectile	5,19	Sustained: one target, cast+wait 1200 ms; SingleTargetCC: knockback 6
+S	149	TF_SPRINKLESAND	MeleeHit	5,16	Sustained: one target, cast+wait 0 ms; Debuff: weakens (Blind)
+S	150	TF_BACKSLIDING	Movement	13	Mobility: moves you (5 cells)
+S	151	TF_PICKSTONE	Other	18	Utility: no damage, status, heal or move in the data
+S	152	TF_THROWSTONE	Projectile	5,19,6	Sustained: one target, cast+wait 100 ms; SingleTargetCC: stops (Stun); SureHit: IgnoreFlee
+S	153	MC_CARTREVOLUTION	MeleeHit	1,6,2	AreaDamage: area damage (splash 1); SureHit: hit bonus; AreaCC: knockback 2
+S	154	MC_CHANGECART	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Cart
+S	155	MC_LOUD	Buff	15,17	Buff: raises Batk/Str (Loud); Support: works on allies
+S	156	AL_HOLYLIGHT	Bolt	5	Sustained: one target, cast+wait 1000 ms
+S	157	MG_ENERGYCOAT	Buff	11	Survivability: less damage taken (Energycoat)
+S	158	NPC_PIERCINGATT	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreDefense
+S	159	NPC_MENTALBREAKER	Projectile	5,6,16	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus; Debuff: takes SP
+S	160	NPC_RANGEATTACK	Projectile	5	Sustained: one target, cast+wait 0 ms
+S	161	NPC_ATTRICHANGE	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	162	NPC_CHANGEWATER	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	163	NPC_CHANGEGROUND	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	164	NPC_CHANGEFIRE	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	165	NPC_CHANGEWIND	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	166	NPC_CHANGEPOISON	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	167	NPC_CHANGEHOLY	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	168	NPC_CHANGEDARKNESS	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	169	NPC_CHANGETELEKINESIS	Buff	12	ElementalResist: elemental defence (Elementalchange)
+S	170	NPC_CRITICALSLASH	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreDefense
+S	171	NPC_COMBOATTACK	Projectile	3	SingleTargetBurst: one target, 11 hits
+S	172	NPC_GUIDEDATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	173	NPC_SELFDESTRUCTION	SelfArea	1,6,2	AreaDamage: area damage (splash 5); SureHit: IgnoreFlee; AreaCC: knockback 3
+S	174	NPC_SPLASHATTACK	Projectile	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	175	NPC_SUICIDE	Other	18	Utility: no damage, status, heal or move in the data
+S	176	NPC_POISON	Projectile	5,4,6	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Poison); SureHit: hit bonus
+S	177	NPC_BLINDATTACK	Projectile	5,6,16	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus; Debuff: weakens (Blind)
+S	178	NPC_SILENCEATTACK	Projectile	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Silence); SureHit: hit bonus
+S	179	NPC_STUNATTACK	Projectile	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun); SureHit: hit bonus
+S	180	NPC_PETRIFYATTACK	Projectile	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stonewait); SureHit: hit bonus
+S	181	NPC_CURSEATTACK	Projectile	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: slows (Curse); SureHit: hit bonus
+S	182	NPC_SLEEPATTACK	Projectile	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Sleep); SureHit: hit bonus
+S	183	NPC_RANDOMATTACK	Projectile	5	Sustained: one target, cast+wait 0 ms
+S	184	NPC_WATERATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	185	NPC_GROUNDATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	186	NPC_FIREATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	187	NPC_WINDATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	188	NPC_POISONATTACK	Projectile	5,4,6	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Poison); SureHit: hit bonus
+S	189	NPC_HOLYATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	190	NPC_DARKNESSATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	191	NPC_TELEKINESISATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	192	NPC_MAGICALATTACK	Bolt	15,5	Buff: raises Matk (Magicalattack); Sustained: one target, cast+wait 0 ms
+S	193	NPC_METAMORPHOSIS	Other	18	Utility: no damage, status, heal or move in the data
+S	194	NPC_PROVOCATION	Other	18	Utility: no damage, status, heal or move in the data
+S	195	NPC_SMOKING	SelfArea	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	196	NPC_SUMMONSLAVE	Other	18	Utility: no damage, status, heal or move in the data
+S	197	NPC_EMOTION	Buff	15	Buff: a status on yourself or an ally (Modechange)
+S	198	NPC_TRANSFORMATION	Other	18	Utility: no damage, status, heal or move in the data
+S	199	NPC_BLOODDRAIN	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	200	NPC_ENERGYDRAIN	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	201	NPC_KEEPING	Buff	11	Survivability: raises Def (Keeping)
+S	202	NPC_DARKBREATH	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	203	NPC_DARKBLESSING	Debuff	16	Debuff: a status on an enemy (Coma)
+S	204	NPC_BARRIER	Buff	15	Buff: a status on yourself or an ally (Barrier)
+S	205	NPC_DEFENDER	Buff	11	Survivability: less damage taken (Armor)
+S	206	NPC_LICK	Debuff	19,16	SingleTargetCC: stops (Stun); Debuff: takes SP
+S	207	NPC_HALLUCINATION	Debuff	16	Debuff: weakens (Hallucination)
+S	208	NPC_REBIRTH	Buff	15	Buff: a status on yourself or an ally (Rebirth)
+S	209	NPC_SUMMONMONSTER	Other	18	Utility: no damage, status, heal or move in the data
+S	210	RG_SNATCHER	Passive	18	Utility: SP cost / cast / steal / range (skill.cpp:1382)
+S	211	RG_STEALCOIN	Other	18	Utility: no damage, status, heal or move in the data
+S	212	RG_BACKSTAP	MeleeHit	5,13,7	Sustained: one target, cast+wait 500 ms; Mobility: moves you; AllRounder: does control + damage + move
+S	213	RG_TUNNELDRIVE	Passive	13	Mobility: walking speed (status.cpp:8062)
+S	214	RG_RAID	SelfArea	1,2,7	AreaDamage: area damage (splash 2); AreaCC: stops (Stun); AllRounder: does boost + control + damage
+S	215	RG_STRIPWEAPON	Debuff	16	Debuff: weakens (Stripweapon)
+S	216	RG_STRIPSHIELD	Debuff	16	Debuff: weakens (Stripshield)
+S	217	RG_STRIPARMOR	Debuff	16	Debuff: weakens (Striparmor)
+S	218	RG_STRIPHELM	Debuff	16	Debuff: weakens (Striphelm)
+S	219	RG_INTIMIDATE	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	220	RG_GRAFFITI	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	221	RG_FLAGGRAFFITI	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	222	RG_CLEANER	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	223	RG_GANGSTER	Passive	18	Utility: no stat or damage line asks for its level
+S	224	RG_COMPULSION	Passive	18	Utility: weight / prices / crafting (pc.cpp:5694)
+S	225	RG_PLAGIARISM	Passive	18	Utility: read: copies the last skill that hit you (skill.cpp:805 skill_isCopyable)
+S	226	AM_AXEMASTERY	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2334); Specialist: for one weapon type or race (battle.cpp:2334)
+S	227	AM_LEARNINGPOTION	Passive	18,11	Utility: more SP recovery (pc.cpp:10727); Survivability: more HP recovery (pc.cpp:10700)
+S	228	AM_PHARMACY	Other	18	Utility: no damage, status, heal or move in the data
+S	229	AM_DEMONSTRATION	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 60 s
+S	230	AM_ACIDTERROR	Projectile	5,4,6	Sustained: one target, cast+wait 1500 ms; DoT: damage over time (Bleeding); SureHit: IgnoreFlee
+S	231	AM_POTIONPITCHER	Heal	9,17	Heal: gives HP; Support: works on allies
+S	232	AM_CANNIBALIZE	Summon	18	Utility: summons a unit
+S	233	AM_SPHEREMINE	Summon	18	Utility: summons a unit
+S	234	AM_CP_WEAPON	Buff	15,17	Buff: a status on yourself or an ally (Cp_Weapon); Support: works on allies
+S	235	AM_CP_SHIELD	Buff	15,17	Buff: a status on yourself or an ally (Cp_Shield); Support: works on allies
+S	236	AM_CP_ARMOR	Buff	15,17	Buff: a status on yourself or an ally (Cp_Armor); Support: works on allies
+S	237	AM_CP_HELM	Buff	15,17	Buff: a status on yourself or an ally (Cp_Helm); Support: works on allies
+S	238	AM_BIOETHICS	Passive	18	Utility: weight / prices / crafting (skill.cpp:12785)
+S	243	AM_CALLHOMUN	Summon	15	Buff: a status on yourself or an ally (Homun_Time)
+S	244	AM_REST	Other	18	Utility: no damage, status, heal or move in the data
+S	247	AM_RESURRECTHOMUN	Other	18	Utility: no damage, status, heal or move in the data
+S	248	CR_TRUST	Passive	12,11	ElementalResist: elemental resistance (status.cpp:4677); Survivability: raises MaxHP / defence (status.cpp:3150)
+S	249	CR_AUTOGUARD	Buff	10,8	Shield: stops hits (Autoguard); Specialist: needs Shield
+S	250	CR_SHIELDCHARGE	MeleeHit	19,5,8	SingleTargetCC: stops (Stun), a 200 % hit; Sustained: one target, cast+wait 0 ms; Specialist: needs Shield
+S	251	CR_SHIELDBOOMERANG	Projectile	5,8	Sustained: one target, cast+wait 700 ms; Specialist: needs Shield
+S	252	CR_REFLECTSHIELD	Buff	15,8	Buff: a status on yourself or an ally (Reflectshield); Specialist: needs Shield
+S	253	CR_HOLYCROSS	MeleeHit	5,16	Sustained: one target, cast+wait 0 ms; Debuff: weakens (Blind)
+S	254	CR_GRANDCROSS	SelfArea	1,6,16	AreaDamage: area damage (unit area); SureHit: IgnoreDefense; Debuff: weakens (Blind)
+S	255	CR_DEVOTION	Buff	10,17	Shield: read: the damage of the ally it protects goes to the Crusader (battle.cpp:427-433); Support: as the first
+S	256	CR_PROVIDENCE	Buff	12,15,17	ElementalResist: elemental defence (Providence); Buff: raises All (Providence); Support: works on allies
+S	257	CR_DEFENDER	Buff	11,8	Survivability: less damage taken (Defender); Specialist: needs Shield
+S	258	CR_SPEARQUICKEN	Buff	15,14	Buff: raises Aspd/Cri (Spearquicken); Evasion: raises Flee (Spearquicken)
+S	259	MO_IRONHAND	Passive	5,8	Sustained: mastery damage on every hit (battle.cpp:2378); Specialist: for one weapon type or race (battle.cpp:2378)
+S	260	MO_SPIRITSRECOVERY	Passive	11,18	Survivability: more HP recovery (status.cpp:5328); Utility: more SP recovery (status.cpp:5341)
+S	261	MO_CALLSPIRITS	Other	18	Utility: no damage, status, heal or move in the data
+S	262	MO_ABSORBSPIRITS	Other	17	Support: gives SP
+S	263	MO_TRIPLEATTACK	Passive	5	Sustained: more damage on its attacks (battle.cpp:7267)
+S	264	MO_BODYRELOCATION	Movement	13	Mobility: moves you
+S	265	MO_DODGE	Passive	14	Evasion: raises Flee (status.cpp:4519)
+S	266	MO_INVESTIGATE	MeleeHit	3,6	SingleTargetBurst: one target, SpiritSphereCost; SureHit: IgnoreFlee
+S	267	MO_FINGEROFFENSIVE	Projectile	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	268	MO_STEELBODY	Buff	11	Survivability: less damage taken (Steelbody)
+S	269	MO_BLADESTOP	Buff	19	SingleTargetCC: read: catches an attack: both fighters get Bladestop, which stops moving and attacking (battle.cpp:7258-7262, status.yml Bladestop)
+S	270	MO_EXPLOSIONSPIRITS	Buff	15	Buff: raises Cri (Explosionspirits)
+S	271	MO_EXTREMITYFIST	MeleeHit	3,13,6	SingleTargetBurst: one target, cast+wait 3000 ms; Mobility: moves you; SureHit: IgnoreFlee
+S	272	MO_CHAINCOMBO	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	273	MO_COMBOFINISH	SelfArea	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms
+S	274	SA_ADVANCEDBOOK	Passive	5,8	Sustained: attack speed (status.cpp:2388); Specialist: for one weapon type / race / element (status.cpp:2388)
+S	275	SA_CASTCANCEL	Other	18	Utility: no damage, status, heal or move in the data
+S	276	SA_MAGICROD	Buff	15	Buff: a status on yourself or an ally (Magicrod)
+S	277	SA_SPELLBREAKER	Other	16	Debuff: takes SP
+S	278	SA_FREECAST	Passive	13,18	Mobility: walking speed (status.cpp:8040); Utility: cast time / range / AP of other skills (skill.cpp:4888)
+S	279	SA_AUTOSPELL	Buff	15	Buff: a status on yourself or an ally (Autospell)
+S	280	SA_FLAMELAUNCHER	Buff	15,17	Buff: raises All (Fireweapon); Support: works on allies
+S	281	SA_FROSTWEAPON	Buff	15,17	Buff: raises All (Waterweapon); Support: works on allies
+S	282	SA_LIGHTNINGLOADER	Buff	15,17	Buff: raises All (Windweapon); Support: works on allies
+S	283	SA_SEISMICWEAPON	Buff	15,17	Buff: raises All (Earthweapon); Support: works on allies
+S	284	SA_DRAGONOLOGY	Passive	5,11,8	Sustained: read: more damage to dragons (status.cpp:4687-4691); Survivability: read: less damage from dragons (status.cpp:4692); Specialist: read: dragons only
+S	285	SA_VOLCANO	GroundArea	15	Buff: raises Batk/Matk/Watk (Volcano)
+S	286	SA_DELUGE	GroundArea	11	Survivability: raises MaxHp (Deluge)
+S	287	SA_VIOLENTGALE	GroundArea	14	Evasion: raises Flee (Violentgale)
+S	288	SA_LANDPROTECTOR	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	289	SA_DISPELL	Debuff	16	Debuff: read: ends the statuses of its target (skills/mage/dispell.cpp:70)
+S	290	SA_ABRACADABRA	Other	18	Utility: no damage, status, heal or move in the data
+S	291	SA_MONOCELL	Other	18	Utility: no damage, status, heal or move in the data
+S	292	SA_CLASSCHANGE	Other	18	Utility: no damage, status, heal or move in the data
+S	293	SA_SUMMONMONSTER	Summon	18	Utility: summons a unit
+S	294	SA_REVERSEORCISH	Buff	15	Buff: a status on yourself or an ally (Orcish)
+S	295	SA_DEATH	Other	18	Utility: no damage, status, heal or move in the data
+S	296	SA_FORTUNE	Other	18	Utility: no damage, status, heal or move in the data
+S	297	SA_TAMINGMONSTER	Other	18	Utility: no damage, status, heal or move in the data
+S	298	SA_QUESTION	Other	18	Utility: no damage, status, heal or move in the data
+S	299	SA_GRAVITY	Other	18	Utility: no damage, status, heal or move in the data
+S	300	SA_LEVELUP	Other	18	Utility: no damage, status, heal or move in the data
+S	301	SA_INSTANTDEATH	SelfArea	5	Sustained: one target, cast+wait 0 ms
+S	302	SA_FULLRECOVERY	Other	18	Utility: no damage, status, heal or move in the data
+S	303	SA_COMA	Buff	5,15	Sustained: one target, cast+wait 0 ms; Buff: a status on yourself or an ally (Coma)
+S	304	BD_ADAPTATION	Buff	15	Buff: a status on yourself or an ally (Adaptation)
+S	305	BD_ENCORE	Buff	15	Buff: a status on yourself or an ally (Dancing)
+S	306	BD_LULLABY	SelfArea	2,8	AreaCC: stops (Sleep); Specialist: needs a partner
+S	307	BD_RICHMANKIM	SelfArea	15,17,8	Buff: a status on yourself or an ally (Richmankim); Support: works on allies; Specialist: needs a partner
+S	308	BD_ETERNALCHAOS	SelfArea	11,17,8	Survivability: raises Def/Def2 (Eternalchaos); Support: works on allies; Specialist: needs a partner
+S	309	BD_DRUMBATTLEFIELD	SelfArea	11,17,8	Survivability: raises Def (Drumbattle); Support: works on allies; Specialist: needs a partner
+S	310	BD_RINGNIBELUNGEN	SelfArea	15,17,8	Buff: raises All (Nibelungen); Support: works on allies; Specialist: needs a partner
+S	311	BD_ROKISWEIL	SelfArea	2,8	AreaCC: stops (Rokisweil); Specialist: needs a partner
+S	312	BD_INTOABYSS	SelfArea	15,17,8	Buff: a status on yourself or an ally (Intoabyss); Support: works on allies; Specialist: needs a partner
+S	313	BD_SIEGFRIED	SelfArea	12,15,17	ElementalResist: elemental defence (Siegfried); Buff: raises All (Siegfried); Support: works on allies
+S	315	BA_MUSICALLESSON	Passive	5,18,8	Sustained: attack speed (status.cpp:8356); Utility: raises MaxSP (status.cpp:3358); Specialist: for one weapon type or race (battle.cpp:2382)
+S	316	BA_MUSICALSTRIKE	Projectile	5	Sustained: one target, cast+wait 800 ms
+S	317	BA_DISSONANCE	SelfArea	1	AreaDamage: area damage (splash 4)
+S	318	BA_FROSTJOKER	SelfArea	2	AreaCC: stops (Freeze)
+S	319	BA_WHISTLE	SelfArea	14,17	Evasion: raises Flee (Whistle); Support: works on allies
+S	320	BA_ASSASSINCROSS	SelfArea	15,17	Buff: raises Aspd (Assncros); Support: works on allies
+S	321	BA_POEMBRAGI	SelfArea	15,17	Buff: a status on yourself or an ally (Poembragi); Support: works on allies
+S	322	BA_APPLEIDUN	SelfArea	11,17	Survivability: raises MaxHp (Appleidun); Support: works on allies
+S	323	DC_DANCINGLESSON	Passive	18,5,8	Utility: raises MaxSP (status.cpp:3358); Sustained: attack speed / critical (status.cpp:4529); Specialist: for one weapon type / race / element (status.cpp:4529)
+S	324	DC_THROWARROW	Projectile	5	Sustained: one target, cast+wait 800 ms
+S	325	DC_UGLYDANCE	SelfArea	16	Debuff: takes SP
+S	326	DC_SCREAM	SelfArea	2	AreaCC: stops (Stun)
+S	327	DC_HUMMING	SelfArea	15,17	Buff: raises Hit (Humming); Support: works on allies
+S	328	DC_DONTFORGETME	SelfArea	15,17	Buff: a status on yourself or an ally (Dontforgetme); Support: works on allies
+S	329	DC_FORTUNEKISS	SelfArea	15,17	Buff: raises All (Fortune); Support: works on allies
+S	330	DC_SERVICEFORYOU	SelfArea	15,17	Buff: raises All (Service4U); Support: works on allies
+S	331	NPC_RANDOMMOVE	Other	18	Utility: no damage, status, heal or move in the data
+S	332	NPC_SPEEDUP	Other	18	Utility: no damage, status, heal or move in the data
+S	333	NPC_REVENGE	Other	18	Utility: no damage, status, heal or move in the data
+S	334	WE_MALE	Heal	9	Heal: gives HP
+S	335	WE_FEMALE	Other	17	Support: gives SP
+S	336	WE_CALLPARTNER	Other	18	Utility: no damage, status, heal or move in the data
+S	337	ITM_TOMAHAWK	Projectile	5	Sustained: one target, cast+wait 0 ms
+S	338	NPC_DARKCROSS	MeleeHit	5,16	Sustained: one target, cast+wait 0 ms; Debuff: weakens (Blind)
+S	339	NPC_GRANDDARKNESS	SelfArea	1,16	AreaDamage: area damage (unit area); Debuff: weakens (Blind)
+S	340	NPC_DARKSTRIKE	Bolt	3	SingleTargetBurst: one target, 5 hits
+S	341	NPC_DARKTHUNDER	Bolt	3,19	SingleTargetBurst: one target, 12 hits; SingleTargetCC: knockback 7
+S	342	NPC_STOP	Debuff	19	SingleTargetCC: stops (Stop)
+S	343	NPC_WEAPONBRAKER	Buff	15	Buff: a status on yourself or an ally (Weaponbreaker)
+S	344	NPC_ARMORBRAKE	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	345	NPC_HELMBRAKE	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	346	NPC_SHIELDBRAKE	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	347	NPC_UNDEADATTACK	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus
+S	348	NPC_CHANGEUNDEAD	MeleeHit	5,6,16	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus; Debuff: weakens (Changeundead)
+S	349	NPC_POWERUP	Buff	15	Buff: raises Hit (Powerup)
+S	350	NPC_AGIUP	Buff	14,13	Evasion: raises Flee (Agiup); Mobility: faster (Agiup)
+S	351	NPC_SIEGEMODE	Passive	18	Utility: no stat or damage line asks for its level
+S	352	NPC_CALLSLAVE	Other	18	Utility: no damage, status, heal or move in the data
+S	353	NPC_INVISIBLE	Passive	18	Utility: no stat or damage line asks for its level
+S	354	NPC_RUN	Other	18	Utility: no damage, status, heal or move in the data
+S	355	LK_AURABLADE	Buff	15	Buff: a status on yourself or an ally (Aurablade)
+S	356	LK_PARRYING	Buff	10	Shield: stops hits (Parrying)
+S	357	LK_CONCENTRATION	Buff	15	Buff: raises Hit (Concentration)
+S	358	LK_TENSIONRELAX	Buff	11	Survivability: raises Regen (Tensionrelax)
+S	359	LK_BERSERK	Buff	15,13	Buff: raises All (Berserk); Mobility: faster (Berserk)
+S	360	LK_FURY	Other	18	Utility: no damage, status, heal or move in the data
+S	361	HP_ASSUMPTIO	Buff	11,17	Survivability: less damage taken (Assumptio); Support: works on allies
+S	362	HP_BASILICA	Buff	10,15	Shield: stops hits (Basilica); Buff: raises All (Basilica)
+S	363	HP_MEDITATIO	Passive	9,18	Heal: stronger heals (skill.cpp:549); Utility: raises MaxSP (status.cpp:3353)
+S	364	HW_SOULDRAIN	Passive	18	Utility: raises MaxSP (status.cpp:3355)
+S	365	HW_MAGICCRASHER	Projectile	5	Sustained: one target, cast+wait 600 ms
+S	366	HW_MAGICPOWER	Buff	15	Buff: raises Matk (Magicpower)
+S	367	PA_PRESSURE	Bolt	3	SingleTargetBurst: one target, cast+wait 2400 ms
+S	368	PA_SACRIFICE	Buff	5,15,6	Sustained: one target, cast+wait 0 ms; Buff: a status on yourself or an ally (Sacrifice); SureHit: IgnoreFlee
+S	369	PA_GOSPEL	Buff	9,15	Heal: a unit that gives HP (Gospel); Buff: a status on yourself or an ally (Gospel)
+S	370	CH_PALMSTRIKE	MeleeHit	5,19,8	Sustained: one target, cast+wait 300 ms; SingleTargetCC: knockback 3; Specialist: needs Explosionspirits
+S	371	CH_TIGERFIST	MeleeHit	3,19	SingleTargetBurst: one target, SpiritSphereCost; SingleTargetCC: stops (Ankle)
+S	372	CH_CHAINCRUSH	MeleeHit	3	SingleTargetBurst: one target, 5 hits
+S	373	PF_HPCONVERSION	Other	17	Support: gives SP
+S	374	PF_SOULCHANGE	Other	17	Support: works on allies
+S	375	PF_SOULBURN	Bolt	3,16	SingleTargetBurst: one target, cast+wait 15000 ms; Debuff: takes SP
+S	376	ASC_KATAR	Passive	5,8	Sustained: more damage on its attacks (battle.cpp:5576); Specialist: for one weapon type / race / element (battle.cpp:5576)
+S	378	ASC_EDP	Buff	15	Buff: raises Watk (Edp)
+S	379	ASC_BREAKER	Projectile	5	Sustained: one target, cast+wait 1500 ms
+S	380	SN_SIGHT	Buff	15	Buff: raises Agi/Cri/Dex/Hit/Int/Luk/Str/Vit (Truesight)
+S	381	SN_FALCONASSAULT	Projectile	5,6,8	Sustained: one target, cast+wait 1500 ms; SureHit: IgnoreFlee; Specialist: needs Falcon
+S	382	SN_SHARPSHOOTING	Projectile	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 1500 ms
+S	383	SN_WINDWALK	Buff	14,13,17	Evasion: raises Flee (Windwalk); Mobility: faster (Windwalk); Support: works on allies
+S	384	WS_MELTDOWN	Buff	15	Buff: a status on yourself or an ally (Meltdown)
+S	385	WS_CREATECOIN	Other	18	Utility: no damage, status, heal or move in the data
+S	386	WS_CREATENUGGET	Other	18	Utility: no damage, status, heal or move in the data
+S	387	WS_CARTBOOST	Buff	13,8	Mobility: faster (Cartboost); Specialist: needs Cart
+S	388	WS_SYSTEMCREATE	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	389	ST_CHASEWALK	Buff	14	Evasion: hidden (Chasewalk)
+S	390	ST_REJECTSWORD	Buff	15	Buff: a status on yourself or an ally (Autocounter)
+S	392	CR_ALCHEMY	Other	18	Utility: no damage, status, heal or move in the data
+S	393	CR_SYNTHESISPOTION	Other	18	Utility: no damage, status, heal or move in the data
+S	394	CG_ARROWVULCAN	Projectile	3	SingleTargetBurst: one target, cast+wait 3500 ms
+S	395	CG_MOONLIT	SelfArea	17,8	Support: works on allies; Specialist: needs a partner
+S	396	CG_MARIONETTE	Buff	15,17	Buff: raises Agi/Dex/Int/Luk/Str/Vit (Marionette); Support: works on allies
+S	397	LK_SPIRALPIERCE	Projectile	3,19,8	SingleTargetBurst: one target, 5 hits; SingleTargetCC: stops (Ankle); Specialist: only with 1hSpear/1hSword/2hSpear/2hSword
+S	398	LK_HEADCRUSH	Projectile	5,4	Sustained: one target, cast+wait 500 ms; DoT: damage over time (Bleeding)
+S	399	LK_JOINTBEAT	Projectile	5,19,8	Sustained: one target, cast+wait 1000 ms; SingleTargetCC: slows (Jointbeat); Specialist: only with 1hSpear/2hSpear
+S	400	HW_NAPALMVULCAN	Bolt	1,2	AreaDamage: area damage (splash 1); AreaCC: slows (Curse)
+S	401	CH_SOULCOLLECT	Other	18	Utility: no damage, status, heal or move in the data
+S	402	PF_MINDBREAKER	Debuff	16	Debuff: weakens (Mindbreaker)
+S	403	PF_MEMORIZE	Buff	15	Buff: a status on yourself or an ally (Memorize)
+S	404	PF_FOGWALL	GroundArea	11,16	Survivability: less damage taken (Fogwall); Debuff: weakens (Blind)
+S	405	PF_SPIDERWEB	Debuff	19	SingleTargetCC: stops (Spiderweb)
+S	406	ASC_METEORASSAULT	SelfArea	1,2,4	AreaDamage: area damage (splash 2); AreaCC: stops (Stun); DoT: damage over time (Bleeding)
+S	407	ASC_CDP	Other	18	Utility: no damage, status, heal or move in the data
+S	408	WE_BABY	Buff	15	Buff: a status on yourself or an ally (Protectexp)
+S	409	WE_CALLPARENT	Other	18	Utility: no damage, status, heal or move in the data
+S	410	WE_CALLBABY	Other	18	Utility: no damage, status, heal or move in the data
+S	411	TK_RUN	Movement	13	Mobility: moves you (4 cells)
+S	412	TK_READYSTORM	Buff	15	Buff: a status on yourself or an ally (Readystorm)
+S	413	TK_STORMKICK	SelfArea	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms
+S	414	TK_READYDOWN	Buff	15	Buff: a status on yourself or an ally (Readydown)
+S	415	TK_DOWNKICK	MeleeHit	5,19	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun)
+S	416	TK_READYTURN	Buff	15	Buff: a status on yourself or an ally (Readyturn)
+S	417	TK_TURNKICK	SelfArea	1,2,5	AreaDamage: area damage (splash 1); AreaCC: stops (Stun); Sustained: cast+wait 0 ms
+S	418	TK_READYCOUNTER	Buff	15	Buff: a status on yourself or an ally (Readycounter)
+S	419	TK_COUNTER	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	420	TK_DODGE	Buff	14	Evasion: a chance to avoid a hit (Dodge)
+S	421	TK_JUMPKICK	MeleeHit	5,13	Sustained: one target, cast+wait 0 ms; Mobility: moves you
+S	422	TK_HPTIME	Passive	11	Survivability: more HP recovery (status.cpp:5331)
+S	423	TK_SPTIME	Passive	18	Utility: more SP recovery (status.cpp:5336)
+S	424	TK_POWER	Passive	5	Sustained: more damage on its attacks (battle.cpp:4217)
+S	425	TK_SEVENWIND	Buff	15	Buff: a status on yourself or an ally (Sevenwind)
+S	426	TK_HIGHJUMP	Movement	13	Mobility: moves you
+S	427	SG_FEEL	Other	18	Utility: no damage, status, heal or move in the data
+S	428	SG_SUN_WARM	Buff	15	Buff: a status on yourself or an ally (Warm)
+S	429	SG_MOON_WARM	Buff	15	Buff: a status on yourself or an ally (Warm)
+S	430	SG_STAR_WARM	Buff	15	Buff: a status on yourself or an ally (Warm)
+S	431	SG_SUN_COMFORT	Buff	11	Survivability: raises Def2 (Sun_Comfort)
+S	432	SG_MOON_COMFORT	Buff	14	Evasion: raises Flee (Moon_Comfort)
+S	433	SG_STAR_COMFORT	Buff	15	Buff: raises Aspd (Star_Comfort)
+S	434	SG_HATE	Other	18	Utility: no damage, status, heal or move in the data
+S	435	SG_SUN_ANGER	Passive	5,8	Sustained: read: more damage to the monster you marked (battle.cpp:4692-4693); Specialist: read: only that monster
+S	436	SG_MOON_ANGER	Passive	5,8	Sustained: read: more damage to the monster you marked (battle.cpp:4692-4693); Specialist: read: only that monster
+S	437	SG_STAR_ANGER	Passive	5,8	Sustained: read: more damage to the monster you marked (battle.cpp:4692-4696); Specialist: read: only that monster
+S	438	SG_SUN_BLESS	Passive	18	Utility: no stat or damage line asks for its level
+S	439	SG_MOON_BLESS	Passive	18	Utility: no stat or damage line asks for its level
+S	440	SG_STAR_BLESS	Passive	18	Utility: no stat or damage line asks for its level
+S	441	SG_DEVIL	Passive	5,8	Sustained: attack speed (status.cpp:2390); Specialist: for one weapon type / race / element (status.cpp:2390)
+S	442	SG_FRIEND	Passive	18	Utility: no stat or damage line asks for its level
+S	443	SG_KNOWLEDGE	Passive	18	Utility: no stat or damage line asks for its level
+S	444	SG_FUSION	Buff	13	Mobility: faster (Fusion)
+S	445	SL_ALCHEMIST	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	446	AM_BERSERKPITCHER	Buff	15,17	Buff: read: throws Berserk Potions at an ally (skill_db.yml ItemCost; the HP line of its class is the shared potion code, skills/merchant/aidberserkpotion.cpp:153); Support: as the first
+S	447	SL_MONK	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	448	SL_STAR	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	449	SL_SAGE	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	450	SL_CRUSADER	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	451	SL_SUPERNOVICE	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	452	SL_KNIGHT	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	453	SL_WIZARD	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	454	SL_PRIEST	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	455	SL_BARDDANCER	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	456	SL_ROGUE	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	457	SL_ASSASIN	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	458	SL_BLACKSMITH	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	459	BS_ADRENALINE2	Buff	15,17	Buff: raises Aspd (Adrenaline2); Support: works on allies
+S	460	SL_HUNTER	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	461	SL_SOULLINKER	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	462	SL_KAIZEL	Buff	15,17	Buff: a status on yourself or an ally (Kaizel); Support: works on allies
+S	463	SL_KAAHI	Buff	15,17	Buff: a status on yourself or an ally (Kaahi); Support: works on allies
+S	464	SL_KAUPE	Buff	14,17	Evasion: a chance to avoid a hit (Kaupe); Support: works on allies
+S	465	SL_KAITE	Buff	15,17	Buff: a status on yourself or an ally (Kaite); Support: works on allies
+S	466	SL_KAINA	Passive	18	Utility: raises MaxSP (status.cpp:3310)
+S	467	SL_STIN	Bolt	5,19	Sustained: one target, cast+wait 600 ms; SingleTargetCC: knockback 2
+S	468	SL_STUN	Bolt	19,5	SingleTargetCC: stops (Stun), a 135 % hit; Sustained: one target, cast+wait 600 ms
+S	469	SL_SMA	Bolt	3	SingleTargetBurst: one target, cast+wait 2500 ms
+S	470	SL_SWOO	Debuff	16	Debuff: a status on an enemy (Swoo)
+S	471	SL_SKE	Debuff	16,15	Debuff: a status on an enemy (Ske); Buff: a status on yourself or an ally (Sma)
+S	472	SL_SKA	Debuff	16	Debuff: a status on an enemy (Ska)
+S	473	SM_SELFPROVOKE	Buff	15	Buff: raises Batk/Watk (Provoke)
+S	474	NPC_EMOTION_ON	Buff	15	Buff: a status on yourself or an ally (Modechange)
+S	475	ST_PRESERVE	Buff	15	Buff: a status on yourself or an ally (Preserve)
+S	476	ST_FULLSTRIP	Debuff	16	Debuff: takes off gear (skill_strip_equip)
+S	477	WS_WEAPONREFINE	Other	18	Utility: no damage, status, heal or move in the data
+S	478	CR_SLIMPITCHER	GroundArea	9,17	Heal: gives HP; Support: works on allies
+S	479	CR_FULLPROTECTION	Other	17	Support: works on allies
+S	480	PA_SHIELDCHAIN	Projectile	3,8	SingleTargetBurst: one target, cast+wait 2000 ms; Specialist: needs Shield
+S	481	HP_MANARECHARGE	Passive	18	Utility: SP cost / cast / steal / range (status.cpp:4659)
+S	482	PF_DOUBLECASTING	Buff	15	Buff: a status on yourself or an ally (Doublecast)
+S	483	HW_GANBANTEIN	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	484	HW_GRAVITATION	GroundArea	1	AreaDamage: area damage (unit area)
+S	485	WS_CARTTERMINATION	MeleeHit	5,19,8	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun); Specialist: needs Cartboost
+S	486	WS_OVERTHRUSTMAX	Buff	15	Buff: a status on yourself or an ally (Maxoverthrust)
+S	488	CG_HERMODE	SelfArea	10,17	Shield: stops hits (Hermode); Support: works on allies
+S	489	CG_TAROTCARD	Debuff	19,4,7	SingleTargetCC: stops (Stonewait); DoT: damage over time (Poison); AllRounder: does control + damage + move
+S	490	CR_ACIDDEMONSTRATION	Projectile	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	491	CR_CULTIVATION	Summon	18	Utility: summons a unit
+S	492	ITEM_ENCHANTARMS	Buff	15	Buff: raises Atk_Ele (Enchantarms)
+S	493	TK_MISSION	Other	18	Utility: no damage, status, heal or move in the data
+S	494	SL_HIGH	Buff	15,17	Buff: raises All (Spirit); Support: works on allies
+S	495	KN_ONEHAND	Buff	15	Buff: raises Aspd (Onehand)
+S	496	AM_TWILIGHT1	Other	18	Utility: no damage, status, heal or move in the data
+S	497	AM_TWILIGHT2	Other	18	Utility: no damage, status, heal or move in the data
+S	498	AM_TWILIGHT3	Other	18	Utility: no damage, status, heal or move in the data
+S	499	HT_POWER	Projectile	5	Sustained: one target, cast+wait 100 ms
+S	500	GS_GLITTERING	Other	18	Utility: no damage, status, heal or move in the data
+S	501	GS_FLING	Projectile	3,6	SingleTargetBurst: one target, SpiritSphereCost; SureHit: IgnoreFlee
+S	502	GS_TRIPLEACTION	Projectile	3	SingleTargetBurst: one target, SpiritSphereCost
+S	503	GS_BULLSEYE	Projectile	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	504	GS_MADNESSCANCEL	Buff	15	Buff: raises Aspd (Madnesscancel)
+S	505	GS_ADJUSTMENT	Buff	11,14	Survivability: less damage taken (Adjustment); Evasion: raises Flee (Adjustment)
+S	506	GS_INCREASING	Buff	15	Buff: raises Agi/Dex/Hit (Increasing)
+S	507	GS_MAGICALBULLET	Buff	15	Buff: a status on yourself or an ally (Magicalbullet)
+S	508	GS_CRACKER	Debuff	19	SingleTargetCC: stops (Stun)
+S	509	GS_SINGLEACTION	Passive	5,6,8	Sustained: attack speed (status.cpp:2392); SureHit: raises Hit (status.cpp:4493); Specialist: for one weapon type / race / element (status.cpp:2392)
+S	510	GS_SNAKEEYE	Passive	6,18	SureHit: raises Hit (status.cpp:4495); Utility: SP cost / cast / steal / range (status.cpp:4495)
+S	511	GS_CHAINACTION	Passive	5,8	Sustained: read: a second shot on a normal attack (battle.cpp:4332-4336); Specialist: read: with a revolver (battle.cpp:4332)
+S	512	GS_TRACKING	Projectile	3,8	SingleTargetBurst: one target, cast+wait 3000 ms; Specialist: only with Revolver/Rifle
+S	513	GS_DISARM	Projectile	3,16,8	SingleTargetBurst: one target, cast+wait 3000 ms; Debuff: weakens (Stripweapon); Specialist: only with Revolver/Rifle
+S	514	GS_PIERCINGSHOT	Projectile	3,4,6	SingleTargetBurst: one target, cast+wait 2000 ms; DoT: damage over time (Bleeding); SureHit: IgnoreDefense
+S	515	GS_RAPIDSHOWER	Projectile	3,8	SingleTargetBurst: one target, 5 hits; Specialist: only with Revolver
+S	516	GS_DESPERADO	SelfArea	1,8	AreaDamage: area damage (splash 3); Specialist: only with Revolver
+S	517	GS_GATLINGFEVER	Buff	15,14	Buff: raises Aspd (Gatlingfever); Evasion: raises Flee (Gatlingfever)
+S	518	GS_DUST	Projectile	5,19,8	Sustained: one target, cast+wait 1000 ms; SingleTargetCC: knockback 5; Specialist: only with Shotgun
+S	519	GS_FULLBUSTER	Projectile	3,8	SingleTargetBurst: one target, cast+wait 4000 ms; Specialist: only with Shotgun
+S	520	GS_SPREADATTACK	Projectile	1,5,8	AreaDamage: area damage (splash 4); Sustained: cast+wait 1000 ms; Specialist: only with Grenade/Shotgun
+S	521	GS_GROUNDDRIFT	GroundArea	1,4,2	AreaDamage: area damage (splash 1); DoT: damage unit for 30 s; AreaCC: knockback 3
+S	522	NJ_TOBIDOUGU	Passive	5	Sustained: more damage on its attacks (battle.cpp:3821)
+S	523	NJ_SYURIKEN	Projectile	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	524	NJ_KUNAI	Projectile	5,6	Sustained: one target, cast+wait 200 ms; SureHit: IgnoreFlee
+S	525	NJ_HUUMA	Projectile	1,8	AreaDamage: area damage (splash 2); Specialist: only with Huuma
+S	526	NJ_ZENYNAGE	Projectile	3,6	SingleTargetBurst: one target, cast+wait 5000 ms; SureHit: IgnoreFlee
+S	527	NJ_TATAMIGAESHI	SelfArea	10,1,7	Shield: stops hits (Tatamigaeshi); AreaDamage: area damage (unit area); AllRounder: does control + damage + protect
+S	528	NJ_KASUMIKIRI	MeleeHit	5	Sustained: one target, cast+wait 500 ms
+S	529	NJ_SHADOWJUMP	Movement	13,8	Mobility: moves you; Specialist: needs Hiding
+S	530	NJ_KIRIKAGE	MeleeHit	5,13,8	Sustained: one target, cast+wait 0 ms; Mobility: moves you; Specialist: needs Hiding
+S	531	NJ_UTSUSEMI	Movement	13,14	Mobility: moves you (7 cells); Evasion: a chance to avoid a hit (Utsusemi)
+S	532	NJ_BUNSINJYUTSU	Buff	14	Evasion: a chance to avoid a hit (Bunsinjyutsu)
+S	533	NJ_NINPOU	Passive	18	Utility: more SP recovery (status.cpp:5312)
+S	534	NJ_KOUENKA	Bolt	3	SingleTargetBurst: one target, cast+wait 7000 ms
+S	535	NJ_KAENSIN	SelfArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 20 s
+S	536	NJ_BAKUENRYU	Bolt	3	SingleTargetBurst: one target, cast+wait 3300 ms
+S	537	NJ_HYOUSENSOU	Bolt	3	SingleTargetBurst: one target, cast+wait 7000 ms
+S	538	NJ_SUITON	GroundArea	2	AreaCC: slows (Suiton)
+S	539	NJ_HYOUSYOURAKU	SelfArea	1,2	AreaDamage: area damage (unit area); AreaCC: stops (Freeze)
+S	540	NJ_HUUJIN	Bolt	3	SingleTargetBurst: one target, cast+wait 5500 ms
+S	541	NJ_RAIGEKISAI	GroundArea	1	AreaDamage: area damage (unit area)
+S	542	NJ_KAMAITACHI	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 1500 ms
+S	543	NJ_NEN	Buff	15	Buff: raises Int/Str (Nen)
+S	544	NJ_ISSEN	MeleeHit	3,13,6	SingleTargetBurst: one target, cast+wait 3000 ms; Mobility: moves you; SureHit: IgnoreFlee
+S	572	SL_DEATHKNIGHT	Passive	18	Utility: no stat or damage line asks for its level
+S	573	SL_COLLECTOR	Passive	18	Utility: no stat or damage line asks for its level
+S	574	SL_NINJA	Passive	18	Utility: no stat or damage line asks for its level
+S	575	SL_GUNNER	Passive	18	Utility: no stat or damage line asks for its level
+S	653	NPC_EARTHQUAKE	SelfArea	1,6	AreaDamage: area damage (splash 13); SureHit: IgnoreDefense
+S	654	NPC_FIREBREATH	Projectile	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	655	NPC_ICEBREATH	Projectile	1,2,5	AreaDamage: area damage (splash 3); AreaCC: stops (Freeze); Sustained: cast+wait 0 ms
+S	656	NPC_THUNDERBREATH	Projectile	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	657	NPC_ACIDBREATH	Projectile	1,4,5	AreaDamage: area damage (splash 3); DoT: damage over time (Poison); Sustained: cast+wait 0 ms
+S	658	NPC_DARKNESSBREATH	Projectile	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	659	NPC_DRAGONFEAR	Other	18	Utility: no damage, status, heal or move in the data
+S	660	NPC_BLEEDING	Projectile	5,4,6	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Bleeding); SureHit: hit bonus
+S	661	NPC_PULSESTRIKE	SelfArea	1,2,5	AreaDamage: area damage (splash 7); AreaCC: knockback 7; Sustained: cast+wait 0 ms
+S	662	NPC_HELLJUDGEMENT	SelfArea	1,2,5	AreaDamage: area damage (splash 14); AreaCC: slows (Curse); Sustained: cast+wait 0 ms
+S	663	NPC_WIDESILENCE	SelfArea	2	AreaCC: stops (Silence)
+S	664	NPC_WIDEFREEZE	SelfArea	2	AreaCC: stops (Freeze)
+S	665	NPC_WIDEBLEEDING	SelfArea	4	DoT: damage over time (Bleeding)
+S	666	NPC_WIDESTONE	SelfArea	2	AreaCC: stops (Stonewait)
+S	667	NPC_WIDECONFUSE	SelfArea	16	Debuff: weakens (Confusion)
+S	668	NPC_WIDESLEEP	SelfArea	2	AreaCC: stops (Sleep)
+S	669	NPC_WIDESIGHT	Buff	18	Utility: shows hidden enemies (Sight)
+S	670	NPC_EVILLAND	GroundArea	9,16,17	Heal: a unit that gives HP (Evilland); Debuff: weakens (Blind); Support: works on allies
+S	671	NPC_MAGICMIRROR	Buff	15	Buff: a status on yourself or an ally (Magicmirror)
+S	672	NPC_SLOWCAST	SelfArea	16	Debuff: weakens (Slowcast)
+S	673	NPC_CRITICALWOUND	Projectile	5,16	Sustained: one target, cast+wait 0 ms; Debuff: weakens (Criticalwound)
+S	674	NPC_EXPULSION	Other	13	Mobility: moves you
+S	675	NPC_STONESKIN	Buff	11	Survivability: less damage taken (Armorchange)
+S	676	NPC_ANTIMAGIC	Buff	11	Survivability: less damage taken (Armorchange)
+S	677	NPC_WIDECURSE	SelfArea	2	AreaCC: slows (Curse)
+S	678	NPC_WIDESTUN	SelfArea	2	AreaCC: stops (Stun)
+S	679	NPC_VAMPIRE_GIFT	SelfArea	1,5	AreaDamage: area damage (splash 13); Sustained: cast+wait 0 ms
+S	680	NPC_WIDESOULDRAIN	Other	16	Debuff: takes SP
+S	681	ALL_INCCARRY	Passive	18	Utility: weight / prices / crafting (status.cpp:3686)
+S	682	NPC_TALK	Other	18	Utility: no damage, status, heal or move in the data
+S	683	NPC_HELLPOWER	Debuff	16	Debuff: a status on an enemy (Hellpower)
+S	684	NPC_WIDEHELLDIGNITY	Buff	15	Buff: a status on yourself or an ally (Hellpower)
+S	685	NPC_INVINCIBLE	Buff	15,13	Buff: raises Aspd (Invincible); Mobility: faster (Invincible)
+S	686	NPC_INVINCIBLEOFF	Other	18	Utility: no damage, status, heal or move in the data
+S	687	NPC_ALLHEAL	Other	18	Utility: no damage, status, heal or move in the data
+S	688	GM_SANDMAN	Other	17	Support: works on allies
+S	689	CASH_BLESSING	Buff	15,17	Buff: raises Dex/Hit/Int/Str (Blessing); Support: works on allies
+S	690	CASH_INCAGI	Buff	15,13,17	Buff: raises Agi/Aspd (Increaseagi); Mobility: faster (Increaseagi); Support: works on allies
+S	691	CASH_ASSUMPTIO	Buff	11,17	Survivability: less damage taken (Assumptio); Support: works on allies
+S	692	ALL_CATCRY	Other	18	Utility: no damage, status, heal or move in the data
+S	693	ALL_PARTYFLEE	Buff	15,17	Buff: a status on yourself or an ally (Partyflee); Support: works on allies
+S	694	ALL_ANGEL_PROTECT	Passive	18	Utility: no stat or damage line asks for its level
+S	695	ALL_DREAM_SUMMERNIGHT	Passive	18	Utility: no stat or damage line asks for its level
+S	697	ALL_REVERSEORCISH	Buff	15	Buff: a status on yourself or an ally (Orcish)
+S	698	ALL_WEWISH	Other	18	Utility: no damage, status, heal or move in the data
+S	706	NPC_VENOMFOG	SelfArea	1	AreaDamage: area damage (unit area)
+S	707	NPC_MILLENNIUMSHIELD	Buff	10	Shield: stops hits (Millenniumshield)
+S	708	NPC_COMET	GroundArea	1,4,2	AreaDamage: area damage (splash 9); DoT: damage over time (Burning); AreaCC: knockback 2
+S	709	NPC_ICEMINE	SelfArea	1,4,6	AreaDamage: area damage (unit area); DoT: damage unit for 10 s; SureHit: IgnoreDefense
+S	711	NPC_FLAMECROSS	SelfArea	1,2	AreaDamage: area damage (unit area); AreaCC: knockback 2
+S	712	NPC_PULSESTRIKE2	SelfArea	1,2,5	AreaDamage: area damage (splash 5); AreaCC: knockback 3; Sustained: cast+wait 0 ms
+S	713	NPC_DANCINGBLADE	Other	18	Utility: no damage, status, heal or move in the data
+S	714	NPC_DANCINGBLADE_ATK	Projectile	5	Sustained: one target, cast+wait 0 ms
+S	715	NPC_DARKPIERCING	MeleeHit	1	AreaDamage: area damage (splash 2)
+S	716	NPC_MAXPAIN	Buff	15	Buff: a status on yourself or an ally (Maxpain)
+S	717	NPC_MAXPAIN_ATK	MeleeHit	1,6,5	AreaDamage: area damage (splash 18); SureHit: IgnoreFlee; Sustained: cast+wait 0 ms
+S	718	NPC_DEATHSUMMON	Other	18	Utility: no damage, status, heal or move in the data
+S	719	NPC_HELLBURNING	SelfArea	1	AreaDamage: area damage (unit area)
+S	720	NPC_JACKFROST	SelfArea	1,2,5	AreaDamage: area damage (splash 9); AreaCC: stops (Freeze); Sustained: cast+wait 0 ms
+S	721	NPC_WIDEWEB	Buff	15	Buff: a status on yourself or an ally (Wideweb)
+S	722	NPC_WIDESUCK	GroundArea	1,6,5	AreaDamage: area damage (splash 13); SureHit: IgnoreFlee; Sustained: cast+wait 0 ms
+S	723	NPC_STORMGUST2	GroundArea	1,2	AreaDamage: area damage (unit area); AreaCC: stops (Freeze)
+S	724	NPC_FIRESTORM	SelfArea	1,15,7	AreaDamage: area damage (splash 3); Buff: a status on yourself or an ally (Burnt); AllRounder: does boost + control + damage
+S	725	NPC_REVERBERATION	Trap	18	Utility: no damage, status, heal or move in the data
+S	726	NPC_REVERBERATION_ATK	MeleeHit	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms
+S	727	NPC_LEX_AETERNA	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	728	NPC_ARROWSTORM	Projectile	1,5	AreaDamage: area damage (splash 13); Sustained: cast+wait 0 ms
+S	729	NPC_CHEAL	Heal	9	Heal: gives HP
+S	730	NPC_SR_CURSEDCIRCLE	Buff	15	Buff: a status on yourself or an ally (Cursedcircle_Atker)
+S	731	NPC_DRAGONBREATH	GroundArea	1,2,4	AreaDamage: area damage (splash 4); AreaCC: slows (Freezing); DoT: damage over time (Burning)
+S	732	NPC_FATALMENACE	MeleeHit	1,5	AreaDamage: area damage (splash 5); Sustained: cast+wait 0 ms
+S	733	NPC_MAGMA_ERUPTION	GroundArea	1,2	AreaDamage: area damage (splash 3); AreaCC: stops (Stun)
+S	734	NPC_MAGMA_ERUPTION_DOTDAMAGE	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	735	NPC_MANDRAGORA	SelfArea	16	Debuff: weakens (Mandragora)
+S	736	NPC_PSYCHIC_WAVE	GroundArea	1	AreaDamage: area damage (unit area)
+S	737	NPC_RAYOFGENESIS	SelfArea	1,16,5	AreaDamage: area damage (splash 13); Debuff: weakens (Blind); Sustained: cast+wait 0 ms
+S	738	NPC_VENOMIMPRESS	Debuff	16	Debuff: a status on an enemy (Venomimpress)
+S	739	NPC_CLOUD_KILL	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 16 s
+S	740	NPC_IGNITIONBREAK	SelfArea	1,5	AreaDamage: area damage (splash 5); Sustained: cast+wait 0 ms
+S	741	NPC_PHANTOMTHRUST	Projectile	5	Sustained: one target, cast+wait 0 ms
+S	742	NPC_POISON_BUSTER	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	743	NPC_HALLUCINATIONWALK	Buff	14	Evasion: raises Flee (Npc_Hallucinationwalk)
+S	744	NPC_ELECTRICWALK	Buff	5,4,15	Sustained: one target, cast+wait 0 ms; DoT: damage unit for 12 s; Buff: a status on yourself or an ally (Propertywalk)
+S	745	NPC_FIREWALK	Buff	5,4,15	Sustained: one target, cast+wait 0 ms; DoT: damage unit for 12 s; Buff: a status on yourself or an ally (Propertywalk)
+S	747	NPC_LEASH	Other	13	Mobility: moves you
+S	748	NPC_WIDELEASH	Other	13	Mobility: moves you
+S	749	NPC_WIDECRITICALWOUND	SelfArea	1,16,5	AreaDamage: area damage (splash 14); Debuff: weakens (Criticalwound); Sustained: cast+wait 0 ms
+S	751	NPC_ALL_STAT_DOWN	Debuff	16	Debuff: a status on an enemy (All_Stat_Down)
+S	752	NPC_GRADUAL_GRAVITY	Debuff	4,16	DoT: damage over time (Gradual_Gravity); Debuff: a status on an enemy (Gradual_Gravity)
+S	753	NPC_DAMAGE_HEAL	Buff	15	Buff: a status on yourself or an ally (Damage_Heal)
+S	754	NPC_IMMUNE_PROPERTY	Other	17	Support: works on allies
+S	755	NPC_MOVE_COORDINATE	Other	13	Mobility: moves you
+S	756	NPC_WIDEBLEEDING2	SelfArea	4	DoT: damage over time (Bleeding)
+S	757	NPC_WIDESILENCE2	SelfArea	2	AreaCC: stops (Silence)
+S	758	NPC_WIDESTUN2	SelfArea	2	AreaCC: stops (Stun)
+S	759	NPC_WIDESTONE2	SelfArea	2	AreaCC: stops (Stonewait)
+S	760	NPC_WIDESLEEP2	SelfArea	2	AreaCC: stops (Sleep)
+S	761	NPC_WIDECURSE2	SelfArea	2	AreaCC: slows (Curse)
+S	762	NPC_WIDECONFUSE2	SelfArea	16	Debuff: weakens (Confusion)
+S	763	NPC_WIDEFREEZE2	SelfArea	2	AreaCC: stops (Freeze)
+S	764	NPC_BLEEDING2	Projectile	5,4,6	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Bleeding); SureHit: hit bonus
+S	765	NPC_ICEBREATH2	Projectile	1,2,5	AreaDamage: area damage (splash 4); AreaCC: stops (Freeze); Sustained: cast+wait 0 ms
+S	768	NPC_HELLJUDGEMENT2	SelfArea	1,2,16	AreaDamage: area damage (splash 14); AreaCC: stops (Sleep); Debuff: weakens (Confusion)
+S	769	NPC_RAINOFMETEOR	GroundArea	1,4	AreaDamage: area damage (splash 5); DoT: damage unit for 10 s
+S	770	NPC_GROUNDDRIVE	GroundArea	1	AreaDamage: area damage (unit area)
+S	771	NPC_RELIEVE_ON	Buff	15	Buff: a status on yourself or an ally (Relieve_On)
+S	772	NPC_RELIEVE_OFF	Buff	15	Buff: a status on yourself or an ally (Relieve_Off)
+S	776	NPC_DEADLYCURSE	Debuff	16	Debuff: a status on an enemy (Deadly_Defeasance)
+S	779	NPC_DEADLYCURSE2	Buff	15	Buff: raises All (Deadly_Defeasance)
+S	780	NPC_CANE_OF_EVIL_EYE	GroundArea	3,4,6	SingleTargetBurst: one target, 10 hits; DoT: damage unit for 10 s; SureHit: IgnoreFlee
+S	783	NPC_KILLING_AURA	MeleeHit	1,15,6	AreaDamage: area damage (splash 5); Buff: a status on yourself or an ally (Killing_Aura); SureHit: IgnoreFlee
+S	784	ALL_EVENT_20TH_ANNIVERSARY	Other	18	Utility: no damage, status, heal or move in the data
+S	1001	KN_CHARGEATK	MeleeHit	5,13,7	Sustained: one target, cast+wait 500 ms; Mobility: moves you; AllRounder: does control + damage + move
+S	1002	CR_SHRINK	Buff	15,8	Buff: a status on yourself or an ally (Shrink); Specialist: needs Shield
+S	1003	AS_SONICACCEL	Passive	6,5	SureHit: raises the hit rate (sonicblow.cpp:42); Sustained: more damage on its attacks (battle.cpp:4936)
+S	1004	AS_VENOMKNIFE	Projectile	5,4	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Poison)
+S	1005	RG_CLOSECONFINE	Debuff	19	SingleTargetCC: stops (Closeconfine2)
+S	1006	WZ_SIGHTBLASTER	SelfArea	18,1,2	Utility: shows hidden enemies (Sightblaster); AreaDamage: area damage (splash 1); AreaCC: knockback 3
+S	1007	SA_CREATECON	Other	18	Utility: no damage, status, heal or move in the data
+S	1008	SA_ELEMENTWATER	Debuff	16	Debuff: a status on an enemy (Elementalchange)
+S	1009	HT_PHANTASMIC	Projectile	5,19	Sustained: one target, cast+wait 0 ms; SingleTargetCC: knockback 3
+S	1010	BA_PANGVOICE	Debuff	4,16	DoT: damage over time (Bleeding); Debuff: weakens (Confusion)
+S	1011	DC_WINKCHARM	Debuff	16	Debuff: weakens (Confusion)
+S	1012	BS_UNFAIRLYTRICK	Passive	18	Utility: no stat or damage line asks for its level
+S	1013	BS_GREED	Other	18	Utility: no damage, status, heal or move in the data
+S	1014	PR_REDEMPTIO	Heal	9,17	Heal: revives; Support: works on allies
+S	1015	MO_KITRANSLATION	Other	17	Support: works on allies
+S	1016	MO_BALKYOUNG	MeleeHit	1,2	AreaDamage: area damage (splash 1); AreaCC: stops (Stun)
+S	1017	SA_ELEMENTGROUND	Debuff	16	Debuff: a status on an enemy (Elementalchange)
+S	1018	SA_ELEMENTFIRE	Debuff	16	Debuff: a status on an enemy (Elementalchange)
+S	1019	SA_ELEMENTWIND	Debuff	16	Debuff: a status on an enemy (Elementalchange)
+S	2001	RK_ENCHANTBLADE	Buff	15	Buff: a status on yourself or an ally (Enchantblade)
+S	2002	RK_SONICWAVE	Projectile	5,6	Sustained: one target, cast+wait 1750 ms; SureHit: hit bonus
+S	2003	RK_DEATHBOUND	Movement	13,15	Mobility: moves you (3 cells); Buff: a status on yourself or an ally (Deathbound)
+S	2004	RK_HUNDREDSPEAR	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: only with 1hSpear/2hSpear
+S	2005	RK_WINDCUTTER	SelfArea	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms
+S	2006	RK_IGNITIONBREAK	SelfArea	1	AreaDamage: area damage (splash 4)
+S	2007	RK_DRAGONTRAINING	Passive	5,8	Sustained: attack speed (status.cpp:2397); Specialist: for one weapon type or race (battle.cpp:2355)
+S	2008	RK_DRAGONBREATH	GroundArea	1,2,4	AreaDamage: area damage (splash 4); AreaCC: slows (Freezing); DoT: damage over time (Burning)
+S	2009	RK_DRAGONHOWLING	SelfArea	16,8	Debuff: weakens (Fear); Specialist: needs Ridingdragon
+S	2010	RK_RUNEMASTERY	Passive	18,5	Utility: weight / prices / crafting (skill.cpp:12904); Sustained: raises the damage of one skill (stormblast.cpp:19)
+S	2011	RK_MILLENNIUMSHIELD	Buff	10	Shield: stops hits (Millenniumshield)
+S	2012	RK_CRUSHSTRIKE	Buff	15	Buff: a status on yourself or an ally (Crushstrike)
+S	2013	RK_REFRESH	Buff	15	Buff: a status on yourself or an ally (Refresh)
+S	2014	RK_GIANTGROWTH	Buff	15	Buff: raises Str (Giantgrowth)
+S	2015	RK_STONEHARDSKIN	Buff	11	Survivability: less damage taken (Stonehardskin)
+S	2016	RK_VITALITYACTIVATION	Buff	15	Buff: a status on yourself or an ally (Vitalityactivation)
+S	2017	RK_STORMBLAST	SelfArea	1	AreaDamage: area damage (splash 3)
+S	2018	RK_FIGHTINGSPIRIT	Buff	15	Buff: raises Aspd/Watk (Fightingspirit)
+S	2019	RK_ABUNDANCE	Buff	15	Buff: a status on yourself or an ally (Abundance)
+S	2020	RK_PHANTOMTHRUST	Projectile	5,8	Sustained: one target, cast+wait 0 ms; Specialist: only with 1hSpear/2hSpear
+S	2021	GC_VENOMIMPRESS	Debuff	16	Debuff: a status on an enemy (Venomimpress)
+S	2022	GC_CROSSIMPACT	MeleeHit	3,13	SingleTargetBurst: one target, 7 hits; Mobility: moves you
+S	2023	GC_DARKILLUSION	MeleeHit	5,13	Sustained: one target, cast+wait 1500 ms; Mobility: moves you
+S	2024	GC_RESEARCHNEWPOISON	Passive	18	Utility: weight / prices / crafting (skill.cpp:12872)
+S	2025	GC_CREATENEWPOISON	Other	18	Utility: no damage, status, heal or move in the data
+S	2026	GC_ANTIDOTE	Other	17	Support: removes Paralyse/Pyrexia/Deathhurt
+S	2027	GC_POISONINGWEAPON	Buff	15	Buff: a status on yourself or an ally (Poisoningweapon)
+S	2028	GC_WEAPONBLOCKING	Buff	10	Shield: stops hits (Weaponblocking)
+S	2029	GC_COUNTERSLASH	SelfArea	1,6,5	AreaDamage: area damage (splash 2); SureHit: IgnoreDefense; Sustained: cast+wait 1000 ms
+S	2030	GC_WEAPONCRUSH	MeleeHit	5,8	Sustained: one target, cast+wait 1000 ms; Specialist: needs Weaponblock_On
+S	2031	GC_VENOMPRESSURE	MeleeHit	5,6,8	Sustained: one target, cast+wait 1000 ms; SureHit: hit bonus; Specialist: needs Poisoningweapon
+S	2032	GC_POISONSMOKE	GroundArea	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Poisoningweapon
+S	2033	GC_CLOAKINGEXCEED	Buff	14	Evasion: hidden (Cloakingexceed)
+S	2034	GC_PHANTOMMENACE	SelfArea	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 1000 ms
+S	2035	GC_HALLUCINATIONWALK	Buff	14	Evasion: raises Flee (Hallucinationwalk)
+S	2036	GC_ROLLINGCUTTER	SelfArea	1,15,5	AreaDamage: area damage (splash 3); Buff: a status on yourself or an ally (Rollingcutter); Sustained: cast+wait 200 ms
+S	2037	GC_CROSSRIPPERSLASHER	Projectile	5,8	Sustained: one target, cast+wait 300 ms; Specialist: needs Rollingcutter
+S	2038	AB_JUDEX	Bolt	1	AreaDamage: area damage (splash 1)
+S	2039	AB_ANCILLA	Other	18	Utility: no damage, status, heal or move in the data
+S	2040	AB_ADORAMUS	Bolt	1,16	AreaDamage: area damage (splash 5); Debuff: weakens (Adoramus)
+S	2041	AB_CLEMENTIA	Buff	15,17	Buff: raises Dex/Hit/Int/Str (Blessing); Support: works on allies
+S	2042	AB_CANTO	Buff	15,13,17	Buff: raises Agi/Aspd (Increaseagi); Mobility: faster (Increaseagi); Support: works on allies
+S	2043	AB_CHEAL	Heal	9,17	Heal: gives HP; Support: works on allies
+S	2044	AB_EPICLESIS	GroundArea	9,11,17	Heal: a unit that gives HP (Epiclesis); Survivability: raises MaxHp (Epiclesis); Support: works on allies
+S	2045	AB_PRAEFATIO	Buff	10,17	Shield: stops hits (Kyrie); Support: works on allies
+S	2046	AB_ORATIO	Buff	15	Buff: a status on yourself or an ally (Oratio)
+S	2047	AB_LAUDAAGNUS	Buff	11,17	Survivability: raises MaxHp (Laudaagnus); Support: removes Freeze/Stone/Blind
+S	2048	AB_LAUDARAMUS	Buff	17,15	Support: removes Sleep/Stun/Mandragora; Buff: raises All (Laudaramus)
+S	2049	AB_EUCHARISTICA	Passive	12,5,8	ElementalResist: elemental resistance (status.cpp:4704); Sustained: raises attack (status.cpp:4694); Specialist: for one weapon type / race / element (status.cpp:4694)
+S	2050	AB_RENOVATIO	Buff	9,17	Heal: HP over time (Renovatio); Support: works on allies
+S	2051	AB_HIGHNESSHEAL	Heal	9,17	Heal: gives HP; Support: works on allies
+S	2052	AB_CLEARANCE	Other	17	Support: works on allies
+S	2053	AB_EXPIATIO	Buff	15,17	Buff: a status on yourself or an ally (Expiatio); Support: works on allies
+S	2054	AB_DUPLELIGHT	Buff	15	Buff: a status on yourself or an ally (Duplelight)
+S	2055	AB_DUPLELIGHT_MELEE	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	2056	AB_DUPLELIGHT_MAGIC	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2057	AB_SILENTIUM	Other	18	Utility: no damage, status, heal or move in the data
+S	2201	WL_WHITEIMPRISON	Bolt	3,19	SingleTargetBurst: one target, cast+wait 4000 ms; SingleTargetCC: stops (Whiteimprison)
+S	2202	WL_SOULEXPANSION	Bolt	1	AreaDamage: area damage (splash 2)
+S	2203	WL_FROSTMISTY	GroundArea	1,2,7	AreaDamage: area damage (splash 5); AreaCC: slows (Freezing); AllRounder: does boost + control + damage
+S	2204	WL_JACKFROST	Bolt	1	AreaDamage: area damage (splash 5)
+S	2205	WL_MARSHOFABYSS	Debuff	19	SingleTargetCC: slows (Marshofabyss)
+S	2206	WL_RECOGNIZEDSPELL	Buff	15	Buff: raises Matk (Recognizedspell)
+S	2207	WL_SIENNAEXECRATE	Debuff	2	AreaCC: stops (Stonewait)
+S	2208	WL_RADIUS	Passive	18	Utility: cast time / range / AP of other skills (skill.cpp:353)
+S	2209	WL_STASIS	Buff	15	Buff: a status on yourself or an ally (Stasis)
+S	2210	WL_DRAINLIFE	Bolt	3	SingleTargetBurst: one target, cast+wait 7000 ms
+S	2211	WL_CRIMSONROCK	Bolt	1,2	AreaDamage: area damage (splash 3); AreaCC: stops (Stun)
+S	2212	WL_HELLINFERNO	Bolt	1	AreaDamage: area damage (splash 2)
+S	2213	WL_COMET	GroundArea	1,2	AreaDamage: area damage (splash 6); AreaCC: knockback 2
+S	2214	WL_CHAINLIGHTNING	Bolt	3	SingleTargetBurst: one target, cast+wait 9500 ms
+S	2215	WL_CHAINLIGHTNING_ATK	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2216	WL_EARTHSTRAIN	GroundArea	1	AreaDamage: area damage (unit area)
+S	2217	WL_TETRAVORTEX	Bolt	1	AreaDamage: area damage (splash 3)
+S	2218	WL_TETRAVORTEX_FIRE	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2219	WL_TETRAVORTEX_WATER	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2220	WL_TETRAVORTEX_WIND	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2221	WL_TETRAVORTEX_GROUND	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2222	WL_SUMMONFB	SelfArea	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	2223	WL_SUMMONBL	SelfArea	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	2224	WL_SUMMONWB	SelfArea	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	2225	WL_SUMMON_ATK_FIRE	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2226	WL_SUMMON_ATK_WIND	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2227	WL_SUMMON_ATK_WATER	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2228	WL_SUMMON_ATK_GROUND	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2229	WL_SUMMONSTONE	SelfArea	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	2230	WL_RELEASE	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	2231	WL_READING_SB	Passive	18	Utility: no stat or damage line asks for its level
+S	2232	WL_FREEZE_SP	Passive	18	Utility: cast time / range / AP of other skills (skill.cpp:10345)
+S	2233	RA_ARROWSTORM	Projectile	1,8	AreaDamage: area damage (splash 4); Specialist: only with Bow
+S	2234	RA_FEARBREEZE	Buff	15	Buff: a status on yourself or an ally (Fearbreeze)
+S	2235	RA_RANGERMAIN	Passive	5,8,11	Sustained: mastery damage on every hit (battle.cpp:2295); Specialist: for one weapon type or race (battle.cpp:2295); Survivability: raises MaxHP / defence (battle.cpp:4819)
+S	2236	RA_AIMEDBOLT	Projectile	3,8	SingleTargetBurst: one target, cast+wait 5000 ms; Specialist: only with Bow
+S	2237	RA_DETONATOR	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2238	RA_ELECTRICSHOCKER	Trap	2	AreaCC: stops (Electricshocker)
+S	2239	RA_CLUSTERBOMB	Trap	1,6	AreaDamage: area damage (splash 3); SureHit: IgnoreFlee
+S	2240	RA_WUGMASTERY	Other	18	Utility: no damage, status, heal or move in the data
+S	2241	RA_WUGRIDER	Other	18	Utility: no damage, status, heal or move in the data
+S	2242	RA_WUGDASH	SelfArea	1,15,6	AreaDamage: area damage (splash 1); Buff: a status on yourself or an ally (Wugdash); SureHit: IgnoreFlee
+S	2243	RA_WUGSTRIKE	MeleeHit	5,13	Sustained: one target, cast+wait 0 ms; Mobility: moves you
+S	2244	RA_WUGBITE	Projectile	3,19,8	SingleTargetBurst: one target, cast+wait 12000 ms; SingleTargetCC: stops (Bite); Specialist: needs Wug
+S	2245	RA_TOOTHOFWUG	Passive	5	Sustained: more damage on its attacks (battle.cpp:3832)
+S	2246	RA_SENSITIVEKEEN	SelfArea	1,8	AreaDamage: area damage (splash 7); Specialist: needs Wug
+S	2247	RA_CAMOUFLAGE	Buff	15	Buff: a status on yourself or an ally (Camouflage)
+S	2248	RA_RESEARCHTRAP	Passive	5,18,15	Sustained: more damage on its attacks (battle.cpp:6360); Utility: raises MaxSP (status.cpp:3312); Buff: raises a stat (status.cpp:4285)
+S	2249	RA_MAGENTATRAP	Trap	18	Utility: no damage, status, heal or move in the data
+S	2250	RA_COBALTTRAP	Trap	18	Utility: no damage, status, heal or move in the data
+S	2251	RA_MAIZETRAP	Trap	18	Utility: no damage, status, heal or move in the data
+S	2252	RA_VERDURETRAP	Trap	18	Utility: no damage, status, heal or move in the data
+S	2253	RA_FIRINGTRAP	Trap	1,4,6	AreaDamage: area damage (splash 2); DoT: damage over time (Burning); SureHit: IgnoreFlee
+S	2254	RA_ICEBOUNDTRAP	Trap	1,2,6	AreaDamage: area damage (splash 2); AreaCC: slows (Freezing); SureHit: IgnoreFlee
+S	2255	NC_MADOLICENCE	Passive	5,13,8	Sustained: mastery damage on every hit (battle.cpp:2300); Mobility: walking speed (status.cpp:8029); Specialist: for one weapon type or race (battle.cpp:2300)
+S	2256	NC_BOOSTKNUCKLE	Projectile	5,8	Sustained: one target, cast+wait 200 ms; Specialist: needs Mado
+S	2257	NC_PILEBUNKER	MeleeHit	3,8	SingleTargetBurst: one target, cast+wait 5000 ms; Specialist: needs Mado
+S	2258	NC_VULCANARM	Projectile	1,5,8	AreaDamage: area damage (splash 2); Sustained: cast+wait 300 ms; Specialist: needs Mado
+S	2259	NC_FLAMELAUNCHER	Projectile	1,4,8	AreaDamage: area damage (splash 1); DoT: damage over time (Burning); Specialist: needs Mado
+S	2260	NC_COLDSLOWER	GroundArea	1,2,8	AreaDamage: area damage (splash 4); AreaCC: stops (Freeze); Specialist: needs Mado
+S	2261	NC_ARMSCANNON	Projectile	1,6,8	AreaDamage: area damage (splash 3); SureHit: IgnoreFlee; Specialist: needs Mado
+S	2262	NC_ACCELERATION	Buff	15,8	Buff: a status on yourself or an ally (Acceleration); Specialist: needs Mado
+S	2263	NC_HOVERING	Buff	13,8	Mobility: faster (Hovering); Specialist: needs Mado
+S	2264	NC_F_SIDESLIDE	Movement	13,8	Mobility: moves you (7 cells); Specialist: needs Mado
+S	2265	NC_B_SIDESLIDE	Movement	13,8	Mobility: moves you (7 cells); Specialist: needs Mado
+S	2266	NC_MAINFRAME	Passive	11	Survivability: raises defence (status.cpp:4583)
+S	2267	NC_SELFDESTRUCTION	SelfArea	1,6,2	AreaDamage: area damage (splash 4); SureHit: IgnoreFlee; AreaCC: knockback 5
+S	2268	NC_SHAPESHIFT	Buff	12,8	ElementalResist: elemental defence (Shapeshift); Specialist: needs Mado
+S	2269	NC_EMERGENCYCOOL	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Mado
+S	2270	NC_INFRAREDSCAN	Buff	15,8	Buff: a status on yourself or an ally (Infraredscan); Specialist: needs Mado
+S	2271	NC_ANALYZE	Debuff	16,8	Debuff: a status on an enemy (Analyze); Specialist: needs Mado
+S	2272	NC_MAGNETICFIELD	SelfArea	2,8	AreaCC: stops (Magneticfield); Specialist: needs Mado
+S	2273	NC_NEUTRALBARRIER	Buff	10,11,15	Shield: stops hits (Neutralbarrier); Survivability: raises Def/Mdef (Neutralbarrier); Buff: a status on yourself or an ally (Neutralbarrier_Master)
+S	2274	NC_STEALTHFIELD	Buff	15,8	Buff: a status on yourself or an ally (Stealthfield_Master); Specialist: needs Mado
+S	2275	NC_REPAIR	Heal	9,17,8	Heal: gives HP; Support: works on allies; Specialist: needs Mado
+S	2276	NC_TRAININGAXE	Passive	5,8,6	Sustained: mastery damage on every hit (battle.cpp:2363); Specialist: for one weapon type / race / element (status.cpp:4500); SureHit: raises Hit (status.cpp:4500)
+S	2277	NC_RESEARCHFE	Passive	5,8,11	Sustained: mastery damage on every hit (battle.cpp:2297); Specialist: for one weapon type or race (battle.cpp:2297); Survivability: raises MaxHP / defence (battle.cpp:4822)
+S	2278	NC_AXEBOOMERANG	Projectile	3,19,8	SingleTargetBurst: one target, cast+wait 3000 ms; SingleTargetCC: knockback 6; Specialist: only with 1hAxe/2hAxe
+S	2279	NC_POWERSWING	MeleeHit	5,19	Sustained: one target, cast+wait 500 ms; SingleTargetCC: stops (Stun)
+S	2280	NC_AXETORNADO	SelfArea	1,8	AreaDamage: area damage (splash 3); Specialist: only with 1hAxe/2hAxe
+S	2281	NC_SILVERSNIPER	Summon	18	Utility: summons a unit
+S	2282	NC_MAGICDECOY	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2283	NC_DISJOINT	Other	18	Utility: no damage, status, heal or move in the data
+S	2284	SC_FATALMENACE	MeleeHit	1,6,5	AreaDamage: area damage (splash 2); SureHit: hit bonus; Sustained: cast+wait 500 ms
+S	2285	SC_REPRODUCE	Buff	15	Buff: a status on yourself or an ally (_Reproduce)
+S	2286	SC_AUTOSHADOWSPELL	Buff	15	Buff: raises Matk (_Autoshadowspell)
+S	2287	SC_SHADOWFORM	Debuff	19,16,15	SingleTargetCC: stops (_Shadowform); Debuff: a status on an enemy (_Shadowform); Buff: a status on yourself or an ally (_Shadowform)
+S	2288	SC_TRIANGLESHOT	Projectile	5,8	Sustained: one target, cast+wait 350 ms; Specialist: only with Bow
+S	2289	SC_BODYPAINT	SelfArea	16,15	Debuff: weakens (Blind); Buff: a status on yourself or an ally (_Bodypaint)
+S	2290	SC_INVISIBILITY	Buff	14,15	Evasion: hidden (_Invisibility); Buff: raises Atk_Ele/Cri (_Invisibility)
+S	2291	SC_DEADLYINFECT	Buff	15	Buff: a status on yourself or an ally (_Deadlyinfect)
+S	2292	SC_ENERVATION	Debuff	16	Debuff: a status on an enemy (_Enervation)
+S	2293	SC_GROOMY	Debuff	16	Debuff: a status on an enemy (_Groomy)
+S	2294	SC_IGNORANCE	Debuff	19,16	SingleTargetCC: stops (_Ignorance); Debuff: takes SP
+S	2295	SC_LAZINESS	Debuff	16	Debuff: a status on an enemy (_Laziness)
+S	2296	SC_UNLUCKY	Debuff	16	Debuff: a status on an enemy (_Unlucky)
+S	2297	SC_WEAKNESS	Debuff	16	Debuff: a status on an enemy (_Weakness)
+S	2298	SC_STRIPACCESSARY	Debuff	16	Debuff: weakens (_Stripaccessory)
+S	2299	SC_MANHOLE	GroundArea	15	Buff: a status on yourself or an ally (_Manhole)
+S	2300	SC_DIMENSIONDOOR	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2301	SC_CHAOSPANIC	GroundArea	16	Debuff: weakens (Confusion)
+S	2302	SC_MAELSTROM	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2303	SC_BLOODYLUST	GroundArea	15,13	Buff: raises All (Berserk); Mobility: faster (Berserk)
+S	2304	SC_FEINTBOMB	SelfArea	1,14,7	AreaDamage: area damage (unit area); Evasion: hidden (_Feintbomb); AllRounder: does control + damage + move
+S	2307	LG_CANNONSPEAR	Projectile	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1700 ms; Specialist: only with 1hSpear/2hSpear
+S	2308	LG_BANISHINGPOINT	Projectile	5,6,8	Sustained: one target, cast+wait 0 ms; SureHit: hit bonus; Specialist: only with 1hSpear/2hSpear
+S	2309	LG_TRAMPLE	Other	18	Utility: no damage, status, heal or move in the data
+S	2310	LG_SHIELDPRESS	MeleeHit	3,8	SingleTargetBurst: one target, cast+wait 2000 ms; Specialist: needs Shield
+S	2311	LG_REFLECTDAMAGE	Buff	15,8	Buff: a status on yourself or an ally (Reflectdamage); Specialist: needs Shield
+S	2312	LG_PINPOINTATTACK	MeleeHit	3,4,13	SingleTargetBurst: one target, cast+wait 5000 ms; DoT: damage over time (Bleeding); Mobility: moves you
+S	2313	LG_FORCEOFVANGUARD	Buff	11	Survivability: raises MaxHp (Forceofvanguard)
+S	2314	LG_RAGEBURST	MeleeHit	3	SingleTargetBurst: one target, cast+wait 3000 ms
+S	2315	LG_SHIELDSPELL	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Shield
+S	2316	LG_EXEEDBREAK	Buff	15	Buff: a status on yourself or an ally (Exeedbreak)
+S	2317	LG_OVERBRAND	SelfArea	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1500 ms; Specialist: only with 1hSpear/2hSpear
+S	2318	LG_PRESTIGE	Buff	14,11	Evasion: a chance to avoid a hit (Prestige); Survivability: raises Def (Prestige)
+S	2319	LG_BANDING	Buff	11	Survivability: raises Def (Banding)
+S	2320	LG_MOONSLASHER	SelfArea	1,15,8	AreaDamage: area damage (splash 3); Buff: a status on yourself or an ally (Overbrandready); Specialist: only with 1hSpear/2hSpear
+S	2321	LG_RAYOFGENESIS	SelfArea	1,16	AreaDamage: area damage (splash 5); Debuff: weakens (Blind)
+S	2322	LG_PIETY	Buff	12,17	ElementalResist: elemental defence (Benedictio); Support: works on allies
+S	2323	LG_EARTHDRIVE	SelfArea	1,8	AreaDamage: area damage (splash 3); Specialist: needs Shield
+S	2324	LG_HESPERUSLIT	MeleeHit	5,8	Sustained: one target, cast+wait 500 ms; Specialist: only with 1hSpear/2hSpear
+S	2325	LG_INSPIRATION	Buff	11,15	Survivability: raises MaxHp (Inspiration); Buff: raises Agi/Dex/Hit/Int/Luk/Matk/Str/Vit/Watk (Inspiration)
+S	2326	SR_DRAGONCOMBO	MeleeHit	5,19	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun)
+S	2327	SR_SKYNETBLOW	SelfArea	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 500 ms
+S	2328	SR_EARTHSHAKER	SelfArea	1,2,7	AreaDamage: area damage (splash 5); AreaCC: stops (Stun); AllRounder: does boost + control + damage
+S	2329	SR_FALLENEMPIRE	MeleeHit	3	SingleTargetBurst: one target, SpiritSphereCost
+S	2330	SR_TIGERCANNON	SelfArea	1,6,8	AreaDamage: area damage (splash 3); SureHit: IgnoreFlee; Specialist: needs Explosionspirits
+S	2331	SR_HELLGATE	Passive	18	Utility: no stat or damage line asks for its level
+S	2332	SR_RAMPAGEBLASTER	SelfArea	1,8	AreaDamage: area damage (splash 3); Specialist: needs Explosionspirits
+S	2333	SR_CRESCENTELBOW	Buff	15	Buff: a status on yourself or an ally (Crescentelbow)
+S	2334	SR_CURSEDCIRCLE	Buff	15	Buff: a status on yourself or an ally (Cursedcircle_Target)
+S	2335	SR_LIGHTNINGWALK	Buff	14	Evasion: a chance to avoid a hit (Lightningwalk)
+S	2336	SR_KNUCKLEARROW	MeleeHit	3,13,7	SingleTargetBurst: one target, SpiritSphereCost; Mobility: moves you; AllRounder: does control + damage + move
+S	2337	SR_WINDMILL	SelfArea	1,2	AreaDamage: area damage (splash 2); AreaCC: stops (Stun)
+S	2338	SR_RAISINGDRAGON	Buff	11,15	Survivability: raises MaxHp (Raisingdragon); Buff: raises MaxSp (Raisingdragon)
+S	2339	SR_GENTLETOUCH	Passive	18	Utility: no stat or damage line asks for its level
+S	2340	SR_ASSIMILATEPOWER	Other	18	Utility: no damage, status, heal or move in the data
+S	2341	SR_POWERVELOCITY	Other	17	Support: works on allies
+S	2342	SR_CRESCENTELBOW_AUTOSPELL	MeleeHit	5,6,19	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreDefense; SingleTargetCC: knockback 7
+S	2343	SR_GATEOFHELL	Projectile	3	SingleTargetBurst: one target, cast+wait 3800 ms
+S	2344	SR_GENTLETOUCH_QUIET	MeleeHit	3,19	SingleTargetBurst: one target, cast+wait 3000 ms; SingleTargetCC: stops (Silence)
+S	2345	SR_GENTLETOUCH_CURE	Heal	9,17	Heal: gives HP; Support: removes Stone/Freeze/Stun
+S	2346	SR_GENTLETOUCH_ENERGYGAIN	Buff	15	Buff: a status on yourself or an ally (Gt_Energygain)
+S	2347	SR_GENTLETOUCH_CHANGE	Buff	15	Buff: raises Aspd/Watk (Gt_Change)
+S	2348	SR_GENTLETOUCH_REVITALIZE	Buff	11	Survivability: raises MaxHp/Regen (Gt_Revitalize)
+S	2350	WA_SWING_DANCE	Buff	15,13,17	Buff: raises Aspd (Swingdance); Mobility: faster (Swingdance); Support: works on allies
+S	2351	WA_SYMPHONY_OF_LOVER	Buff	12,11,17	ElementalResist: elemental defence (Symphonyoflover); Survivability: raises Mdef (Symphonyoflover); Support: works on allies
+S	2352	WA_MOONLIT_SERENADE	Buff	15,17	Buff: raises Matk (Moonlitserenade); Support: works on allies
+S	2381	MI_RUSH_WINDMILL	Buff	15,13,17	Buff: raises Watk (Rushwindmill); Mobility: faster (Rushwindmill); Support: works on allies
+S	2382	MI_ECHOSONG	Buff	11,17	Survivability: raises Def (Echosong); Support: works on allies
+S	2383	MI_HARMONIZE	Buff	15,17	Buff: a status on yourself or an ally (Harmonize); Support: works on allies
+S	2412	WM_LESSON	Passive	5,18	Sustained: raises the damage of one skill (greatecho.cpp:20); Utility: raises MaxSP (status.cpp:3314)
+S	2413	WM_METALICSOUND	Bolt	3	SingleTargetBurst: one target, cast+wait 6500 ms
+S	2414	WM_REVERBERATION	Trap	1	AreaDamage: area damage (splash 2)
+S	2415	WM_REVERBERATION_MELEE	MeleeHit	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms
+S	2416	WM_REVERBERATION_MAGIC	Bolt	3	SingleTargetBurst: one target, 10 hits
+S	2417	WM_DOMINION_IMPULSE	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2418	WM_SEVERE_RAINSTORM	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2419	WM_POEMOFNETHERWORLD	Trap	2	AreaCC: stops (Netherworld)
+S	2420	WM_VOICEOFSIREN	Buff	15	Buff: a status on yourself or an ally (Voiceofsiren)
+S	2421	WM_DEADHILLHERE	Other	17	Support: works on allies
+S	2422	WM_LULLABY_DEEPSLEEP	Debuff	2	AreaCC: stops (Deepsleep)
+S	2423	WM_SIRCLEOFNATURE	Buff	11,17	Survivability: raises Regen (Sircleofnature); Support: works on allies
+S	2424	WM_RANDOMIZESPELL	Other	18	Utility: no damage, status, heal or move in the data
+S	2425	WM_GLOOMYDAY	Buff	15,17	Buff: raises Aspd (Gloomyday); Support: works on allies
+S	2426	WM_GREAT_ECHO	GroundArea	1	AreaDamage: area damage (splash 4)
+S	2427	WM_SONG_OF_MANA	SelfArea	15,17	Buff: more SP recovery (Songofmana); Support: works on allies
+S	2428	WM_DANCE_WITH_WUG	SelfArea	15,17	Buff: raises Aspd (Dancewithwug); Support: works on allies
+S	2429	WM_SOUND_OF_DESTRUCTION	SelfArea	15,17	Buff: a status on yourself or an ally (Soundofdestruction); Support: works on allies
+S	2430	WM_SATURDAY_NIGHT_FEVER	SelfArea	15,14,17	Buff: raises Hit (Saturdaynightfever); Evasion: raises Flee (Saturdaynightfever); Support: works on allies
+S	2431	WM_LERADS_DEW	SelfArea	11,17	Survivability: raises MaxHp (Leradsdew); Support: works on allies
+S	2432	WM_MELODYOFSINK	SelfArea	15,17	Buff: raises MaxSp (Melodyofsink); Support: works on allies
+S	2433	WM_BEYOND_OF_WARCRY	SelfArea	11,15,17	Survivability: raises MaxHp (Beyondofwarcry); Buff: raises Str (Beyondofwarcry); Support: works on allies
+S	2434	WM_UNLIMITED_HUMMING_VOICE	SelfArea	15,17	Buff: a status on yourself or an ally (Unlimitedhummingvoice); Support: works on allies
+S	2443	SO_FIREWALK	Buff	3,4,15	SingleTargetBurst: one target, cast+wait 2000 ms; DoT: damage unit for 30 s; Buff: a status on yourself or an ally (Propertywalk)
+S	2444	SO_ELECTRICWALK	Buff	3,4,15	SingleTargetBurst: one target, cast+wait 2000 ms; DoT: damage unit for 30 s; Buff: a status on yourself or an ally (Propertywalk)
+S	2445	SO_SPELLFIST	Buff	15	Buff: a status on yourself or an ally (Spellfist)
+S	2446	SO_EARTHGRAVE	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage over time (Bleeding)
+S	2447	SO_DIAMONDDUST	GroundArea	1,2	AreaDamage: area damage (unit area); AreaCC: stops (Crystalize)
+S	2448	SO_POISON_BUSTER	Bolt	1	AreaDamage: area damage (splash 3)
+S	2449	SO_PSYCHIC_WAVE	GroundArea	1	AreaDamage: area damage (unit area)
+S	2450	SO_CLOUD_KILL	GroundArea	1	AreaDamage: area damage (unit area)
+S	2451	SO_STRIKING	Buff	15,17	Buff: raises All (Striking); Support: works on allies
+S	2452	SO_WARMER	GroundArea	9,17	Heal: HP over time (Warmer); Support: works on allies
+S	2453	SO_VACUUM_EXTREME	GroundArea	2	AreaCC: stops (Vacuum_Extreme)
+S	2454	SO_VARETYR_SPEAR	Bolt	1,2	AreaDamage: area damage (splash 4); AreaCC: stops (Stun)
+S	2455	SO_ARRULLO	GroundArea	2	AreaCC: stops (Deepsleep)
+S	2456	SO_EL_CONTROL	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Elementalspirit
+S	2457	SO_SUMMON_AGNI	Summon	18	Utility: summons a unit
+S	2458	SO_SUMMON_AQUA	Summon	18	Utility: summons a unit
+S	2459	SO_SUMMON_VENTUS	Summon	18	Utility: summons a unit
+S	2460	SO_SUMMON_TERA	Summon	18	Utility: summons a unit
+S	2461	SO_EL_ACTION	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Elementalspirit
+S	2462	SO_EL_ANALYSIS	Other	18	Utility: no damage, status, heal or move in the data
+S	2463	SO_EL_SYMPATHY	Passive	18	Utility: no stat or damage line asks for its level
+S	2464	SO_EL_CURE	Heal	9,8	Heal: gives HP; Specialist: needs Elementalspirit
+S	2465	SO_FIRE_INSIGNIA	GroundArea	11,15	Survivability: raises Regen (Fire_Insignia); Buff: raises Atk_Ele/Matk/Watk (Fire_Insignia)
+S	2466	SO_WATER_INSIGNIA	GroundArea	11,15	Survivability: raises Regen (Water_Insignia); Buff: raises Atk_Ele/Matk/Watk (Water_Insignia)
+S	2467	SO_WIND_INSIGNIA	GroundArea	11,15	Survivability: raises Regen (Wind_Insignia); Buff: raises Aspd/Atk_Ele/Matk/Watk (Wind_Insignia)
+S	2468	SO_EARTH_INSIGNIA	GroundArea	11,15	Survivability: raises Def/MaxHp/Mdef/Regen (Earth_Insignia); Buff: raises Atk_Ele/Matk/MaxSp/Watk (Earth_Insignia)
+S	2474	GN_TRAINING_SWORD	Passive	6,5,8	SureHit: raises the hit rate (battle.cpp:3308); Sustained: mastery damage on every hit (battle.cpp:2340); Specialist: for one weapon type or race (battle.cpp:2340)
+S	2475	GN_REMODELING_CART	Passive	18,6	Utility: read: a bigger cart (status.cpp:3738); SureHit: read: the cart skills hit more often (skills/merchant/cartcannon.cpp:34)
+S	2476	GN_CART_TORNADO	SelfArea	1,6,2	AreaDamage: area damage (splash 2); SureHit: hit bonus; AreaCC: knockback 2
+S	2477	GN_CARTCANNON	Projectile	1,6,8	AreaDamage: area damage (splash 3); SureHit: IgnoreFlee; Specialist: needs Cart
+S	2478	GN_CARTBOOST	Buff	13,8	Mobility: faster (Gn_Cartboost); Specialist: needs Cart
+S	2479	GN_THORNS_TRAP	Trap	3,19,6	SingleTargetBurst: one target, cast+wait 2000 ms; SingleTargetCC: stops (Thornstrap); SureHit: Misc damage
+S	2480	GN_BLOOD_SUCKER	Buff	15,17	Buff: a status on yourself or an ally (Bloodsucker); Support: works on allies
+S	2481	GN_SPORE_EXPLOSION	Projectile	1	AreaDamage: area damage (splash 5)
+S	2482	GN_WALLOFTHORN	GroundArea	1	AreaDamage: area damage (unit area)
+S	2483	GN_CRAZYWEED	GroundArea	1	AreaDamage: area damage (splash 4)
+S	2484	GN_CRAZYWEED_ATK	GroundArea	1	AreaDamage: area damage (splash 2)
+S	2485	GN_DEMONIC_FIRE	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 18 s
+S	2486	GN_FIRE_EXPANSION	GroundArea	18	Utility: no damage, status, heal or move in the data
+S	2487	GN_FIRE_EXPANSION_SMOKE_POWDER	GroundArea	14	Evasion: raises Flee (Smokepowder)
+S	2488	GN_FIRE_EXPANSION_TEAR_GAS	GroundArea	15	Buff: a status on yourself or an ally (Teargas)
+S	2489	GN_FIRE_EXPANSION_ACID	Projectile	3,6	SingleTargetBurst: one target, 10 hits; SureHit: IgnoreFlee
+S	2490	GN_HELLS_PLANT	Buff	15	Buff: a status on yourself or an ally (Hells_Plant)
+S	2491	GN_HELLS_PLANT_ATK	MeleeHit	1,2,4	AreaDamage: area damage (splash 2); AreaCC: stops (Stun); DoT: damage over time (Bleeding)
+S	2492	GN_MANDRAGORA	SelfArea	16	Debuff: weakens (Mandragora)
+S	2493	GN_SLINGITEM	Buff	19,11,7	SingleTargetCC: stops (Stun); Survivability: raises MaxHp (Promote_Health_Reserch); AllRounder: does boost + control + protect
+S	2494	GN_CHANGEMATERIAL	Other	18	Utility: no damage, status, heal or move in the data
+S	2495	GN_MIX_COOKING	Other	18	Utility: no damage, status, heal or move in the data
+S	2496	GN_MAKEBOMB	Other	18	Utility: no damage, status, heal or move in the data
+S	2497	GN_S_PHARMACY	Other	18	Utility: no damage, status, heal or move in the data
+S	2498	GN_SLINGITEM_RANGEMELEEATK	Projectile	5,4,19	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Bleeding); SingleTargetCC: stops (Stun)
+S	2515	AB_SECRAMENT	Buff	15,17	Buff: a status on yourself or an ally (Secrament); Support: works on allies
+S	2516	WM_SEVERE_RAINSTORM_MELEE	Projectile	1,5	AreaDamage: area damage (splash 5); Sustained: cast+wait 0 ms
+S	2517	SR_HOWLINGOFLION	SelfArea	1	AreaDamage: area damage (splash 4)
+S	2518	SR_RIDEINLIGHTNING	GroundArea	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 1500 ms
+S	2519	LG_OVERBRAND_BRANDISH	MeleeHit	5	Sustained: one target, cast+wait 0 ms
+S	2520	LG_OVERBRAND_PLUSATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	2533	ALL_ODINS_RECALL	Movement	13	Mobility: moves you
+S	2534	RETURN_TO_ELDICASTES	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (Return_To_Eldicastes)
+S	2535	ALL_BUYING_STORE	Other	18	Utility: no damage, status, heal or move in the data
+S	2536	ALL_GUARDIAN_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (Guardian_Recall)
+S	2537	ALL_ODINS_POWER	Buff	11,15,17	Survivability: raises Mdef (Odins_Power); Buff: raises Matk/Watk (Odins_Power); Support: works on allies
+S	2543	ALL_RAY_OF_PROTECTION	Buff	15,17	Buff: a status on yourself or an ally (Protection); Support: works on allies
+S	2544	MC_CARTDECORATE	Other	18,8	Utility: no damage, status, heal or move in the data; Specialist: needs Cart
+S	2552	RL_RICHS_COIN	Other	18	Utility: no damage, status, heal or move in the data
+S	2553	RL_MASS_SPIRAL	Projectile	3,4,8	SingleTargetBurst: one target, cast+wait 5000 ms; DoT: damage over time (Bleeding); Specialist: only with Rifle
+S	2554	RL_BANISHING_BUSTER	Projectile	3,8	SingleTargetBurst: one target, cast+wait 3300 ms; Specialist: only with Shotgun
+S	2555	RL_B_TRAP	GroundArea	1,2,4	AreaDamage: area damage (splash 1); AreaCC: slows (B_Trap); DoT: damage unit for 10 s
+S	2556	RL_FLICKER	Other	18	Utility: no damage, status, heal or move in the data
+S	2557	RL_S_STORM	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: only with Shotgun
+S	2558	RL_E_CHAIN	Buff	15	Buff: a status on yourself or an ally (E_Chain)
+S	2559	RL_QD_SHOT	SelfArea	1,5,8	AreaDamage: area damage (splash 10); Sustained: cast+wait 0 ms; Specialist: needs Qd_Shot_Ready
+S	2560	RL_C_MARKER	Debuff	16	Debuff: a status on an enemy (C_Marker)
+S	2561	RL_FIREDANCE	SelfArea	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms; Specialist: only with Revolver
+S	2562	RL_H_MINE	Projectile	1,4,16	AreaDamage: area damage (splash 2); DoT: damage over time (Burning); Debuff: weakens (H_Mine)
+S	2563	RL_P_ALTER	Buff	10	Shield: stops hits (P_Alter)
+S	2564	RL_FALLEN_ANGEL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (Fallen_Angel)
+S	2565	RL_R_TRIP	SelfArea	1,2,5	AreaDamage: area damage (splash 6); AreaCC: knockback 3; Sustained: cast+wait 1000 ms
+S	2566	RL_D_TAIL	Projectile	1,6,8	AreaDamage: area damage (splash 1); SureHit: IgnoreDefense; Specialist: only with Grenade
+S	2567	RL_FIRE_RAIN	GroundArea	1,8	AreaDamage: area damage (splash 1); Specialist: only with Gatling
+S	2568	RL_HEAT_BARREL	Buff	15	Buff: raises Aspd (Heat_Barrel)
+S	2569	RL_AM_BLAST	Projectile	3,16,8	SingleTargetBurst: one target, cast+wait 8000 ms; Debuff: weakens (Anti_M_Blast); Specialist: only with Rifle
+S	2570	RL_SLUGSHOT	Projectile	3,19,8	SingleTargetBurst: one target, cast+wait 15000 ms; SingleTargetCC: stops (Stun); Specialist: only with Shotgun
+S	2571	RL_HAMMER_OF_GOD	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: only with Rifle
+S	2572	RL_R_TRIP_PLUSATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	2574	SJ_LIGHTOFMOON	Buff	15,8	Buff: a status on yourself or an ally (Lightofmoon); Specialist: needs Moonstance
+S	2575	SJ_LUNARSTANCE	Buff	11	Survivability: raises MaxHp (Lunarstance)
+S	2576	SJ_FULLMOONKICK	SelfArea	1,16,5	AreaDamage: area damage (splash 3); Debuff: weakens (Blind); Sustained: cast+wait 1000 ms
+S	2577	SJ_LIGHTOFSTAR	Buff	15,8	Buff: a status on yourself or an ally (Lightofstar); Specialist: needs Starstance
+S	2578	SJ_STARSTANCE	Buff	15	Buff: raises Aspd (Starstance)
+S	2579	SJ_NEWMOONKICK	SelfArea	1,14,8	AreaDamage: area damage (splash 3); Evasion: hidden (Newmoon); Specialist: needs Moonstance
+S	2580	SJ_FLASHKICK	MeleeHit	5,8	Sustained: one target, cast+wait 0 ms; Specialist: needs Starstance
+S	2581	SJ_STAREMPEROR	SelfArea	10,1,7	Shield: stops hits (Dimension1); AreaDamage: area damage (splash 3); AllRounder: does control + damage + protect
+S	2582	SJ_NOVAEXPLOSING	MeleeHit	3,6,8	SingleTargetBurst: one target, cast+wait 26000 ms; SureHit: IgnoreFlee; Specialist: needs Universestance
+S	2583	SJ_UNIVERSESTANCE	Buff	15	Buff: raises Agi/Dex/Int/Luk/Str/Vit (Universestance)
+S	2584	SJ_FALLINGSTAR	Buff	15,8	Buff: a status on yourself or an ally (Fallingstar); Specialist: needs Starstance
+S	2585	SJ_GRAVITYCONTROL	Debuff	19,16,8	SingleTargetCC: stops (Gravitycontrol); Debuff: a status on an enemy (Gravitycontrol); Specialist: needs Universestance
+S	2586	SJ_BOOKOFDIMENSION	Buff	15,8	Buff: a status on yourself or an ally (Dimension); Specialist: needs Universestance
+S	2587	SJ_BOOKOFCREATINGSTAR	GroundArea	1,2,4	AreaDamage: area damage (unit area); AreaCC: slows (Creatingstar); DoT: damage over time (Creatingstar)
+S	2588	SJ_DOCUMENT	Other	18	Utility: no damage, status, heal or move in the data
+S	2589	SJ_PURIFY	Passive	18	Utility: no stat or damage line asks for its level
+S	2590	SJ_LIGHTOFSUN	Buff	15,8	Buff: a status on yourself or an ally (Lightofsun); Specialist: needs Sunstance
+S	2591	SJ_SUNSTANCE	Buff	15	Buff: raises Batk/Watk (Sunstance)
+S	2592	SJ_SOLARBURST	SelfArea	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms; Specialist: needs Sunstance
+S	2593	SJ_PROMINENCEKICK	MeleeHit	1,5,8	AreaDamage: area damage (splash 1); Sustained: cast+wait 1000 ms; Specialist: needs Sunstance
+S	2594	SJ_FALLINGSTAR_ATK	SelfArea	1,5,8	AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms; Specialist: needs Starstance
+S	2595	SJ_FALLINGSTAR_ATK2	MeleeHit	1,5,8	AreaDamage: area damage (splash 2); Sustained: cast+wait 0 ms; Specialist: needs Starstance
+S	2596	SP_SOULGOLEM	Buff	11,17	Survivability: raises Def/Mdef (Soulgolem); Support: works on allies
+S	2597	SP_SOULSHADOW	Buff	15,17	Buff: raises Aspd/Cri (Soulshadow); Support: works on allies
+S	2598	SP_SOULFALCON	Buff	15,17	Buff: raises Hit/Watk (Soulfalcon); Support: works on allies
+S	2599	SP_SOULFAIRY	Buff	15,17	Buff: raises Matk (Soulfairy); Support: works on allies
+S	2600	SP_CURSEEXPLOSION	Bolt	1	AreaDamage: area damage (splash 3)
+S	2601	SP_SOULCURSE	Debuff	16	Debuff: a status on an enemy (Soulcurse)
+S	2602	SP_SPA	Bolt	3,15	SingleTargetBurst: one target, SpiritSphereCost; Buff: a status on yourself or an ally (Use_Skill_Sp_Spa)
+S	2603	SP_SHA	Bolt	1,2,7	AreaDamage: area damage (splash 2); AreaCC: stops (Stun); AllRounder: does boost + control + damage
+S	2604	SP_SWHOO	Bolt	1,2,7	AreaDamage: area damage (splash 4); AreaCC: stops (Stun); AllRounder: does boost + control + damage
+S	2605	SP_SOULUNITY	Buff	9,17	Heal: HP over time (Soulunity); Support: works on allies
+S	2606	SP_SOULDIVISION	Debuff	16	Debuff: a status on an enemy (Souldivision)
+S	2607	SP_SOULREAPER	Buff	15	Buff: a status on yourself or an ally (Soulreaper)
+S	2608	SP_SOULREVOLVE	Other	17	Support: gives SP
+S	2609	SP_SOULCOLLECT	Buff	15	Buff: a status on yourself or an ally (Soulcollect)
+S	2610	SP_SOULEXPLOSION	Projectile	3,6	SingleTargetBurst: one target, cast+wait 63000 ms; SureHit: IgnoreFlee
+S	2611	SP_SOULENERGY	Passive	18	Utility: no stat or damage line asks for its level
+S	2612	SP_KAUTE	Buff	17	Support: gives SP
+S	3001	KO_YAMIKUMO	Buff	14	Evasion: hidden (Hiding)
+S	3002	KO_RIGHT	Passive	5	Sustained: more damage on its attacks (battle.cpp:5049)
+S	3003	KO_LEFT	Passive	5	Sustained: more damage on its attacks (battle.cpp:5062)
+S	3004	KO_JYUMONJIKIRI	MeleeHit	3,13	SingleTargetBurst: one target, cast+wait 3100 ms; Mobility: moves you
+S	3005	KO_SETSUDAN	MeleeHit	3	SingleTargetBurst: one target, cast+wait 3000 ms
+S	3006	KO_BAKURETSU	Projectile	1,6	AreaDamage: area damage (splash 2); SureHit: IgnoreFlee
+S	3007	KO_HAPPOKUNAI	SelfArea	1,6,5	AreaDamage: area damage (splash 5); SureHit: IgnoreFlee; Sustained: cast+wait 500 ms
+S	3008	KO_MUCHANAGE	GroundArea	1,6	AreaDamage: area damage (splash 2); SureHit: IgnoreFlee
+S	3009	KO_HUUMARANKA	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: only with Huuma
+S	3010	KO_MAKIBISHI	Trap	3,19,6	SingleTargetBurst: one target, cast+wait 10000 ms; SingleTargetCC: stops (Stun), a 100 % hit; SureHit: IgnoreFlee
+S	3011	KO_MEIKYOUSISUI	Buff	14	Evasion: a chance to avoid a hit (Meikyousisui)
+S	3012	KO_ZANZOU	Summon	13	Mobility: moves you (7 cells)
+S	3013	KO_KYOUGAKU	Debuff	19	SingleTargetCC: stops (Kyougaku)
+S	3014	KO_JYUSATSU	Debuff	19,16	SingleTargetCC: slows (Curse); Debuff: a status on an enemy (Coma)
+S	3015	KO_KAHU_ENTEN	Other	18	Utility: no damage, status, heal or move in the data
+S	3016	KO_HYOUHU_HUBUKI	Other	18	Utility: no damage, status, heal or move in the data
+S	3017	KO_KAZEHU_SEIRAN	Other	18	Utility: no damage, status, heal or move in the data
+S	3018	KO_DOHU_KOUKAI	Other	18	Utility: no damage, status, heal or move in the data
+S	3019	KO_KAIHOU	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	3020	KO_ZENKAI	GroundArea	1,15	AreaDamage: area damage (unit area); Buff: a status on yourself or an ally (Zenkai)
+S	3021	KO_GENWAKU	Buff	13,17	Mobility: moves you; Support: works on allies
+S	3022	KO_IZAYOI	Buff	15	Buff: raises Matk (Izayoi)
+S	3023	KG_KAGEHUMI	Buff	15	Buff: a status on yourself or an ally (Kagehumi)
+S	3024	KG_KYOMU	Debuff	16	Debuff: a status on an enemy (Kyomu)
+S	3025	KG_KAGEMUSYA	Buff	15,17	Buff: a status on yourself or an ally (Kagemusya); Support: works on allies
+S	3026	OB_ZANGETSU	Buff	15,17	Buff: raises Batk/Matk (Zangetsu); Support: works on allies
+S	3027	OB_OBOROGENSOU	Buff	15,17	Buff: a status on yourself or an ally (Gensou); Support: works on allies
+S	3028	OB_OBOROGENSOU_TRANSITION_ATK	SelfArea	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	3029	OB_AKAITSUKI	Debuff	16	Debuff: weakens (Akaitsuki)
+S	3031	ECL_SNOWFLIP	Other	17	Support: removes Sleep/Bleeding/Burning
+S	3032	ECL_PEONYMAMY	Other	17	Support: removes Freeze/Freezing/Crystalize
+S	3033	ECL_SADAGUI	Other	17	Support: removes Stun/Confusion/Hallucination
+S	3034	ECL_SEQUOIADUST	Other	17	Support: removes Stone/Poison/Curse
+S	3035	ECLAGE_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (Eclage_Recall)
+S	3041	ALL_NIFLHEIM_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (All_Niflheim_Recall)
+S	3042	ALL_PRONTERA_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (All_Prontera_Recall)
+S	3043	ALL_GLASTHEIM_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (All_Glastheim_Recall)
+S	3044	ALL_THANATOS_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (All_Thanatos_Recall)
+S	3045	ALL_LIGHTHALZEN_RECALL	Movement	13,15	Mobility: moves you; Buff: a status on yourself or an ally (All_Lighthalzen_Recall)
+S	5001	GC_DARKCROW	MeleeHit	3	SingleTargetBurst: one target, cast+wait 60000 ms
+S	5002	RA_UNLIMIT	Buff	15	Buff: a status on yourself or an ally (Unlimit)
+S	5003	GN_ILLUSIONDOPING	Projectile	1,16,5	AreaDamage: area damage (whole screen); Debuff: weakens (Hallucination); Sustained: cast+wait 1000 ms
+S	5004	RK_DRAGONBREATH_WATER	GroundArea	1,2,4	AreaDamage: area damage (splash 4); AreaCC: slows (Freezing); DoT: damage over time (Burning)
+S	5005	RK_LUXANIMA	Buff	15	Buff: raises All (Luxanima)
+S	5006	NC_MAGMA_ERUPTION	GroundArea	1,2,4	AreaDamage: area damage (splash 3); AreaCC: stops (Stun); DoT: damage over time (Burning)
+S	5007	WM_FRIGG_SONG	Buff	9,11,17	Heal: HP over time (Frigg_Song); Survivability: raises MaxHp (Frigg_Song); Support: works on allies
+S	5008	SO_ELEMENTAL_SHIELD	Other	17,8	Support: works on allies; Specialist: needs Elementalspirit2
+S	5009	SR_FLASHCOMBO	Debuff	16	Debuff: a status on an enemy (Flashcombo)
+S	5010	SC_ESCAPE	Buff	15	Buff: a status on yourself or an ally (Ankle)
+S	5011	AB_OFFERTORIUM	Buff	15	Buff: a status on yourself or an ally (Offertorium)
+S	5012	WL_TELEKINESIS_INTENSE	Buff	15	Buff: raises Matk (Telekinesis_Intense)
+S	5013	LG_KINGS_GRACE	Buff	10	Shield: stops hits (Kings_Grace)
+S	5014	ALL_FULL_THROTTLE	Buff	15,13	Buff: raises Agi/Dex/Int/Luk/Str/Vit (Full_Throttle); Mobility: faster (Full_Throttle)
+S	5015	NC_MAGMA_ERUPTION_DOTDAMAGE	MeleeHit	5,4,19	Sustained: one target, cast+wait 0 ms; DoT: damage over time (Burning); SingleTargetCC: stops (Stun)
+S	5018	SU_BASIC_SKILL	Passive	18	Utility: no stat or damage line asks for its level
+S	5019	SU_BITE	MeleeHit	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	5020	SU_HIDE	Buff	15	Buff: a status on yourself or an ally (Suhide)
+S	5021	SU_SCRATCH	MeleeHit	1,4,5	AreaDamage: area damage (splash 1); DoT: damage over time (Bleeding); Sustained: cast+wait 1000 ms
+S	5022	SU_STOOP	Buff	11	Survivability: less damage taken (Su_Stoop)
+S	5023	SU_LOPE	Movement	13	Mobility: moves you
+S	5024	SU_SPRITEMABLE	Passive	11,18	Survivability: raises MaxHP / defence (status.cpp:3152); Utility: raises MaxSP (status.cpp:3316)
+S	5025	SU_POWEROFLAND	Passive	5,15	Sustained: raises attack (status.cpp:4933); Buff: raises a stat (status.cpp:4287)
+S	5026	SU_SV_STEMSPEAR	Bolt	3,4,13	SingleTargetBurst: one target, cast+wait 3500 ms; DoT: damage over time (Bleeding); Mobility: faster (Doram_Walkspeed)
+S	5027	SU_CN_POWDERING	Debuff	16,14	Debuff: a status on an enemy (Catnippowder); Evasion: raises Flee (Doram_Flee2)
+S	5028	SU_CN_METEOR	GroundArea	1,2,7	AreaDamage: area damage (splash 3); AreaCC: slows (Curse); AllRounder: does boost + control + damage
+S	5029	SU_SV_ROOTTWIST	Debuff	19,15	SingleTargetCC: stops (Sv_Roottwist); Buff: raises Matk (Doram_Matk)
+S	5030	SU_SV_ROOTTWIST_ATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	5031	SU_POWEROFLIFE	Passive	6,14,5	SureHit: raises Hit (status.cpp:4504); Evasion: raises Flee (status.cpp:4521); Sustained: attack speed / critical (status.cpp:4440)
+S	5032	SU_SCAROFTAROU	Projectile	3,4,19	SingleTargetBurst: one target, cast+wait 13000 ms; DoT: damage over time (Bitescar); SingleTargetCC: stops (Stun)
+S	5033	SU_PICKYPECK	Projectile	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	5034	SU_PICKYPECK_DOUBLE_ATK	MeleeHit	3	SingleTargetBurst: one target, 5 hits
+S	5035	SU_ARCLOUSEDASH	Buff	15,13,17	Buff: raises Agi (Arclousedash); Mobility: faster (Arclousedash); Support: works on allies
+S	5036	SU_LUNATICCARROTBEAT	Projectile	1,2	AreaDamage: area damage (splash 3); AreaCC: stops (Stun)
+S	5037	SU_POWEROFSEA	Passive	9,11,18	Heal: stronger heals (skill.cpp:611); Survivability: raises MaxHP / defence (status.cpp:3154); Utility: raises MaxSP (status.cpp:3318)
+S	5038	SU_TUNABELLY	Heal	9,17	Heal: gives HP; Support: works on allies
+S	5039	SU_TUNAPARTY	Buff	10,17	Shield: stops hits (Tunaparty); Support: works on allies
+S	5040	SU_BUNCHOFSHRIMP	Buff	15,17	Buff: raises All (Shrimp); Support: works on allies
+S	5041	SU_FRESHSHRIMP	Buff	9,17	Heal: HP over time (Freshshrimp); Support: works on allies
+S	5042	SU_CN_METEOR2	GroundArea	1,2,7	AreaDamage: area damage (splash 3); AreaCC: slows (Curse); AllRounder: does boost + control + damage
+S	5043	SU_LUNATICCARROTBEAT2	Projectile	1,2,5	AreaDamage: area damage (splash 3); AreaCC: stops (Stun); Sustained: cast+wait 0 ms
+S	5044	SU_SOULATTACK	Passive	18	Utility: SP cost / cast / steal / range (status.cpp:4511)
+S	5045	SU_POWEROFFLOCK	SelfArea	2,16	AreaCC: stops (Freeze); Debuff: weakens (Fear)
+S	5046	SU_SVG_SPIRIT	Projectile	1	AreaDamage: area damage (splash 1)
+S	5047	SU_HISS	Buff	14,17	Evasion: raises Flee (Hiss); Support: works on allies
+S	5048	SU_NYANGGRASS	GroundArea	15	Buff: raises Matk (Doram_Matk)
+S	5049	SU_GROOMING	Buff	14	Evasion: raises Flee (Grooming)
+S	5050	SU_PURRING	Buff	14,17	Evasion: raises Flee (Grooming); Support: works on allies
+S	5051	SU_SHRIMPARTY	Buff	9,15,17	Heal: HP over time (Freshshrimp); Buff: more SP recovery (Shrimpblessing); Support: works on allies
+S	5052	SU_SPIRITOFLIFE	Passive	5	Sustained: raises the damage of one skill (lunaticcarrotbeat.cpp:20)
+S	5053	SU_MEOWMEOW	Buff	15,17	Buff: raises Matk/Watk (Chattering); Support: works on allies
+S	5054	SU_SPIRITOFLAND	Passive	18	Utility: no stat or damage line asks for its level
+S	5055	SU_CHATTERING	Buff	15	Buff: raises Matk/Watk (Chattering)
+S	5056	SU_SPIRITOFSEA	Passive	18	Utility: no stat or damage line asks for its level
+S	5063	WE_CALLALLFAMILY	Movement	13	Mobility: moves you
+S	5064	WE_ONEFOREVER	Heal	9,17	Heal: revives; Support: works on allies
+S	5065	WE_CHEERUP	Buff	15	Buff: raises Agi/Dex/Int/Luk/Str/Vit (Cheerup)
+S	5067	ALL_EQSWITCH	Other	18	Utility: no damage, status, heal or move in the data
+S	5068	CG_SPECIALSINGER	Other	18	Utility: no damage, status, heal or move in the data
+S	5072	AB_VITUPERATUM	Debuff	16	Debuff: a status on an enemy (Aeterna)
+S	5073	AB_CONVENIO	Movement	13	Mobility: moves you
+S	5075	NV_BREAKTHROUGH	Passive	5,9,11	Sustained: mastery damage on every hit (battle.cpp:2314); Heal: stronger heals (skill.cpp:626); Survivability: raises MaxHP / defence (status.cpp:3159)
+S	5076	NV_HELPANGEL	Buff	9,17	Heal: HP over time (Helpangel); Support: works on allies
+S	5077	NV_TRANSCENDENCE	Passive	9,11,18	Heal: stronger heals (skill.cpp:633); Survivability: raises MaxHP / defence (status.cpp:3161); Utility: raises MaxSP (status.cpp:3325)
+S	5078	WL_READING_SB_READING	Other	18	Utility: no damage, status, heal or move in the data
+S	5201	DK_SERVANTWEAPON	Buff	15	Buff: a status on yourself or an ally (Servantweapon)
+S	5202	DK_SERVANTWEAPON_ATK	MeleeHit	1,5	AreaDamage: area damage (splash 4); Sustained: cast+wait 0 ms
+S	5203	DK_SERVANT_W_SIGN	Debuff	16	Debuff: a status on an enemy (Servant_Sign)
+S	5204	DK_SERVANT_W_PHANTOM	MeleeHit	1,13,5	AreaDamage: area damage (splash 2); Mobility: moves you; Sustained: cast+wait 1000 ms
+S	5205	DK_SERVANT_W_DEMOL	SelfArea	1,5	AreaDamage: area damage (splash 6); Sustained: cast+wait 500 ms
+S	5206	DK_CHARGINGPIERCE	Buff	15	Buff: a status on yourself or an ally (Chargingpierce)
+S	5207	DK_TWOHANDDEF	Passive	11,8	Survivability: raises defence (status.cpp:4706); Specialist: for one weapon type / race / element (status.cpp:4706)
+S	5208	DK_HACKANDSLASHER	MeleeHit	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms; Specialist: only with 2hSpear/2hSword
+S	5209	DK_HACKANDSLASHER_ATK	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	5210	DK_DRAGONIC_AURA	Projectile	3	SingleTargetBurst: one target, cast+wait 61000 ms
+S	5211	DK_MADNESS_CRUSHER	Projectile	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1000 ms; Specialist: only with 2hSpear/2hSword
+S	5212	DK_VIGOR	Buff	15	Buff: raises All (Vigor)
+S	5213	DK_STORMSLASH	MeleeHit	3,8	SingleTargetBurst: one target, 5 hits; Specialist: only with 2hAxe/2hSword
+S	5214	AG_DEADLY_PROJECTION	Bolt	3	SingleTargetBurst: one target, cast+wait 6500 ms
+S	5215	AG_DESTRUCTIVE_HURRICANE	SelfArea	1,15	AreaDamage: area damage (splash 5); Buff: raises Matk (Climax_Des_Hu)
+S	5216	AG_RAIN_OF_CRYSTAL	SelfArea	1	AreaDamage: area damage (unit area)
+S	5217	AG_MYSTERY_ILLUSION	GroundArea	1	AreaDamage: area damage (unit area)
+S	5218	AG_VIOLENT_QUAKE	GroundArea	1	AreaDamage: area damage (splash 4)
+S	5219	AG_VIOLENT_QUAKE_ATK	GroundArea	1	AreaDamage: area damage (unit area)
+S	5220	AG_SOUL_VC_STRIKE	Bolt	1	AreaDamage: area damage (splash 5)
+S	5221	AG_STRANTUM_TREMOR	GroundArea	1	AreaDamage: area damage (unit area)
+S	5222	AG_ALL_BLOOM	GroundArea	1	AreaDamage: area damage (splash 4)
+S	5223	AG_ALL_BLOOM_ATK	GroundArea	1	AreaDamage: area damage (unit area)
+S	5224	AG_ALL_BLOOM_ATK2	GroundArea	1	AreaDamage: area damage (unit area)
+S	5225	AG_CRYSTAL_IMPACT	SelfArea	1,12,7	AreaDamage: area damage (splash 6); ElementalResist: elemental defence (Climax_Cryimp); AllRounder: does boost + damage + protect
+S	5226	AG_CRYSTAL_IMPACT_ATK	GroundArea	5	Sustained: one target, cast+wait 0 ms
+S	5227	AG_TORNADO_STORM	GroundArea	1	AreaDamage: area damage (unit area)
+S	5228	AG_TWOHANDSTAFF	Passive	5,8	Sustained: raises attack (status.cpp:4560); Specialist: for one weapon type / race / element (status.cpp:4560)
+S	5229	AG_FLORAL_FLARE_ROAD	GroundArea	1	AreaDamage: area damage (unit area)
+S	5230	AG_ASTRAL_STRIKE	GroundArea	1	AreaDamage: area damage (splash 5)
+S	5231	AG_ASTRAL_STRIKE_ATK	GroundArea	5	Sustained: one target, cast+wait 0 ms
+S	5232	AG_CLIMAX	Buff	15	Buff: raises All (Climax)
+S	5233	AG_ROCK_DOWN	Bolt	1	AreaDamage: area damage (splash 3)
+S	5234	AG_STORM_CANNON	Bolt	1	AreaDamage: area damage (splash 1)
+S	5235	AG_CRIMSON_ARROW	Bolt	1	AreaDamage: area damage (splash 1)
+S	5236	AG_CRIMSON_ARROW_ATK	Bolt	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	5237	AG_FROZEN_SLASH	SelfArea	1	AreaDamage: area damage (splash 6)
+S	5238	IQ_POWERFUL_FAITH	Buff	15	Buff: raises Patk/Watk (Powerful_Faith)
+S	5239	IQ_FIRM_FAITH	Buff	11	Survivability: raises MaxHp/Res (Firm_Faith)
+S	5240	IQ_WILL_OF_FAITH	Passive	5,11,8	Sustained: read: more damage to undead and demons (status.cpp:4722-4727); Survivability: read: less damage from them (status.cpp:4728); Specialist: read: with a knuckle (status.cpp:4718)
+S	5241	IQ_OLEUM_SANCTUM	SelfArea	1,15,5	AreaDamage: area damage (splash 4); Buff: a status on yourself or an ally (Holy_Oil); Sustained: cast+wait 1000 ms
+S	5242	IQ_SINCERE_FAITH	Buff	15	Buff: raises All (Sincere_Faith)
+S	5243	IQ_MASSIVE_F_BLASTER	SelfArea	1,15	AreaDamage: area damage (splash 4); Buff: a status on yourself or an ally (Massive_F_Blaster)
+S	5244	IQ_EXPOSION_BLASTER	SelfArea	1,5	AreaDamage: area damage (splash 4); Sustained: cast+wait 1000 ms
+S	5245	IQ_FIRST_BRAND	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 300 ms
+S	5246	IQ_FIRST_FAITH_POWER	Buff	15	Buff: a status on yourself or an ally (First_Faith_Power)
+S	5247	IQ_JUDGE	Buff	15,8	Buff: a status on yourself or an ally (Second_Judge); Specialist: needs First_Faith_Power
+S	5248	IQ_SECOND_FLAME	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5249	IQ_SECOND_FAITH	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5250	IQ_SECOND_JUDGEMENT	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5251	IQ_THIRD_PUNISH	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5252	IQ_THIRD_FLAME_BOMB	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 1000 ms
+S	5253	IQ_THIRD_CONSECRATION	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5254	IQ_THIRD_EXOR_FLAME	Buff	15,8	Buff: a status on yourself or an ally (Third_Exor_Flame); Specialist: needs Second_Judge
+S	5255	IG_GUARD_STANCE	Buff	11,8	Survivability: raises Def (Guard_Stance); Specialist: needs Shield
+S	5256	IG_GUARDIAN_SHIELD	Buff	10,17,8	Shield: stops hits (Guardian_S); Support: works on allies; Specialist: needs Guard_Stance
+S	5257	IG_REBOUND_SHIELD	Buff	15,8	Buff: a status on yourself or an ally (Rebound_S); Specialist: needs Guard_Stance
+S	5258	IG_SHIELD_MASTERY	Passive	5	Sustained: raises the damage of one skill (earthdrive.cpp:35)
+S	5259	IG_SPEAR_SWORD_M	Passive	5	Sustained: raises the damage of one skill (crossrain.cpp:26)
+S	5260	IG_ATTACK_STANCE	Buff	15	Buff: raises Watk (Attack_Stance)
+S	5261	IG_ULTIMATE_SACRIFICE	Buff	15,17,8	Buff: a status on yourself or an ally (Ultimate_S); Support: works on allies; Specialist: needs Guard_Stance
+S	5262	IG_HOLY_SHIELD	Buff	12,15,8	ElementalResist: elemental defence (Holy_S); Buff: raises All (Holy_S); Specialist: needs Shield
+S	5263	IG_GRAND_JUDGEMENT	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: needs Attack_Stance
+S	5264	IG_JUDGEMENT_CROSS	Bolt	3	SingleTargetBurst: one target, cast+wait 6000 ms
+S	5265	IG_SHIELD_SHOOTING	Projectile	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1700 ms; Specialist: needs Shield
+S	5266	IG_OVERSLASH	MeleeHit	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1200 ms; Specialist: needs Attack_Stance
+S	5267	IG_CROSS_RAIN	GroundArea	1	AreaDamage: area damage (unit area)
+S	5268	CD_REPARATIO	Heal	9,17	Heal: gives HP; Support: works on allies
+S	5269	CD_MEDIALE_VOTUM	Heal	9,15,17	Heal: gives HP; Buff: a status on yourself or an ally (Mediale); Support: works on allies
+S	5270	CD_MACE_BOOK_M	Passive	5,8	Sustained: raises the damage of one skill (effligo.cpp:28); Specialist: for one weapon type / race / element (status.cpp:4731)
+S	5271	CD_ARGUTUS_VITA	Buff	15,17	Buff: a status on yourself or an ally (A_Vita); Support: works on allies
+S	5272	CD_ARGUTUS_TELUM	Buff	15,17	Buff: a status on yourself or an ally (A_Telum); Support: works on allies
+S	5273	CD_ARBITRIUM	Bolt	1	AreaDamage: area damage (splash 4)
+S	5274	CD_ARBITRIUM_ATK	Bolt	1,5	AreaDamage: area damage (splash 4); Sustained: cast+wait 0 ms
+S	5275	CD_PRESENS_ACIES	Buff	15,17	Buff: raises Crate (Pre_Acies); Support: works on allies
+S	5276	CD_FIDUS_ANIMUS	Passive	5,8	Sustained: raises the damage of one skill (arbitrium.cpp:20); Specialist: for one weapon type / race / element (framen.cpp:21)
+S	5277	CD_EFFLIGO	MeleeHit	3	SingleTargetBurst: one target, 7 hits
+S	5278	CD_COMPETENTIA	Heal	9,15,17	Heal: gives HP; Buff: raises Patk/Smatk (Competentia); Support: works on allies
+S	5279	CD_PNEUMATICUS_PROCELLA	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 12 s
+S	5280	CD_DILECTIO_HEAL	Heal	9,17	Heal: gives HP; Support: works on allies
+S	5281	CD_RELIGIO	Buff	15,17	Buff: raises Spl/Sta/Wis (Religio); Support: works on allies
+S	5282	CD_BENEDICTUM	Buff	15,17	Buff: raises Con/Crt/Pow (Benedictum); Support: works on allies
+S	5283	CD_PETITIO	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms
+S	5284	CD_FRAMEN	Bolt	1	AreaDamage: area damage (splash 3)
+S	5285	SHC_SHADOW_EXCEED	Buff	15	Buff: a status on yourself or an ally (Shadow_Exceed)
+S	5286	SHC_DANCING_KNIFE	SelfArea	1,15,8	AreaDamage: area damage (splash 2); Buff: a status on yourself or an ally (Dancing_Knife); Specialist: only with Dagger
+S	5287	SHC_SAVAGE_IMPACT	MeleeHit	1,13,5	AreaDamage: area damage (splash 3); Mobility: moves you; Sustained: cast+wait 700 ms
+S	5288	SHC_SHADOW_SENSE	Passive	14,8	Evasion: raises Flee (status.cpp:4523); Specialist: for one weapon type / race / element (status.cpp:4534)
+S	5289	SHC_ETERNAL_SLASH	MeleeHit	5,15,8	Sustained: one target, cast+wait 500 ms; Buff: a status on yourself or an ally (E_Slash_Count); Specialist: needs Weaponblock_On
+S	5290	SHC_POTENT_VENOM	Buff	15,8	Buff: a status on yourself or an ally (Potent_Venom); Specialist: needs Edp
+S	5291	SHC_SHADOW_STAB	MeleeHit	5,6	Sustained: one target, cast+wait 350 ms; SureHit: IgnoreDefense
+S	5292	SHC_IMPACT_CRATER	SelfArea	1,15,5	AreaDamage: area damage (splash 3); Buff: a status on yourself or an ally (Weaponblock_On); Sustained: cast+wait 1500 ms
+S	5293	SHC_ENCHANTING_SHADOW	Buff	15	Buff: a status on yourself or an ally (Shadow_Weapon)
+S	5294	SHC_FATAL_SHADOW_CROW	MeleeHit	1,13	AreaDamage: area damage (splash 3); Mobility: moves you
+S	5295	MT_AXE_STOMP	SelfArea	1,15,5	AreaDamage: area damage (splash 3); Buff: a status on yourself or an ally (Axe_Stomp); Sustained: cast+wait 700 ms
+S	5296	MT_RUSH_QUAKE	MeleeHit	1,15,7	AreaDamage: area damage (splash 3); Buff: raises All (Rush_Quake2); AllRounder: does boost + control + damage + move
+S	5297	MT_M_MACHINE	Other	18	Utility: no damage, status, heal or move in the data
+S	5298	MT_A_MACHINE	Projectile	1	AreaDamage: area damage (splash 4)
+S	5299	MT_D_MACHINE	Buff	11,17	Survivability: raises Def/Res (D_Machine); Support: works on allies
+S	5300	MT_TWOAXEDEF	Passive	11,8	Survivability: raises defence (status.cpp:4751); Specialist: for one weapon type / race / element (status.cpp:4751)
+S	5301	MT_ABR_M	Passive	18	Utility: no stat or damage line asks for its level
+S	5302	MT_SUMMON_ABR_BATTLE_WARIOR	Summon	15	Buff: a status on yourself or an ally (Abr_Battle_Warior)
+S	5303	MT_SUMMON_ABR_DUAL_CANNON	Summon	15	Buff: a status on yourself or an ally (Abr_Dual_Cannon)
+S	5304	MT_SUMMON_ABR_MOTHER_NET	Summon	15	Buff: a status on yourself or an ally (Abr_Mother_Net)
+S	5305	MT_SUMMON_ABR_INFINITY	Summon	15	Buff: a status on yourself or an ally (Abr_Infinity)
+S	5306	AG_DESTRUCTIVE_HURRICANE_CLIMAX	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	5307	BO_ACIDIFIED_ZONE_WATER_ATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	5308	BO_ACIDIFIED_ZONE_GROUND_ATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	5309	BO_ACIDIFIED_ZONE_WIND_ATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	5310	BO_ACIDIFIED_ZONE_FIRE_ATK	MeleeHit	5,6	Sustained: one target, cast+wait 0 ms; SureHit: IgnoreFlee
+S	5311	ABC_DAGGER_AND_BOW_M	Passive	5,8	Sustained: read: more damage by the target's size (status.cpp:4763-4775); Specialist: read: with a dagger or a bow (status.cpp:4763)
+S	5312	ABC_MAGIC_SWORD_M	Passive	5,8	Sustained: raises the damage of one skill (abyssflame.cpp:32); Specialist: for one weapon type / race / element (status.cpp:4778)
+S	5313	ABC_STRIP_SHADOW	Debuff	16	Debuff: weakens (Shadow_Strip)
+S	5314	ABC_ABYSS_DAGGER	SelfArea	1,15,5	AreaDamage: area damage (splash 3); Buff: a status on yourself or an ally (Abyss_Dagger); Sustained: cast+wait 500 ms
+S	5315	ABC_UNLUCKY_RUSH	MeleeHit	5,13	Sustained: one target, cast+wait 500 ms; Mobility: moves you
+S	5316	ABC_CHAIN_REACTION_SHOT	Projectile	1,8	AreaDamage: area damage (splash 4); Specialist: only with Bow
+S	5317	ABC_FROM_THE_ABYSS	Buff	15	Buff: a status on yourself or an ally (Abyssforceweapon)
+S	5318	ABC_ABYSS_SLAYER	Buff	15	Buff: raises Hit/Patk/Smatk (Abyss_Slayer)
+S	5319	ABC_ABYSS_STRIKE	GroundArea	1	AreaDamage: area damage (unit area)
+S	5320	ABC_DEFT_STAB	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5321	ABC_ABYSS_SQUARE	GroundArea	1	AreaDamage: area damage (unit area)
+S	5322	ABC_FRENZY_SHOT	Projectile	5,8	Sustained: one target, cast+wait 500 ms; Specialist: only with Bow
+S	5323	WH_ADVANCED_TRAP	Passive	5,18	Sustained: raises the damage of one skill (deepblindtrap.cpp:20); Utility: cast time / range / AP of other skills (skill.cpp:5318)
+S	5324	WH_WIND_SIGN	Debuff	16	Debuff: a status on an enemy (Windsign)
+S	5325	WH_NATUREFRIENDLY	Passive	5,8	Sustained: raises the damage of one skill (hawkboomerang.cpp:22); Specialist: for one weapon type / race / element (hawkboomerang.cpp:22)
+S	5326	WH_HAWKRUSH	Projectile	5,8	Sustained: one target, cast+wait 150 ms; Specialist: needs Falcon
+S	5327	WH_HAWK_M	Other	18	Utility: no damage, status, heal or move in the data
+S	5328	WH_CALAMITYGALE	Buff	15	Buff: a status on yourself or an ally (Calamitygale)
+S	5329	WH_HAWKBOOMERANG	Projectile	3,8	SingleTargetBurst: one target, cast+wait 4500 ms; Specialist: needs Falcon
+S	5330	WH_GALESTORM	Projectile	1,8	AreaDamage: area damage (splash 4); Specialist: only with Bow
+S	5331	WH_DEEPBLINDTRAP	GroundArea	1,6	AreaDamage: area damage (unit area); SureHit: IgnoreFlee
+S	5332	WH_SOLIDTRAP	GroundArea	1,6	AreaDamage: area damage (unit area); SureHit: IgnoreFlee
+S	5333	WH_SWIFTTRAP	GroundArea	1,6	AreaDamage: area damage (unit area); SureHit: IgnoreFlee
+S	5334	WH_CRESCIVE_BOLT	Projectile	3,15,8	SingleTargetBurst: one target, cast+wait 2700 ms; Buff: a status on yourself or an ally (Crescivebolt); Specialist: only with Bow
+S	5335	WH_FLAMETRAP	GroundArea	1,6	AreaDamage: area damage (unit area); SureHit: IgnoreFlee
+S	5336	BO_BIONIC_PHARMACY	Other	18	Utility: no damage, status, heal or move in the data
+S	5337	BO_BIONICS_M	Passive	18	Utility: no stat or damage line asks for its level
+S	5338	BO_THE_WHOLE_PROTECTION	Other	17	Support: works on allies
+S	5339	BO_ADVANCE_PROTECTION	Buff	15,17	Buff: a status on yourself or an ally (Protectshadowequip); Support: works on allies
+S	5340	BO_ACIDIFIED_ZONE_WATER	Projectile	1,4	AreaDamage: area damage (splash 3); DoT: damage unit for 10 s
+S	5341	BO_ACIDIFIED_ZONE_GROUND	Projectile	1,4	AreaDamage: area damage (splash 3); DoT: damage unit for 10 s
+S	5342	BO_ACIDIFIED_ZONE_WIND	Projectile	1,4	AreaDamage: area damage (splash 3); DoT: damage unit for 10 s
+S	5343	BO_ACIDIFIED_ZONE_FIRE	Projectile	1,4	AreaDamage: area damage (splash 3); DoT: damage unit for 10 s
+S	5344	BO_WOODENWARRIOR	Summon	15	Buff: a status on yourself or an ally (Bionic_Woodenwarrior)
+S	5345	BO_WOODEN_FAIRY	Summon	15	Buff: a status on yourself or an ally (Bionic_Wooden_Fairy)
+S	5346	BO_CREEPER	Summon	15	Buff: a status on yourself or an ally (Bionic_Creeper)
+S	5347	BO_RESEARCHREPORT	Buff	15	Buff: a status on yourself or an ally (Researchreport)
+S	5348	BO_HELLTREE	Summon	15	Buff: a status on yourself or an ally (Bionic_Helltree)
+S	5349	TR_STAGE_MANNER	Passive	5,8	Sustained: raises attack (status.cpp:4544); Specialist: for one weapon type / race / element (status.cpp:4544)
+S	5350	TR_RETROSPECTION	Other	18	Utility: no damage, status, heal or move in the data
+S	5351	TR_MYSTIC_SYMPHONY	Buff	15	Buff: a status on yourself or an ally (Mystic_Symphony)
+S	5352	TR_KVASIR_SONATA	Buff	15	Buff: a status on yourself or an ally (Kvasir_Sonata)
+S	5353	TR_ROSEBLOSSOM	Projectile	3,8	SingleTargetBurst: one target, cast+wait 2200 ms; Specialist: only with Bow/Musical/Whip
+S	5354	TR_ROSEBLOSSOM_ATK	Projectile	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	5355	TR_RHYTHMSHOOTING	Projectile	3,8	SingleTargetBurst: one target, cast+wait 2350 ms; Specialist: only with Bow/Musical/Whip
+S	5356	TR_METALIC_FURY	Bolt	1,5	AreaDamage: area damage (splash 4); Sustained: cast+wait 500 ms
+S	5357	TR_SOUNDBLEND	Bolt	5	Sustained: one target, cast+wait 1150 ms
+S	5358	TR_GEF_NOCTURN	Buff	15	Buff: a status on yourself or an ally (Gef_Nocturn)
+S	5359	TR_ROKI_CAPRICCIO	SelfArea	16,15	Debuff: weakens (Confusion); Buff: raises Hit (Handicapstate_Misfortune)
+S	5360	TR_AIN_RHAPSODY	Buff	15	Buff: a status on yourself or an ally (Ain_Rhapsody)
+S	5361	TR_MUSICAL_INTERLUDE	Buff	11,17	Survivability: raises Res (Musical_Interlude); Support: works on allies
+S	5362	TR_JAWAII_SERENADE	Buff	15,13,17	Buff: raises Smatk (Jawaii_Serenade); Mobility: faster (Jawaii_Serenade); Support: works on allies
+S	5363	TR_NIPELHEIM_REQUIEM	SelfArea	2,15	AreaCC: slows (Curse); Buff: a status on yourself or an ally (Handicapstate_Depression)
+S	5364	TR_PRON_MARCH	Buff	15,17	Buff: raises Patk (Pron_March); Support: works on allies
+S	5365	EM_MAGIC_BOOK_M	Passive	5,8	Sustained: raises attack (status.cpp:4790); Specialist: for one weapon type / race / element (status.cpp:4790)
+S	5366	EM_SPELL_ENCHANTING	Buff	15,17	Buff: raises Smatk (Spell_Enchanting); Support: works on allies
+S	5367	EM_ACTIVITY_BURN	Other	16	Debuff: takes SP
+S	5368	EM_INCREASING_ACTIVITY	Other	17	Support: gives SP
+S	5369	EM_DIAMOND_STORM	GroundArea	1	AreaDamage: area damage (unit area)
+S	5370	EM_LIGHTNING_LAND	GroundArea	1	AreaDamage: area damage (unit area)
+S	5371	EM_VENOM_SWAMP	GroundArea	1	AreaDamage: area damage (unit area)
+S	5372	EM_CONFLAGRATION	GroundArea	1	AreaDamage: area damage (unit area)
+S	5373	EM_TERRA_DRIVE	GroundArea	1	AreaDamage: area damage (unit area)
+S	5374	EM_ELEMENTAL_SPIRIT_M	Passive	18	Utility: no stat or damage line asks for its level
+S	5375	EM_SUMMON_ELEMENTAL_ARDOR	Summon	15	Buff: a status on yourself or an ally (Summon_Elemental_Ardor)
+S	5376	EM_SUMMON_ELEMENTAL_DILUVIO	Summon	15	Buff: a status on yourself or an ally (Summon_Elemental_Diluvio)
+S	5377	EM_SUMMON_ELEMENTAL_PROCELLA	Summon	15	Buff: a status on yourself or an ally (Summon_Elemental_Procella)
+S	5378	EM_SUMMON_ELEMENTAL_TERREMOTUS	Summon	15	Buff: a status on yourself or an ally (Summon_Elemental_Terremotus)
+S	5379	EM_SUMMON_ELEMENTAL_SERPENS	Summon	15	Buff: a status on yourself or an ally (Summon_Elemental_Serpens)
+S	5380	EM_ELEMENTAL_BUSTER	SelfArea	3	SingleTargetBurst: one target, cast+wait 7500 ms
+S	5381	EM_ELEMENTAL_VEIL	Buff	15	Buff: a status on yourself or an ally (Elemental_Veil)
+S	5382	ABC_CHAIN_REACTION_SHOT_ATK	Projectile	1,6,5	AreaDamage: area damage (splash 3); SureHit: IgnoreFlee; Sustained: cast+wait 0 ms
+S	5383	ABC_FROM_THE_ABYSS_ATK	Bolt	1,5	AreaDamage: area damage (splash 4); Sustained: cast+wait 0 ms
+S	5384	BO_WOODEN_THROWROCK	Other	18	Utility: no damage, status, heal or move in the data
+S	5385	BO_WOODEN_ATTACK	Other	18	Utility: no damage, status, heal or move in the data
+S	5386	BO_HELL_HOWLING	Passive	18	Utility: no stat or damage line asks for its level
+S	5387	BO_HELL_DUSTY	Passive	18	Utility: no stat or damage line asks for its level
+S	5388	BO_FAIRY_DUSTY	Passive	18	Utility: no stat or damage line asks for its level
+S	5389	EM_ELEMENTAL_BUSTER_FIRE	SelfArea	1,5	AreaDamage: area damage (splash 6); Sustained: cast+wait 0 ms
+S	5390	EM_ELEMENTAL_BUSTER_WATER	SelfArea	1,5	AreaDamage: area damage (splash 6); Sustained: cast+wait 0 ms
+S	5391	EM_ELEMENTAL_BUSTER_WIND	SelfArea	1,5	AreaDamage: area damage (splash 6); Sustained: cast+wait 0 ms
+S	5392	EM_ELEMENTAL_BUSTER_GROUND	SelfArea	1,5	AreaDamage: area damage (splash 6); Sustained: cast+wait 0 ms
+S	5393	EM_ELEMENTAL_BUSTER_POISON	SelfArea	1,5	AreaDamage: area damage (splash 6); Sustained: cast+wait 0 ms
+S	5401	NW_P_F_I	Passive	5,8	Sustained: raises attack (status.cpp:4552); Specialist: for one weapon type / race / element (status.cpp:4552)
+S	5402	NW_GRENADE_MASTERY	Passive	5,15	Sustained: raises the damage of one skill (basicgrenade.cpp:25); Buff: raises a stat (status.cpp:4329)
+S	5403	NW_INTENSIVE_AIM	Buff	15	Buff: raises Batk/Cri/Hit (Intensive_Aim)
+S	5404	NW_GRENADE_FRAGMENT	Other	18	Utility: no damage, status, heal or move in the data
+S	5405	NW_THE_VIGILANTE_AT_NIGHT	SelfArea	1,8	AreaDamage: area damage (splash 3); Specialist: only with Gatling/Shotgun
+S	5406	NW_ONLY_ONE_BULLET	Projectile	5,8	Sustained: one target, cast+wait 1500 ms; Specialist: only with Revolver/Rifle
+S	5407	NW_SPIRAL_SHOOTING	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: only with Grenade/Rifle
+S	5408	NW_MAGAZINE_FOR_ONE	Projectile	3,8	SingleTargetBurst: one target, cast+wait 2000 ms; Specialist: only with Gatling/Revolver
+S	5409	NW_WILD_FIRE	GroundArea	1,8	AreaDamage: area damage (splash 3); Specialist: only with Grenade/Shotgun
+S	5410	NW_BASIC_GRENADE	GroundArea	1,5	AreaDamage: area damage (splash 2); Sustained: cast+wait 1300 ms
+S	5411	NW_HASTY_FIRE_IN_THE_HOLE	GroundArea	1	AreaDamage: area damage (splash 2)
+S	5412	NW_GRENADES_DROPPING	GroundArea	1	AreaDamage: area damage (splash 5)
+S	5413	NW_AUTO_FIRING_LAUNCHER	Buff	15	Buff: a status on yourself or an ally (Auto_Firing_Launcher)
+S	5414	NW_HIDDEN_CARD	Buff	15	Buff: raises All (Hidden_Card)
+S	5415	NW_MISSION_BOMBARD	GroundArea	1,4	AreaDamage: area damage (splash 4); DoT: damage unit for 10 s
+S	5416	SOA_TALISMAN_MASTERY	Passive	5,9,8	Sustained: raises attack (status.cpp:4554); Heal: stronger heals (skill.cpp:573); Specialist: for one weapon type / race / element (status.cpp:4554)
+S	5417	SOA_SOUL_MASTERY	Passive	5,15	Sustained: raises the damage of one skill (circleofdirectionsandelementals.cpp:21); Buff: raises a stat (status.cpp:4333)
+S	5418	SOA_TALISMAN_OF_PROTECTION	Buff	9,17	Heal: HP over time (Talisman_Of_Protection); Support: works on allies
+S	5419	SOA_TALISMAN_OF_WARRIOR	Buff	15,17	Buff: raises Patk (Talisman_Of_Warrior); Support: works on allies
+S	5420	SOA_TALISMAN_OF_MAGICIAN	Buff	15,17	Buff: raises Smatk (Talisman_Of_Magician); Support: works on allies
+S	5421	SOA_SOUL_GATHERING	Other	18	Utility: no damage, status, heal or move in the data
+S	5422	SOA_TOTEM_OF_TUTELARY	GroundArea	9,15,17	Heal: a unit that gives HP (Totem_Of_Tutelary); Buff: a status on yourself or an ally (Totem_Of_Tutelary); Support: works on allies
+S	5423	SOA_TALISMAN_OF_FIVE_ELEMENTS	Buff	15,17	Buff: raises All (Talisman_Of_Five_Elements); Support: works on allies
+S	5424	SOA_TALISMAN_OF_SOUL_STEALING	Bolt	3	SingleTargetBurst: one target, cast+wait 5500 ms
+S	5425	SOA_EXORCISM_OF_MALICIOUS_SOUL	SelfArea	1	AreaDamage: area damage (splash 6)
+S	5426	SOA_TALISMAN_OF_BLUE_DRAGON	Bolt	3	SingleTargetBurst: one target, cast+wait 2800 ms
+S	5427	SOA_TALISMAN_OF_WHITE_TIGER	SelfArea	1,15	AreaDamage: area damage (splash 7); Buff: a status on yourself or an ally (T_Second_God)
+S	5428	SOA_TALISMAN_OF_RED_PHOENIX	Bolt	1	AreaDamage: area damage (splash 3)
+S	5429	SOA_TALISMAN_OF_BLACK_TORTOISE	GroundArea	1	AreaDamage: area damage (unit area)
+S	5430	SOA_TALISMAN_OF_FOUR_BEARING_GOD	Bolt	1	AreaDamage: area damage (splash 5)
+S	5431	SOA_CIRCLE_OF_DIRECTIONS_AND_ELEMENTALS	Bolt	1	AreaDamage: area damage (splash 5)
+S	5432	SOA_SOUL_OF_HEAVEN_AND_EARTH	Buff	15,17	Buff: raises All (Heaven_And_Earth); Support: gives SP
+S	5433	SH_MYSTICAL_CREATURE_MASTERY	Passive	5	Sustained: raises attack (status.cpp:4564)
+S	5434	SH_COMMUNE_WITH_CHUL_HO	Passive	5	Sustained: raises the damage of one skill (chulhosonicclaw.cpp:24)
+S	5435	SH_CHUL_HO_SONIC_CLAW	Projectile	5	Sustained: one target, cast+wait 500 ms
+S	5436	SH_HOWLING_OF_CHUL_HO	SelfArea	1,16	AreaDamage: area damage (splash 4); Debuff: weakens (Hogogong)
+S	5437	SH_HOGOGONG_STRIKE	SelfArea	1,5	AreaDamage: area damage (splash 5); Sustained: cast+wait 1350 ms
+S	5438	SH_COMMUNE_WITH_KI_SUL	Passive	18	Utility: no stat or damage line asks for its level
+S	5439	SH_KI_SUL_WATER_SPRAYING	Heal	9,17	Heal: gives HP; Support: works on allies
+S	5440	SH_MARINE_FESTIVAL_OF_KI_SUL	Buff	15,17	Buff: raises Con/Crt/Pow (Marine_Festival); Support: works on allies
+S	5441	SH_SANDY_FESTIVAL_OF_KI_SUL	Buff	15,17	Buff: raises Spl/Sta/Wis (Sandy_Festival); Support: works on allies
+S	5442	SH_KI_SUL_RAMPAGE	Buff	17,15	Support: gives SP; Buff: a status on yourself or an ally (Ki_Sul_Rampage)
+S	5443	SH_COMMUNE_WITH_HYUN_ROK	Passive	5,18	Sustained: raises the damage of one skill (hyunrokbreeze.cpp:23); Utility: cast time / range / AP of other skills (skill.cpp:5048)
+S	5444	SH_COLORS_OF_HYUN_ROK	Buff	15	Buff: a status on yourself or an ally (Colors_Of_Hyun_Rok_Buff)
+S	5445	SH_HYUN_ROKS_BREEZE	GroundArea	1	AreaDamage: area damage (unit area)
+S	5446	SH_HYUN_ROK_CANNON	Bolt	3	SingleTargetBurst: one target, cast+wait 3800 ms
+S	5447	SH_TEMPORARY_COMMUNION	Buff	15	Buff: raises Hplus/Patk/Smatk (Temporary_Communion)
+S	5448	SH_BLESSING_OF_MYSTICAL_CREATURES	Buff	15,17	Buff: raises Patk/Smatk (Blessing_Of_M_Creatures); Support: gives SP
+S	5449	HN_SELFSTUDY_TATICS	Passive	5	Sustained: raises attack (status.cpp:4548)
+S	5450	HN_SELFSTUDY_SOCERY	Passive	5,8	Sustained: raises attack (status.cpp:4550); Specialist: for one weapon type / race / element (status.cpp:4550)
+S	5451	HN_DOUBLEBOWLINGBASH	MeleeHit	1,15,5	AreaDamage: area damage (splash 4); Buff: a status on yourself or an ally (Hnnoweapon); Sustained: cast+wait 1350 ms
+S	5452	HN_MEGA_SONIC_BLOW	MeleeHit	3,19	SingleTargetBurst: one target, 8 hits; SingleTargetCC: stops (Stun)
+S	5453	HN_SHIELD_CHAIN_RUSH	Projectile	1,15,8	AreaDamage: area damage (splash 4); Buff: a status on yourself or an ally (Hnnoweapon); Specialist: needs Shield
+S	5454	HN_SPIRAL_PIERCE_MAX	Projectile	3	SingleTargetBurst: one target, 5 hits
+S	5455	HN_METEOR_STORM_BUSTER	GroundArea	1,2	AreaDamage: area damage (splash 2); AreaCC: stops (Stun)
+S	5456	HN_JUPITEL_THUNDER_STORM	Bolt	1	AreaDamage: area damage (splash 4)
+S	5457	HN_JACK_FROST_NOVA	GroundArea	1	AreaDamage: area damage (splash 4)
+S	5458	HN_HELLS_DRIVE	SelfArea	1	AreaDamage: area damage (splash 4)
+S	5459	HN_GROUND_GRAVITATION	SelfArea	1,15	AreaDamage: area damage (splash 4); Buff: a status on yourself or an ally (Groundgravity)
+S	5460	HN_NAPALM_VULCAN_STRIKE	Bolt	1,2	AreaDamage: area damage (splash 3); AreaCC: slows (Curse)
+S	5461	HN_BREAKINGLIMIT	Buff	15	Buff: a status on yourself or an ally (Breakinglimit)
+S	5462	HN_RULEBREAK	Buff	15	Buff: a status on yourself or an ally (Rulebreak)
+S	5463	SKE_SKY_MASTERY	Passive	5	Sustained: raises the damage of one skill (dawnbreak.cpp:26)
+S	5464	SKE_WAR_BOOK_MASTERY	Passive	6,5,8	SureHit: raises Hit (status.cpp:4508); Sustained: raises attack (status.cpp:4556); Specialist: for one weapon type / race / element (status.cpp:4508)
+S	5465	SKE_RISING_SUN	MeleeHit	5,15	Sustained: one target, cast+wait 500 ms; Buff: a status on yourself or an ally (Rising_Sun)
+S	5466	SKE_NOON_BLAST	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	5467	SKE_SUNSET_BLAST	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms
+S	5468	SKE_RISING_MOON	SelfArea	1,15,5	AreaDamage: area damage (splash 4); Buff: a status on yourself or an ally (Rising_Moon); Sustained: cast+wait 500 ms
+S	5469	SKE_MIDNIGHT_KICK	SelfArea	1	AreaDamage: area damage (splash 4)
+S	5470	SKE_DAWN_BREAK	SelfArea	1,5	AreaDamage: area damage (splash 4); Sustained: cast+wait 1800 ms
+S	5471	SKE_TWINKLING_GALAXY	SelfArea	1	AreaDamage: area damage (splash 2)
+S	5472	SKE_STAR_BURST	MeleeHit	5	Sustained: one target, cast+wait 1500 ms
+S	5473	SKE_STAR_CANNON	SelfArea	1	AreaDamage: area damage (splash 3)
+S	5474	SKE_ALL_IN_THE_SKY	MeleeHit	3,13,7	SingleTargetBurst: one target, cast+wait 3000 ms; Mobility: moves you; AllRounder: does control + damage + move
+S	5475	SKE_ENCHANTING_SKY	Buff	15	Buff: a status on yourself or an ally (Sky_Enchant)
+S	5476	SS_TOKEDASU	GroundArea	1,13,7	AreaDamage: area damage (splash 2); Mobility: faster (Shadow_Clock); AllRounder: does control + damage + move
+S	5477	SS_SHIMIRU	MeleeHit	1,13,5	AreaDamage: area damage (splash 15); Mobility: moves you; Sustained: cast+wait 500 ms
+S	5478	SS_AKUMUKESU	Other	18	Utility: no damage, status, heal or move in the data
+S	5479	SS_SHINKIROU	GroundArea	15	Buff: a status on yourself or an ally (Shinkirou_Call)
+S	5480	SS_KAGEGARI	GroundArea	1,16,5	AreaDamage: area damage (splash 2); Debuff: weakens (Nightmare); Sustained: cast+wait 300 ms
+S	5481	SS_KAGENOMAI	SelfArea	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 400 ms
+S	5482	SS_KAGEGISSEN	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms
+S	5483	SS_FUUMASHOUAKU	GroundArea	1,16	AreaDamage: area damage (unit area); Debuff: weakens (Nightmare)
+S	5484	SS_FUUMAKOUCHIKU	GroundArea	1	AreaDamage: area damage (splash 2)
+S	5485	SS_KUNAIWAIKYOKU	GroundArea	1,6,16	AreaDamage: area damage (splash 2); SureHit: IgnoreFlee; Debuff: weakens (Nightmare)
+S	5486	SS_KUNAIKAITEN	SelfArea	1,13,6	AreaDamage: area damage (unit area); Mobility: faster (Shadow_Clock); SureHit: IgnoreFlee
+S	5487	SS_KUNAIKUSSETSU	SelfArea	1,6	AreaDamage: area damage (splash 7); SureHit: IgnoreFlee
+S	5488	SS_SEKIENHOU	Bolt	1	AreaDamage: area damage (splash 3)
+S	5489	SS_REIKETSUHOU	GroundArea	1	AreaDamage: area damage (splash 4)
+S	5490	SS_RAIDENPOU	Bolt	1	AreaDamage: area damage (splash 3)
+S	5491	SS_KINRYUUHOU	Bolt	1	AreaDamage: area damage (splash 2)
+S	5492	SS_ANTENPOU	SelfArea	1,16	AreaDamage: area damage (splash 3); Debuff: weakens (Nightmare)
+S	5493	SS_KAGEAKUMU	SelfArea	1	AreaDamage: area damage (splash 6)
+S	5494	SS_HITOUAKUMU	SelfArea	1,6	AreaDamage: area damage (splash 6); SureHit: IgnoreFlee
+S	5495	SS_ANKOKURYUUAKUMU	SelfArea	1	AreaDamage: area damage (splash 5)
+S	5496	NW_THE_VIGILANTE_AT_NIGHT_GUN_GATLING	Passive	18	Utility: no stat or damage line asks for its level
+S	5497	NW_THE_VIGILANTE_AT_NIGHT_GUN_SHOTGUN	Passive	18	Utility: no stat or damage line asks for its level
+S	5499	SS_FOUR_CHARM	Other	18	Utility: no damage, status, heal or move in the data
+S	5500	NW_WILD_SHOT	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: only with Revolver/Rifle
+S	5501	NW_MIDNIGHT_FALLEN	GroundArea	1,6,8	AreaDamage: area damage (splash 3); SureHit: IgnoreDefense; Specialist: only with Gatling/Grenade/Shotgun
+S	5502	SKE_SKY_SUN	SelfArea	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1000 ms; Specialist: needs Sky_Enchant
+S	5503	SKE_SKY_MOON	MeleeHit	1,8	AreaDamage: area damage (splash 4); Specialist: needs Sky_Enchant
+S	5504	SKE_STAR_LIGHT_KICK	MeleeHit	1,13,5	AreaDamage: area damage (splash 3); Mobility: moves you; Sustained: cast+wait 750 ms
+S	5505	HN_OVERCOMING_CRISIS	Buff	11,15	Survivability: raises MaxHp (Overcoming_Crisis); Buff: raises Patk/Smatk (Overcoming_Crisis)
+S	5506	SH_CHUL_HO_BATTERING	Projectile	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 1700 ms
+S	5507	SH_HYUN_ROK_SPIRIT_POWER	Bolt	1	AreaDamage: area damage (splash 4)
+S	6001	DK_DRAGONIC_BREATH	Projectile	1,6,8	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense; Specialist: needs Ridingdragon
+S	6002	MT_SPARK_BLASTER	Projectile	1,6,8	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense; Specialist: needs Mado
+S	6003	MT_TRIPLE_LASER	Projectile	5,8	Sustained: one target, cast+wait 1850 ms; Specialist: needs Mado
+S	6004	MT_MIGHTY_SMASH	SelfArea	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms; Specialist: only with 1hAxe/2hAxe
+S	6005	BO_EXPLOSIVE_POWDER	SelfArea	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 700 ms
+S	6006	BO_MAYHEMIC_THORNS	Projectile	1	AreaDamage: area damage (splash 4)
+S	6502	DK_DRAGONIC_PIERCE	Projectile	3,8	SingleTargetBurst: one target, 5 hits; Specialist: only with 2hSpear
+S	6503	IG_RADIANT_SPEAR	Projectile	1,8	AreaDamage: area damage (splash 3); Specialist: needs Attack_Stance
+S	6504	IG_IMPERIAL_CROSS	MeleeHit	5,8	Sustained: one target, cast+wait 700 ms; Specialist: needs Attack_Stance
+S	6505	IG_IMPERIAL_PRESSURE	Bolt	1	AreaDamage: area damage (splash 4)
+S	6506	MT_RUSH_STRIKE	MeleeHit	1,13,5	AreaDamage: area damage (splash 3); Mobility: moves you; Sustained: cast+wait 1000 ms
+S	6507	MT_POWERFUL_SWING	MeleeHit	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 1000 ms; Specialist: only with 2hAxe
+S	6508	MT_ENERGY_CANNONADE	Projectile	1,6,8	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense; Specialist: needs Mado
+S	6509	BO_MYSTERY_POWDER	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 1500 ms
+S	6510	BO_DUST_EXPLOSION	MeleeHit	1,5,8	AreaDamage: area damage (splash 3); Sustained: cast+wait 500 ms; Specialist: needs Mystery_Powder
+S	6511	SHC_CROSS_SLASH	MeleeHit	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 1000 ms
+S	6512	ABC_HIT_AND_SLIDING	MeleeHit	3,13	SingleTargetBurst: one target, 5 hits; Mobility: moves you
+S	6513	ABC_CHASING_BREAK	MeleeHit	1,13,5	AreaDamage: area damage (splash 3); Mobility: moves you; Sustained: cast+wait 1000 ms
+S	6514	ABC_CHASING_SHOT	MeleeHit	1,13,8	AreaDamage: area damage (splash 3); Mobility: moves you; Specialist: only with Bow
+S	6515	ABC_ABYSS_FLAME	Bolt	1	AreaDamage: area damage (splash 3)
+S	6516	AG_ENERGY_CONVERSION	Other	17	Support: gives SP
+S	6517	EM_PSYCHIC_STREAM	Bolt	1,13	AreaDamage: area damage (splash 3); Mobility: moves you
+S	6518	CD_DIVINUS_FLOS	Bolt	1	AreaDamage: area damage (splash 3)
+S	6519	IQ_BLAZING_FLAME_BLAST	Projectile	3,8	SingleTargetBurst: one target, cast+wait 2000 ms; Specialist: needs Explosionspirits
+S	6520	WH_WILD_WALK	Projectile	3,8	SingleTargetBurst: one target, cast+wait 21500 ms; Specialist: needs Falcon
+S	6521	TR_RHYTHMICAL_WAVE	Bolt	1	AreaDamage: area damage (splash 4)
+S	6522	ABC_ABYSS_FLAME_ATK	Bolt	1,5	AreaDamage: area damage (splash 3); Sustained: cast+wait 0 ms
+S	8001	HLIF_HEAL	Heal	9	Heal: gives HP
+S	8002	HLIF_AVOID	Buff	13	Mobility: faster (Avoid)
+S	8003	HLIF_BRAIN	Passive	9,18	Heal: stronger heals (skill.cpp:596); Utility: more SP recovery (status.cpp:5352)
+S	8004	HLIF_CHANGE	Buff	15	Buff: raises Int/Vit (Change)
+S	8005	HAMI_CASTLE	Movement	13	Mobility: moves you
+S	8006	HAMI_DEFENCE	Buff	11,15	Survivability: raises Def (Defence); Buff: raises Vit (Defence)
+S	8007	HAMI_SKIN	Passive	11	Survivability: more HP recovery (status.cpp:5348)
+S	8008	HAMI_BLOODLUST	Buff	15	Buff: raises Batk/Watk (Bloodlust)
+S	8009	HFLI_MOON	Projectile	3	SingleTargetBurst: one target, cast+wait 2000 ms
+S	8010	HFLI_FLEET	Buff	15	Buff: raises Aspd/Batk/Watk (Fleet)
+S	8011	HFLI_SPEED	Buff	14	Evasion: raises Flee (Speed)
+S	8012	HFLI_SBR44	Projectile	5	Sustained: one target, cast+wait 1000 ms
+S	8013	HVAN_CAPRICE	Bolt	3	SingleTargetBurst: one target, cast+wait 2800 ms
+S	8014	HVAN_CHAOTIC	Heal	9	Heal: gives HP
+S	8015	HVAN_INSTRUCT	Passive	18	Utility: weight / prices / crafting (skill.cpp:12971)
+S	8016	HVAN_EXPLOSION	SelfArea	1,6,5	AreaDamage: area damage (splash 5); SureHit: IgnoreFlee; Sustained: cast+wait 1000 ms
+S	8018	MH_SUMMON_LEGION	Summon	15	Buff: a status on yourself or an ally (Modechange)
+S	8019	MH_NEEDLE_OF_PARALYZE	Projectile	5,19,6	Sustained: one target, cast+wait 1000 ms; SingleTargetCC: stops (Paralysis); SureHit: IgnoreDefense
+S	8020	MH_POISON_MIST	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 15 s
+S	8021	MH_PAIN_KILLER	Buff	11,17	Survivability: less damage taken (Pain_Killer); Support: works on allies
+S	8022	MH_LIGHT_OF_REGENE	Buff	15	Buff: a status on yourself or an ally (Light_Of_Regene)
+S	8023	MH_OVERED_BOOST	Buff	11,15,7	Survivability: raises Def (Overed_Boost); Buff: raises Aspd (Overed_Boost); AllRounder: does boost + move + protect
+S	8024	MH_ERASER_CUTTER	Bolt	3,6	SingleTargetBurst: one target, 6 hits; SureHit: IgnoreDefense
+S	8025	MH_XENO_SLASHER	GroundArea	1,4,6	AreaDamage: area damage (splash 4); DoT: damage over time (Bleeding); SureHit: IgnoreDefense
+S	8026	MH_SILENT_BREEZE	Heal	9,19,17	Heal: gives HP; SingleTargetCC: stops (Silence); Support: works on allies
+S	8027	MH_STYLE_CHANGE	Buff	15	Buff: a status on yourself or an ally (Style_Change)
+S	8028	MH_SONIC_CRAW	MeleeHit	3	SingleTargetBurst: one target, SpiritSphereCost
+S	8029	MH_SILVERVEIN_RUSH	MeleeHit	3	SingleTargetBurst: one target, SpiritSphereCost
+S	8030	MH_MIDNIGHT_FRENZY	MeleeHit	3	SingleTargetBurst: one target, SpiritSphereCost
+S	8031	MH_STAHL_HORN	Projectile	5,19	Sustained: one target, cast+wait 500 ms; SingleTargetCC: stops (Stun)
+S	8032	MH_GOLDENE_FERSE	Buff	15,14	Buff: raises Aspd (Goldene_Ferse); Evasion: raises Flee (Goldene_Ferse)
+S	8033	MH_STEINWAND	Buff	11,17	Survivability: raises Def/Mdef (Stone_Wall); Support: works on allies
+S	8034	MH_HEILIGE_STANGE	Bolt	1,6,5	AreaDamage: area damage (splash 3); SureHit: IgnoreDefense; Sustained: cast+wait 1500 ms
+S	8035	MH_ANGRIFFS_MODUS	Buff	11,15,7	Survivability: raises Def/MaxHp (Angriffs_Modus); Buff: raises Batk (Angriffs_Modus); AllRounder: does boost + move + protect
+S	8036	MH_TINDER_BREAKER	MeleeHit	3,13	SingleTargetBurst: one target, SpiritSphereCost; Mobility: moves you
+S	8037	MH_CBC	MeleeHit	3	SingleTargetBurst: one target, SpiritSphereCost
+S	8038	MH_EQC	MeleeHit	3,19	SingleTargetBurst: one target, SpiritSphereCost; SingleTargetCC: stops (Stun)
+S	8039	MH_MAGMA_FLOW	SelfArea	1,15	AreaDamage: area damage (splash 2); Buff: a status on yourself or an ally (Magma_Flow)
+S	8040	MH_GRANITIC_ARMOR	Buff	11	Survivability: less damage taken (Granitic_Armor)
+S	8041	MH_LAVA_SLIDE	GroundArea	1,4	AreaDamage: area damage (unit area); DoT: damage unit for 15 s
+S	8042	MH_PYROCLASTIC	Buff	15	Buff: raises Batk/Watk (Pyroclastic)
+S	8043	MH_VOLCANIC_ASH	GroundArea	15,14	Buff: raises Batk (Ash); Evasion: raises Flee (Ash)
+S	8044	MH_BLAST_FORGE	GroundArea	1	AreaDamage: area damage (unit area)
+S	8045	MH_TEMPERING	Buff	15	Buff: raises Patk (Tempering)
+S	8046	MH_CLASSY_FLUTTER	Passive	18	Utility: no stat or damage line asks for its level
+S	8047	MH_TWISTER_CUTTER	Bolt	5,6	Sustained: one target, cast+wait 1700 ms; SureHit: IgnoreDefense
+S	8048	MH_ABSOLUTE_ZEPHYR	Bolt	1,6,5	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense; Sustained: cast+wait 1600 ms
+S	8049	MH_BRUSHUP_CLAW	Passive	18	Utility: no stat or damage line asks for its level
+S	8050	MH_BLAZING_AND_FURIOUS	Other	13,17	Mobility: moves you; Support: works on allies
+S	8051	MH_THE_ONE_FIGHTER_RISES	SelfArea	1,6	AreaDamage: area damage (splash 3); SureHit: IgnoreDefense
+S	8052	MH_POLISHING_NEEDLE	Passive	18	Utility: no stat or damage line asks for its level
+S	8053	MH_TOXIN_OF_MANDARA	MeleeHit	1,6,16	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense; Debuff: weakens (Toxin_Of_Mandara)
+S	8054	MH_NEEDLE_STINGER	Projectile	5,6	Sustained: one target, cast+wait 550 ms; SureHit: IgnoreDefense
+S	8055	MH_LICHT_GEHORN	Passive	18	Utility: no stat or damage line asks for its level
+S	8056	MH_GLANZEN_SPIES	MeleeHit	5,6	Sustained: one target, cast+wait 950 ms; SureHit: IgnoreDefense
+S	8057	MH_HEILIGE_PFERD	SelfArea	1,6,5	AreaDamage: area damage (splash 3); SureHit: IgnoreDefense; Sustained: cast+wait 1800 ms
+S	8058	MH_GOLDENE_TONE	Buff	11	Survivability: raises Mres/Res (Goldene_Tone)
+S	8059	MH_BLAZING_LAVA	Passive	18	Utility: no stat or damage line asks for its level
+S	8201	MS_BASH	MeleeHit	5,6	Sustained: one target, cast+wait 800 ms; SureHit: hit bonus
+S	8202	MS_MAGNUM	SelfArea	1,15,7	AreaDamage: area damage (splash 2); Buff: a status on yourself or an ally (Sub_Weaponproperty); AllRounder: does boost + control + damage
+S	8203	MS_BOWLINGBASH	MeleeHit	1	AreaDamage: area damage (splash 1)
+S	8204	MS_PARRYING	Buff	10	Shield: stops hits (Parrying)
+S	8205	MS_REFLECTSHIELD	Buff	15	Buff: a status on yourself or an ally (Reflectshield)
+S	8206	MS_BERSERK	Buff	15,13	Buff: raises All (Berserk); Mobility: faster (Berserk)
+S	8207	MA_DOUBLE	Projectile	5	Sustained: one target, cast+wait 1000 ms
+S	8208	MA_SHOWER	GroundArea	1,2,5	AreaDamage: area damage (splash 2); AreaCC: knockback 2; Sustained: cast+wait 1200 ms
+S	8209	MA_SKIDTRAP	Trap	19	SingleTargetCC: knockback 10
+S	8210	MA_LANDMINE	Trap	5,19,6	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun); SureHit: IgnoreFlee
+S	8211	MA_SANDMAN	Trap	2	AreaCC: stops (Sleep)
+S	8212	MA_FREEZINGTRAP	Trap	1,2,6	AreaDamage: area damage (splash 1); AreaCC: stops (Freeze); SureHit: IgnoreFlee
+S	8213	MA_REMOVETRAP	Other	18	Utility: no damage, status, heal or move in the data
+S	8214	MA_CHARGEARROW	Projectile	3,19	SingleTargetBurst: one target, cast+wait 2500 ms; SingleTargetCC: knockback 6
+S	8215	MA_SHARPSHOOTING	Projectile	1	AreaDamage: area damage (splash 1)
+S	8216	ML_PIERCE	MeleeHit	5,6	Sustained: one target, cast+wait 1000 ms; SureHit: hit bonus
+S	8217	ML_BRANDISH	MeleeHit	1,2,5	AreaDamage: area damage (splash 2); AreaCC: knockback 2; Sustained: cast+wait 1900 ms
+S	8218	ML_SPIRALPIERCE	Projectile	3,19	SingleTargetBurst: one target, cast+wait 3500 ms; SingleTargetCC: stops (Ankle)
+S	8219	ML_DEFENDER	Buff	11,8	Survivability: less damage taken (Defender); Specialist: needs Shield
+S	8220	ML_AUTOGUARD	Buff	10	Shield: stops hits (Autoguard)
+S	8221	ML_DEVOTION	Buff	15,17	Buff: a status on yourself or an ally (Devotion); Support: works on allies
+S	8222	MER_MAGNIFICAT	Buff	15,17	Buff: more SP recovery (Magnificat); Support: works on allies
+S	8223	MER_QUICKEN	Buff	15	Buff: raises Aspd (Merc_Quicken)
+S	8224	MER_SIGHT	Buff	18	Utility: shows hidden enemies (Sight)
+S	8225	MER_CRASH	MeleeHit	3,19	SingleTargetBurst: one target, cast+wait 3000 ms; SingleTargetCC: stops (Stun), a 150 % hit
+S	8226	MER_REGAIN	Other	17	Support: removes Sleep/Stun
+S	8227	MER_TENDER	Other	17	Support: removes Freeze/Stone
+S	8228	MER_BENEDICTION	Other	17	Support: removes Curse/Blind
+S	8229	MER_RECUPERATE	Other	17	Support: removes Poison/Dpoison/Silence
+S	8230	MER_MENTALCURE	Other	17	Support: works on allies
+S	8231	MER_COMPRESS	Other	17	Support: works on allies
+S	8232	MER_PROVOKE	Debuff	16	Debuff: weakens (Provoke)
+S	8233	MER_AUTOBERSERK	Buff	15	Buff: a status on yourself or an ally (Autoberserk)
+S	8234	MER_DECAGI	Debuff	19	SingleTargetCC: slows (Decreaseagi)
+S	8235	MER_SCAPEGOAT	Heal	9	Heal: gives HP
+S	8236	MER_LEXDIVINA	Debuff	19	SingleTargetCC: stops (Silence)
+S	8237	MER_ESTIMATION	Other	18	Utility: no damage, status, heal or move in the data
+S	8238	MER_KYRIE	Buff	10,17	Shield: stops hits (Kyrie); Support: works on allies
+S	8239	MER_BLESSING	Buff	15,17	Buff: raises Dex/Hit/Int/Str (Blessing); Support: works on allies
+S	8240	MER_INCAGI	Buff	15,13,17	Buff: raises Agi/Aspd (Increaseagi); Mobility: faster (Increaseagi); Support: works on allies
+S	8241	MER_INVINCIBLEOFF2	Other	18	Utility: no damage, status, heal or move in the data
+S	8401	EL_CIRCLE_OF_FIRE	Buff	15,5,7	Buff: raises All (Circle_Of_Fire_Option); Sustained: one target, cast+wait 0 ms; AllRounder: does boost + control + damage
+S	8402	EL_FIRE_CLOAK	Buff	12,15	ElementalResist: elemental defence (Fire_Cloak_Option); Buff: raises All (Fire_Cloak_Option)
+S	8403	EL_FIRE_MANTLE	SelfArea	1,4,2	AreaDamage: area damage (unit area); DoT: damage unit for 15 s; AreaCC: knockback 2
+S	8404	EL_WATER_SCREEN	Buff	15	Buff: raises All (Water_Screen_Option)
+S	8405	EL_WATER_DROP	Buff	12,15	ElementalResist: elemental defence (Water_Drop_Option); Buff: raises All (Water_Drop_Option)
+S	8406	EL_WATER_BARRIER	Buff	11,17	Survivability: less damage taken (Water_Barrier); Support: works on allies
+S	8407	EL_WIND_STEP	Movement	13,14	Mobility: moves you (5 cells); Evasion: raises Flee (Wind_Step_Option)
+S	8408	EL_WIND_CURTAIN	Buff	12,15	ElementalResist: elemental defence (Wind_Curtain_Option); Buff: raises All (Wind_Curtain_Option)
+S	8409	EL_ZEPHYR	Buff	10,14,17	Shield: stops hits (Zephyr); Evasion: raises Flee (Zephyr); Support: works on allies
+S	8410	EL_SOLID_SKIN	Buff	11	Survivability: raises Def/MaxHp (Solid_Skin_Option)
+S	8411	EL_STONE_SHIELD	Buff	12,15	ElementalResist: elemental defence (Stone_Shield_Option); Buff: raises All (Stone_Shield_Option)
+S	8412	EL_POWER_OF_GAIA	Buff	11,17	Survivability: raises Def/MaxHp (Power_Of_Gaia); Support: works on allies
+S	8413	EL_PYROTECHNIC	Buff	15	Buff: raises Watk (Pyrotechnic_Option)
+S	8414	EL_HEATER	Buff	15	Buff: raises Watk (Heater_Option)
+S	8415	EL_TROPIC	Buff	15	Buff: raises Watk (Tropic_Option)
+S	8416	EL_AQUAPLAY	Buff	15	Buff: raises Matk (Aquaplay_Option)
+S	8417	EL_COOLER	Buff	15	Buff: raises Matk (Cooler_Option)
+S	8418	EL_CHILLY_AIR	Buff	15	Buff: raises Matk (Chilly_Air_Option)
+S	8419	EL_GUST	Buff	15	Buff: raises Aspd (Gust_Option)
+S	8420	EL_BLAST	Buff	15	Buff: raises Aspd (Blast_Option)
+S	8421	EL_WILD_STORM	Buff	15	Buff: raises Aspd (Wild_Storm_Option)
+S	8422	EL_PETROLOGY	Buff	11	Survivability: raises MaxHp (Petrology_Option)
+S	8423	EL_CURSED_SOIL	Buff	11	Survivability: raises MaxHp (Cursed_Soil_Option)
+S	8424	EL_UPHEAVAL	Buff	11	Survivability: raises MaxHp (Upheaval_Option)
+S	8425	EL_FIRE_ARROW	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	8426	EL_FIRE_BOMB	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8427	EL_FIRE_BOMB_ATK	Projectile	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8428	EL_FIRE_WAVE	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8429	EL_FIRE_WAVE_ATK	Projectile	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8430	EL_ICE_NEEDLE	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	8431	EL_WATER_SCREW	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8432	EL_WATER_SCREW_ATK	Projectile	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8433	EL_TIDAL_WEAPON	Projectile	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8434	EL_WIND_SLASH	Projectile	5,4	Sustained: one target, cast+wait 1000 ms; DoT: damage over time (Bleeding)
+S	8435	EL_HURRICANE	Projectile	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 1000 ms
+S	8436	EL_HURRICANE_ATK	Bolt	5	Sustained: one target, cast+wait 0 ms
+S	8437	EL_TYPOON_MIS	Projectile	1,2,5	AreaDamage: area damage (splash 1); AreaCC: stops (Silence); Sustained: cast+wait 1000 ms
+S	8438	EL_TYPOON_MIS_ATK	Bolt	1,2,5	AreaDamage: area damage (splash 1); AreaCC: stops (Silence); Sustained: cast+wait 0 ms
+S	8439	EL_STONE_HAMMER	Projectile	5,19	Sustained: one target, cast+wait 0 ms; SingleTargetCC: stops (Stun)
+S	8440	EL_ROCK_CRUSHER	MeleeHit	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8441	EL_ROCK_CRUSHER_ATK	Bolt	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8442	EL_STONE_RAIN	Projectile	1,5	AreaDamage: area damage (splash 1); Sustained: cast+wait 0 ms
+S	8443	EM_EL_FLAMETECHNIC	Buff	15	Buff: a status on yourself or an ally (Flametechnic_Option)
+S	8444	EM_EL_FLAMEARMOR	Buff	12,15	ElementalResist: elemental defence (Flamearmor_Option); Buff: raises All (Flamearmor_Option)
+S	8445	EM_EL_FLAMEROCK	Bolt	1,6	AreaDamage: area damage (splash 3); SureHit: IgnoreDefense
+S	8446	EM_EL_COLD_FORCE	Buff	15	Buff: a status on yourself or an ally (Cold_Force_Option)
+S	8447	EM_EL_CRYSTAL_ARMOR	Buff	12,15	ElementalResist: elemental defence (Crystal_Armor_Option); Buff: raises All (Crystal_Armor_Option)
+S	8448	EM_EL_AGE_OF_ICE	Bolt	1,6	AreaDamage: area damage (splash 5); SureHit: IgnoreDefense
+S	8449	EM_EL_GRACE_BREEZE	Buff	15	Buff: a status on yourself or an ally (Grace_Breeze_Option)
+S	8450	EM_EL_EYES_OF_STORM	Buff	12,15	ElementalResist: elemental defence (Eyes_Of_Storm_Option); Buff: raises All (Eyes_Of_Storm_Option)
+S	8451	EM_EL_STORM_WIND	Bolt	1,6	AreaDamage: area damage (splash 2); SureHit: IgnoreDefense
+S	8452	EM_EL_EARTH_CARE	Buff	15	Buff: a status on yourself or an ally (Earth_Care_Option)
+S	8453	EM_EL_STRONG_PROTECTION	Buff	12,15	ElementalResist: elemental defence (Strong_Protection_Option); Buff: raises All (Strong_Protection_Option)
+S	8454	EM_EL_AVALANCHE	Bolt	1,6	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense
+S	8455	EM_EL_DEEP_POISONING	Buff	15	Buff: a status on yourself or an ally (Deep_Poisoning_Option)
+S	8456	EM_EL_POISON_SHIELD	Buff	12,15	ElementalResist: elemental defence (Poison_Shield_Option); Buff: raises All (Poison_Shield_Option)
+S	8457	EM_EL_DEADLY_POISON	Bolt	1,6	AreaDamage: area damage (splash 4); SureHit: IgnoreDefense
+S	8601	ABR_BATTLE_BUSTER	MeleeHit	3	SingleTargetBurst: one target, cast+wait 5500 ms
+S	8602	ABR_DUAL_CANNON_FIRE	Projectile	3	SingleTargetBurst: one target, cast+wait 5500 ms
+S	8603	ABR_NET_REPAIR	Heal	9	Heal: gives HP
+S	8604	ABR_NET_SUPPORT	Other	17	Support: gives SP
+S	8605	ABR_INFINITY_BUSTER	Projectile	3	SingleTargetBurst: one target, cast+wait 5500 ms
+S	10000	GD_APPROVAL	Passive	18	Utility: no stat or damage line asks for its level
+S	10001	GD_KAFRACONTRACT	Passive	18	Utility: no stat or damage line asks for its level
+S	10002	GD_GUARDRESEARCH	Passive	18	Utility: no stat or damage line asks for its level
+S	10003	GD_GUARDUP	Passive	18	Utility: no stat or damage line asks for its level
+S	10004	GD_EXTENSION	Passive	18	Utility: no stat or damage line asks for its level
+S	10005	GD_GLORYGUILD	Passive	18	Utility: no stat or damage line asks for its level
+S	10006	GD_LEADERSHIP	Passive	18	Utility: cast time / range / AP of other skills (skill.cpp:6174)
+S	10007	GD_GLORYWOUNDS	Passive	18	Utility: no stat or damage line asks for its level
+S	10008	GD_SOULCOLD	Passive	18	Utility: no stat or damage line asks for its level
+S	10009	GD_HAWKEYES	Passive	18	Utility: cast time / range / AP of other skills (skill.cpp:6174)
+S	10010	GD_BATTLEORDER	Buff	15	Buff: raises Dex/Int/Str (Battleorders)
+S	10011	GD_REGENERATION	Buff	15	Buff: a status on yourself or an ally (Regeneration)
+S	10012	GD_RESTORE	Other	18	Utility: no damage, status, heal or move in the data
+S	10013	GD_EMERGENCYCALL	Other	18	Utility: no damage, status, heal or move in the data
+S	10014	GD_DEVELOPMENT	Passive	18	Utility: no stat or damage line asks for its level
+S	10015	GD_ITEMEMERGENCYCALL	Other	18	Utility: no damage, status, heal or move in the data
+S	10016	GD_GUILD_STORAGE	Passive	18	Utility: no stat or damage line asks for its level
+S	10017	GD_CHARGESHOUT_FLAG	Other	18	Utility: no damage, status, heal or move in the data
+S	10018	GD_CHARGESHOUT_BEATING	Other	18	Utility: no damage, status, heal or move in the data
+S	10019	GD_EMERGENCY_MOVE	Buff	13	Mobility: faster (Emergency_Move)

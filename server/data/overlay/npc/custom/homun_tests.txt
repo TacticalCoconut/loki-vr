@@ -1,0 +1,67 @@
+//===== Loki wave E (homun) parity test NPC ===================================
+// Test servers only. The parity scenarios of testrig/parity/homun/ whisper
+// "NPC:HomSc" with a command and '#'-separated numeric arguments; answers come
+// back with dispbottom. Both the module (server/data/overlay, embedded by
+// datagen) and the private rAthena oracle (npc/custom) load this same file.
+//   info            gethominfo 1..6 (class, name, intimacy, hunger, rename flag, level; not the ids)
+//   int#n           addhomintimacy n
+//   evo             homevolution
+//   morph           morphembryo (its result)
+//   mut#class       hommutate class (its result)
+//   shuffle         homshuffle
+//   call            checkhomcall
+//   ud              getunitdata of the homunculus (every UHOM_* value but the master's char id and canmove_tick)
+//   set#type#val    setunitdata of the homunculus
+//============================================================================
+-	script	HomSc	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	.@a = atoi(@whispervar1$);
+	.@b = atoi(@whispervar2$);
+	if (.@t$ == "info") {
+		dispbottom "hom: " + gethominfo(1) + " " + gethominfo(2) + " " + gethominfo(3) + " " + gethominfo(4) + " " + gethominfo(5) + " " + gethominfo(6);
+		end;
+	}
+	if (.@t$ == "int") {
+		addhomintimacy .@a;
+		end;
+	}
+	if (.@t$ == "evo") {
+		homevolution;
+		end;
+	}
+	if (.@t$ == "morph") {
+		.@r = morphembryo();
+		dispbottom "morph: " + .@r;
+		end;
+	}
+	if (.@t$ == "mut") {
+		.@r = hommutate(.@a);
+		dispbottom "mutate: " + .@r;
+		end;
+	}
+	if (.@t$ == "shuffle") {
+		homshuffle;
+		end;
+	}
+	if (.@t$ == "call") {
+		dispbottom "call: " + checkhomcall();
+		end;
+	}
+	if (.@t$ == "ud") {
+		getunitdata gethominfo(7), .@d;
+		.@s$ = "";
+		for (.@i = 0; .@i < getarraysize(.@d); .@i++) {
+			if (.@i == UHOM_MASTERCID || .@i == UHOM_CANMOVETICK)
+				continue;
+			.@s$ = .@s$ + " " + .@d[.@i];
+		}
+		dispbottom "ud:" + .@s$;
+		end;
+	}
+	if (.@t$ == "set") {
+		setunitdata gethominfo(7), .@a, .@b;
+		end;
+	}
+	end;
+}

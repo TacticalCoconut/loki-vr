@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Architect (named in the design, 2026-10-14; built as "vrmaps": design notes, design notes): the offline VR map analyzer
+       and its fix mode. Read-only over the RO install; it writes only where out points (reports, and per-map fix files the client
+       applies: World/MapFix.cs). It COMPILES THE CLIENT'S OWN FILES (linked, no copies:
+       the map readers, the GRF / install lookup, the ground and model mesh builders, the room table) with a UnityEngine stand-in
+       (Unity/UnityStandIn.cs), so it reads and builds every map exactly as the game does. net8.0-windows only for the installed
+       Windows Desktop runtime's GDI+ (JPG / PNG textures, as Unity decodes them for the game). No package. Build:
+       dotnet build -c Release -o <folder>; run: architect analyze | fix | list | probe | grid | walls | selftest | constants (Program.cs,
+       design notes). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>architect</AssemblyName>
+    <RootNamespace>Loki.VrMaps</RootNamespace>
+    <NoWarn>$(NoWarn);CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CA1416</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="*.cs" />
+    <Compile Include="Unity\UnityStandIn.cs" />
+    <!-- the client's own files -->
+    <Compile Include="..\..\Assets\Loki\Runtime\Formats\RoFormat.cs" Link="Client\Formats\RoFormat.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Formats\GatFile.cs" Link="Client\Formats\GatFile.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Formats\GndFile.cs" Link="Client\Formats\GndFile.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Formats\RswFile.cs" Link="Client\Formats\RswFile.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Formats\RsmFile.cs" Link="Client\Formats\RsmFile.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Sprites\RoPathSearch.cs" Link="Client\Sprites\RoPathSearch.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\IO\RoReader.cs" Link="Client\IO\RoReader.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\IO\GrfArchive.cs" Link="Client\IO\GrfArchive.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\IO\GrfCrypt.cs" Link="Client\IO\GrfCrypt.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\IO\RoLookup.cs" Link="Client\IO\RoLookup.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\IO\ImageDecoders.cs" Link="Client\IO\ImageDecoders.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\IO\LokiUtil.cs" Link="Client\IO\LokiUtil.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\RoInstall.cs" Link="Client\Data\RoInstall.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\Lub51.cs" Link="Client\Data\Lub51.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\LuaSource.cs" Link="Client\Data\LuaSource.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\PyCompat.cs" Link="Client\Data\PyCompat.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\PyJson.cs" Link="Client\Data\PyJson.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\ToolKit.cs" Link="Client\Data\ToolKit.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\Data\RoomTools.cs" Link="Client\Data\RoomTools.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\World\RoSpace.cs" Link="Client\World\RoSpace.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\World\RoMat.cs" Link="Client\World\RoMat.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\World\RsmMeshBuilder.cs" Link="Client\World\RsmMeshBuilder.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\World\GroundMeshBuilder.cs" Link="Client\World\GroundMeshBuilder.cs" />
+    <Compile Include="..\..\Assets\Loki\Runtime\World\MapFix.cs" Link="Client\World\MapFix.cs" />
+  </ItemGroup>
+</Project>

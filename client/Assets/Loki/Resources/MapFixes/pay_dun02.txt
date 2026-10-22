@@ -1,0 +1,36 @@
+# Architect's fix file for pay_dun02 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds pay_dun02
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 502 model faces on 31 models
+architect-fix	1	pay_dun02	gnd:4533950:def84e0b982365f9	gat:1800014:dcae735cc10320de
+R	rsw:131942:ca2ecbd9a407f01d
+M	20	1543:cd11f81109fa49fb	0	16-19	under
+M	21	1543:99259abef86578c3	0	10-11,14-19	under
+M	22	1543:99259abef86578c3	0	10-17	under
+M	23	1543:99259abef86578c3	0	10-17	under
+M	24	1543:99259abef86578c3	0	8-19	under
+M	32	1543:cd11f81109fa49fb	0	8-13,16-19	under
+M	33	1543:99259abef86578c3	0	8-13,16-19	under
+M	34	1543:99259abef86578c3	0	8-19	under
+M	35	1543:99259abef86578c3	0	8-19	under
+M	36	1543:99259abef86578c3	0	8-11,14-15,18-19	under
+M	42	1743:dff1d01e4dedcfdc	0	0-17	under
+M	43	6143:b46a176341aea95d	0	0-1,8-12,19-21,30-55,68-70,74-75,77-80,83-84,87-88,90-93	under+behind
+M	59	8799:0babc97ccc211f62	0	2-7,14-23,30-39	behind
+M	61	8799:0babc97ccc211f62	0	2-7,14-23,30-39	behind
+M	63	8799:0babc97ccc211f62	0	5-7,14-23,30-39	behind
+M	78	1543:cd11f81109fa49fb	0	8-11,16-19	under
+M	79	1543:99259abef86578c3	0	8-11,16-19	under
+M	80	1543:99259abef86578c3	0	8-11,18-19	under
+M	81	1543:99259abef86578c3	0	8-11,16-19	under
+M	82	1543:99259abef86578c3	0	8-11,16-17	under
+M	98	8799:0babc97ccc211f62	0	5-7,14-23,30-39	behind
+M	104	1743:dff1d01e4dedcfdc	0	0-17	under
+M	105	1743:dff1d01e4dedcfdc	0	0-17	under
+M	107	8799:0babc97ccc211f62	0	2-7,14-23,30-39	behind
+M	137	8799:0babc97ccc211f62	0	2-7,14-23,30-39	behind
+M	138	3191:7bc9416e6b29cb44	0	44,46-57	under
+M	139	3191:7bc9416e6b29cb44	0	46-57	under
+M	140	3191:7bc9416e6b29cb44	0	46-57	under
+M	141	3191:7bc9416e6b29cb44	0	46-57	under
+M	142	3191:7bc9416e6b29cb44	0	45-57	under
+M	144	11407:b53e08ce5b0920f9	0	0-10,14-15,18,20,22-29,31-41,44-46,48-65	under+behind

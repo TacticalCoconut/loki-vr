@@ -1,0 +1,20 @@
+// groul_timer.txt - what a loaded file starts and an unload must stop (the groul parity rig, wave G; not in
+// scripts_custom.conf: the scenario loads it with @loadnpc): an NPC timer started in OnInit (npc_unload deletes
+// nd->u.scr.timerid) and a script sleeping in OnInit (script_stop_sleeptimers).
+
+-	script	Groul Timer#gt	-1,{
+OnInit:
+	initnpctimer;
+	end;
+OnTimer2500:
+	announce "groul timer " + strnpcinfo(3), bc_all;
+	stopnpctimer;
+	end;
+}
+
+-	script	Groul Sleeper#gt	-1,{
+OnInit:
+	sleep 3500;
+	announce "groul after sleep " + strnpcinfo(3), bc_all;
+	end;
+}

@@ -1,0 +1,43 @@
+# Architect's fix file for 1@ma_b (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds 1@ma_b
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 384 model faces on 38 models
+architect-fix	1	1@ma_b	gnd:1259838:f98b3588b7b267b7	gat:640014:c4cd1f2f451ea3ad
+R	rsw:155178:be7d9e0834db71b9
+M	7	7147:fcb8e917469ffb0e	0	144-145	behind
+M	8	7147:fcb8e917469ffb0e	0	144-145	behind
+M	17	4471:2de735a94aeb1450	0	9,12,19-22,31-38,41-44,51-70	under+behind
+M	60	14179:1e892bd69a22b490	0	135-136,147-148,154	behind
+M	144	3811:c35f39226fc50326	0	0-1,3-7,21	under
+M	145	3811:c35f39226fc50326	0	2,6,16,18-19,23	under
+M	146	3811:c35f39226fc50326	0	0,2-3,6,16,18-19,22	under
+M	147	3811:c35f39226fc50326	0	9,12-13,15	under
+M	148	3811:c35f39226fc50326	0	1,4-5,7,9,12-13,15,17,20-21,23	under
+M	160	3811:c35f39226fc50326	0	7	under
+M	161	3811:c35f39226fc50326	0	1,4-5,7,23	under
+M	162	3811:c35f39226fc50326	0	5,9,13,21	under
+M	163	3811:c35f39226fc50326	0	1,4-5,21	under
+M	164	3811:c35f39226fc50326	0	1,4-5	under
+M	165	3811:c35f39226fc50326	0	0-1,4-5	under
+M	166	3811:c35f39226fc50326	0	0-7,17,20-21,23	under
+M	167	3811:c35f39226fc50326	0	0-23	under
+M	168	3811:c35f39226fc50326	0	10	under
+M	169	3811:c35f39226fc50326	0	0-7,9,12-13,15-23	under
+M	170	3811:c35f39226fc50326	0	2-3,6-7,10-11,13-15,18-19,22	under
+M	171	3811:c35f39226fc50326	0	0,2-3,6	under
+M	172	3811:c35f39226fc50326	0	0-23	under
+M	173	3811:c35f39226fc50326	0	0-7	under
+M	174	3811:c35f39226fc50326	0	4-7,10,18	under
+M	175	3811:c35f39226fc50326	0	0,2-3,6-8,10-11,14,16,18-19,22	under
+M	176	3811:c35f39226fc50326	0	0-7,16-23	under
+M	177	3811:c35f39226fc50326	0	0-8,10-11,14,16-21	under
+M	262	3811:c35f39226fc50326	0	1,8,10-11,14,17,21	under
+M	263	3811:c35f39226fc50326	0	0,2-3,6,16-23	under
+M	268	14179:1e892bd69a22b490	0	127-128,139-140,150	under
+M	282	3811:c35f39226fc50326	0	4-5,7,9,12-13,15,17,21,23	under
+M	284	3811:c35f39226fc50326	0	8-23	under
+M	285	3811:c35f39226fc50326	0	2,6-8,10-11,14,16,18-19,22	under
+M	296	14179:1e892bd69a22b490	0	10-13,25,68	behind
+M	302	3811:c35f39226fc50326	0	1-2,4-7	under
+M	305	3811:c35f39226fc50326	0	0-8,10-11,14,16-23	under
+M	313	3811:c35f39226fc50326	0	0-4,6,8,10-11,14,16-20	under
+M	320	3811:c35f39226fc50326	0	0-7,16,18-19,22	under

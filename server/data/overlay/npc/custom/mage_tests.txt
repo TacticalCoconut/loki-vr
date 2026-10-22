@@ -1,0 +1,21 @@
+//===== Loki wave E (mage) parity test NPC ===================================
+// Test servers only. The parity scenarios of testrig/parity/mage/ whisper
+// "NPC:MageT" with a command and '#'-separated numeric arguments. Both the
+// module (server/data/overlay, embedded by datagen) and the private rAthena
+// oracle (npc/custom, parity test harness) load this same file.
+//   sk#id#lv#keep     itemskill id, lv, keep (the skill is then used with the
+//                     client's own skill packet: skills a class cannot learn,
+//                     e.g. Hocus-Pocus's SA_CLASSCHANGE / SA_SUMMONMONSTER)
+//============================================================================
+-	script	MageT	-1,{
+OnWhisperGlobal:
+	.@t$ = @whispervar0$;
+	.@a = atoi(@whispervar1$);
+	.@b = atoi(@whispervar2$);
+	.@c = atoi(@whispervar3$);
+	if (.@t$ == "sk") {
+		itemskill .@a, .@b, .@c;
+		end;
+	}
+	end;
+}

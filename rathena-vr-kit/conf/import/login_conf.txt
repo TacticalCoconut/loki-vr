@@ -1,0 +1,2 @@
+// Loki VR: enables web_auth_token so LokiPoseRelay can authenticate per-account settings & Bestiary sync
+use_web_auth_token: yes

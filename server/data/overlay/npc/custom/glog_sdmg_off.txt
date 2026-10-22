@@ -1,0 +1,6 @@
+// Wave G (glog agent): NOT in scripts_custom.conf; loaded by the skill_damage scenario after glog_sdmg.txt
+// (`skill_damage off`: map_setmapflag_sub(m, MF_SKILL_DAMAGE, false): damage_adjust = {}, skill_damage.clear()).
+g_room1-2,12,10,0	script	GLSdmgOff	-1,{
+	end;
+}
+g_room1-2	mapflag	skill_damage	off

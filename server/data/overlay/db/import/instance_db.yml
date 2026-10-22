@@ -1,0 +1,26 @@
+# Loki test servers only (testrig/parity/instance): an instance with short timers, so the life and idle timeouts can
+# be compared with the rAthena oracle in a minute. The private oracle loads the same file as db/import/instance_db.yml.
+# Remove at cut-over (with the test NPC files).
+Header:
+  Type: INSTANCE_DB
+  Version: 2
+
+Body:
+  - Id: 1000
+    Name: Loki Timer Test
+    TimeLimit: 45
+    IdleTimeOut: 15
+    Enter:
+      Map: 1@ge_st
+      X: 95
+      Y: 53
+  - Id: 9047
+    Name: Loki Tutorial
+    TimeLimit: 7200
+    IdleTimeOut: 60
+    NoNpc: true
+    Destroyable: false
+    Enter:
+      Map: valkyrie
+      X: 49
+      Y: 36

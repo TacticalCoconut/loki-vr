@@ -1,0 +1,7 @@
+# Architect's fix file for ama_test (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ama_test
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 144 model faces on 2 models
+architect-fix	1	ama_test	gnd:396526:91704f2771e2f2c0	gat:264014:da8c34665ec9e12f
+R	rsw:93658:09e0dc03068b8441
+M	89	13243:8ed5441f8a84d159	0	20-91	under+behind
+M	90	13243:8ed5441f8a84d159	0	20-91	under+behind

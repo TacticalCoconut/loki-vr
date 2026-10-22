@@ -1,0 +1,48 @@
+# Architect's fix file for 1@uns (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds 1@uns
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 552 model faces on 43 models
+architect-fix	1	1@uns	gnd:4708206:69ab6dd7347091a9	gat:1800014:58321a39bba5b10f
+R	rsw:381970:0b7655c9f2b1a2e1
+M	356	2935:8a16de0280f0cf4f	0	16-25,30-43,46-47,49-55	under+behind
+M	357	2515:692d20dc1165d53f	0	42-43,46-47,52-55	behind
+M	375	2935:8a16de0280f0cf4f	0	40-47,54-55	behind
+M	382	2515:692d20dc1165d53f	0	24-29,40-55	behind
+M	383	2935:8a16de0280f0cf4f	0	16-22,30-33,36-39,44-47,52-55	under+behind
+M	396	2935:8a16de0280f0cf4f	0	16-23,32-41,49-55	under+behind
+M	397	2515:692d20dc1165d53f	0	26-27,42-47,54-55	behind
+M	398	2515:692d20dc1165d53f	0	40-41,46-47,52-55	behind
+M	466	5563:10b3f81aec3f88cd	0	50-51	under
+M	501	2935:8a16de0280f0cf4f	0	30-35,44-47,49-53	behind
+M	502	2515:692d20dc1165d53f	0	40-51,54-55	behind
+M	503	2935:8a16de0280f0cf4f	0	40-43,46-47,50-55	behind
+M	504	2515:692d20dc1165d53f	0	40-43,46-47,50-51	behind
+M	506	2515:692d20dc1165d53f	0	40-41,46-47,50-55	behind
+M	568	2935:8a16de0280f0cf4f	0	16-25,30-39,46-47,49-55	under+behind
+M	569	2515:692d20dc1165d53f	0	40-41,48-55	behind
+M	570	2515:692d20dc1165d53f	0	40-41,46-55	behind
+M	603	2935:8a16de0280f0cf4f	0	42-43,52-53	behind
+M	604	2515:692d20dc1165d53f	0	42-43,46-47,50-51,54-55	behind
+M	605	2515:692d20dc1165d53f	0	16-23,28-37,42-55	under+behind
+M	629	2935:8a16de0280f0cf4f	0	16-25,32-43,49-55	under+behind
+M	630	2515:692d20dc1165d53f	0	46-47,50-55	behind
+M	631	2515:692d20dc1165d53f	0	46-47	behind
+M	633	2935:8a16de0280f0cf4f	0	42-45	behind
+M	634	2935:8a16de0280f0cf4f	0	52-53	behind
+M	649	2515:692d20dc1165d53f	0	40-41,44-47,54-55	behind
+M	650	2935:8a16de0280f0cf4f	0	16-23,30-41,46-47,49-55	under+behind
+M	671	2935:8a16de0280f0cf4f	0	32-41,46-47,49-55	behind
+M	672	2515:692d20dc1165d53f	0	40-45,50-55	behind
+M	673	2935:8a16de0280f0cf4f	0	30-41,46-47,49-55	under+behind
+M	674	2515:692d20dc1165d53f	0	40-49,54-55	behind
+M	675	2935:8a16de0280f0cf4f	0	32-39,42-43,46-47,49-55	behind
+M	676	2515:692d20dc1165d53f	0	40-55	behind
+M	700	5563:10b3f81aec3f88cd	0	50-51	under
+M	793	2935:8a16de0280f0cf4f	0	52-53	behind
+M	794	2515:692d20dc1165d53f	0	42-43,54-55	behind
+M	795	2515:692d20dc1165d53f	0	44-47	behind
+M	1092	2935:8a16de0280f0cf4f	0	32-33,44-47,49-55	behind
+M	1093	2515:692d20dc1165d53f	0	40-51,54-55	behind
+M	1094	2935:8a16de0280f0cf4f	0	42-47,49-55	behind
+M	1095	2935:8a16de0280f0cf4f	0	40-43,50-53	behind
+M	1096	2515:692d20dc1165d53f	0	40-47,50-55	behind
+M	1120	9555:205facff931a8f3f	0	144-145	under

@@ -1,0 +1,39 @@
+//===== Project Loki: fb1 test fixture =========================
+//= @fb1navi opens a dialog (no NPC to walk to: bindatcmd runs the
+//= script with the player attached): a page with a place link
+//= (<NAVI>), an item link (<ITEM>) and a web link (<URL>), the
+//= way rAthena's own scripts write them (npc/re/jobs/novice/
+//= academy.txt), then a Yes / No menu and its answer.
+//= Dialog navigation and link tag test fixture.
+//==============================================================
+-	script	FB1 Navi	-1,{
+OnInit:
+	bindatcmd "fb1navi", strnpcinfo(3) + "::OnTalk", 0, 99;
+	end;
+OnTalk:
+	mes "[FB1 Navi]";
+	mes "Go and see <NAVI>[Hun]<INFO>izlude,122,207</INFO></NAVI>, drink a <ITEM>Red Potion<INFO>501</INFO></ITEM> and read <URL>[Library]<INFO>http://example.invalid/,1024,768</INFO></URL>.";
+	next;
+	mes "[FB1 Navi]";
+	mes "Choose one.";
+	switch (select("Yes:No")) {
+	case 1:
+		mes "You chose Yes.";
+		break;
+	case 2:
+		mes "You chose No.";
+		break;
+	}
+	close;
+}
+
+// @fb1cage: an R_PORING (1725, the Academy's) in the Thief instructor's Poring cage on iz_ac02, at the Academy script's own
+// spawn cell (npc/re/jobs/novice/academy.txt:11945), to try Envenom there as the Thief training asks (quest 7485)
+-	script	FB1 Cage	-1,{
+OnInit:
+	bindatcmd "fb1cage", strnpcinfo(3) + "::OnCage", 0, 99;
+	end;
+OnCage:
+	monster "iz_ac02",59,143,"Poring",1725,1;
+	end;
+}

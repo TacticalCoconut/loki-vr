@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- The headset pose relay as a plain console program (tests, or a server without Loki Host); usage in Program.cs.
+       Loki Host runs the same PoseRelay itself, started and stopped with the servers. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>LokiPoseRelay</AssemblyName>
+    <RootNamespace>LokiHost.Relay</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\LokiHost.Core.csproj" />
+  </ItemGroup>
+</Project>

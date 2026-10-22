@@ -1,0 +1,94 @@
+//===== Project Loki: client wave 4b (w4lang) test fixture ==================
+// Private rAthena copy "w4lang" (index 51) only; installed by install-w4lang-fixture.sh (which also loads rAthena's
+// sql-files/roulette_default_data.sql into the copy's current database, as Loki Host does and w4items' fixture did).
+// The language smoke opens every window the server opens with a script command, in both languages, through these commands
+// (the same commands and item ids as client wave 2's loki_wave2.txt and w4items' loki_w4items.txt, whose smokes proved them):
+//   @w4lpoints    #W4LPTS = 100, the point shop "W4L Points"              @w4litems   10 Jellopy, the item shop "W4L Items"
+//   @w4lshop      the plain shop "W4L Shop" (buy / sell prompt)           @w4lmarket  the market shop "W4L Market"
+//   @w4lstylist   openstylist                                            @w4llaphine a Seal of Laphine (28942), laphine_synthesis 23545
+//   @w4lmerge     two 13826, mergeitem                                   @w4lrep     100 points of reputation 3, reputationui(2, 3)
+//   @w4lroulette  coins (1 bronze, 10 silver), open_roulette             @w4lbank    openbank
+//   @w4lenchant   item_enchant 1                                         @w4lreform  item_reform 100000
+//   @w4lsearch    searchstores 10, 1                                     @w4lprogress progressbar "0xffff00", 3
+//   @w4lcook      a Level 1 Cookbook (7472), 3 Grapes, 2 Red Potions, cooking 15
+//============================================================================
+-	pointshop	W4L Points	FAKE_NPC,#W4LPTS,501:5,502:10
+-	itemshop	W4L Items	FAKE_NPC,909,501:2,503:4
+-	shop	W4L Shop	FAKE_NPC,501:-1,502:-1,1201:-1
+-	marketshop	W4L Market	FAKE_NPC,501:20:5,502:100:-1
+-	script	W4LangFixture	-1,{
+OnInit:
+	bindatcmd "w4lpoints", strnpcinfo(3) + "::OnPoints";
+	bindatcmd "w4litems", strnpcinfo(3) + "::OnItems";
+	bindatcmd "w4lshop", strnpcinfo(3) + "::OnShop";
+	bindatcmd "w4lmarket", strnpcinfo(3) + "::OnMarket";
+	bindatcmd "w4lstylist", strnpcinfo(3) + "::OnStylist";
+	bindatcmd "w4llaphine", strnpcinfo(3) + "::OnLaphine";
+	bindatcmd "w4lmerge", strnpcinfo(3) + "::OnMerge";
+	bindatcmd "w4lrep", strnpcinfo(3) + "::OnRep";
+	bindatcmd "w4lroulette", strnpcinfo(3) + "::OnRoulette";
+	bindatcmd "w4lbank", strnpcinfo(3) + "::OnBank";
+	bindatcmd "w4lenchant", strnpcinfo(3) + "::OnEnchant";
+	bindatcmd "w4lreform", strnpcinfo(3) + "::OnReform";
+	bindatcmd "w4lsearch", strnpcinfo(3) + "::OnSearch";
+	bindatcmd "w4lprogress", strnpcinfo(3) + "::OnProgress";
+	bindatcmd "w4lcook", strnpcinfo(3) + "::OnCook";
+	end;
+OnPoints:
+	set #W4LPTS, 100;
+	callshop "W4L Points", 0;
+	end;
+OnItems:
+	getitem 909, 10;
+	callshop "W4L Items", 0;
+	end;
+OnShop:
+	callshop "W4L Shop", 0;
+	end;
+OnMarket:
+	callshop "W4L Market", 0;
+	end;
+OnStylist:
+	openstylist;
+	end;
+OnLaphine:
+	getitem 28942, 1;
+	laphine_synthesis 23545;
+	end;
+OnMerge:
+	getitem 13826, 1;
+	getitem 13826, 1;
+	mergeitem;
+	end;
+OnRep:
+	add_reputation_points(3, 100);
+	reputationui(2, 3);
+	end;
+OnRoulette:
+	set RouletteBronze, 1;
+	set RouletteSilver, 10;
+	set RouletteGold, 0;
+	open_roulette;
+	end;
+OnBank:
+	openbank;
+	end;
+OnEnchant:
+	item_enchant 1;
+	end;
+OnReform:
+	item_reform 100000;
+	end;
+OnSearch:
+	searchstores 10, 1;
+	end;
+OnProgress:
+	progressbar "0xffff00", 3;
+	end;
+OnCook:
+	getitem 7472, 1;
+	getitem 514, 3;
+	getitem 501, 2;
+	cooking 15;
+	end;
+}

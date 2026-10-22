@@ -1,0 +1,9 @@
+# Architect's fix file for ma_fild02 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds ma_fild02
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 80 model faces on 4 models
+architect-fix	1	ma_fild02	gnd:6109550:28e396c9418fafe5	gat:3200014:6a4295cc8dd809bb
+R	rsw:339858:22a495e8eeedac6c
+M	429	35707:826ee9cf3c04d99d	2	56-80	behind
+M	728	35707:826ee9cf3c04d99d	1	26-27,36-37,44	behind
+M	732	35707:826ee9cf3c04d99d	2	56-80	behind
+M	742	35707:826ee9cf3c04d99d	2	56-80	behind

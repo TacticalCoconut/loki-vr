@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Client wave 7 (w7host): Loki Host's map-cache code as a console program, to compare it with the Python tools it was
+       ported from (tools/mapcache/build_import_cache.py, check_points.py) and to look at a cache; usage in Program.cs.
+       Loki Host itself does all of this at Start (Core/MapDataWatch.cs).
+       The zlib that writes the cache's streams belongs to the runtime the program runs on (design notes): to run it
+       on another installed runtime, give dotnet the option fx-version (two dashes) before LokiMapTool.dll, e.g. 9.0.19. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>LokiMapTool</AssemblyName>
+    <RootNamespace>LokiHost.MapTool</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\LokiHost.Core.csproj" />
+  </ItemGroup>
+</Project>

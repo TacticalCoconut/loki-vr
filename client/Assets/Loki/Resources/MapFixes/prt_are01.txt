@@ -1,0 +1,53 @@
+# Architect's fix file for prt_are01 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds prt_are01
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 0 ground walls drawn from both sides, 15 turned to face the other side, 0 floors drawn, 2 holes filled; 6 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 546 model faces on 27 models
+architect-fix	1	prt_are01	gnd:3019862:b1028aa25392580f	gat:1800014:2120db9366073fbe
+W	70	55	E	flip	inner
+W	70	56	E	flip	inner
+W	70	57	E	flip	inner
+W	68	58	N	flip	inner
+W	69	58	N	flip	inner
+W	70	58	N	flip	inner
+W	89	61	N	flip	inner
+W	58	68	E	flip	inner
+W	55	70	N	flip	inner
+W	56	70	N	flip	inner
+W	57	70	N	flip	inner
+W	58	70	N	flip	inner
+W	58	70	E	flip	inner
+W	59	87	E	flip	inner
+W	60	88	E	flip	inner
+F	98	33	3.2	hole
+F	107	63	-1.4	hole
+R	rsw:138734:075754162c4aaf1d
+M	2	8219:a8c1c6678d7321d9	0	2-7,10-11,13-19,26,28-33,36-37,56-59,62-69,72-75	behind
+M	3	8219:a8c1c6678d7321d9	0	3-17,19,28-37,58-59,62-63,68-69,72-73	under+behind
+M	4	8219:a8c1c6678d7321d9	0	3-7,10-17,19,28-37,58-59,62-63,68-69,72-73	behind
+M	8	8219:a8c1c6678d7321d9	0	2-7,10-19,28-37,56-59,62-69,72-75	behind
+M	11	8219:a8c1c6678d7321d9	0	3-17,19,28-37,56-59,62-65,68-69,72-73	under+behind
+M	16	8219:a8c1c6678d7321d9	0	2-7,10-11,14-17,26-37,56-59,62-69,72-75	behind
+M	21	8219:a8c1c6678d7321d9	0	3-17,19,28-37,58-59,62-63,68-69,72-73	under+behind
+M	23	8219:a8c1c6678d7321d9	0	2-7,10-19,28-37,56-59,62-69,72-75	behind
+M	49	4023:489544ef1d3676f0	0	2-3	under
+M	52	4023:489544ef1d3676f0	0	4-5	under
+M	53	4023:489544ef1d3676f0	0	2	under
+M	56	4023:489544ef1d3676f0	0	2-3	under
+M	57	4023:489544ef1d3676f0	0	2-3	under
+M	58	4023:489544ef1d3676f0	0	3	under
+M	59	4023:489544ef1d3676f0	0	4-5	under
+M	185	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	186	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	187	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	188	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	189	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	190	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	191	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	192	4539:f6e3c80f8eddf1fd	0	12-15,20-23,28-31,36-39,44-47,52-55,60-63	under+behind
+M	211	463:0ba0f39bedc4f063	0	0-1	behind
+M	213	463:0ba0f39bedc4f063	0	0-1	behind
+M	214	463:0ba0f39bedc4f063	0	0-1	behind
+M	216	463:0ba0f39bedc4f063	0	0-1	behind

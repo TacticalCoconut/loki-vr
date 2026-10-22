@@ -1,0 +1,11 @@
+# Architect's fix file for abyss_02 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds abyss_02
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 50 model faces on 6 models
+architect-fix	1	abyss_02	gnd:4506942:103e14bd965b0b8d	gat:1800014:c5057f9abcc780c9
+R	rsw:203594:d8eabd4f1872f88f
+M	13	23355:b2d34158d0b9d419	0	190-191,234-237	behind
+M	20	2403:daa878337f98e797	0	36-41	under+behind
+M	73	3487:35a90816c0ba8fd7	0	10-11	under
+M	78	23355:b2d34158d0b9d419	0	190-191	behind
+M	112	3487:35a90816c0ba8fd7	0	0-1,8-11	under
+M	276	18399:a2db1a2f2ab10f95	0	351-352,354,357-358,360-361,387-390,392,396-399,403-413,415	under+behind

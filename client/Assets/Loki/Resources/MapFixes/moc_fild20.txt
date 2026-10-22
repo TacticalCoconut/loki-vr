@@ -1,0 +1,6 @@
+# Architect's fix file for moc_fild20 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds moc_fild20
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 8 model faces on 1 models
+architect-fix	1	moc_fild20	gnd:3594886:e5eee5dedd1a8497	gat:3200014:64a139b5dfd9143a
+R	rsw:196078:d01a619bcf2fe35d
+M	133	6939:82894368f32da170	0	4-7,20-23	behind

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>LokiHost.Core</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- the headset pose relay's wire format: the Loki client's own file, so the relay and the client always agree -->
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Net\PresenceWire.cs" Link="PresenceWire.cs" />
+    <!-- client wave 18 (w18share): the casting menus friends see, on the same relay (the client's own file too) -->
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Net\GestureWire.cs" Link="GestureWire.cs" />
+    <!-- client wave 20 (w20pen): the air pen's drawings other players see, on the same relay (the client's own file too) -->
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Net\DrawWire.cs" Link="DrawWire.cs" />
+    <!-- free movement (wfree): the players' exact spots, on the same relay (the client's own file too) -->
+    <Compile Include="..\..\..\client\Assets\Loki\Runtime\Net\SpotWire.cs" Link="SpotWire.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- wave 28 (wtexts): the text overhaul's verified server files, built by tools/textoverhaul/build_pack.py; TextOverhaul.cs
+         puts them into the host's rAthena copy at Start (manifest.json beside it is the same as the zip's, for reading) -->
+    <EmbeddedResource Include="TextOverhaul\server-text-pack.zip" LogicalName="LokiHost.Core.TextOverhaul.server-text-pack.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- wave 28 (wcxp): the Codex's bounties, ONE generated rAthena script (client/tools/codex/build_bounty_script.py) that the
+         SpacetimeDB module runs from its overlay too; CodexBounty.cs writes it into the host's copy at every start -->
+    <EmbeddedResource Include="..\..\..\server\data\overlay\npc\custom\loki_codex.txt" LogicalName="LokiHost.Core.CodexBounty.loki_codex.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- client wave 7 (w7host): the client's own GRF reader and data stamp (RoData links them), for the host's Ragnarok Online install -->
+    <ProjectReference Include="..\RoData\LokiHost.RoData.csproj" />
+    <!-- client wave 8 (w8core): Horde's engine, content and wire (the client's own files, linked by Horde/LokiHost.Horde.csproj) -->
+    <ProjectReference Include="..\Horde\LokiHost.Horde.csproj" />
+  </ItemGroup>
+</Project>

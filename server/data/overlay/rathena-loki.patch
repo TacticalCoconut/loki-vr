@@ -1,0 +1,61 @@
+diff --git a/src/map/battle.cpp b/src/map/battle.cpp
+index 5420fbd..636a67e 100644
+--- a/src/map/battle.cpp
++++ b/src/map/battle.cpp
+@@ -8387,6 +8387,7 @@ static const struct _battle_data {
+ 	{ "natural_healhp_interval",            &battle_config.natural_healhp_interval,         6000,   NATURAL_HEAL_INTERVAL, INT_MAX, },
+ 	{ "natural_healsp_interval",            &battle_config.natural_healsp_interval,         8000,   NATURAL_HEAL_INTERVAL, INT_MAX, },
+ 	{ "natural_heal_skill_interval",        &battle_config.natural_heal_skill_interval,     10000,  NATURAL_HEAL_INTERVAL, INT_MAX, },
++	{ "loki_sit_regen_rate",                &battle_config.loki_sit_regen_rate,             1,      1,      1000,           }, // Project Loki
+ #ifdef RENEWAL
+ 	{ "natural_heal_weight_rate",           &battle_config.natural_heal_weight_rate,        70,     0,      100             },
+ 	{ "open_box_weight_rate",               &battle_config.open_box_weight_rate,            90,     0,      100             },
+diff --git a/src/map/battle.hpp b/src/map/battle.hpp
+index 14cdc65..1f479ec 100644
+--- a/src/map/battle.hpp
++++ b/src/map/battle.hpp
+@@ -282,6 +282,7 @@ struct Battle_Config
+ 	int32 hanbok_ignorepalette;
+ 	int32 oktoberfest_ignorepalette;
+ 	int32 natural_healhp_interval;
++	int32 loki_sit_regen_rate; // Project Loki: natural regen multiplier while sitting
+ 	int32 natural_healsp_interval;
+ 	int32 natural_heal_skill_interval;
+ 	int32 natural_heal_weight_rate;
+diff --git a/src/map/status.cpp b/src/map/status.cpp
+index 87e0d41..09d17ad 100644
+--- a/src/map/status.cpp
++++ b/src/map/status.cpp
+@@ -15533,6 +15533,14 @@ static int32 status_natural_heal(block_list* bl, va_list args)
+ 			flag &= ~RGN_SP;
+ 	}
+ 
++	// Project Loki: sitting players recover loki_sit_regen_rate times the normal amount per tick
++	int64 loki_sitmul = 1;
++	if (sd) {
++		struct view_data* loki_vd = vd ? vd : status_get_viewdata(bl);
++		if (loki_vd && loki_vd->dead_sit == 2)
++			loki_sitmul = battle_config.loki_sit_regen_rate;
++	}
++
+ 	if (flag&(RGN_HP|RGN_SP)) {
+ 		if(!vd)
+ 			vd = status_get_viewdata(bl);
+@@ -15563,7 +15571,7 @@ static int32 status_natural_heal(block_list* bl, va_list args)
+ 			regen->tick.hp = natural_heal_prev_tick;
+ 			if (status->hp >= status->max_hp)
+ 				flag &= ~(RGN_HP | RGN_SHP);
+-			else if (status_heal(bl, regen->hp, 0, 1) < regen->hp)
++			else if (status_heal(bl, regen->hp * loki_sitmul, 0, 1) < regen->hp * loki_sitmul)
+ 				flag &= ~RGN_SHP; // Full
+ 		}
+ 	}
+@@ -15594,7 +15602,7 @@ static int32 status_natural_heal(block_list* bl, va_list args)
+ 			regen->tick.sp = natural_heal_prev_tick;
+ 			if (status->sp >= status->max_sp)
+ 				flag &= ~(RGN_SP | RGN_SSP);
+-			else if (status_heal(bl, 0, regen->sp, 1) < regen->sp)
++			else if (status_heal(bl, 0, regen->sp * loki_sitmul, 1) < regen->sp * loki_sitmul)
+ 				flag &= ~RGN_SSP; // Full
+ 		}
+ 	}

@@ -1,0 +1,1 @@
+{"types":[{"id":1,"name":"Orc Village","min":-3000,"max":3000},{"id":2,"name":"Goblin Village","min":-3000,"max":3000},{"id":3,"name":"Grey Wolf Village","min":-5000,"max":5000},{"id":4,"name":"Isgard","min":-3000,"max":3000}],"groups":[{"id":1,"name":"Monster Friends","types":[1,2]},{"id":2,"name":"Arunafeltz","types":[3]},{"id":3,"name":"Isgard","types":[4]}]}

@@ -1,0 +1,9 @@
+Header:
+  Type: SKILL_DB
+  Version: 4
+
+# >>> Loki Host: skill ranges (the host's setting SkillRanges; this block is rewritten at every start) >>>
+Body:
+  - Id: 50   # TF_STEAL
+    Range: 2
+# <<< Loki Host <<<

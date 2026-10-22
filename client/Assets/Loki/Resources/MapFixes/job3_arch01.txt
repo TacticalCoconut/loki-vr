@@ -1,0 +1,33 @@
+# Architect's fix file for job3_arch01 (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds job3_arch01
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 11 ground walls drawn from both sides, 16 turned to face the other side, 0 floors drawn, 0 holes filled; 4 sections
+architect-fix	1	job3_arch01	gnd:98726:307e4191393cd529	gat:72014:230230c8570864ef
+W	19	9	E	both	step
+W	20	10	E	both	step
+W	12	11	E	flip	step
+W	11	12	N	flip	step
+W	12	12	N	flip	step
+W	12	12	E	flip	step
+W	13	12	E	front	interior
+W	18	12	E	both	step
+W	20	13	N	flip	step
+W	21	14	N	flip	step
+W	22	14	N	both	step
+W	15	15	E	flip	interior
+W	16	16	E	front	interior
+W	17	16	N	both	step
+W	17	16	E	both	step
+W	10	17	N	both	interior
+W	15	17	N	flip	step
+W	16	17	N	flip	step
+W	16	17	E	flip	step
+W	17	17	N	flip	interior
+W	10	18	N	both	interior
+W	15	18	N	flip	step
+W	16	18	N	flip	step
+W	16	18	E	flip	step
+W	9	20	N	both	step
+W	10	20	N	both	step
+W	9	21	N	both	step

@@ -1,0 +1,18 @@
+# Architect's fix file for moc_fild07 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds moc_fild07
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 489 model faces on 13 models
+architect-fix	1	moc_fild07	gnd:4493854:144c0de5b5e41301	gat:3200014:93b830c9606abccb
+R	rsw:282262:e0c56ad2c6410871
+M	1	25719:5737d1cfcf4875c3	0	10-19,26-27,88-99,102-109,112-139,152-161,193-202,207-214,217-244,257-266,284-299,344-347,350-353,358-359,380-383,388-397,406-411,418-421	under+behind
+M	146	5703:9d598af4192ae747	0	42-65,68-69,86-87,92-93	under+behind
+M	207	5703:9d598af4192ae747	0	42-65,68-69,74-75,80-81,86-87,92-93	under+behind
+M	229	21371:e40d273a707540e9	0	88-89,162-171,184-185,188-191,194-195,208-215,218-219,230-247,260-269	under+behind
+M	257	5703:9d598af4192ae747	0	54-57,60-61,80-81	under+behind
+M	258	5703:9d598af4192ae747	0	42-43,48-51,54-57,60-65,74-75,80-81,86-87,92-93	under+behind
+M	259	5703:9d598af4192ae747	0	42-43,54-57,60-63,80-81	under+behind
+M	267	5703:9d598af4192ae747	0	54-55,60-61,68-69,80-81	behind
+M	268	21371:e40d273a707540e9	0	130-131,134-135,162-171,184-185,190-191,194-195,208-215,218-219,230-239,242-247,260-269	under+behind
+M	275	5703:9d598af4192ae747	0	42-49,56-57,60-65,68-69,74-75,80-81,92-93	under+behind
+M	729	6095:6332c80ef7daf12e	0	40-41,43-52,55-56,58-70,72-79	under+behind
+M	752	6095:6332c80ef7daf12e	0	50-51,66-67	behind
+M	767	13815:5be8b7cb527eb6d5	0	0-1,10-17,26-31,38-39,48-49	under+behind

@@ -1,0 +1,39 @@
+# Architect's fix file for que_thr (client/tools/vrmaps 'fix', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds que_thr
+# derived data only (tile numbers, wall sides, flags, heights in cells); it changes only what is drawn: the collider and the GAT stay the game's
+# W: ground walls by the design's outer-wall rule (tools/vrmaps/Walls.cs): interior -> both sides, step -> its low side only, outer -> toward the play area only, ledge -> 'low'; checked with rays (a face no view sees is not added; a game face still seen is kept); inner -> a wall seen from the walkable side it is missing from (the design's inner walls)
+# T: a void-filler top under a walkable cell, drawn; F: a seen hole beside the walkable floor on a map without its own sky, filled black
+# 6 ground walls drawn from both sides, 12 turned to face the other side, 0 floors drawn, 0 holes filled; 6 sections
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 74 model faces on 12 models
+architect-fix	1	que_thr	gnd:980718:b7281fa0c789fd05	gat:400014:13398fa539f7a273
+W	3	27	N	both	step
+W	62	27	N	both	step
+W	3	30	N	both	step
+W	62	30	N	both	step
+W	3	33	N	both	step
+W	6	33	N	flip	step
+W	9	33	N	flip	step
+W	12	33	N	flip	step
+W	62	33	N	both	step
+W	65	33	N	flip	step
+W	68	33	N	flip	step
+W	71	33	N	flip	step
+W	5	34	E	flip	step
+W	8	34	E	flip	step
+W	11	34	E	flip	step
+W	64	34	E	flip	step
+W	67	34	E	flip	step
+W	70	34	E	flip	step
+R	rsw:82095:a338533bae2e12ba
+M	6	20983:b03d2f68c45683bb	0	62-65	under+behind
+M	10	3199:89b5166faedcb2a6	0	0-1,4-5,24-25,28-29	under+behind
+M	11	3199:89b5166faedcb2a6	0	4-5,28-29	behind
+M	12	3199:89b5166faedcb2a6	0	5,28-29	behind
+M	18	3199:89b5166faedcb2a6	0	0-5,24-27	under+behind
+M	19	3199:89b5166faedcb2a6	0	0-5,24-25	under+behind
+M	38	20983:b03d2f68c45683bb	0	62-65	under+behind
+M	48	3199:89b5166faedcb2a6	0	5,28-29	behind
+M	49	3199:89b5166faedcb2a6	0	0-1,4-5,24-25,28-29	under+behind
+M	50	3199:89b5166faedcb2a6	0	4-5,28-29	behind
+M	52	3199:89b5166faedcb2a6	0	0-5,24-27	under+behind
+M	53	3199:89b5166faedcb2a6	0	0-5,24-25	under+behind

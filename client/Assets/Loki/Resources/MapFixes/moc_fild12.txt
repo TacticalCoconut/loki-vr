@@ -1,0 +1,27 @@
+# Architect's fix file for moc_fild12 (client/tools/vrmaps 'models', 2026-10-15): read by World/MapFix.cs, applied by World/MapLoader.cs when it builds moc_fild12
+# M (wave 27, wmodel; next-list item 16): single-sided model faces drawn from their other side too, where a player sees them from behind or below (first person, Follow); never toward the void (the design's outer-wall rule), never in a walkable passage, never on another surface; R: the RSW the M lines were made for (tools/vrmaps/Models.cs)
+# M: 512 model faces on 22 models
+architect-fix	1	moc_fild12	gnd:3700814:eece6965c43be335	gat:2560014:42efd9cc47d6bb33
+R	rsw:216742:a4a6438121947546
+M	0	11279:2a3cb041a4831c05	0	86-87	behind
+M	6	11219:089ee2c1996a6f2f	0	34-35,154-155,158-163,166-169	under+behind
+M	233	9171:a62081ab03677366	0	1,4,10-17,20-23,182-183	under+behind
+M	380	16375:017c9935a5d5a6ae	0	44-53,56-61,64-67,158-171	under+behind
+M	392	2995:616694e19a260c90	0	10-11,14-15	behind
+M	394	21371:e40d273a707540e9	0	162-171,188-189,230-247,260-269	under+behind
+M	395	5703:9d598af4192ae747	0	46-53,60-69,74-75,80-81,86-87,92-93	under+behind
+M	396	5703:9d598af4192ae747	0	42-69,74-75,80-81,86-87	under+behind
+M	397	3387:17a7deb42d22e84b	0	28-37	under+behind
+M	401	5703:9d598af4192ae747	0	16-17,42-47,52-59,64-67,74-75,86-87,92-93	under+behind
+M	402	21371:e40d273a707540e9	0	86-87,162-171,188-189,194-195,218-219,230-243,246-247,260-269	under+behind
+M	403	5703:9d598af4192ae747	0	42-53,60-63,66-67,74-75,80-81,86-87,92-93	under+behind
+M	404	10839:f92abffd23dc12aa	0	4-5,8-9	behind
+M	405	5703:9d598af4192ae747	0	4-5,48-63,66-69,80-81,86-87,92-93	under+behind
+M	418	1783:910e01adee701700	0	0-3,8-11	behind
+M	422	6095:6332c80ef7daf12e	0	41,44-50,53-56,58-70,72-79	under+behind
+M	427	6095:6332c80ef7daf12e	0	40-42,45-49,52-54,56-57,60-68,70,72-79	under+behind
+M	547	21371:e40d273a707540e9	0	162-171,188-191,208-213,230-247,260-269	under+behind
+M	548	5703:9d598af4192ae747	0	42-47,52-59,64-69,74-75,80-81,86-87,92-93	under+behind
+M	552	3387:17a7deb42d22e84b	0	22-25	behind
+M	553	5703:9d598af4192ae747	0	60-69,74-75,80-81,86-87,92-93	under+behind
+M	565	5703:9d598af4192ae747	0	42-45,48-69,74-75,80-81,86-87,92-93	under+behind

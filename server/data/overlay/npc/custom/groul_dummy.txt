@@ -1,0 +1,22 @@
+// groul_dummy.txt - script commands that run an @command with no player attached (the groul parity rig; port wave I,
+// imaps; not in scripts_custom.conf: the npc_dummy scenario loads it with @loadnpc). rAthena runs such a command as its
+// dummy character (script.cpp:15736-15781 atcommand_sub): group 99, no client, named after the NPC and standing where
+// the NPC stands.
+
+prontera,121,198,4	script	Dummy Crier#gd	-1,{
+	end;
+OnInit:
+	// the dummy stands on the NPC's map: everybody on prontera hears it, under the NPC's name
+	atcommand "@localbroadcast on the map";
+	// useatcmd is is_atcommand's type 3
+	useatcmd "@kami by useatcmd";
+	// a #command on a named player: the player gets the effect, the dummy the reply (it has no client)
+	charcommand "#effect \"Groul Player\" 18";
+	// an unknown command, a text that is no command, a #command without a name: nothing reaches a client and the
+	// script goes on
+	atcommand "@nosuchcommand 1";
+	atcommand "no command";
+	charcommand "#effect";
+	atcommand "@broadcast still running";
+	end;
+}
